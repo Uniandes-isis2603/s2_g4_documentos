@@ -26,7 +26,7 @@ package co.edu.uniandes.csw.documentos.dtos;
 import co.edu.uniandes.csw.documentos.entities.CityEntity;
 
 /**
- * CityDTO Objeto de transferencia de datos de Cities. Los DTO contienen las
+ * AreaDeConocimientoDTO Objeto de transferencia de datos de AreaDeConocimiento. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
  * servidor.
  * 
@@ -34,8 +34,7 @@ import co.edu.uniandes.csw.documentos.entities.CityEntity;
  * <pre>
  *   {
  *      "id": number,
- *      "name: string,
- *      "zipcode": string
+ *      "tipo": string,
  *   }
  * </pre>
  * Por ejemplo una ciudad se representa asi:<br>
@@ -44,37 +43,33 @@ import co.edu.uniandes.csw.documentos.entities.CityEntity;
  * 
  *   {
  *      "id": 91852,
- *      "name: "Bogota, DC",
- *      "zipcode": "121110"
+ *      "tipo": "Calculo",
  *   }
  *
  * </pre>
- * @author ISIS2603
+ * @author Camilojaravila
  */
-public class CityDTO {
+public class AreaDeConocimientoDTO {
 
     private Long id;
-    private String name;
-    private String zipcode;
+    private String tipo;
 
     /**
      * Constructor por defecto
      */
-    public CityDTO() {
+    public AreaDeConocimientoDTO() {
     }
 
     /**
      * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
      * la entidad que viene de argumento.
      *
-     * @param city: Es la entidad que se va a convertir a DTO
+     * @param area: Es la entidad que se va a convertir a DTO
      */
-    public CityDTO(CityEntity city) {
-        this.id = city.getId();
-        this.name = city.getName();
-        this.zipcode = city.getZipcode();
-
-    }
+//    public AreaDeConocimientoDTO(AreaDeConocimientoEntity area) {
+//        this.id = area.getId();
+//        this.tipo = area.getTipo();
+//    }
 
     /**
      * @return El ID de la ciudad
@@ -91,31 +86,17 @@ public class CityDTO {
     }
 
     /**
-     * @return El nombre de la ciudad
+     * @return El tipo de area de conocimiento
      */
-    public String getName() {
-        return name;
+    public String getTipo() {
+        return tipo;
     }
 
     /**
-     * @param name El nuevo nombre
+     * @param tipo El nuevo tipo de area de conocimiento
      */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * @return El zipcode de la ciudad
-     */
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    /**
-     * @param zipcode El nuevo zipcode
-     */
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setName(String tipo) {
+        this.tipo = tipo;
     }
 
     /**
@@ -123,11 +104,11 @@ public class CityDTO {
      *
      * @return Un Entity con los valores del DTO
      */
-    public CityEntity toEntity() {
-        CityEntity entity = new CityEntity();
-        entity.setId(this.id);
-        entity.setName(this.name);
-        entity.setZipcode(this.zipcode);
-        return entity;
-    }
+//    public CityEntity toEntity() {
+//        CityEntity entity = new CityEntity();
+//        entity.setId(this.id);
+//        entity.setName(this.name);
+//        entity.setZipcode(this.zipcode);
+//        return entity;
+//    }
 }

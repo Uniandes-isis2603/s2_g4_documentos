@@ -26,7 +26,7 @@ package co.edu.uniandes.csw.documentos.dtos;
 import co.edu.uniandes.csw.documentos.entities.CityEntity;
 
 /**
- * CityDTO Objeto de transferencia de datos de Cities. Los DTO contienen las
+ * ImagenDTO Objeto de transferencia de datos de AreaDeConocimiento. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
  * servidor.
  * 
@@ -34,8 +34,8 @@ import co.edu.uniandes.csw.documentos.entities.CityEntity;
  * <pre>
  *   {
  *      "id": number,
- *      "name: string,
- *      "zipcode": string
+ *      "nombre": string,
+ *      "img": string
  *   }
  * </pre>
  * Por ejemplo una ciudad se representa asi:<br>
@@ -44,90 +44,89 @@ import co.edu.uniandes.csw.documentos.entities.CityEntity;
  * 
  *   {
  *      "id": 91852,
- *      "name: "Bogota, DC",
- *      "zipcode": "121110"
+ *      "tipo": "Portada",
+ *      "img": "./libro_32/imagenes/portada.jpg"
  *   }
  *
  * </pre>
- * @author ISIS2603
+ * @author Camilojaravila
  */
-public class CityDTO {
+public class ImagenDTO {
 
     private Long id;
-    private String name;
-    private String zipcode;
+    private String nombre;
+    private String img;
 
     /**
      * Constructor por defecto
      */
-    public CityDTO() {
+    public ImagenDTO() {
     }
-
     /**
-     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
-     * la entidad que viene de argumento.
-     *
-     * @param city: Es la entidad que se va a convertir a DTO
-     */
-    public CityDTO(CityEntity city) {
-        this.id = city.getId();
-        this.name = city.getName();
-        this.zipcode = city.getZipcode();
-
-    }
-
-    /**
-     * @return El ID de la ciudad
+     * @return el id de la imagen 
      */
     public Long getId() {
         return id;
     }
 
     /**
-     * @param id El nuevo ID
-     */
+     * @param id El nuevo id de la imagen
+     */    
     public void setId(Long id) {
         this.id = id;
     }
 
-    /**
-     * @return El nombre de la ciudad
+     /**
+     * @return el nombre de la imagen 
      */
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
+    }
+    
+    /**
+     * @param nombre El nuevo nombre de la imagen
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    /**
+     * @return La ruta de la Imagen 
+     */
+    public String getImg() {
+        return img;
+    }
+
+     /**
+     * @param tipo La nueva ruta de la imageno
+     */
+    public void setImg(String img) {
+        this.img = img;
     }
 
     /**
-     * @param name El nuevo nombre
+     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento.
+     *
+     * @param area: Es la entidad que se va a convertir a DTO
      */
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public AreaDeConocimientoDTO(AreaDeConocimientoEntity area) {
+//        this.id = area.getId();
+//        this.tipo = area.getTipo();
+//    }
 
-    /**
-     * @return El zipcode de la ciudad
-     */
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    /**
-     * @param zipcode El nuevo zipcode
-     */
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
+   
 
     /**
      * Convertir DTO a Entity
      *
      * @return Un Entity con los valores del DTO
      */
-    public CityEntity toEntity() {
-        CityEntity entity = new CityEntity();
-        entity.setId(this.id);
-        entity.setName(this.name);
-        entity.setZipcode(this.zipcode);
-        return entity;
-    }
+//    public CityEntity toEntity() {
+//        CityEntity entity = new CityEntity();
+//        entity.setId(this.id);
+//        entity.setName(this.name);
+//        entity.setZipcode(this.zipcode);
+//        return entity;
+//    }
 }

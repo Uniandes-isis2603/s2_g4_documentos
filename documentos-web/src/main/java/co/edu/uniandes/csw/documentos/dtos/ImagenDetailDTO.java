@@ -22,7 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 package co.edu.uniandes.csw.documentos.dtos;
-import co.edu.uniandes.csw.documentos.entities.CityEntity;
 
 /**
  * Clase que extiende de {@link CityDTO} para manejar la transformacion entre
@@ -30,12 +29,14 @@ import co.edu.uniandes.csw.documentos.entities.CityEntity;
  * contenido de la ciudad vaya a la documentacion de {@link CityDTO}
  * @author ISIS2603
  */
-public class CityDetailDTO extends CityDTO {
+public class ImagenDetailDTO extends ImagenDTO {
 
+//    private DocumentoDTO documentos;
+    
     /**
      * Constructor por defecto
      */
-    public CityDetailDTO() {
+    public ImagenDetailDTO() {
     }
 
     /**
@@ -43,19 +44,19 @@ public class CityDetailDTO extends CityDTO {
      *
      * @param entity La entidad de ciudad a partir de la cual se construye el objeto
      */
-    public CityDetailDTO(CityEntity entity) {
-        super(entity);
-    }
+//    public CityDetailDTO(CityEntity entity) {
+//        super(entity);
+//    }
 
-    /**
-     * Transformar un DTO a un Entity
-     *
-     * @return  La entidad construida a partir del DTO.
-     */
-    @Override
-    public CityEntity toEntity() {
-        CityEntity cityE = super.toEntity();
-        return cityE;
-    }
+//    /**
+//     * Transformar un DTO a un Entity
+//     *
+//     * @return  La entidad construida a partir del DTO.
+//     */
+//    @Override
+//    public CityEntity toEntity() {
+//        CityEntity cityE = super.toEntity();
+//        return cityE;
+//    }
 
 }
