@@ -31,7 +31,7 @@ package co.edu.uniandes.csw.documentos.dtos;
  */
 public class AutorDetailDTO extends AreaDeConocimientoDTO {
 
-//    private DocumentoDTO[] documentos;
+//    private List<DocumentoDTO> documentos;
     
     /**
      * Constructor por defecto
