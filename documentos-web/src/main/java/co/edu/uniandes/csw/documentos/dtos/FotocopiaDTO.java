@@ -42,7 +42,7 @@ package co.edu.uniandes.csw.documentos.dtos;
  *      "capitulos" : "1, 2 y 3"
  *  }
  * </pre>
- * @author ernes
+ * @author Ernesto Viana
  */
 public class FotocopiaDTO extends DocumentoDTO{
     

@@ -42,10 +42,13 @@ import java.util.Date;
  *      "FechaPublicacion" : 22/11/1985
  *  }
  * </pre>
- * @author ernes
+ * @author Ernesto Viana
  */
 public class LibroDTO extends DocumentoDTO {
     
+    /**
+     * Constructor por defecto
+     */
     public LibroDTO() {
         
     }
