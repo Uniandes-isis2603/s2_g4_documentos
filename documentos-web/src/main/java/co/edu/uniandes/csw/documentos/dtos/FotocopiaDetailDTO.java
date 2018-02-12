@@ -11,7 +11,7 @@ package co.edu.uniandes.csw.documentos.dtos;
  * contenido del documento vaya a la documentacion de {@link DocumentoDetailDTO}
  * @author Ernesto Viana
  */
-public class FotocopiaDetailDTO {
+public class FotocopiaDetailDTO extends DocumentoDetailDTO {
     
     /**
      * Constructor por defecto
