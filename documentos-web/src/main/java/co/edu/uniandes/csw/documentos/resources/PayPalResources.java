@@ -21,20 +21,38 @@ import javax.ws.rs.Produces;
 
 
 /**
- *
+ *<pre> Clase que implemeta el recurso PayPal
+ * URL: /api/metodosdepago/paypal
+ * </pre> 
+ * 
+ * <h2> Anotaciones </h2>
+ * <pre> 
+ * Path : indica la direccion despues de "api" para acceder al recurso
+ * Produces/Consume : indica que los servicios definidos reciben y devuelven objetos JSON
+ * RequesScoped :  Inicia una transaccion desde el llamado de cada metodo
+ * </pre>
+ * 
  * @author g.ospinaa
  */
-@Path ("metododepago/paypal")
+@Path ("metodosdepago/paypal")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class PayPalResources {
  
      /**
-     * Crea un nuevo PayPal con la informacion que recibe en
-     * parametro con un PayPalDetailDTO y se regresa un objeto identico
-     * creado por la base de datos
+     * <h1> POST /api/metdodosdepago/paypal : crea una nueva cuenta paypal. </h1>
+     * <pre> Cuerpo de peticion : JSON {TarjetaDeCreditoDetailDTO}
      * 
+     * Crea una nueva tarjetaDeCredito para el usuario con la informacion que recibe 
+     * por parametro y se regresa un objeto identico con un id unico creado por la base de datos.
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Creó la nueva TDC .
+     * </code>
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 412 Precodition Failed: Ya existe la TDC.
+     * </code>
+     * </pre>
      * @param payPal {@link PayPalDetailDTO} - el PayPal a agregar.
      * @return JSON
      * @throws BusinessLogicException
