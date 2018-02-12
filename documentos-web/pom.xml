@@ -94,6 +94,22 @@
     </dependencies>
     <build>
         <plugins>
+<plugin>
+	<groupId>com.sebastian-daschner</groupId>
+  	<artifactId>jaxrs-analyzer-maven-plugin</artifactId>
+  	<version>0.16</version>
+  	<executions>
+  		<execution>
+      			<goals>
+          			<goal>analyze-jaxrs</goal>
+          		</goals>
+      			<configuration>
+          			<backend>swagger</backend>
+ 				<deployedDomain>localhost:8080</deployedDomain>
+          		</configuration>
+		</execution>
+	</executions>
+</plugin>
             <plugin>
                 <groupId>com.sebastian-daschner</groupId>
                 <artifactId>jaxrs-analyzer-maven-plugin</artifactId>
