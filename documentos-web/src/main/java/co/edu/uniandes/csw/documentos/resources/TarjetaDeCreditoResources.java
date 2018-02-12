@@ -98,7 +98,7 @@ public class TarjetaDeCreditoResources {
      * @param id Identificador unico de la TDC que se desea borrar.
      */
     @DELETE
-    @Path("{id \\d+}")
+    @Path("{id: \\d+}")
     public void deleteTDC (@PathParam("id") Long id)
     {
         // Void

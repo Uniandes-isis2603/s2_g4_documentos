@@ -88,7 +88,7 @@ public class PayPalResources {
      * @param id Identificador unico del usuario cuyo PayPal se desea borrar.
      */
     @DELETE
-    @Path("{id \\d+}")
+    @Path("{id: \\d+}")
     public void deletePayPal (@PathParam("id") Long id)
     {
         // Void
