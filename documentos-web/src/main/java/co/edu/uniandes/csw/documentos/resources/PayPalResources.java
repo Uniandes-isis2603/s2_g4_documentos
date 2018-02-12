@@ -64,13 +64,40 @@ public class PayPalResources {
         return payPal;
     }
     
-    /**
-     * 
-     * <pre> Encuentra la cuenta PayPal identificado por un ID unico recibido en la URL
-     * y la devuelve.
+     /**
+     * <h1> GET /api/metdodosdepago/paypal : encuentra todas las cuentas Paypal asociadas al usuario</h1>
+     * <pre> Busca y devuelve todas las cuentas paypal que tiene el usuario
+     * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Devuelve las TDC correspondiente al id.
+     * </code> 
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found El usuario no tiene tarjetas.
+     * </code> 
      * </pre>
-     * @param id Identificador del usuario cuya cuenta PayPal se busca,
-     * @return JSON {@link PayPalDetailDTO} - El PP buscado
+     * 
+     * @return todas las cuentas paypal que tiene el usuario.
+     */
+    @GET
+    public List<TarjetaDeCreditoDetailDTO> getPayPal()
+    {
+        return new ArrayList<>();
+    }
+    
+   /**
+     * <h1> GET /api/metdodosdepago/paypal/{id} : encuentra una cuenta Paypal del usuario, la cual esta identificada por un id <h1>
+     * 
+     * <pre> Encuentra una cuenta Paypal identificada por un ID unico recibido en la URL y la devuelve.
+     * * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Devuelve la PP correspondiente al id.
+     * </code> 
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found No existe una PP con el id dado.
+     * </code>
+     * </pre>
+     * @param id Identificador de la cuentasPaypal que se busca,
+     * @return JSON {@link PayPalDetailDTO} - cuenta Paypal buscada
      */
     @GET
     @Path("{id: \\d+}")
@@ -79,17 +106,25 @@ public class PayPalResources {
       return null;
     }
     
-    /**
-     * 
+     /**
+     * <h1> PUT /api/metdodosdepago/paypal/{id} : actualiza una cuenta Paypal </h1>
      * <pre> cuerpo de peticion : JSON.
-     * </pre>
-     * Actuliza el payPal identificado con el identificador, con la
+     * 
+     * Actuliza la cuenta Paypal identificada con el identificador, con la
      * informacion en el cuerpo de peticion.
      * 
-     * @param id IDentificador del PayPal que se desea actualizar representado
+     * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Actualiza la cuenta Paypal con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code> 
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found. No existe una cuenta Paypal con el id dado.
+     * </code> 
+     * 
+     * </pre>
+     * @param id IDentificador de la cuenta Paypal que se desea actualizar representado
      * como una cadena de digitos.
-     * @param paypal del PayPal que se desea actualizar.
-     * @return JSON - La ciudad guardada
+     * @param tdc La cuenta Paypal que se desea actualizar.
+     * @return JSON - La cuenta Paypal guardada
      * @throws BusinessLogicException.
      */
     @PUT
@@ -99,11 +134,19 @@ public class PayPalResources {
         return paypal;
     }
     
-    /**
-     * <pre> Borra el PayPal identificado con un id unico
+     /**
+     * <h1> DELETE /api/metdodosdepago/paypal/{id} : elimina una PP </h1>
+     * <pre> Borra la cuenta Paypal identificado con un id unico
      * pasado por parametro.
+     * 
+     * Códigos de respuesta:<br>
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Elimina la PP correspondiente al id dado.</code>
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found. No existe una PP con el id dado.
+     * </code>
      * </pre>
-     * @param id Identificador unico del usuario cuyo PayPal se desea borrar.
+     * @param id Identificador unico de la PP que se desea borrar.
      */
     @DELETE
     @Path("{id: \\d+}")

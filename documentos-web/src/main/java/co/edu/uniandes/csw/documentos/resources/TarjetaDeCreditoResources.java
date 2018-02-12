@@ -139,9 +139,9 @@ public class TarjetaDeCreditoResources {
      * 
      * Códigos de respuesta:<br>
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Elimina la ciudad correspondiente al id dado.</code>
+     * 200 OK Elimina la PP correspondiente al id dado.</code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found. No existe una ciudad con el id dado.
+     * 404 Not Found. No existe una PP con el id dado.
      * </code>
      * </pre>
      * @param id Identificador unico de la TDC que se desea borrar.
