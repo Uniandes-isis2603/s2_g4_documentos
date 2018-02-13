@@ -24,12 +24,12 @@ SOFTWARE.
 package co.edu.uniandes.csw.documentos.dtos;
 
 /**
- * Clase que extiende de {@link CityDTO} para manejar la transformacion entre
+ * Clase que extiende de {@link AutorDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
- * contenido de la ciudad vaya a la documentacion de {@link CityDTO}
- * @author ISIS2603
+ * contenido de la ciudad vaya a la documentacion de {@link AutorDTO}
+ * @author Camilojaravila
  */
-public class AutorDetailDTO extends AreaDeConocimientoDTO {
+public class AutorDetailDTO extends AutorDTO {
 
 //    private List<DocumentoDTO> documentos;
     
