@@ -6,7 +6,32 @@
 package co.edu.uniandes.csw.documentos.dtos;
 
 /**
+ * TarjetaDeCreditoDTO Objeto que representa una tarjeta de credito para compras
+ * . Los DTO contienen las represnetaciones de los JSON que se 
+ * transfieren entre el cliente y elservidor.
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "tipoDeTarjeta": string,
+ *      "nroDeTarjeta: string,
+ *      "nombreEnLaTarjeta": string,
+ *      "numeroDeSeguridad": integer
+ * 
+ *   }
+ * </pre>
+ * Por ejemplo una TarjetaDeCredito se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "tipoDeTarjeta": "Visa",
+ *      "nroDeTarjeta: "433467500798",
+ *      "nombreEnLaTarjeta": "Gregorio Ospina",
+ *      "numeroDeSeguridad": 243
+ *   }
  *
+ * </pre>
  * @author g.ospinaa
  */
 public class TarjetaDeCreditoDTO {
