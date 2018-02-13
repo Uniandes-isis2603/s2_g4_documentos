@@ -22,7 +22,7 @@ import javax.ws.rs.Produces;
 /**
  *
  * @author n.sotelo
- */@Path("Comentario")
+ */@Path("comentario")
 @Produces ("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -41,17 +41,17 @@ public class ComentarioResource {
 
     
      /**
-     * <h1> POST /api/Comentario : crear un nuevO Comentario. </h1>
+     * <h1> POST /api/comentario : crear un nuevO comentario. </h1>
      * <pre> Cuerpo de peticion : JSON {ComentarioDTO}
      * 
-     * Crea un nuevo Comentario que se recibe en el el cuerpo 
+     * Crea un nuevo comentario que se recibe en el el cuerpo 
      * de la petición y se regresa un objeto identico con un id auto-generado 
      * por la base de datos.
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Creó un nuevo Comentario .
+     * 200 OK Creó un nuevo comentario .
      * </code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 412 Precodition Failed: Ya existe el Comentario .
+     * 412 Precodition Failed: Ya existe el comentario .
      * </code>
      * </pre>
      * 
@@ -66,16 +66,16 @@ public class ComentarioResource {
     }
     
      /**
-     * <h1> GET /api/Comentarios : encuentra todas los Comentarios de la tienda</h1>
-     * <pre> Busca y devuelve todas las Comentarioes de la aplicacion
+     * <h1> GET /api/comentarios : encuentra todas los Comentarios de la tienda</h1>
+     * <pre> Busca y devuelve todas las Comentarios de la aplicacion
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Devuelve los Comentarioes de la aplicacion.
+     * 200 OK Devuelve los Comentarios de la aplicacion.
      * </code> 
      *
      * </pre>
      * 
-     * @return JSONArray {@link AutorDetailDTO} - Las Comentarioes  encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+     * @return JSONArray {@link AutorDetailDTO} - Las Comentarios  encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
     public List<ComentarioDTO> getComentarios()
@@ -84,7 +84,7 @@ public class ComentarioResource {
     }
     
     /**
-     * <h1> GET /api/Comentario/{id} : encuentra una Comentario , la cual esta identificada por un id </h1>
+     * <h1> GET /api/comentario/{id} : encuentra una Comentario , la cual esta identificada por un id </h1>
      * 
      * <pre> Encuentra una Comentario identificada por un ID unico recibido en la URL y la devuelve.
      * * Codigos de respuesta:
@@ -106,7 +106,7 @@ public class ComentarioResource {
     }
     
      /**
-     * <h1> PUT /api/Comentario/{id} : actualiza una Comentario </h1>
+     * <h1> PUT /api/comentario/{id} : actualiza una Comentario </h1>
      * <pre> cuerpo de peticion : JSON.
      * 
      * Actuliza la tarjetaDeCredito identificada con el identificador, con la
@@ -134,7 +134,7 @@ public class ComentarioResource {
     }
     
     /**
-     * <h1> DELETE /api/Comentario/{id} : elimina una eidtorial </h1>
+     * <h1> DELETE /api/comentario/{id} : elimina una eidtorial </h1>
      * <pre> Borra la Comentario identificado con un id unico
      * pasado por parametro.
      * 

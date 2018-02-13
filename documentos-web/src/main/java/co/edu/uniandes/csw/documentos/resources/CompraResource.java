@@ -29,7 +29,7 @@ import javax.ws.rs.Produces;
 /**
  *
  * @author n.sotelo
- */@Path("Compra")
+ */@Path("compra")
 @Produces ("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -49,7 +49,7 @@ import javax.ws.rs.Produces;
 
     
      /**
-     * <h1> POST /api/Compra : crear un nuevO Compra. </h1>
+     * <h1> POST /api/compra : crear un nuevO Compra. </h1>
      * <pre> Cuerpo de peticion : JSON {CompraDetailedDTO}
      * 
      * Crea un nuevo Compra que se recibe en el el cuerpo 
@@ -74,16 +74,16 @@ import javax.ws.rs.Produces;
     }
     
      /**
-     * <h1> GET /api/Compras : encuentra todas los Compras de la tienda</h1>
+     * <h1> GET /api/compras : encuentra todas los Compras de la tienda</h1>
      * <pre> Busca y devuelve todas las Compraes de la aplicacion
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Devuelve los Compraes de la aplicacion.
+     * 200 OK Devuelve los Compras de la aplicacion.
      * </code> 
      *
      * </pre>
      * 
-     * @return JSONArray {@link AutorDetailDTO} - Las Compraes  encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+     * @return JSONArray {@link AutorDetailDTO} - Las Compras  encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
     public List<CompraDetailedDTO> getCompras()
@@ -92,7 +92,7 @@ import javax.ws.rs.Produces;
     }
     
     /**
-     * <h1> GET /api/Compra/{id} : encuentra una Compra , la cual esta identificada por un id </h1>
+     * <h1> GET /api/compra/{id} : encuentra una Compra , la cual esta identificada por un id </h1>
      * 
      * <pre> Encuentra una Compra identificada por un ID unico recibido en la URL y la devuelve.
      * * Codigos de respuesta:
@@ -114,7 +114,7 @@ import javax.ws.rs.Produces;
     }
     
      /**
-     * <h1> PUT /api/Compra/{id} : actualiza una Compra </h1>
+     * <h1> PUT /api/compra/{id} : actualiza una Compra </h1>
      * <pre> cuerpo de peticion : JSON.
      * 
      * Actuliza la tarjetaDeCredito identificada con el identificador, con la
@@ -142,7 +142,7 @@ import javax.ws.rs.Produces;
     }
     
     /**
-     * <h1> DELETE /api/Compra/{id} : elimina una eidtorial </h1>
+     * <h1> DELETE /api/compra/{id} : elimina una eidtorial </h1>
      * <pre> Borra la Compra identificado con un id unico
      * pasado por parametro.
      * 

@@ -24,7 +24,7 @@ import javax.ws.rs.Produces;
  *
  * @author n.sotelo
  */
-@Path("Curso")
+@Path("curso")
 @Produces ("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -36,7 +36,7 @@ public class CursoResource {
 
     
      /**
-     * <h1> POST /api/Curso : crear una nueva Curso. </h1>
+     * <h1> POST /api/curso : crear una nueva Curso. </h1>
      * <pre> Cuerpo de peticion : JSON {CursoDetailedDTO}
      * 
      * Crea una nueva Curso que se recibe en el el cuerpo 
@@ -61,16 +61,16 @@ public class CursoResource {
     }
     
      /**
-     * <h1> GET /api/Cursos : encuentra todas los Cursos de la tienda</h1>
-     * <pre> Busca y devuelve todas las Cursoes de la aplicacion
+     * <h1> GET /api/cursos : encuentra todas los Cursos de la tienda</h1>
+     * <pre> Busca y devuelve todas las Cursos de la aplicacion
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Devuelve las Cursoes de la aplicacion.
+     * 200 OK Devuelve las Cursos de la aplicacion.
      * </code> 
      *
      * </pre>
      * 
-     * @return JSONArray {@link AutorDetailDTO} - Las Cursoes  encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+     * @return JSONArray {@link AutorDetailDTO} - Las Cursos  encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
     public List<CursoDetailedDTO> getCursos()
@@ -79,7 +79,7 @@ public class CursoResource {
     }
     
     /**
-     * <h1> GET /api/Curso/{id} : encuentra una Curso , la cual esta identificada por un id </h1>
+     * <h1> GET /api/curso/{id} : encuentra una Curso , la cual esta identificada por un id </h1>
      * 
      * <pre> Encuentra una Curso identificada por un ID unico recibido en la URL y la devuelve.
      * * Codigos de respuesta:
@@ -101,7 +101,7 @@ public class CursoResource {
     }
     
      /**
-     * <h1> PUT /api/Curso/{id} : actualiza una Curso </h1>
+     * <h1> PUT /api/curso/{id} : actualiza una Curso </h1>
      * <pre> cuerpo de peticion : JSON.
      * 
      * Actuliza la tarjetaDeCredito identificada con el identificador, con la
@@ -129,7 +129,7 @@ public class CursoResource {
     }
     
     /**
-     * <h1> DELETE /api/Curso/{id} : elimina una eidtorial </h1>
+     * <h1> DELETE /api/curso/{id} : elimina una eidtorial </h1>
      * <pre> Borra la Curso identificado con un id unico
      * pasado por parametro.
      * 
