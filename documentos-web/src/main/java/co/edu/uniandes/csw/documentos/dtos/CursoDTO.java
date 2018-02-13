@@ -9,9 +9,13 @@ package co.edu.uniandes.csw.documentos.dtos;
  *
  * @author n.sotelo
  */
-public class DesesadoDTO {
-    private String nombre;
-    private int cantidad;
+public class CursoDTO {
+   private String nombre;
+   private String codigo;
+   private String departamento;
+
+    public CursoDTO() {
+    }
 
     public String getNombre() {
         return nombre;
@@ -21,15 +25,20 @@ public class DesesadoDTO {
         this.nombre = nombre;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
-    public DesesadoDTO() {
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
     }
     
 }
