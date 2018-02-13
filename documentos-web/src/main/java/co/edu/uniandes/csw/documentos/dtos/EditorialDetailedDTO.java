@@ -13,13 +13,13 @@ import java.util.List;
  */
 public class EditorialDetailedDTO extends EditorialDTO{
     
-    private List<LibrosDTO> libros;
+    private List<LibroDTO> libros;
 
-    public List<LibrosDTO> getLibros() {
+    public List<LibroDTO> getLibros() {
         return libros;
     }
 
-    public void setLibros(List<LibrosDTO> libros) 
+    public void setLibros(List<LibroDTO> libros) 
     {
         this.libros = libros;
     }
