@@ -20,17 +20,29 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
+ * <pre> Clase que implementa el recurso "Editorial".
+ * URL: /api/editoriales
+ * </pre>
+ * <i> Note que la aplicación (definida en {@link RestConfig}) define la ruta "/api" y
+ * este recurso tiene la ruta "libros". </i>
+ * 
+ * <h2> Anotaciones </h2>
+ * <pre> 
+ * Path: indica la direccion despues de "api" para acceder al recurso
+ * Produces/Consumes: indica que los servicios definidos en este recurso reciben y devuelven objetos en formato JSON
+ * RequestScoped: Inicia una transaccion desde el llamado de cada metodo (servicio).
+ * </pre>
  *
  * @author n.sotelo
  */
-@Path("editorial")
+@Path("editoriales")
 @Produces ("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class EditorialResource {
     
      /**
-     * <h1> POST /api/editorial : crear una nueva Editorial. </h1>
+     * <h1> POST /api/editoriales : crear una nueva Editorial. </h1>
      * <pre> Cuerpo de peticion : JSON {EditorialDetailedDTO}
      * 
      * Crea una nueva editorial que se recibe en el el cuerpo 
@@ -45,7 +57,7 @@ public class EditorialResource {
      * </pre>
      * 
      * @param editorial {@link EditorialDetailDTO} - La nueva editorial
-     * @return JSON {@link EditorialDetailDTO}  -La editorial guardada con el atributo id autogenerado.
+     * @return JSON {@link EditorialDetailDTO}  -La editorial guardada 
      * @throws BusinessLogicException
      */
     @POST
@@ -73,7 +85,7 @@ public class EditorialResource {
     }
     
     /**
-     * <h1> GET /api/editorial/{id} : encuentra una editorial , la cual esta identificada por un id </h1>
+     * <h1> GET /api/editoriales/{id} : encuentra una editorial,la cual esta identificada por un identificador unico (ID) </h1>
      * 
      * <pre> Encuentra una editorial identificada por un ID unico recibido en la URL y la devuelve.
      * * Codigos de respuesta:
@@ -95,23 +107,24 @@ public class EditorialResource {
     }
     
      /**
-     * <h1> PUT /api/editorial/{id} : actualiza una editorial </h1>
+     * <h1> PUT /api/editoriales/{id} : actualiza una editorial </h1>
      * <pre> cuerpo de peticion : JSON.
      * 
-     * Actuliza la tarjetaDeCredito identificada con el identificador, con la
+     * Actuliza la informacion de una editorial , con la
      * informacion en el cuerpo de peticion.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Actualiza la editorial con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code> 
+     * 200 OK Actualiza la editorial con el id dado con la información enviada como parámetro. Retorna un objeto identico.
+     * </code> 
+     * 
      * <code style="color: #c7254e; background-color: #f9f2f4;">
      * 404 Not Found. No existe una TDC con el id dado.
      * </code> 
      * 
      * </pre>
-     * @param id IDentificador de la editorial que se desea actualizar representado
-     * como una cadena de digitos.
-     * @param editorial La tarjetaDeCredito que se desea actualizar.
+     * @param id IDentificador de la editorial de la cual se desea actualizar la información.
+     * @param editorial La editorial que se desea actualizar.
      * @return JSON - La editorial guardada
      * @throws BusinessLogicException.
      */
@@ -123,13 +136,13 @@ public class EditorialResource {
     }
     
     /**
-     * <h1> DELETE /api/editorial/{id} : elimina una eidtorial </h1>
+     * <h1> DELETE /api/editoriales/{id} : elimina una eidtorial </h1>
      * <pre> Borra la editorial identificado con un id unico
      * pasado por parametro.
      * 
      * Códigos de respuesta:<br>
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Elimina la editorial correspondiente al id dado.</code>
+     * 200 OK  Se elimina la editorial correspondiente al id dado.</code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
      * 404 Not Found. No existe una editorial con el id dado.
      * </code>

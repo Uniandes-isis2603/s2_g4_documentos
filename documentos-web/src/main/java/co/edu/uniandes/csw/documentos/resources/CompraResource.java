@@ -27,44 +27,38 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
- *
+ * <pre> Clase que implementa el recurso "Compra".
+ * URL: /api/compras
+ * </pre>
+ * <i> Note que la aplicación (definida en {@link RestConfig}) define la ruta "/api" y
+ * este recurso tiene la ruta "libros". </i>
+ * 
+ * <h2> Anotaciones </h2>
+ * <pre> 
+ * Path: indica la direccion despues de "api" para acceder al recurso
+ * Produces/Consumes: indica que los servicios definidos en este recurso reciben y devuelven objetos en formato JSON
+ * RequestScoped: Inicia una transaccion desde el llamado de cada metodo (servicio).
+ * </pre>
  * @author n.sotelo
- */@Path("compra")
+ */@Path("compras")
 @Produces ("application/json")
 @Consumes("application/json")
 @RequestScoped
  public class CompraResource {
 
-    
-/**
- *
- * @author n.sotelo
- */
-
-
-    
-    
- 
-
-
-    
      /**
-     * <h1> POST /api/compra : crear un nuevO Compra. </h1>
+     * <h1> POST /api/compras : crear una nueva Compra. </h1>
      * <pre> Cuerpo de peticion : JSON {CompraDetailedDTO}
      * 
-     * Crea un nuevo Compra que se recibe en el el cuerpo 
-     * de la petición y se regresa un objeto identico con un id auto-generado 
-     * por la base de datos.
+     * Crea una nueva compra que se recibe en el el cuerpo 
+     * de la petición y se regresa un objeto identico.
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Creó un nuevo Compra .
-     * </code>
-     * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 412 Precodition Failed: Ya existe el Compra .
+     * 200 OK Creó una nueva Compra .
      * </code>
      * </pre>
      * 
-     * @param Compra {@link CompraDetailDTO} - La nueva Compra
-     * @return JSON {@link CompraDetailDTO}  -La Compra guardada con el atributo id autogenerado.
+     * @param Compra {@link CompraDetailDTO} - La nueva compra a efectuar
+     * @return JSON {@link CompraDetailDTO}  -La Compra guardada 
      * @throws BusinessLogicException
      */
     @POST
@@ -74,16 +68,16 @@ import javax.ws.rs.Produces;
     }
     
      /**
-     * <h1> GET /api/compras : encuentra todas los Compras de la tienda</h1>
-     * <pre> Busca y devuelve todas las Compraes de la aplicacion
+     * <h1> GET /api/compras : encuentra todas los compras de la tienda</h1>
+     * <pre> Busca y devuelve todas las compras de la aplicacion
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Devuelve los Compras de la aplicacion.
+     * 200 OK Devuelve las compras de la aplicacion.
      * </code> 
      *
      * </pre>
      * 
-     * @return JSONArray {@link AutorDetailDTO} - Las Compras  encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+     * @return JSONArray {@link AutorDetailDTO} - Las compras  encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
     public List<CompraDetailedDTO> getCompras()
@@ -92,9 +86,9 @@ import javax.ws.rs.Produces;
     }
     
     /**
-     * <h1> GET /api/compra/{id} : encuentra una Compra , la cual esta identificada por un id </h1>
+     * <h1> GET /api/compras/{id} : encuentra una compra ,la cual se encuentra identificada por un id </h1>
      * 
-     * <pre> Encuentra una Compra identificada por un ID unico recibido en la URL y la devuelve.
+     * <pre> Encuentra una compra identificada por un id unico 
      * * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Devuelve la Compra correspondiente al id.
@@ -103,8 +97,8 @@ import javax.ws.rs.Produces;
      * 404 Not Found No existe una Compra con el id dado.
      * </code>
      * </pre>
-     * @param id Identificador de la eidtorial que se busca,
-     * @return JSON {@lnk CompraDeitailedDTO} - La Compra
+     * @param id Identificador de la compra que se busca.
+     * @return JSON {@lnk CompraDeitailedDTO} - La compra deseada
      */
     @GET
     @Path("{id: \\d+}")
@@ -114,23 +108,21 @@ import javax.ws.rs.Produces;
     }
     
      /**
-     * <h1> PUT /api/compra/{id} : actualiza una Compra </h1>
+     * <h1> PUT /api/compras/{id} : actualiza una Compra </h1>
      * <pre> cuerpo de peticion : JSON.
      * 
-     * Actuliza la tarjetaDeCredito identificada con el identificador, con la
-     * informacion en el cuerpo de peticion.
+     * Actuliza la compra , con la informacion en el cuerpo de peticion.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Actualiza la Compra con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code> 
+     * 200 OK Actualiza la compra con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code> 
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found. No existe un comentario con el id dado.
+     * 404 Not Found. No existe una compra con el id dado.
      * </code> 
      * 
      * </pre>
-     * @param id IDentificador de la Compra que se desea actualizar representado
-     * como una cadena de digitos.
-     * @param Compra La tarjetaDeCredito que se desea actualizar.
+     * @param id Identificador de la compra que se desea actualizar.
+     * @param Compra La compra que se desea actualizar.
      * @return JSON - La Compra guardada
      * @throws BusinessLogicException.
      */
@@ -142,15 +134,15 @@ import javax.ws.rs.Produces;
     }
     
     /**
-     * <h1> DELETE /api/compra/{id} : elimina una eidtorial </h1>
-     * <pre> Borra la Compra identificado con un id unico
+     * <h1> DELETE /api/compras/{id} : elimina una compra </h1>
+     * <pre> Borra la compra identificado con un id unico
      * pasado por parametro.
      * 
      * Códigos de respuesta:<br>
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Elimina la Compra correspondiente al id dado.</code>
+     * 200 OK Elimina la compra correspondiente al id dado.</code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found. No existe una Compra con el id dado.
+     * 404 Not Found. No existe una compra con el id dado.
      * </code>
      * </pre>
      * @param id Identificador unico de la Compra que se desea borrar.
