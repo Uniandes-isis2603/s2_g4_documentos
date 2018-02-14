@@ -6,9 +6,10 @@
 package co.edu.uniandes.csw.documentos.dtos;
 
 /**
- * PayPalDTO Objeto que representa una cuenta del servicio de pago PayPal. Los DTO contienen las
- * represnetaciones de los JSON que se transfieren entre el cliente y el
- * servidor.
+ * <h1>PayPalDTO Objeto que representa una cuenta del servicio de pago PayPal.</h1>
+ * 
+ * <i>Los DTO contienen las represnetaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.</i>
  * 
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
