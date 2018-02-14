@@ -23,11 +23,10 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
-import co.edu.uniandes.csw.documentos.entities.CityEntity;
 import java.util.Date;
 
 /**
- * AreaDeConocimientoDTO Objeto de transferencia de datos de AreaDeConocimiento. Los DTO contienen las
+ * AutorDTO Objeto de transferencia de datos de Autor. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
  * servidor.
  * 
@@ -46,7 +45,7 @@ import java.util.Date;
  *   {
  *      "id": 91852,
  *      "nombre": "Gabriel Garcia Marquez",
- *      "fechaNacimiento": "06/03/1927"
+ *      "fechaNacimiento": 06/03/1927
  *   }
  *
  * </pre>
@@ -63,17 +62,6 @@ public class AutorDTO {
      */
     public AutorDTO() {
     }
-
-    /**
-     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
-     * la entidad que viene de argumento.
-     *
-     * @param area: Es la entidad que se va a convertir a DTO
-     */
-//    public AreaDeConocimientoDTO(AreaDeConocimientoEntity area) {
-//        this.id = area.getId();
-//        this.tipo = area.getTipo();
-//    }
 
     /**
      * @return El ID del autor
@@ -117,16 +105,4 @@ public class AutorDTO {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    /**
-     * Convertir DTO a Entity
-     *
-     * @return Un Entity con los valores del DTO
-     */
-//    public CityEntity toEntity() {
-//        CityEntity entity = new CityEntity();
-//        entity.setId(this.id);
-//        entity.setName(this.name);
-//        entity.setZipcode(this.zipcode);
-//        return entity;
-//    }
 }
