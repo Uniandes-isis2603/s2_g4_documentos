@@ -13,7 +13,7 @@ package co.edu.uniandes.csw.documentos.resources;
 
 
 import co.edu.uniandes.csw.documentos.dtos.CompraDetailedDTO;
-import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -57,12 +57,12 @@ import javax.ws.rs.Produces;
      * </code>
      * </pre>
      * 
-     * @param Compra {@link CompraDetailDTO} - La nueva compra a efectuar
-     * @return JSON {@link CompraDetailDTO}  -La Compra guardada 
-     * @throws BusinessLogicException
+     * @param Compra {@link CompraDetailedDTO} - La nueva compra a efectuar
+     * @return JSON {@link CompraDetailedDTO}  -La Compra guardada 
+     * 
      */
     @POST
-    public CompraDetailedDTO createCompra(CompraDetailedDTO Compra ) throws BusinessLogicException
+    public CompraDetailedDTO createCompra(CompraDetailedDTO Compra ) 
     {
         return Compra;
     }
@@ -77,7 +77,7 @@ import javax.ws.rs.Produces;
      *
      * </pre>
      * 
-     * @return JSONArray {@link AutorDetailDTO} - Las compras  encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+     * @return JSONArray {@link CompraDetailedDTO} - Las compras  encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
     public List<CompraDetailedDTO> getCompras()
@@ -98,7 +98,7 @@ import javax.ws.rs.Produces;
      * </code>
      * </pre>
      * @param id Identificador de la compra que se busca.
-     * @return JSON {@lnk CompraDeitailedDTO} - La compra deseada
+     * @return JSON {@link CompraDetailedDTO} - La compra deseada
      */
     @GET
     @Path("{id: \\d+}")
@@ -124,11 +124,11 @@ import javax.ws.rs.Produces;
      * @param id Identificador de la compra que se desea actualizar.
      * @param Compra La compra que se desea actualizar.
      * @return JSON - La Compra guardada
-     * @throws BusinessLogicException.
+     * 
      */
     @PUT
     @Path("{id: \\d+}")
-    public CompraDetailedDTO updateCompra (@PathParam("id)") Long id, CompraDetailedDTO Compra) throws BusinessLogicException
+    public CompraDetailedDTO updateCompra (@PathParam("id)") Long id, CompraDetailedDTO Compra) 
     {
         return Compra;
     }

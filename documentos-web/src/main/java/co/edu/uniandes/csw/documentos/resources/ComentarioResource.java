@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.documentos.resources;
 
 import co.edu.uniandes.csw.documentos.dtos.ComentarioDTO;
-import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -54,12 +54,12 @@ public class ComentarioResource {
      * </code>
      * </pre>
      * 
-     * @param Comentario {@link ComentarioDetailDTO} - El nuevo Comentario
-     * @return JSON {@link ComentarioDetailDTO}  -El Comentario guardado 
-     * @throws BusinessLogicException
+     * @param Comentario {@link ComentarioDTO} - El nuevo Comentario
+     * @return JSON {@link ComentarioDTO}  -El Comentario guardado 
+     * 
      */
     @POST
-    public ComentarioDTO createComentario(ComentarioDTO Comentario ) throws BusinessLogicException
+    public ComentarioDTO createComentario(ComentarioDTO Comentario ) 
     {
         return Comentario;
     }
@@ -74,7 +74,7 @@ public class ComentarioResource {
      *
      * </pre>
      * 
-     * @return JSONArray {@link AutorDetailDTO} - Los comentarios  encontrados dentro de la aplicación. Si no existen se retorna una lista vacía.
+     * @return JSONArray {@link ComentarioDTO} - Los comentarios  encontrados dentro de la aplicación. Si no existen se retorna una lista vacía.
      */
     @GET
     public List<ComentarioDTO> getComentarios()
@@ -95,7 +95,7 @@ public class ComentarioResource {
      * </code>
      * </pre>
      * @param id Identificador del comentario que se busca,
-     * @return JSON {@lnk ComentarioDeitailedDTO} - El Comentario
+     * @return JSON {@link ComentarioDTO} - El Comentario
      */
     @GET
     @Path("{id: \\d+}")
@@ -122,11 +122,10 @@ public class ComentarioResource {
      * @param id Identificador del comentario que se desea actualizar.
      * @param Comentario El comentario que se desea actualizar.
      * @return JSON - El Comentario guardada
-     * @throws BusinessLogicException.
      */
     @PUT
     @Path("{id: \\d+}")
-    public ComentarioDTO updateComentario (@PathParam("id)") Long id, ComentarioDTO Comentario) throws BusinessLogicException
+    public ComentarioDTO updateComentario (@PathParam("id)") Long id, ComentarioDTO Comentario) 
     {
         return Comentario;
     }

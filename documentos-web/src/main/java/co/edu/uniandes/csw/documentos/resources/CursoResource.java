@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.documentos.resources;
 
 
 import co.edu.uniandes.csw.documentos.dtos.*;
-import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -62,12 +62,12 @@ public class CursoResource {
      * </code>
      * </pre>
      * 
-     * @param Curso {@link CursoDetailDTO} - El curso nuevo para crear.
-     * @return JSON {@link CursoDetailDTO}  -El curso guardado.
-     * @throws BusinessLogicException
+     * @param Curso {@link CursoDetailedDTO} - El curso nuevo para crear.
+     * @return JSON {@link CursoDetailedDTO}  -El curso guardado.
+     * 
      */
     @POST
-    public CursoDetailedDTO createCurso(CursoDetailedDTO Curso ) throws BusinessLogicException
+    public CursoDetailedDTO createCurso(CursoDetailedDTO Curso ) 
     {
         return Curso;
     }
@@ -102,7 +102,7 @@ public class CursoResource {
      * </code>
      * </pre>
      * @param id Identificador de el que se busca,
-     * @return JSON {@lnk CursoDeitailedDTO} - El curso
+     * @return JSON {@link CursoDetailedDTO} - El curso
      */
     @GET
     @Path("{id: \\d+}")
@@ -129,11 +129,10 @@ public class CursoResource {
      * @param id Identificador del curso que se desea actualizar.
      * @param Curso La tarjetaDeCredito que se desea actualizar.
      * @return JSON - El curso guardado
-     * @throws BusinessLogicException.
      */
     @PUT
     @Path("{id: \\d+}")
-    public CursoDetailedDTO updateCurso (@PathParam("id)") Long id, CursoDetailedDTO Curso) throws BusinessLogicException
+    public CursoDetailedDTO updateCurso (@PathParam("id)") Long id, CursoDetailedDTO Curso) 
     {
         return Curso;
     }

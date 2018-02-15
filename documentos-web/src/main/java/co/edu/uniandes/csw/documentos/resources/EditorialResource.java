@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.documentos.resources;
 
 import co.edu.uniandes.csw.documentos.dtos.*;
-import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -56,12 +56,12 @@ public class EditorialResource {
      * </code>
      * </pre>
      * 
-     * @param editorial {@link EditorialDetailDTO} - La nueva editorial
-     * @return JSON {@link EditorialDetailDTO}  -La editorial guardada 
-     * @throws BusinessLogicException
+     * @param editorial {@link EditorialDetailedDTO} - La nueva editorial
+     * @return JSON {@link EditorialDetailedDTO}  -La editorial guardada 
+     * 
      */
     @POST
-    public EditorialDetailedDTO createEditorial(EditorialDetailedDTO editorial ) throws BusinessLogicException
+    public EditorialDetailedDTO createEditorial(EditorialDetailedDTO editorial ) 
     {
         return editorial;
     }
@@ -76,7 +76,7 @@ public class EditorialResource {
      *
      * </pre>
      * 
-     * @return JSONArray {@link AutorDetailDTO} - Las editoriales  encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+     * @return JSONArray {@link EditorialDetailedDTO} - Las editoriales  encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
     public List<EditorialDetailedDTO> getEditorial()
@@ -97,7 +97,7 @@ public class EditorialResource {
      * </code>
      * </pre>
      * @param id Identificador de la eidtorial que se busca,
-     * @return JSON {@lnk EditorialDeitailedDTO} - La editorial
+     * @return JSON {@link EditorialDetailedDTO} - La editorial
      */
     @GET
     @Path("{id: \\d+}")
@@ -126,11 +126,10 @@ public class EditorialResource {
      * @param id IDentificador de la editorial de la cual se desea actualizar la información.
      * @param editorial La editorial que se desea actualizar.
      * @return JSON - La editorial guardada
-     * @throws BusinessLogicException.
      */
     @PUT
     @Path("{id: \\d+}")
-    public EditorialDetailedDTO updateEditorial (@PathParam("fid)") Long id, EditorialDetailedDTO editorial) throws BusinessLogicException
+    public EditorialDetailedDTO updateEditorial (@PathParam("fid)") Long id, EditorialDetailedDTO editorial) 
     {
         return editorial;
     }
