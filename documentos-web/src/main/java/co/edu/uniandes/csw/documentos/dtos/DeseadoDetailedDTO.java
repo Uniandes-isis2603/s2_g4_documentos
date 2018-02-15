@@ -9,7 +9,7 @@ package co.edu.uniandes.csw.documentos.dtos;
  *
  * @author f.marroquin10
  */
-public class DeseadoDetailedDTO {
+public class DeseadoDetailedDTO extends DeseadoDTO {
     
     
     /**
