@@ -160,7 +160,7 @@ public class FotocopiaResource {
      * 404 Not Found. No existe una fotocopia con el id dado.
      * </code>
      * </pre>
-     * @param id 
+     * @param id EL codigo de identificacion de la fotocopia a eliminar
      */
     @DELETE
     @Path("{id: \\d+}")

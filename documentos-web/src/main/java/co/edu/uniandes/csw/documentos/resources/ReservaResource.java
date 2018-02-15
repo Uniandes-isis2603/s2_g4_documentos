@@ -109,7 +109,7 @@ public class ReservaResource {
     
     /**
      * <h1> PUT /api/reservas/{id} : Actualizar la reserva con el id dado.</h1>
-     * <pre> Cuerpo de peticion: JSON {@link UsuarioDetailedDTO}.
+     * <pre> Cuerpo de peticion: JSON .
      * 
      * Actualiza la reserva con el id recibido en la URL con la informacion que se recibe en el cuerpo de la peticion.
      * 
