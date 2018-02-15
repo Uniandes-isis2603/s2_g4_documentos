@@ -23,6 +23,8 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import java.util.List;
+
 /**
  * Clase que extiende de {@link AutorDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
@@ -31,32 +33,30 @@ package co.edu.uniandes.csw.documentos.dtos;
  */
 public class AutorDetailDTO extends AutorDTO {
 
-//    private List<DocumentoDTO> documentos;
+    private List<DocumentoDTO> documentos;
     
     /**
      * Constructor por defecto
      */
     public AutorDetailDTO() {
+        
+        super();
+   
     }
 
     /**
-     * Constructor para transformar un Entity a un DTO
-     *
-     * @param entity La entidad de ciudad a partir de la cual se construye el objeto
+     * @return los documentos que contienen el autor
      */
-//    public CityDetailDTO(CityEntity entity) {
-//        super(entity);
-//    }
+    public List<DocumentoDTO> getDocumentos() {
+        return documentos;
+    }
 
-//    /**
-//     * Transformar un DTO a un Entity
-//     *
-//     * @return  La entidad construida a partir del DTO.
-//     */
-//    @Override
-//    public CityEntity toEntity() {
-//        CityEntity cityE = super.toEntity();
-//        return cityE;
-//    }
+    /**
+     * @param documentos Una nueva lista con todos los documentos del autor
+     */
+    public void setDocumentos(List<DocumentoDTO> documentos) {
+        this.documentos = documentos;
+    }
 
+    
 }
