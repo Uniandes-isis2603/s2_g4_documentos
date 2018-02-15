@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * 
- * Clase que extiende de {@link CusroDTO} para manejar la transformacion entre
+ * Clase que extiende de {@link CursoDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos.Para conocer el
  * contenido del documento vaya a la documentacion de {@link CursoDTO}
  * 
