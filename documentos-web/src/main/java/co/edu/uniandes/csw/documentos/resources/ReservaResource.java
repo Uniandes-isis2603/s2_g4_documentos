@@ -52,7 +52,7 @@ public class ReservaResource {
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Creo el nuevo usuario.
+     * 200 OK Creo la nueva reserva.
      * </code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
      * 412 Precodition Failed: Ya existe la reserva.
@@ -69,7 +69,7 @@ public class ReservaResource {
     /**
      * <h1> GET /api/reservas : Obtener todas las reservas. </h1>
      * 
-     * <pre> Busca y devuelve todos los Usuarios que existen en la aplicacion.
+     * <pre> Busca y devuelve todos las reservas que existen en la aplicacion.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
@@ -109,7 +109,7 @@ public class ReservaResource {
     
     /**
      * <h1> PUT /api/reservas/{id} : Actualizar la reserva con el id dado.</h1>
-     * <pre> Cuerpo de peticion: JSON {@link UsuarioDetailedDTO}.
+     * <pre> Cuerpo de peticion: JSON {@link ReservaDetailedDTO}.
      * 
      * Actualiza la reserva con el id recibido en la URL con la informacion que se recibe en el cuerpo de la peticion.
      * 
@@ -131,7 +131,7 @@ public class ReservaResource {
     }
     
     /**
-     * <h1> DELETE /api/Usuarios/{id} : Eliminar reserva por id. </h1>
+     * <h1> DELETE /api/reservas/{id} : Eliminar reserva por id. </h1>
      * 
      * <pre> Elimina reserva con el id asociado en la URL.
      * 

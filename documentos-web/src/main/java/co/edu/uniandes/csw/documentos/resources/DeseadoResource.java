@@ -49,13 +49,16 @@ public class DeseadoResource {
      * Crea un nuevo deseado con la informacion que se recibe en el cuerpo
      * de la peticion y se regresa un objeto identico con un id auto-generado
      * por la base de datos.
-     * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Creo el nuevo deseado.
      * </code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
      * 412 Precodition Failed: Ya existe el deseado.
+     * 200 OK Creo la nueva reserva.
+     * </code>
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 412 Precodition Failed: Ya existe la reserva.
      * </code>
      * </pre>
      * @param deseado {@link DeseadoDetailedDTO} - el deseado que se desea guardar.
@@ -70,6 +73,7 @@ public class DeseadoResource {
      * <h1> GET /api/deseados : Obtener todas los deseados. </h1>
      * 
      * <pre> Busca y devuelve todos los deseados que existen en la aplicacion.
+     * <pre> Busca y devuelve todas las reservas que existen en la aplicacion.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
@@ -110,6 +114,8 @@ public class DeseadoResource {
     /**
      * <h1> PUT /api/deseados/{id} : Actualizar el deseado con el id dado.</h1>
      * <pre> Cuerpo de peticion: JSON {@link DeseadoDetailedDTO}.
+     * <h1> PUT /api/reservas/{id} : Actualizar la reserva con el id dado.</h1>
+     * <pre> Cuerpo de peticion: JSON {@link ReservaDetailedDTO}.
      * 
      * Actualiza el deseado con el id recibido en la URL con la informacion que se recibe en el cuerpo de la peticion.
      * 
@@ -132,6 +138,7 @@ public class DeseadoResource {
     
     /**
      * <h1> DELETE /api/Deseados/{id} : Eliminar deseado por id. </h1>
+     * <h1> DELETE /api/reservas/{id} : Eliminar reserva por id. </h1>
      * 
      * <pre> Elimina deseado con el id asociado en la URL.
      * 
