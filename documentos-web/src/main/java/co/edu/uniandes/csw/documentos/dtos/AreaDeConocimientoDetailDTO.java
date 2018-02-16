@@ -23,40 +23,39 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import java.util.List;
+
 /**
- * Clase que extiende de {@link CityDTO} para manejar la transformacion entre
+ * Clase que extiende de {@link AreaDeConocimientoDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
- * contenido de la ciudad vaya a la documentacion de {@link CityDTO}
- * @author ISIS2603
+ * contenido de la ciudad vaya a la documentacion de {@link AreaDeConocimientoDTO}
+ * @author Camilojaravila
  */
 public class AreaDeConocimientoDetailDTO extends AreaDeConocimientoDTO {
 
-//    private DocumentoDTO[] documentos;
+    private List<DocumentoDTO> documentos;
     
     /**
      * Constructor por defecto
      */
     public AreaDeConocimientoDetailDTO() {
+    super();
+    
+    }
+ 
+    /**
+     * @return los documentos que contienen el area de conocimiento
+     */
+    public List<DocumentoDTO> getDocumentos() {
+        return documentos;
     }
 
     /**
-     * Constructor para transformar un Entity a un DTO
-     *
-     * @param entity La entidad de ciudad a partir de la cual se construye el objeto
+     * @param documentos Una nueva lista con todos los documentos de las areas de conocimiento 
      */
-//    public CityDetailDTO(CityEntity entity) {
-//        super(entity);
-//    }
+    public void setDocumentos(List<DocumentoDTO> documentos) {
+        this.documentos = documentos;
+    }
 
-//    /**
-//     * Transformar un DTO a un Entity
-//     *
-//     * @return  La entidad construida a partir del DTO.
-//     */
-//    @Override
-//    public CityEntity toEntity() {
-//        CityEntity cityE = super.toEntity();
-//        return cityE;
-//    }
-
+    
 }

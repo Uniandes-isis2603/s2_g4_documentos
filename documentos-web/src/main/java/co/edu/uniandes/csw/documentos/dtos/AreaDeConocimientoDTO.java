@@ -23,8 +23,6 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
-import co.edu.uniandes.csw.documentos.entities.CityEntity;
-
 /**
  * AreaDeConocimientoDTO Objeto de transferencia de datos de AreaDeConocimiento. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -61,18 +59,7 @@ public class AreaDeConocimientoDTO {
     }
 
     /**
-     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
-     * la entidad que viene de argumento.
-     *
-     * @param area: Es la entidad que se va a convertir a DTO
-     */
-//    public AreaDeConocimientoDTO(AreaDeConocimientoEntity area) {
-//        this.id = area.getId();
-//        this.tipo = area.getTipo();
-//    }
-
-    /**
-     * @return El ID de la ciudad
+     * @return El ID del area
      */
     public Long getId() {
         return id;
@@ -95,20 +82,8 @@ public class AreaDeConocimientoDTO {
     /**
      * @param tipo El nuevo tipo de area de conocimiento
      */
-    public void setName(String tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
-    /**
-     * Convertir DTO a Entity
-     *
-     * @return Un Entity con los valores del DTO
-     */
-//    public CityEntity toEntity() {
-//        CityEntity entity = new CityEntity();
-//        entity.setId(this.id);
-//        entity.setName(this.name);
-//        entity.setZipcode(this.zipcode);
-//        return entity;
-//    }
 }

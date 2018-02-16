@@ -23,8 +23,6 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
-import co.edu.uniandes.csw.documentos.entities.CityEntity;
-
 /**
  * ImagenDTO Objeto de transferencia de datos de AreaDeConocimiento. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -98,35 +96,10 @@ public class ImagenDTO {
     }
 
      /**
-     * @param tipo La nueva ruta de la imageno
+     * @param img La nueva ruta de la imagen
      */
     public void setImg(String img) {
         this.img = img;
     }
 
-    /**
-     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
-     * la entidad que viene de argumento.
-     *
-     * @param area: Es la entidad que se va a convertir a DTO
-     */
-//    public AreaDeConocimientoDTO(AreaDeConocimientoEntity area) {
-//        this.id = area.getId();
-//        this.tipo = area.getTipo();
-//    }
-
-   
-
-    /**
-     * Convertir DTO a Entity
-     *
-     * @return Un Entity con los valores del DTO
-     */
-//    public CityEntity toEntity() {
-//        CityEntity entity = new CityEntity();
-//        entity.setId(this.id);
-//        entity.setName(this.name);
-//        entity.setZipcode(this.zipcode);
-//        return entity;
-//    }
 }
