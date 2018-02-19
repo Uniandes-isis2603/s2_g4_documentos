@@ -42,7 +42,7 @@ package co.edu.uniandes.csw.documentos.dtos;
  * 
  *   {
  *      "id": 91852,
- *      "tipo": "Portada",
+ *      "nombre": "Portada",
  *      "img": "./libro_32/imagenes/portada.jpg"
  *   }
  *
