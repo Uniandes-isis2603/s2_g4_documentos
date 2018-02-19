@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.documentos.resources;
 import co.edu.uniandes.csw.documentos.dtos.*;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.documentos.mappers.BusinessLogicExceptionMapper;
 import java.util.List;
 import java.util.ArrayList;
 import javax.enterprise.context.RequestScoped;
@@ -52,9 +53,9 @@ public class TarjetaDeCreditoResources {
      * </code>
      * </pre>
      * 
-     * @param TarjetaDeCredito {@link TarjetaDeCreditoDetailDTO} - La nueva tarjetaDeCredito
-     * @return JSON
-     * @throws BusinessLogicException
+     * @param TDC {@link TarjetaDeCreditoDetailDTO} - La nueva tarjetaDeCredito
+     * @return JSON {@link TarjetaDeCreditoDetailDTO} La nueva TarjetaDeCredito
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper}
      */
     @POST
     public TarjetaDeCreditoDetailDTO createTDC(TarjetaDeCreditoDetailDTO TDC) throws BusinessLogicException
@@ -83,7 +84,7 @@ public class TarjetaDeCreditoResources {
     }
     
     /**
-     * <h1> GET /api/metdodosdepago/tarjetasdecredito/{id} : encuentra una tarjeta del usuario, la cual esta identificada por un id <h1>
+     * <h1> GET /api/metdodosdepago/tarjetasdecredito/{id} : encuentra una tarjeta del usuario, la cual esta identificada por un id </h1>
      * 
      * <pre> Encuentra una tarjetaDeCredito identificada por un ID unico recibido en la URL y la devuelve.
      * * Codigos de respuesta:
@@ -122,8 +123,8 @@ public class TarjetaDeCreditoResources {
      * @param id IDentificador de la tarjetaDeCredito que se desea actualizar representado
      * como una cadena de digitos.
      * @param tdc La tarjetaDeCredito que se desea actualizar.
-     * @return JSON - La tarjetaDeCredito guardada
-     * @throws BusinessLogicException.
+     * @return JSON {@link TarjetaDeCreditoDetailDTO} La TarjetaDeCredito updated
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper}
      */
     @PUT
     @Path("{id: \\d+}")

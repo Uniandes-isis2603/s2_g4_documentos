@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.documentos.resources;
 
 
-import co.edu.uniandes.csw.documentos.dtos.ReservaDetailedDTO;
+import co.edu.uniandes.csw.documentos.dtos.DeseadoDetailedDTO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -44,110 +44,110 @@ public class DeseadoResource {
     /**
      * <h1> POST /api/deseados : Crear un objeto deseado. </h1>
      * 
-     * <pre> Cuerpo de peticion: JSON (@link ReservaDetailedDTO}.
+     * <pre> Cuerpo de peticion: JSON (@link DeseadoDetailedDTO}.
      * 
-     * Crea una nueva reserva con la informacion que se recibe en el cuerpo
+     * Crea un nuevo deseado con la informacion que se recibe en el cuerpo
      * de la peticion y se regresa un objeto identico con un id auto-generado
      * por la base de datos.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Creo el nuevo usuario.
+     * 200 OK Creo el nuevo deseado.
      * </code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 412 Precodition Failed: Ya existe el usuario.
+     * 412 Precodition Failed: Ya existe el deseado.
      * </code>
      * </pre>
-     * @param reserva {@link ReservaDetailedDTO} - la reserva que se desea guardar.
-     * @return JSON {@link ReservaDetailedDTO} - la reserva guardado con el id generado.
+     * @param deseado {@link DeseadoDetailedDTO} - el deseado que se desea guardar.
+     * @return JSON {@link DeseadoDetailedDTO} - el desseado guardado con el id generado.
      */
     @POST
-    public ReservaDetailedDTO createReserva(ReservaDetailedDTO reserva) {
-        return reserva;
+    public DeseadoDetailedDTO createDeseado(DeseadoDetailedDTO deseado) {
+        return deseado;
     }
     
     /**
-     * <h1> GET /api/reservas : Obtener todas las reservas. </h1>
+     * <h1> GET /api/deseados : Obtener todas los deseados. </h1>
      * 
-     * <pre> Busca y devuelve todos los Usuarios que existen en la aplicacion.
+     * <pre> Busca y devuelve todos los deseados que existen en la aplicacion.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Devuelve todas las reservas de la aplicacion.</code>
+     * 200 OK Devuelve todas los deseados de la aplicacion.</code>
      * </pre>
-     * @return JSONArray {@link  ReservaDetailedDTO} - Las reservas encontradas en la aplicación
+     * @return JSONArray {@link  DeseadoDetailedDTO} - Los deseados encontradas en la aplicación
      * de no haber ninguna retornar lista vacia.
      */
     @GET
-    public List<ReservaDetailedDTO> getReservas() {
+    public List<DeseadoDetailedDTO> getDeseados() {
         return new ArrayList<>();
     }
     
     /**
-     * <h1> GET /api/Reservas/{id} : Obtener la reserva por id.</h1>
+     * <h1> GET /api/deseados/{id} : Obtener el deseado por id.</h1>
      * 
-     * <pre> Busca la reserva con el id asociado recibido en la URL y lo devuelve.
+     * <pre> Busca el deseado con el id asociado recibido en la URL y lo devuelve.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Devuelve la reserva correspondiente al id.
+     * 200 OK Devuelve el deseado correspondiente al id.
      * </code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found No existe una reserva con el id dado.
+     * 404 Not Found No existe un deseado con el id dado.
      * </code>
      * </pre>
-     * @param id Id de la reserva que se esta buscando. Debe ser una cadena de digitos.
-     * @return JSON {@link ReservaDetailedDTO} - la  reserva buscada.
+     * @param id Id del deseado que se esta buscando. Debe ser una cadena de digitos.
+     * @return JSON {@link DeseadoDetailedDTO} - el deseado buscado.
      */
     @GET
     @Path("{id: \\d+}")
-    public ReservaDetailedDTO getReserva(@PathParam("id") Long id) {
+    public DeseadoDetailedDTO getDeseado(@PathParam("id") Long id) {
         return null;
     }
     
    
     
     /**
-     * <h1> PUT /api/reservas/{id} : Actualizar la reserva con el id dado.</h1>
-     * <pre> Cuerpo de peticion: JSON {@link UsuarioDetailedDTO}.
+     * <h1> PUT /api/deseados/{id} : Actualizar el deseado con el id dado.</h1>
+     * <pre> Cuerpo de peticion: JSON {@link DeseadoDetailedDTO}.
      * 
-     * Actualiza la reserva con el id recibido en la URL con la informacion que se recibe en el cuerpo de la peticion.
+     * Actualiza el deseado con el id recibido en la URL con la informacion que se recibe en el cuerpo de la peticion.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Actualiza la reserva con el id dado con la informacion enviada como parametro. Retorna un objeto identico.</code>
+     * 200 OK Actualiza el deseado con el id dado con la informacion enviada como parametro. Retorna un objeto identico.</code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found. No existe una reserva con el id dado.
+     * 404 Not Found. No existe un deseado con el id dado.
      * </code>
      * </pre>
-     * @param id Id de la reserva que se desea actualizar.
-     * @param reserva {@link ReservaDetailedDTO} la  reserva que se desea guardar.
-     * @return reserva {@link ReservaDetailedDTO} la reserva guardado.
+     * @param id Id del deseado que se desea actualizar.
+     * @param deseado {@link DeseadoDetailedDTO} el deseado que se desea guardar.
+     * @return deseado {@link DeseadoDetailedDTO} el deseado guardado.
      */
     @PUT
     @Path("{id: \\d+}")
-    public ReservaDetailedDTO updateReserva(@PathParam("id") Long id, ReservaDetailedDTO reserva) {
-        return reserva;
+    public DeseadoDetailedDTO updateDeseado(@PathParam("id") Long id, DeseadoDetailedDTO deseado) {
+        return deseado;
     }
     
     /**
-     * <h1> DELETE /api/Usuarios/{id} : Eliminar reserva por id. </h1>
+     * <h1> DELETE /api/Deseados/{id} : Eliminar deseado por id. </h1>
      * 
-     * <pre> Elimina reserva con el id asociado en la URL.
+     * <pre> Elimina deseado con el id asociado en la URL.
      * 
      * Códigos de respuesta:<br>
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Elimina la reserva correspondiente al id dado.</code>
+     * 200 OK Elimina el deseado correspondiente al id dado.</code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found. No existe la reserva con el id dado.
+     * 404 Not Found. No existe el deseado con el id dado.
      * </code>
      * </pre>
      * 
-     * @param id Id de la  reserva que se desea eliminar.
+     * @param id Id del deseado que se desea eliminar.
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteReserva(@PathParam("id") Long id){
+    public void deleteDeseado(@PathParam("id") Long id){
         
     }
     
