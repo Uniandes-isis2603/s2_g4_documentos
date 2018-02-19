@@ -32,6 +32,7 @@ public class UsuarioPersistence {
      */
     public UsuarioEntity create(UsuarioEntity userEntity) {
 
+        System.out.println("asdasd");
         LOGGER.info("se va a crear una entidad de usuario");
         em.persist(userEntity);
         LOGGER.info("se creo la entidad");

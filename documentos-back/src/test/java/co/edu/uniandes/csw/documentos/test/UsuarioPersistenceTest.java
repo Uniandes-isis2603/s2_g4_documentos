@@ -105,7 +105,7 @@ public class UsuarioPersistenceTest {
   @Test
   public void createTest()
   {
-      PodamFactory sujeto=new PodamFactoryImpl();
+      PodamFactory sujeto=new PodamFactoryImpl();   
       UsuarioEntity entidadDePrueba= sujeto.manufacturePojo(UsuarioEntity.class);
       UsuarioEntity usuarioDePrueba= UsuarioPersistence.create(entidadDePrueba);
       
