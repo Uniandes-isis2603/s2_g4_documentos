@@ -49,6 +49,7 @@
             <artifactId>podam</artifactId>
             <version>6.0.2.RELEASE</version>
             <type>jar</type>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

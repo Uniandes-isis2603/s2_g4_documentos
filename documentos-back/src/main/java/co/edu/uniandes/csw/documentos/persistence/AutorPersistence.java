@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.documentos.persistence;
 
 import co.edu.uniandes.csw.documentos.entities.AutorEntity;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -18,7 +19,7 @@ import javax.persistence.TypedQuery;
  * @author Camilojaravila
  */
 @Stateless
-public class AutorPersistance{
+public class AutorPersistence{
     private static final Logger LOGGER=Logger.getLogger(AutorEntity.class.getName());
     
     @PersistenceContext(unitName = "DocumentosPU")
@@ -58,17 +59,22 @@ public class AutorPersistance{
     
     /**
      * 
-     * @param entity Autor a actualizar
+     * @param entity Autor que se va a actualizar
      * @return El Autor ya actualizado
      */
     public AutorEntity update(AutorEntity entity){
+        Long id = entity.getId();
+        LOGGER.log(Level.INFO, "Actualizando el autor con id {0}", id);
         return em.merge(entity);
     }
+    
     /**
      * 
-     * @param entity Autor que se va a borrar 
+     * @param id Id del autor
      */
-    public void delete(AutorEntity entity){
+    public void delete(Long id){
+        LOGGER.log(Level.INFO, "Actualizando el autor con id {0}", id);
+        AutorEntity entity = find(id);
         em.remove(entity);
     }
 }

@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.documentos.persistence;
 
 import co.edu.uniandes.csw.documentos.entities.AreaDeConocimientoEntity;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -59,17 +60,21 @@ public class AreaDeConocimientoPersistence {
     
     /**
      * 
-     * @param entity Area de Conocimiento a actualizar
+     * @param entity Area de conocimiento que se va a actualizar
      * @return El Area de Conocimiento ya actualizado
      */
     public AreaDeConocimientoEntity update(AreaDeConocimientoEntity entity){
+        Long id = entity.getId();
+        LOGGER.log(Level.INFO, "Actualizando el area de conocimiento con id {0}", id);
         return em.merge(entity);
     }
     /**
      * 
-     * @param entity Area de Conocimiento que se va a borrar 
+     * @param id Id del area de conocimiento
      */
-    public void delete(AreaDeConocimientoEntity entity){
+    public void delete(Long id){
+        LOGGER.log(Level.INFO, "Eliminando el area de conocimiento con id {0}", id);
+        AreaDeConocimientoEntity entity = find(id);
         em.remove(entity);
     }
 }

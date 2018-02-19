@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.documentos.persistence;
 
 import co.edu.uniandes.csw.documentos.entities.ImagenEntity;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -18,7 +19,7 @@ import javax.persistence.TypedQuery;
  * @author Camilojaravila
  */
 @Stateless
-public class ImagenPersistance {
+public class ImagenPersistence {
     
     private static final Logger LOGGER=Logger.getLogger(ImagenEntity.class.getName());
     
@@ -59,17 +60,21 @@ public class ImagenPersistance {
     
     /**
      * 
-     * @param entity Imagen a actualizar
+     * @param entity Imagen que se va a actualizar
      * @return La Imagen ya actualizada
      */
     public ImagenEntity update(ImagenEntity entity){
+        Long id = entity.getId();
+        LOGGER.log(Level.INFO, "Actualizando el autor con id {0}", id);
         return em.merge(entity);
     }
     /**
      * 
-     * @param entity Imagen que se va a borrar 
+     * @param id Id de la imagen
      */
-    public void delete(ImagenEntity entity){
+    public void delete(Long id){
+        LOGGER.log(Level.INFO, "Actualizando el autor con id {0}", id);
+        ImagenEntity entity = find(id);
         em.remove(entity);
     }
 }
