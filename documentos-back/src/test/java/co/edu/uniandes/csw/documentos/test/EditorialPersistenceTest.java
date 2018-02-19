@@ -1,13 +1,12 @@
-package co.edu.uniandes.csw.documentos.test;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package co.edu.uniandes.csw.documentos.test;
 
-import co.edu.uniandes.csw.documentos.entities.CompraEntity;
-import co.edu.uniandes.csw.documentos.persistence.CompraPersistence;
+import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
+import co.edu.uniandes.csw.documentos.persistence.EditorialPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -20,13 +19,12 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
-
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -34,20 +32,18 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author n.sotelo
  */
-
 @RunWith(Arquillian.class)
-public class CompraPersitenceTest {
-      @Deployment
+public class EditorialPersistenceTest {
+       @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(CompraEntity.class.getPackage())
-                .addPackage(CompraPersistence.class.getPackage())
+                .addPackage(EditorialEntity.class.getPackage())
+                .addPackage(EditorialPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
-     @Inject
-    private CompraPersistence compraPersistence;
+    @Inject
+    private EditorialPersistence editorialPersistence;
       
      @PersistenceContext
     private EntityManager entidad;
@@ -55,13 +51,13 @@ public class CompraPersitenceTest {
      @Inject
     UserTransaction utx;
      
-     private List<CompraEntity> data = new ArrayList<CompraEntity>();
+     private List<EditorialEntity> data = new ArrayList<EditorialEntity>();
      
      
         private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            CompraEntity entity = factory.manufacturePojo(CompraEntity.class);
+            EditorialEntity entity = factory.manufacturePojo(EditorialEntity.class);
 
             entidad.persist(entity);
             data.add(entity);
@@ -71,10 +67,8 @@ public class CompraPersitenceTest {
         
         private void clearData() 
           {
-        entidad.createQuery("delete from CompraEntity").executeUpdate();
+        entidad.createQuery("delete from EditorialEntity").executeUpdate();
     }
-    
-     
     
     
     @BeforeClass
@@ -105,44 +99,44 @@ public class CompraPersitenceTest {
                
            
         }
-  @Test
-  public void createCompraTest()
+    @Test
+  public void createEditorialTest()
   {
       PodamFactory sujeto=new PodamFactoryImpl();
-      CompraEntity entidadDePrueba= sujeto.manufacturePojo(CompraEntity.class);
-      CompraEntity compraDePrueba= compraPersistence.create(entidadDePrueba);
+      EditorialEntity entidadDePrueba= sujeto.manufacturePojo(EditorialEntity.class);
+      EditorialEntity compraDePrueba= editorialPersistence.create(entidadDePrueba);
       
       Assert.assertNotNull(compraDePrueba);
-      CompraEntity laEntidad=entidad.find(CompraEntity.class, compraDePrueba.getId());
+      EditorialEntity laEntidad=entidad.find(EditorialEntity.class, compraDePrueba.getId());
        Assert.assertEquals(entidadDePrueba.getId(), laEntidad.getId());
-        Assert.assertEquals(entidadDePrueba.getCosto(), laEntidad.getCosto());
-         Assert.assertEquals(entidadDePrueba.getFecha(), laEntidad.getFecha());
-          Assert.assertEquals(entidadDePrueba.getTipoDeCompra(), laEntidad.getTipoDeCompra());
+        Assert.assertEquals(entidadDePrueba.getNombre(), laEntidad.getNombre());
+        ;
+         
   }
   
     
    @Test
-   public void getCompraTest()
+   public void getEditorialTest()
    {
-       CompraEntity prueba= data.get(0);
-       CompraEntity marcoDeComparacion =compraPersistence.find(prueba.getId());
+       EditorialEntity prueba= data.get(0);
+       EditorialEntity marcoDeComparacion =editorialPersistence.find(prueba.getId());
         Assert.assertNotNull(marcoDeComparacion);
         Assert.assertEquals(marcoDeComparacion.getId(),prueba.getId());
-        Assert.assertEquals(marcoDeComparacion.getFecha(),prueba.getFecha());
-        Assert.assertEquals(marcoDeComparacion.getCosto(),prueba.getCosto());
-        Assert.assertEquals(marcoDeComparacion.getTipoDeCompra(),prueba.getTipoDeCompra());
+        Assert.assertEquals(marcoDeComparacion.getNombre(),prueba.getNombre());
+        
+      
         
         
    }
    @Test 
-   public void getTodasLasCompras()
+   public void getTodasLasEditorials()
    {
-       List<CompraEntity> listaDeCompras= compraPersistence.findAll();
-       Assert.assertEquals(data.size(), listaDeCompras.size());
+       List<EditorialEntity> listaDeEditorials= editorialPersistence.findAll();
+       Assert.assertEquals(data.size(), listaDeEditorials.size());
         
-        for (CompraEntity entidad : listaDeCompras) {
+        for (EditorialEntity entidad : listaDeEditorials) {
             boolean found = false;
-            for (CompraEntity entidad2 : data) {
+            for (EditorialEntity entidad2 : data) {
                 if (entidad.getId().equals(entidad2.getId())) 
                 {
                     found = true;
@@ -156,9 +150,9 @@ public class CompraPersitenceTest {
     public void borrarEntidad()
     {
         //Acabo cooregir
-        CompraEntity entity = data.get(0);
-        compraPersistence.delete(entity);
-        CompraEntity deleted = compraPersistence.find(entity.getId());
+        EditorialEntity entity = data.get(0);
+        editorialPersistence.delete(entity);
+        EditorialEntity deleted = editorialPersistence.find(entity.getId());
         Assert.assertEquals(deleted,null);
     }
             
@@ -166,26 +160,23 @@ public class CompraPersitenceTest {
     public void actualizar()
     {
         
-           CompraEntity LaEntidad = data.get(0);
+           EditorialEntity LaEntidad = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        CompraEntity nuevaEntidad = factory.manufacturePojo(CompraEntity.class);
+        EditorialEntity nuevaEntidad = factory.manufacturePojo(EditorialEntity.class);
         //Cambio un dato de la nuevaentidad para subirlo a la tabla como la entidad
          nuevaEntidad.setId(LaEntidad.getId());
-          compraPersistence.update(nuevaEntidad);
+          editorialPersistence.update(nuevaEntidad);
           
-           CompraEntity resp = entidad.find(CompraEntity.class, LaEntidad.getId());
+           EditorialEntity resp = entidad.find(EditorialEntity.class, LaEntidad.getId());
 
         Assert.assertEquals(nuevaEntidad.getId(), resp.getId());
-        Assert.assertEquals(nuevaEntidad.getCosto(), resp.getCosto());
-        Assert.assertEquals(nuevaEntidad.getFecha(), resp.getFecha());
-        Assert.assertEquals(nuevaEntidad.getTipoDeCompra(), resp.getTipoDeCompra());
-    }
-    @After
-    public void tearDown() 
-    {
+        Assert.assertEquals(nuevaEntidad.getNombre(), resp.getNombre());
+        
         
     }
-
-}
     
+    
+   
 
+    
+}

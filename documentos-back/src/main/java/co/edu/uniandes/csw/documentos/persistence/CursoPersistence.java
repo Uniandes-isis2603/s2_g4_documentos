@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.documentos.persistence;
 
-import co.edu.uniandes.csw.documentos.entities.CompraEntity;
+import co.edu.uniandes.csw.documentos.entities.CursoEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,16 +13,14 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import uk.co.jemos.podam.api.PodamFactory;
-import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
  * @author n.sotelo
  */
 @Stateless
-public class CompraPersistence {
-    private static final Logger LOGGER=Logger.getLogger(CompraEntity.class.getName());
+public class CursoPersistence {
+     private static final Logger LOGGER=Logger.getLogger(CursoEntity.class.getName());
     
     @PersistenceContext(unitName = "DocumentosPU")
     protected  EntityManager entidad;
@@ -31,9 +29,9 @@ public class CompraPersistence {
      * @param entidadNueva informacion de la nueva entidad a crear
      * @return la entidad nueva creada
      */
-    public CompraEntity create(CompraEntity entidadNueva)
+    public CursoEntity create(CursoEntity entidadNueva)
     {
-        LOGGER.info("Creando una entidad de compra");
+        LOGGER.info("Creando una entidad de curso");
         entidad.persist(entidadNueva);
         LOGGER.info("Entidad creada con exito");
         
@@ -42,44 +40,43 @@ public class CompraPersistence {
     /**
      * 
      * @param idDeLaEntidad que se desea buscar
-     * @return entidad de compra
+     * @return entidad de curso
      */
-    public CompraEntity find(Long idDeLaEntidad)
+    public CursoEntity find(Long idDeLaEntidad)
     {
-        return entidad.find(CompraEntity.class, idDeLaEntidad);
+        return entidad.find(CursoEntity.class, idDeLaEntidad);
     }
     /**
      * 
      * @return lista de todas las entidades 
      */
-    public List<CompraEntity> findAll()
+    public List<CursoEntity> findAll()
     {
-        LOGGER.info("Buscando todas las compras del sistema");
-        TypedQuery query= entidad.createQuery("select u from CompraEntity u", CompraEntity.class);
+        LOGGER.info("Buscando todas los cursos del sistema");
+        TypedQuery query= entidad.createQuery("select u from CursoEntity u", CursoEntity.class);
         return query.getResultList();
     }
     /**
      * 
-     * @param id entidad de compra que se desea borrar 
+     * @param id entidad de curso que se desea borrar 
      */
-     public void delete(CompraEntity id)
+     public void delete(CursoEntity id)
      {
-         LOGGER.info("Borrando la compra del sistema");
-           CompraEntity entity = entidad.find(CompraEntity.class, id.getId());
+         LOGGER.info("Borrando el curso del sistema");
+           CursoEntity entity = entidad.find(CursoEntity.class, id.getId());
          entidad.remove(entity);
       
         
      }
-     public CompraEntity update(CompraEntity infoDeCompra)
+     /**
+      * 
+      * @param infoDeCurso a ctualizar 
+      * @return 
+      */
+     public CursoEntity update(CursoEntity infoDeCurso)
      {
-          LOGGER.log(Level.INFO, "Actualizando la compra con id={0}", infoDeCompra.getId());
-        return entidad.merge(infoDeCompra);
+          LOGGER.log(Level.INFO, "Actualizando el curso con id={0}", infoDeCurso.getId());
+        return entidad.merge(infoDeCurso);
      }
-     
-         
-     }
-     
-     
-             
     
-
+}
