@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.documentos.resources;
 
 import co.edu.uniandes.csw.documentos.dtos.*;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.documentos.mappers.BusinessLogicExceptionMapper;
 import java.util.List;
 import java.util.ArrayList;
 import javax.enterprise.context.RequestScoped;
@@ -54,8 +55,8 @@ public class PayPalResources {
      * </code>
      * </pre>
      * @param payPal {@link PayPalDetailDTO} - el PayPal a agregar.
-     * @return JSON
-     * @throws BusinessLogicException
+     * @return JSON {@link PayPalDetailDTO} - la cuenta PayPal updated
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la cuenta.
      * 
      */
     @POST
@@ -85,7 +86,7 @@ public class PayPalResources {
     }
     
    /**
-     * <h1> GET /api/metdodosdepago/paypal/{id} : encuentra una cuenta Paypal del usuario, la cual esta identificada por un id <h1>
+     * <h1> GET /api/metdodosdepago/paypal/{id} : encuentra una cuenta Paypal del usuario, la cual esta identificada por un id </h1>
      * 
      * <pre> Encuentra una cuenta Paypal identificada por un ID unico recibido en la URL y la devuelve.
      * * Codigos de respuesta:
@@ -123,9 +124,9 @@ public class PayPalResources {
      * </pre>
      * @param id IDentificador de la cuenta Paypal que se desea actualizar representado
      * como una cadena de digitos.
-     * @param tdc La cuenta Paypal que se desea actualizar.
+     * @param paypal {@link PayPalDetailDTO} - La cuenta Paypal que se desea actualizar.
      * @return JSON - La cuenta Paypal guardada
-     * @throws BusinessLogicException.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper}.
      */
     @PUT
     @Path("{id: \\d+}")
