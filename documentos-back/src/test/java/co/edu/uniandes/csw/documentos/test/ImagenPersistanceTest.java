@@ -156,7 +156,7 @@ public class ImagenPersistanceTest {
     @Test
     public void updateAreaDeConocimientoTest(){
         ImagenEntity entity = data.get(0);
-        entity.setNombre("Yo");
+        entity.setNombre("Portada");
         entity.setImg("/ruta/imagen");
         imagenesPersistence.update(entity);
         

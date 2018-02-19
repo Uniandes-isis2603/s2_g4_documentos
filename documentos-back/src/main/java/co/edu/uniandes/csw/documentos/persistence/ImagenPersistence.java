@@ -33,9 +33,9 @@ public class ImagenPersistence {
      * existe alguna devuelve la primera.
      */
     public ImagenEntity create(ImagenEntity entity){
-        LOGGER.info("Creando una imagen nuevo");
+        LOGGER.info("Creando una imagen nueva");
         em.persist(entity);
-        LOGGER.info("Creando una imagen nuevo");
+        LOGGER.info("Creando una imagen nueva");
         return entity;
     }
     
@@ -53,7 +53,7 @@ public class ImagenPersistence {
      * @return Una lista con todas las imagenes en el sistema
      */
     public List<ImagenEntity> findAll() {
-        LOGGER.info("Consultando todas las imageneses");
+        LOGGER.info("Consultando todas las imagenes");
         TypedQuery query = em.createQuery("select u from ImagenEntity u", ImagenEntity.class);
         return query.getResultList();
     }
@@ -65,7 +65,7 @@ public class ImagenPersistence {
      */
     public ImagenEntity update(ImagenEntity entity){
         Long id = entity.getId();
-        LOGGER.log(Level.INFO, "Actualizando el autor con id {0}", id);
+        LOGGER.log(Level.INFO, "Actualizando la imagen con id {0}", id);
         return em.merge(entity);
     }
     /**
@@ -73,7 +73,7 @@ public class ImagenPersistence {
      * @param id Id de la imagen
      */
     public void delete(Long id){
-        LOGGER.log(Level.INFO, "Actualizando el autor con id {0}", id);
+        LOGGER.log(Level.INFO, "Actualizando la imagen con id {0}", id);
         ImagenEntity entity = find(id);
         em.remove(entity);
     }
