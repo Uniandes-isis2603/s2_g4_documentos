@@ -32,6 +32,7 @@ package co.edu.uniandes.csw.documentos.dtos;
  */
 public class PayPalDTO {
     
+    private Long Id;
     private String correoElectronico;
     private String usuario;
     
@@ -66,6 +67,20 @@ public class PayPalDTO {
      */
     public void setUsuario(String usuario) {
         this.usuario = usuario;
+    }
+
+    /**
+     * @return the Id
+     */
+    public Long getId() {
+        return Id;
+    }
+
+    /**
+     * @param Id the Id to set
+     */
+    public void setId(Long Id) {
+        this.Id = Id;
     }
     
 }

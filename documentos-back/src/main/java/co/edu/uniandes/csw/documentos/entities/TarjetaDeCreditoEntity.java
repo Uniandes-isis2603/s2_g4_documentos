@@ -3,40 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.documentos.dtos;
+package co.edu.uniandes.csw.documentos.entities;
+
+import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
- * <h1>TarjetaDeCreditoDTO Objeto que representa una tarjeta de credito para compras</h1>
- * <i>. Los DTO contienen las represnetaciones de los JSON que se 
- * transfieren entre el cliente y elservidor.</i>
- * 
- * Al serializarse como JSON esta clase implementa el siguiente modelo:
- * <pre>
- *   {
- *      "tipoDeTarjeta": string,
- *      "nroDeTarjeta: string,
- *      "nombreEnLaTarjeta": string,
- *      "numeroDeSeguridad": integer
- * 
- *   }
- * </pre>
- * Por ejemplo una TarjetaDeCredito se representa asi:<br>
- * 
- * <pre>
- * 
- *   {
- *      "tipoDeTarjeta": "Visa",
- *      "nroDeTarjeta: "433467500798",
- *      "nombreEnLaTarjeta": "Gregorio Ospina",
- *      "numeroDeSeguridad": 243
- *   }
  *
- * </pre>
  * @author g.ospinaa
  */
-public class TarjetaDeCreditoDTO {
+@Entity
+public class TarjetaDeCreditoEntity extends BaseEntity implements Serializable{
     
-    private Long Id;
+    
     /**
      * tipo de tarjeta (ej. Visa, MasterCard, Maestro)
      */
@@ -54,10 +33,6 @@ public class TarjetaDeCreditoDTO {
      */
     private Integer numeroDeSeguridad;
 
-    
-    public TarjetaDeCreditoDTO(){
-        
-    }
     /**
      * @return the tipoDeTarjeta
      */
@@ -114,19 +89,6 @@ public class TarjetaDeCreditoDTO {
         this.numeroDeSeguridad = numeroDeSeguridad;
     }
 
-    /**
-     * @return the Id
-     */
-    public Long getId() {
-        return Id;
-    }
-
-    /**
-     * @param Id the Id to set
-     */
-    public void setId(Long Id) {
-        this.Id = Id;
-    }
     
     
 }
