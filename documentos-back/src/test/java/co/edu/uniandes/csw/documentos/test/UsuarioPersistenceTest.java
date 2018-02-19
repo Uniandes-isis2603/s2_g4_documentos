@@ -23,7 +23,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import reactor.util.Assert;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -33,7 +33,6 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author f.marroquin10
  */
 @RunWith(Arquillian.class)
-
 public class UsuarioPersistenceTest {
      @Deployment
     public static JavaArchive createDeployment() {
@@ -45,7 +44,7 @@ public class UsuarioPersistenceTest {
     }
     
      @Inject
-    private UsuarioPersistence compraPersistence;
+    private UsuarioPersistence UsuarioPersistence;
       
      @PersistenceContext
     private EntityManager entidad;
@@ -69,7 +68,7 @@ public class UsuarioPersistenceTest {
         
         private void clearData() 
           {
-        entidad.createQuery("delete from CompraEntity").executeUpdate();
+        entidad.createQuery("delete from UsuarioEntity").executeUpdate();
     }
     
      
@@ -104,14 +103,16 @@ public class UsuarioPersistenceTest {
            
         }
   @Test
-  public void createUserTest()
+  public void createTest()
   {
       PodamFactory sujeto=new PodamFactoryImpl();
       UsuarioEntity entidadDePrueba= sujeto.manufacturePojo(UsuarioEntity.class);
-      UsuarioEntity usuarioDePrueba= compraPersistence.create(entidadDePrueba);
+      UsuarioEntity usuarioDePrueba= UsuarioPersistence.create(entidadDePrueba);
       
       Assert.notNull(usuarioDePrueba);
   }
+  
+
   
     
    
