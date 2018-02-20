@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -34,6 +36,7 @@ public class AutorEntity implements Serializable{
     /**
      * Fecha de Nacimiento del Autor
      */
+    @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
 
     /**
