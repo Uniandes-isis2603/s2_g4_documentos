@@ -1,0 +1,53 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package co.edu.uniandes.csw.documentos.entities;
+
+
+import java.io.Serializable;
+import javax.persistence.Entity;
+
+
+/**
+ *
+ * @author g.ospinaa
+ */
+@Entity
+public class PayPalEntity extends BaseEntity implements Serializable{
+
+    private String usuario;
+    private String correoElectronico;
+    
+    
+    /**
+     * @return the usuario
+     */
+    public String getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    /**
+     * @return the correoElectronico
+     */
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
+
+    /**
+     * @param correoElectronico the correoElectronico to set
+     */
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+    
+
+}
