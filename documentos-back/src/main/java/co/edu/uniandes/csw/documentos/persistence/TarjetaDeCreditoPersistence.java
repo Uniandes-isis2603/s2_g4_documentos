@@ -66,8 +66,8 @@ public class TarjetaDeCreditoPersistence {
     
     public List<TarjetaDeCreditoEntity> findAll()
     {
-        LOGGER.info("COnsultando todas las tarjetas del usuario");
-        TypedQuery query = em.createQuery("Select u from tarjetaDeCreditoEntity u", TarjetaDeCreditoEntity.class);
+        LOGGER.info("Consultando todas las tarjetas del usuario");
+        TypedQuery query = em.createQuery("Select u from TarjetaDeCreditoEntity u", TarjetaDeCreditoEntity.class);
         return query.getResultList();
     }
     
