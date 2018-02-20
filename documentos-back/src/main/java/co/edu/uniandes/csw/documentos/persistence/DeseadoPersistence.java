@@ -64,26 +64,15 @@ public class DeseadoPersistence {
      */
     public List<DeseadoEntity> findAll() {
         LOGGER.info("Buscando todas los usuarios del sistema");
-        TypedQuery query = em.createQuery("select u from UsuarioEntity u", DeseadoEntity.class);
+        TypedQuery query = em.createQuery("select u from DeseadoEntity u", DeseadoEntity.class);
         return query.getResultList();
     }
-
-    /**
-     * 
-     * @param deseadoEntity entidad que se eliminará.
-     */
-    public void delete(DeseadoEntity deseadoEntity) {
-        
-        LOGGER.info("se eliminará userEntity");
-        em.remove(deseadoEntity);
-        LOGGER.info("se eliminó userEntity");
-    }
-
+    
     /**
      * 
      * @param id id de la entidad que se va a eliminar
      */
-    public void deleteId(Long id) {
+    public void delete(Long id) {
         LOGGER.info("se eliminará user buscandolo por su id");
         DeseadoEntity deseado = em.find(DeseadoEntity.class, id);
         LOGGER.info("se encontró user");

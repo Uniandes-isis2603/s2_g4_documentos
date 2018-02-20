@@ -70,21 +70,13 @@ public class UsuarioPersistence {
     }
 
     /**
-     * 
-     * @param userEntity entidad que se eliminará.
-     */
-    public void delete(UsuarioEntity userEntity) {
-        
-        LOGGER.info("se eliminará userEntity");
-        em.remove(userEntity);
-        LOGGER.info("se eliminó userEntity");
-    }
+
 
     /**
      * 
      * @param id id de la entidad que se va a eliminar
      */
-    public void deleteId(Long id) {
+    public void delete(Long id) {
         LOGGER.info("se eliminará user buscandolo por su id");
         UsuarioEntity user = em.find(UsuarioEntity.class, id);
         LOGGER.info("se encontró user");

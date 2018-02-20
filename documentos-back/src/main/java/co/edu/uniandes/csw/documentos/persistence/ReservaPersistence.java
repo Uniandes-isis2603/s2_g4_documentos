@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.documentos.persistence;
 import co.edu.uniandes.csw.documentos.entities.ReservaEntity;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -16,6 +17,7 @@ import javax.persistence.TypedQuery;
  *
  * @author f.marroquin10
  */
+@Stateless
 public class ReservaPersistence {
     
       private static final Logger LOGGER = Logger.getLogger(ReservaEntity.class.getName());
@@ -62,26 +64,16 @@ public class ReservaPersistence {
      */
     public List<ReservaEntity> findAll() {
         LOGGER.info("Buscando todas los usuarios del sistema");
-        TypedQuery query = em.createQuery("select u from UsuarioEntity u", ReservaEntity.class);
+        TypedQuery query = em.createQuery("select u from ReservaEntity u", ReservaEntity.class);
         return query.getResultList();
     }
 
-    /**
-     * 
-     * @param reservaEntity entidad que se eliminará.
-     */
-    public void delete(ReservaEntity reservaEntity) {
-        
-        LOGGER.info("se eliminará userEntity");
-        em.remove(reservaEntity);
-        LOGGER.info("se eliminó userEntity");
-    }
 
     /**
      * 
      * @param id id de la entidad que se va a eliminar
      */
-    public void deleteId(Long id) {
+    public void delete(Long id) {
         LOGGER.info("se eliminará user buscandolo por su id");
         ReservaEntity reserva = em.find(ReservaEntity.class, id);
         LOGGER.info("se encontró user");
