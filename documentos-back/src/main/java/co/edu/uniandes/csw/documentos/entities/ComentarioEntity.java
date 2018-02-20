@@ -33,9 +33,6 @@ public class ComentarioEntity implements Serializable
     public void setId(Long id) {
         this.id = id;
     }
-    
-    
-    private Integer calificacion;
 
     public String getComentario() {
         return comentario;
@@ -53,13 +50,6 @@ public class ComentarioEntity implements Serializable
         this.fecha = fecha;
     }
 
-    public Integer getCalificacion() {
-        return calificacion;
-    }
-
-    public void setCalificacion(Integer calificacion) {
-        this.calificacion = calificacion;
-    }
     
    
     
