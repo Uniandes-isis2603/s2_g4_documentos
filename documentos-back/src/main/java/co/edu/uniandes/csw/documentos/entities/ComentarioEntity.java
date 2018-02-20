@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @author n.sotelo
  */
 @Entity
-public class ComentarioEntity 
+public class ComentarioEntity implements Serializable 
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,9 +33,6 @@ public class ComentarioEntity
     public void setId(Long id) {
         this.id = id;
     }
-    
-    
-    private Integer calificacion;
 
     public String getComentario() {
         return comentario;
@@ -53,13 +50,6 @@ public class ComentarioEntity
         this.fecha = fecha;
     }
 
-    public Integer getCalificacion() {
-        return calificacion;
-    }
-
-    public void setCalificacion(Integer calificacion) {
-        this.calificacion = calificacion;
-    }
     
    
     
