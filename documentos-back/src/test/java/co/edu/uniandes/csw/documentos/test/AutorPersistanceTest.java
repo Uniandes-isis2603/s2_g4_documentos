@@ -115,7 +115,6 @@ public class AutorPersistanceTest {
 
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
-        Assert.assertEquals(newEntity.getFechaNacimiento(), entity.getFechaNacimiento());
     }
     
     /**
@@ -129,7 +128,6 @@ public class AutorPersistanceTest {
         
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
-        Assert.assertEquals(newEntity.getFechaNacimiento(), entity.getFechaNacimiento());
     }
     
     /**
@@ -157,12 +155,10 @@ public class AutorPersistanceTest {
     public void updateAreaDeConocimientoTest(){
         AutorEntity entity = data.get(0);
         entity.setNombre("Yo");
-        entity.setFechaNacimiento(new Date(2018, 02, 18));
         autoresPersistence.update(entity);
         
         Assert.assertNotNull(entity);
         Assert.assertEquals("Yo", entity.getNombre());
-        Assert.assertEquals(new Date(2018, 02, 18), entity.getFechaNacimiento());
     }
     
     /**
