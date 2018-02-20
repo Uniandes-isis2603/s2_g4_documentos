@@ -167,7 +167,7 @@ public class ComentarioPersistenceTest {
            ComentarioEntity resp = entidad.find(ComentarioEntity.class, LaEntidad.getId());
 
         Assert.assertEquals(nuevaEntidad.getId(), resp.getId());
-        Assert.assertEquals(nuevaEntidad.getId(), resp.getId());
+        Assert.assertEquals(nuevaEntidad.getFecha(), resp.getFecha());
         
     }
     
