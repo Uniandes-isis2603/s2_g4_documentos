@@ -6,9 +6,6 @@
 package co.edu.uniandes.csw.documentos.test;
 
 import co.edu.uniandes.csw.documentos.entities.ComentarioEntity;
-import co.edu.uniandes.csw.documentos.entities.ComentarioEntity;
-import co.edu.uniandes.csw.documentos.entities.ComentarioEntity;
-import co.edu.uniandes.csw.documentos.persistence.ComentarioPersistence;
 import co.edu.uniandes.csw.documentos.persistence.ComentarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -113,7 +110,6 @@ public class ComentarioPersistenceTest {
       Assert.assertNotNull(compraDePrueba);
       ComentarioEntity laEntidad=entidad.find(ComentarioEntity.class, compraDePrueba.getId());
        Assert.assertEquals(entidadDePrueba.getId(), laEntidad.getId());
-         Assert.assertEquals(entidadDePrueba.getFecha(), laEntidad.getFecha());
          
   }
   
@@ -125,11 +121,7 @@ public class ComentarioPersistenceTest {
        ComentarioEntity marcoDeComparacion =comentarioPersistence.find(prueba.getId());
         Assert.assertNotNull(marcoDeComparacion);
         Assert.assertEquals(marcoDeComparacion.getId(),prueba.getId());
-        Assert.assertEquals(marcoDeComparacion.getFecha(),prueba.getFecha());
-        
-      
-        
-        
+ 
    }
    @Test 
    public void getTodasLasComentarios()
@@ -173,7 +165,6 @@ public class ComentarioPersistenceTest {
            ComentarioEntity resp = entidad.find(ComentarioEntity.class, LaEntidad.getId());
 
         Assert.assertEquals(nuevaEntidad.getId(), resp.getId());
-        Assert.assertEquals(nuevaEntidad.getFecha(), resp.getFecha());
         
     }
     
