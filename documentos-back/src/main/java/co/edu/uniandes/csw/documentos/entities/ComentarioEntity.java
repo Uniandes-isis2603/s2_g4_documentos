@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.documentos.entities;
-
+import java.io.Serializable;
 import java.util.Date;
-impoert javax.persistence.*;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
