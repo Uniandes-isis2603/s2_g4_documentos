@@ -26,7 +26,7 @@ public class ComentarioEntity implements Serializable
     
     private Long id;
     private String comentario;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fecha;
 
     public Long getId() {
