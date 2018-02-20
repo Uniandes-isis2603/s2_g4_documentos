@@ -10,13 +10,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author n.sotelo
  */
 @Entity
-public class ComentarioEntity 
+public class ComentarioEntity implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +26,7 @@ public class ComentarioEntity
     
     private Long id;
     private String comentario;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
 
     public Long getId() {
@@ -34,8 +37,6 @@ public class ComentarioEntity
         this.id = id;
     }
     
-    
-    private Integer calificacion;
 
     public String getComentario() {
         return comentario;
@@ -53,14 +54,5 @@ public class ComentarioEntity
         this.fecha = fecha;
     }
 
-    public Integer getCalificacion() {
-        return calificacion;
-    }
-
-    public void setCalificacion(Integer calificacion) {
-        this.calificacion = calificacion;
-    }
-    
-   
     
 }
