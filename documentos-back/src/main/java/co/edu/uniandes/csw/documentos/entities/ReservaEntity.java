@@ -22,6 +22,7 @@ public class ReservaEntity  implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
     private double costo;
 
