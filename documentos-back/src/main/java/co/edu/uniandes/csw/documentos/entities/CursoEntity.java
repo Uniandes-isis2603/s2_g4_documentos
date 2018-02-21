@@ -30,6 +30,22 @@ public class CursoEntity implements Serializable
     @PodamExclude
     @ManyToMany(mappedBy = "cursos")
     private List<DocumentoEntity> BibliografiaDelCurso; 
+/**
+ * 
+ * @return Lista que represenata la bibliografia del curso 
+ */
+    public List<DocumentoEntity> getBibliografiaDelCurso() {
+        return BibliografiaDelCurso;
+    }
+/**
+ * 
+ * @param BibliografiaDelCurso  Nueva lista que contiene la bibliografia del curso. 
+ */
+    public void setBibliografiaDelCurso(List<DocumentoEntity> BibliografiaDelCurso) {
+        this.BibliografiaDelCurso = BibliografiaDelCurso;
+    }
+    
+    
 
     /**
      * 

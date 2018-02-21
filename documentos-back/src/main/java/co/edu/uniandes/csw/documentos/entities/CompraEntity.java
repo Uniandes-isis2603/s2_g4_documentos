@@ -41,6 +41,49 @@ public class CompraEntity implements Serializable
      @PodamExclude
      @OneToOne
      private TarjetaDeCreditoEntity TarjetaDeCredito;
+/**
+ * 
+ * @return libros con los cuales se va a realizar una compra. 
+ */
+    public List<DocumentoEntity> getLibros() {
+        return libros;
+    }
+/**
+ * 
+ * @param libros  nuevos para efectuar una compra.
+ */
+    public void setLibros(List<DocumentoEntity> libros) {
+        this.libros = libros;
+    }
+/**
+ * 
+ * @return metodo paypal de pago
+ */
+    public PayPalEntity getPayPalMetodo() {
+        return PayPalMetodo;
+    }
+/**
+ * 
+ * @param PayPalMetodo nuevo metodo pay pal para efectuar un pago.
+ */
+    public void setPayPalMetodo(PayPalEntity PayPalMetodo) {
+        this.PayPalMetodo = PayPalMetodo;
+    }
+/**
+ * 
+ * @return  metodo de pago con una tarjeta de credito
+ */
+    public TarjetaDeCreditoEntity getTarjetaDeCredito() {
+        return TarjetaDeCredito;
+    }
+    /**
+     * 
+     * @param TarjetaDeCredito nuevo metodo de pago que va ser una tarjeta de credito.
+     */
+    public void setTarjetaDeCredito(TarjetaDeCreditoEntity TarjetaDeCredito) {
+        this.TarjetaDeCredito = TarjetaDeCredito;
+    }
+     
      
 /**
  * 

@@ -33,6 +33,20 @@ public class EditorialEntity implements Serializable{
      private List<LibroEntity>libros;
 /**
  * 
+ * @return libros que hacen parte de una editorial. 
+ */
+    public List<LibroEntity> getLibros() {
+        return libros;
+    }
+/**
+ * 
+ * @param libros nuevos para que hagan parte de una editorial. 
+ */
+    public void setLibros(List<LibroEntity> libros) {
+        this.libros = libros;
+    }
+/**
+ * 
  * @return de la entidad 
  */
     public Long getId() {
