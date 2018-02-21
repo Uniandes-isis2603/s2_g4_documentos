@@ -10,6 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -24,6 +28,9 @@ public class EditorialEntity implements Serializable{
       private Long id;
     
     private String nombre;
+     @PodamExclude
+     @OneToMany(mappedBy="Editorial")
+     private List<LibroEntity>libros;
 /**
  * 
  * @return de la entidad 
