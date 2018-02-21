@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.documentos.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,10 +30,6 @@ public class AutorEntity implements Serializable{
     */
     private String nombre;
     
-    /**
-     * Fecha de Nacimiento del Autor
-     */
-    private Date fechaNacimiento;
 
     /**
      * Retorna el Id del Autor
@@ -67,22 +62,6 @@ public class AutorEntity implements Serializable{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    /**
-     * Retorna la fecha de nacimiento del autor
-     * @return fechaNacimiento. La fecha de nacimiento del autor
-     */
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    /**
-     * Asigna la nueva fecha de nacimiento al autor
-     * @param fechaNacimiento La nueva fecha de nacimiento del autor
-     */
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-    
+ 
     
 }
