@@ -35,6 +35,7 @@ public class ImagenEntity implements Serializable{
      */
     private String img;
     
+    
      /**
       * Retorna el Id de la imagen
      * @return el id de la imagen 

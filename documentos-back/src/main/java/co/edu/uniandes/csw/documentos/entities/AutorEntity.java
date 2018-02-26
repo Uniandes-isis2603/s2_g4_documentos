@@ -40,7 +40,7 @@ public class AutorEntity implements Serializable{
      * Documentos asociados al autor
      */
     @PodamExclude
-    @ManyToMany(fetch=FetchType.LAZY)
+    @ManyToMany(fetch=FetchType.LAZY, mappedBy = "autores")
     private List<DocumentoEntity> documentos;
     
     /**
