@@ -132,7 +132,7 @@ public class DeseadoPersistenceTest {
     }
 
     /**
-     * Prueba para actualizar un usuario.
+     * Prueba para actualizar un deseado.
      */
     @Test
     public void updateTest() {
@@ -147,7 +147,7 @@ public class DeseadoPersistenceTest {
     }
 
     /**
-     * Prueba para encontrar todos los usuarios.
+     * Prueba para encontrar todos los deseados de todos los usuarios.
      */
     @Test
     public void findAllTest() {
@@ -165,7 +165,7 @@ public class DeseadoPersistenceTest {
     }
 
     /**
-     * Prueba para encontrar un usuario.
+     * Prueba para encontrar un deseado.
      */
     @Test
     public void findTest() {
@@ -177,7 +177,7 @@ public class DeseadoPersistenceTest {
     }
 
     /**
-     * Prueba para eliminar un usuario.
+     * Prueba para eliminar un deseado.
      */
     @Test
     public void deleteTest() {
