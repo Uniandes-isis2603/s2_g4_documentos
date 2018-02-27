@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 
+import javax.persistence.*;
+
 /**
  *
  * @author f.marroquin10
@@ -24,7 +26,7 @@ public class ReservaEntity  implements Serializable{
 
     private Long id;
     
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fecha;
     private double costo;
 
