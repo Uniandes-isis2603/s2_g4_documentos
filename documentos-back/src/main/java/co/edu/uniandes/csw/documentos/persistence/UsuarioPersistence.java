@@ -27,7 +27,7 @@ public class UsuarioPersistence {
 
     /**
      * 
-     * @param userEntity entidad que se va a crear.
+x     * @param userEntity entidad que se va a crear.
      * @return  la entidad creada.
      */
     public UsuarioEntity create(UsuarioEntity userEntity) {
