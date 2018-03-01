@@ -110,4 +110,13 @@ public class CursoDTO {
         }
      
     }
+   public CursoEntity toEntity()
+   {       CursoEntity rta= new CursoEntity();
+           rta.setCodigo(this.codigo);
+           rta.setDepartamento(this.departamento);
+           rta.setId(this.id);
+      
+           rta.setNombre(this.nombre);
+           return rta;
+   }
 }

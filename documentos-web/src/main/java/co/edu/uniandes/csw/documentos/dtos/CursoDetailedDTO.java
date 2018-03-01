@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.CursoEntity;
 import java.util.List;
 
 /**
@@ -37,8 +38,19 @@ public class CursoDetailedDTO  extends CursoDTO{
    */
     public CursoDetailedDTO() 
     {
-        super();
+        
     }
-    
+     public CursoDetailedDTO(CursoEntity entidad)
+    {
+       
+        super(entidad);
+        
+     
+    }
+    public CursoEntity toEntity()
+    {
+       CursoEntity rta= super.toEntity();
+       return rta;
+    }
     
 }

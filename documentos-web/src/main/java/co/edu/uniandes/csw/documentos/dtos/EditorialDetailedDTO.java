@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.CursoEntity;
+import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
 import java.util.List;
 
 /**
@@ -39,6 +41,11 @@ public class EditorialDetailedDTO extends EditorialDTO{
  */
     public EditorialDetailedDTO() {
         super();
+    }
+     public EditorialEntity toEntity()
+    {
+       EditorialEntity rta= super.toEntity();
+       return rta;
     }
     
 }
