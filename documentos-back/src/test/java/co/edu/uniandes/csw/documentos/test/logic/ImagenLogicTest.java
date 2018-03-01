@@ -27,7 +27,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author CAmilojaravila
+ * @author Camilojaravila
  */
 @RunWith(Arquillian.class)
 public class ImagenLogicTest {
@@ -113,7 +113,7 @@ public class ImagenLogicTest {
     public void createImagenTest1() {
         
         ImagenEntity newEntity = factory.manufacturePojo(ImagenEntity.class);
-        newEntity.setImg(newEntity.getImg() + ".jpg");
+        newEntity.setImg(newEntity.getImg() + ".png");
         ImagenEntity result = imagenLogic.createImagen(newEntity);
         Assert.assertNotNull(result);
         
@@ -124,6 +124,7 @@ public class ImagenLogicTest {
         newEntity = factory.manufacturePojo(ImagenEntity.class);
         ImagenEntity existe = data.get(0);
         newEntity.setId(existe.getId());
+        result = imagenLogic.createImagen(newEntity);
         Assert.assertNull(result);
     }
     
@@ -174,7 +175,7 @@ public class ImagenLogicTest {
     @Test
     public void getImagenTest1() {
         
-        Long id = new Long("1");
+        Long id = new Long("11111");
         ImagenEntity resultEntity = imagenLogic.getImagen(id);
         Assert.assertNull(resultEntity);
 
@@ -222,7 +223,7 @@ public class ImagenLogicTest {
 
         ImagenEntity pojoEntity = factory.manufacturePojo(ImagenEntity.class);
 
-        Long id = new Long("1");
+        Long id = new Long("111111");
         pojoEntity.setId(id);
 
         imagenLogic.updateImagen(pojoEntity);

@@ -122,6 +122,7 @@ public class AutorLogicTest {
         newEntity = factory.manufacturePojo(AutorEntity.class);
         AutorEntity existe = data.get(0);
         newEntity.setId(existe.getId());
+        result = autorLogic.createAutor(newEntity);
         Assert.assertNull(result);
     }
     
@@ -171,7 +172,7 @@ public class AutorLogicTest {
     @Test
     public void getAutorTest1() {
         
-        Long id = new Long("1");
+        Long id = new Long("11111");
         AutorEntity resultEntity = autorLogic.getAutor(id);
         Assert.assertNull(resultEntity);
 
@@ -217,7 +218,7 @@ public class AutorLogicTest {
 
         AutorEntity pojoEntity = factory.manufacturePojo(AutorEntity.class);
 
-        Long id = new Long("1");
+       Long id = new Long("11111");
         pojoEntity.setId(id);
 
         autorLogic.updateAutor(pojoEntity);

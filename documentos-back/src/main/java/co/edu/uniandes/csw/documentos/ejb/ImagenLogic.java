@@ -5,10 +5,7 @@
  */
 package co.edu.uniandes.csw.documentos.ejb;
 
-import co.edu.uniandes.csw.documentos.entities.AreaDeConocimientoEntity;
-import co.edu.uniandes.csw.documentos.entities.AutorEntity;
 import co.edu.uniandes.csw.documentos.entities.ImagenEntity;
-import co.edu.uniandes.csw.documentos.persistence.AutorPersistence;
 import co.edu.uniandes.csw.documentos.persistence.ImagenPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -44,10 +41,10 @@ public class ImagenLogic {
         if (buscado != null){
             LOGGER.log(Level.INFO, "La Imagen con el id {0} ya existe ", entity.getId());
         }
-        else if (!entity.getNombre().matches("([A-Z]|[a-z]|\\s)+")){
+        else if (!entity.getNombre().matches("([A-Z]|[a-z]|[0-9]|\\s)+")){
             LOGGER.log(Level.INFO, "El nombre de la imagen no puede contener caracteres especiales");
         }
-        else if(entity.getImg().endsWith(".jpg") | entity.getImg().endsWith(".png") | entity.getImg().endsWith(".pdf") | entity.getImg().endsWith(".bmp") | entity.getImg().endsWith(".tif")){
+        else if(!(entity.getImg().endsWith(".jpg") | entity.getImg().endsWith(".png") | entity.getImg().endsWith(".pdf") | entity.getImg().endsWith(".bmp") | entity.getImg().endsWith(".tif"))){
             LOGGER.log(Level.INFO, "La Imagen tiene un formato no soportado");
         }
         else{
@@ -88,13 +85,13 @@ public class ImagenLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar una Imagen ");
         
         ImagenEntity buscado = persistence.find(entity.getId());
-        if (buscado != null){
+        if (buscado == null){
             LOGGER.log(Level.INFO, "La Imagen con el id {0} no existe ", entity.getId());
         }
-        else if (!entity.getNombre().matches("([A-Z]|[a-z]|\\s)+")){
+        else if (!entity.getNombre().matches("([A-Z]|[a-z]|[0-9]|\\s)+")){
             LOGGER.log(Level.INFO, "El nombre de la Imagen no puede contener caracteres especiales");
         }
-        else if(entity.getImg().endsWith(".jpg") | entity.getImg().endsWith(".png") | entity.getImg().endsWith(".pdf") | entity.getImg().endsWith(".bmp") | entity.getImg().endsWith(".tif")){
+        else if(!(entity.getImg().endsWith(".jpg") | entity.getImg().endsWith(".png") | entity.getImg().endsWith(".pdf") | entity.getImg().endsWith(".bmp") | entity.getImg().endsWith(".tif"))){
             LOGGER.log(Level.INFO, "La Imagen tiene un formato no soportado");
         }
         else{
@@ -113,7 +110,7 @@ public class ImagenLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un area ");
         
         ImagenEntity buscado = persistence.find(id);
-        if (buscado != null){
+        if (buscado == null){
             LOGGER.log(Level.INFO, "El area de conocimiento con el id {0} no existe ", id);
         }
 

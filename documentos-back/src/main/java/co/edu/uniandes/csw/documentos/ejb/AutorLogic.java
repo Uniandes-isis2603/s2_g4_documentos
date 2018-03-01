@@ -41,7 +41,7 @@ public class AutorLogic {
         if (buscado != null){
             LOGGER.log(Level.INFO, "El autor con el id {0} ya existe ", entity.getId());
         }
-        else if (!entity.getNombre().matches("([A-Z]|[a-z]|\\s)+")){
+        else if (!entity.getNombre().matches("([A-Z]|[a-z]|[0-9]|\\s)+")){
             LOGGER.log(Level.INFO, "El nombre del autor no puede contener caracteres especiales");
         }
         else{
@@ -82,10 +82,10 @@ public class AutorLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar un autor ");
         
         AutorEntity buscado = persistence.find(entity.getId());
-        if (buscado != null){
+        if (buscado == null){
             LOGGER.log(Level.INFO, "El autor con el id {0} no existe ", entity.getId());
         }
-        else if (!entity.getNombre().matches("([A-Z]|[a-z]|\\s)+")){
+        else if (!entity.getNombre().matches("([A-Z]|[a-z]|[0-9]|\\s)+")){
             LOGGER.log(Level.INFO, "El nombre del autor no puede contener caracteres especiales");
         }
         else{
@@ -104,7 +104,7 @@ public class AutorLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un autor ");
         
         AutorEntity buscado = persistence.find(id);
-        if (buscado != null){
+        if (buscado == null){
             LOGGER.log(Level.INFO, "El autor con el id {0} no existe ", id);
         }
 

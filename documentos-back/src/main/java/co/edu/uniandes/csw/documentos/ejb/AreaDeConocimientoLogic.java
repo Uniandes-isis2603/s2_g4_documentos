@@ -41,7 +41,7 @@ public class AreaDeConocimientoLogic{
         if (buscado != null){
             LOGGER.log(Level.INFO, "El Area de Conocimiento con el id {0} ya existe ", entity.getId());
         }
-        else if (!entity.getTipo().matches("([A-Z]|[a-z]|\\s)+")){
+        else if (!entity.getTipo().matches("([A-Z]|[a-z]|[0-9]|\\s)+")){
             LOGGER.log(Level.INFO, "El nombre del area de conocimiento no puede contener caracteres especiales");
         }
         else{
@@ -82,10 +82,10 @@ public class AreaDeConocimientoLogic{
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar una area de conocimineto ");
         
         AreaDeConocimientoEntity buscado = persistence.find(entity.getId());
-        if (buscado != null){
+        if (buscado == null){
             LOGGER.log(Level.INFO, "El area de conocimiento con el id {0} no existe ", entity.getId());
         }
-        else if (!entity.getTipo().matches("([A-Z]|[a-z]|\\s)+")){
+        else if (!entity.getTipo().matches("([A-Z]|[a-z]|[0-9]|\\s)+")){
             LOGGER.log(Level.INFO, "El nombre del area de conocimiento no puede contener caracteres especiales");
         }
         else{
@@ -104,7 +104,7 @@ public class AreaDeConocimientoLogic{
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un area ");
         
         AreaDeConocimientoEntity buscado = persistence.find(id);
-        if (buscado != null){
+        if (buscado == null){
             LOGGER.log(Level.INFO, "El area de conocimiento con el id {0} no existe ", id);
         }
 

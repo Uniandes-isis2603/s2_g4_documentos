@@ -123,6 +123,7 @@ public class AreaDeConocimientoLogicTest {
         newEntity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
         AreaDeConocimientoEntity existe = data.get(0);
         newEntity.setId(existe.getId());
+        result = areaLogic.createArea(newEntity);
         Assert.assertNull(result);
     }
     
@@ -172,7 +173,7 @@ public class AreaDeConocimientoLogicTest {
     @Test
     public void getAutorTest1() {
         
-        Long id = new Long("1");
+        Long id = new Long("11111");
         AreaDeConocimientoEntity resultEntity = areaLogic.getArea(id);
         Assert.assertNull(resultEntity);
 
@@ -218,7 +219,7 @@ public class AreaDeConocimientoLogicTest {
 
         AreaDeConocimientoEntity pojoEntity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
 
-        Long id = new Long("1");
+        Long id = new Long("11111");
         pojoEntity.setId(id);
 
         areaLogic.updateArea(pojoEntity);
