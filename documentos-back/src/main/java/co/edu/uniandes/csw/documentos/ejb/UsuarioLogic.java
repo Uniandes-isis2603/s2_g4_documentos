@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.documentos.ejb;
 
+
 import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.UsuarioPersistence;
@@ -30,5 +31,4 @@ public class UsuarioLogic {
      }
      
      
-    
 }

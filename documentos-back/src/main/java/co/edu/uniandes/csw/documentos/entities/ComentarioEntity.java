@@ -5,12 +5,15 @@
  */
 package co.edu.uniandes.csw.documentos.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import java.io.Serializable;
+
 import javax.persistence.Temporal;
 
 /**
@@ -25,8 +28,11 @@ public class ComentarioEntity implements Serializable
     
     
     private Long id;
-    private String comentario;
+
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+
+    
+
     private Date fecha;
 
     public Long getId() {
