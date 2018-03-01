@@ -27,6 +27,7 @@ public class UsuarioEntity implements Serializable {
     private String nombre;
     private String nombreUsuario;
     private String contraseña;
+    private int edad;
 
     /**
      * reservas, relación de composición unidireccional
@@ -102,6 +103,23 @@ public class UsuarioEntity implements Serializable {
         return contraseña;
     }
 
+     /**
+     *
+     * @return edad del usuario
+     */
+    public int getEdad()
+    {
+        return edad;
+    }
+    
+     /**
+     *
+     * @param pEdad nueva edad del usuario.
+     */
+    public void setEdad(int pEdad)
+    {
+        this.edad=pEdad;
+    }
     /**
      *
      * @param pId nuevo id del usuario.
