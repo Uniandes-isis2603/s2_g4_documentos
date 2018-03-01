@@ -89,6 +89,7 @@ public class CursoEntity implements Serializable
     public void setDepartamento(String departamento) {
         this.departamento = departamento;
     }
+   
     
     
 }

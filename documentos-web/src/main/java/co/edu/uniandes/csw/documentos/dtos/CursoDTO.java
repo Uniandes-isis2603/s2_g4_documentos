@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.CursoEntity;
+
 /**
  * * CompraDTO Objeto de transferencia de datos de un curso . Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -35,6 +37,15 @@ package co.edu.uniandes.csw.documentos.dtos;
  * @author n.sotelo
  */
 public class CursoDTO {
+    private long id;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
    private String nombre;
    private String codigo;
    private String departamento;
@@ -89,4 +100,14 @@ public class CursoDTO {
         this.departamento = departamento;
     }
     
+   public CursoDTO(CursoEntity entidad)
+    {
+        if (entidad!=null)
+        {      this.id= entidad.getId();
+               this.codigo=entidad.getCodigo();
+               this.departamento=entidad.getDepartamento();
+               this.nombre= entidad.getNombre();
+        }
+     
+    }
 }

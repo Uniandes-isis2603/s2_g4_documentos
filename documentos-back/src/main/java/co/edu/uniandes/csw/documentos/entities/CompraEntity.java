@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.documentos.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 
 
@@ -27,7 +29,8 @@ public class CompraEntity implements Serializable
      private Long id;
      
      private Double costo;
-     private String fecha;
+     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+     private Date fecha;
      private String tipoDeCompra;
      
 
@@ -67,14 +70,14 @@ public class CompraEntity implements Serializable
      * 
      * @return fecha en que se efectuo la compra
      */
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
     /**
      * 
      * @param fecha en que se efectuo la compra
      */
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
     /**

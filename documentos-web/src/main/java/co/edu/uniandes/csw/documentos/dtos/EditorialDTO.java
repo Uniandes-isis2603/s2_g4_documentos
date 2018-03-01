@@ -5,6 +5,9 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.CursoEntity;
+import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
+
 /**
   * CompraDTO Objeto de transferencia de datos de una editorial . Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -30,7 +33,16 @@ package co.edu.uniandes.csw.documentos.dtos;
  * </pre>
  */
 public class EditorialDTO 
-{
+{  
+    private long id;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
     private long ISBN;
     private String nombre;
 /**
@@ -70,4 +82,15 @@ public class EditorialDTO
     public String getNombre() {
         return nombre;
     }
+     public EditorialDTO(EditorialEntity entidad)
+    {
+        if (entidad!=null)
+        {      this.id= entidad.getId();
+        
+               this.ISBN= entidad.getISBN();
+               this.nombre= entidad.getNombre();
+        }
+     
+    }
+   
 }
