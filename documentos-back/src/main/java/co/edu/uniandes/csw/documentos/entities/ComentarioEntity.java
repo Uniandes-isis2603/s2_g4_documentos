@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import java.io.Serializable;
 
 import javax.persistence.Temporal;
 
@@ -34,6 +33,8 @@ public class ComentarioEntity implements Serializable
     
 
     private Date fecha;
+    
+    private String comentario;
 
     public Long getId() {
         return id;
