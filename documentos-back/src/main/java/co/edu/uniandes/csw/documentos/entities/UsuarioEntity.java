@@ -154,4 +154,90 @@ public class UsuarioEntity implements Serializable {
 
     }
 
+    /**
+     * @return the reservas
+     */
+    public List<ReservaEntity> getReservas() {
+        return reservas;
+    }
+
+    /**
+     * @param reservas the reservas to set
+     */
+    public void setReservas(List<ReservaEntity> reservas) {
+        this.reservas = reservas;
+    }
+
+    /**
+     * @return the compras
+     */
+    public List<CompraEntity> getCompras() {
+        return compras;
+    }
+
+    /**
+     * @param compras the compras to set
+     */
+    public void setCompras(List<CompraEntity> compras) {
+        this.compras = compras;
+    }
+
+    /**
+     * @return the comentarios
+     */
+    public List<ComentarioEntity> getComentarios() {
+        return comentarios;
+    }
+
+    /**
+     * @param comentarios the comentarios to set
+     */
+    public void setComentarios(List<ComentarioEntity> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    /**
+     * @return the paypal
+     */
+    public List<PayPalEntity> getPaypal() {
+        return paypal;
+    }
+
+    /**
+     * @param paypal the paypal to set
+     */
+    public void setPaypal(List<PayPalEntity> paypal) {
+        this.paypal = paypal;
+    }
+
+    /**
+     * @return the tarjetasCredito
+     */
+    public List<TarjetaDeCreditoEntity> getTarjetasCredito() {
+        return tarjetasCredito;
+    }
+
+    /**
+     * @param tarjetasCredito the tarjetasCredito to set
+     */
+    public void setTarjetasCredito(List<TarjetaDeCreditoEntity> tarjetasCredito) {
+        this.tarjetasCredito = tarjetasCredito;
+    }
+
+    /**
+     * @return the deseado
+     */
+    public List<DeseadoEntity> getDeseado() {
+        return deseado;
+    }
+
+    /**
+     * @param deseado the deseado to set
+     */
+    public void setDeseado(List<DeseadoEntity> deseado) {
+        this.deseado = deseado;
+    }
+
+    
+    
 }
