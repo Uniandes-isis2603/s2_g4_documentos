@@ -8,10 +8,15 @@ package co.edu.uniandes.csw.documentos.resources;
 
 
 import co.edu.uniandes.csw.documentos.dtos.*;
+import co.edu.uniandes.csw.documentos.ejb.*;
+import co.edu.uniandes.csw.documentos.entities.CursoEntity;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
+
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -20,6 +25,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import org.jboss.arquillian.core.api.annotation.Inject;
 /**
  * <pre> Clase que implementa el recurso "Curso".
  * URL: /api/cursos
@@ -43,9 +49,10 @@ import javax.ws.rs.Produces;
 public class CursoResource {
     
     
- 
 
 
+@Inject
+private CursoLogic logica;
     
      /**
      * <h1> POST /api/cursos : crear una nueva Curso. </h1>
@@ -62,14 +69,21 @@ public class CursoResource {
      * </code>
      * </pre>
      * 
-     * @param Curso {@link CursoDetailedDTO} - El curso nuevo para crear.
+     * @param elcurso {@link CursoDetailedDTO} - El curso nuevo para crear.
      * @return JSON {@link CursoDetailedDTO}  -El curso guardado.
+     
      * 
      */
     @POST
-    public CursoDetailedDTO createCurso(CursoDetailedDTO Curso ) 
+    public CursoDTO createCurso(CursoDTO elcurso ) 
     {
-        return Curso;
+                
+       CursoEntity editorialEntity = elcurso.toEntity();
+      
+       CursoEntity nuevoEditorial = logica.createCurso(editorialEntity);
+    
+       return new CursoDTO(nuevoEditorial);
+       
     }
     
      /**

@@ -5,11 +5,12 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
 import co.edu.uniandes.csw.documentos.entities.CursoEntity;
 import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
 
 /**
-  * CompraDTO Objeto de transferencia de datos de una editorial . Los DTO contienen las
+  * EditorialDTO Objeto de transferencia de datos de una editorial . Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
  * servidor.
  * 
@@ -92,5 +93,16 @@ public class EditorialDTO
         }
      
     }
+     public EditorialEntity toEntity()
+        {
+            EditorialEntity rta= new EditorialEntity();
+           
+           rta.setId(this.id);
+     rta.setISBN(this.ISBN);
+     rta.setNombre(this.nombre);
+     
+          
+           return rta;
+        }
    
 }

@@ -20,7 +20,7 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class CursoPersistence {
-     private static final Logger LOGGER=Logger.getLogger(CursoEntity.class.getName());
+     private  final Logger LOGGER=Logger.getLogger(CursoEntity.class.getName());
     
     @PersistenceContext(unitName = "DocumentosPU")
     protected  EntityManager entidad;
