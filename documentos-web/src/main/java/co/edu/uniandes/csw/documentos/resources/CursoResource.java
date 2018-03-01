@@ -128,7 +128,7 @@ private CursoLogic logica;
      */
     @GET
     @Path("{id: \\d+}")
-    public CursoDetailedDTO getCurso(@PathParam("id") Long id)
+    public CursoDetailedDTO getCurso(@PathParam("id") Long id)throws BusinessLogicException
     {
       return new  CursoDetailedDTO(logica.getCurso(id));
     }
@@ -154,7 +154,7 @@ private CursoLogic logica;
      */
     @PUT
     @Path("{id: \\d+}")
-    public CursoDetailedDTO updateCurso (@PathParam("id") Long id, CursoDetailedDTO Curso) 
+    public CursoDetailedDTO updateCurso (@PathParam("id") Long id, CursoDetailedDTO Curso) throws BusinessLogicException
     {
         Curso.setId(id);
         return new CursoDetailedDTO(logica.updateCurso(id, Curso.toEntity()));

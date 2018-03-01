@@ -44,7 +44,7 @@ public class EditorialDTO
     public void setId(long id) {
         this.id = id;
     }
-    private long ISBN;
+
     private String nombre;
 /**
  * Constructor por defecto
@@ -53,13 +53,7 @@ public class EditorialDTO
     {
      
     }
-/**
- * 
- * @param ISBN Nuevo de la editorial
- */
-    public void setISBN(long ISBN) {
-        this.ISBN = ISBN;
-    }
+
 /**
  * 
  * @param nombre nuevo de la editorial 
@@ -69,13 +63,7 @@ public class EditorialDTO
         this.nombre = nombre;
     }
     
-/**
- * 
- * @return el isbn de la editorial 
- */
-    public long getISBN() {
-        return ISBN;
-    }
+
 /**
  * 
  * @return el nombre de la editorial
@@ -88,7 +76,7 @@ public class EditorialDTO
         if (entidad!=null)
         {      this.id= entidad.getId();
         
-               this.ISBN= entidad.getISBN();
+               
                this.nombre= entidad.getNombre();
         }
      
@@ -98,7 +86,7 @@ public class EditorialDTO
             EditorialEntity rta= new EditorialEntity();
            
            rta.setId(this.id);
-     rta.setISBN(this.ISBN);
+   
      rta.setNombre(this.nombre);
      
           

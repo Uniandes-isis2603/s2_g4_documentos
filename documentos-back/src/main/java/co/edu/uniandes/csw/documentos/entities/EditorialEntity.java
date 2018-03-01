@@ -25,16 +25,7 @@ public class EditorialEntity implements Serializable{
       private Long id;
     
     private String nombre;
-    private Long ISBN;
-
-    public Long getISBN() {
-        return ISBN;
-    }
-
-    public void setISBN(Long ISBN) {
-        this.ISBN = ISBN;
-    }
-  
+   
 /**
  * 
  * @return de la entidad 

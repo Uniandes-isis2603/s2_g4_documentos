@@ -5,92 +5,74 @@
  */
 package co.edu.uniandes.csw.documentos.ejb;
 
-import co.edu.uniandes.csw.documentos.entities.CursoEntity;
+import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.documentos.persistence.CursoPersistence;
+import co.edu.uniandes.csw.documentos.persistence.EditorialPersistence;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-
-
 
 /**
  *
  * @author n.sotelo
  */
 @Stateless
-public class CursoLogic 
-{
+public class EditorialLogic {
+      @Inject
+    private EditorialPersistence persistencia;
     
     
-    @Inject
-    private CursoPersistence persistencia;
-    
-    
-    public CursoEntity createCurso(CursoEntity entity) throws BusinessLogicException
+    public EditorialEntity createEditorial(EditorialEntity entity) throws BusinessLogicException
     {
         if(persistencia.findByName(entity.getNombre())!=null)
         {
             throw new BusinessLogicException("Ya existe el curso con ese nombre");
         }
-        if(entity.getNombre().length()>=50)
-        {
-            throw new BusinessLogicException("Nombre no valido");
-        }
-        if(entity.getNombre().isEmpty()|| entity.getCodigo().isEmpty()||entity.getDepartamento().isEmpty())
-        {
-             throw new BusinessLogicException("Ninguno de los atributos de nombre,codigo o departamento puede ser vacio");
-        }
-        if(entity.getCodigo().length()>6)
-        {
-            throw new BusinessLogicException("Formato no valido");
-        }
+        
         return persistencia.create(entity);
     }
     
-      public List<CursoEntity> getCursos() throws BusinessLogicException {
+      public List<EditorialEntity> getEditorials() throws BusinessLogicException {
 
         
-        List<CursoEntity> editorials = persistencia.findAll();
-        if(editorials.isEmpty())
+        List<EditorialEntity> editorials = persistencia.findAll();
+        if(editorials.size()==0)
         {
             throw new BusinessLogicException("No existen cursos en el sistema");
         }
         
         return editorials;
     }
-        public CursoEntity getCurso(Long id) throws BusinessLogicException
+        public EditorialEntity getEditorial(Long id) throws BusinessLogicException
         {
         if (persistencia.find(id)==null)
         {
             throw new BusinessLogicException("No existe elemento que coincida con tu busqueda");
         }
         
-        CursoEntity editorial = persistencia.find(id);
+        EditorialEntity editorial = persistencia.find(id);
        
         return editorial;
         
     }
-        public CursoEntity updateCurso(Long id, CursoEntity entity) throws BusinessLogicException
+        public EditorialEntity updateEditorial(Long id, EditorialEntity entity) throws BusinessLogicException
         {
             if (persistencia.find(id)==null)
         {
             throw new BusinessLogicException("No existe elemento que coincida con tu busqueda");
         }
-        CursoEntity newEntity = persistencia.update(entity);
+        EditorialEntity newEntity = persistencia.update(entity);
        
         return newEntity;
         }
-         public void deleteCurso(Long id) throws BusinessLogicException
+         public void deleteEditorial(Long id) throws BusinessLogicException
          {
             if(persistencia.find(id)==null)
             {
                 throw new BusinessLogicException("No existe curso con el id puesto por parametro");
             }
-            persistencia.delete(getCurso(id));
+            persistencia.delete(getEditorial(id));
            
         }
-    }
-
+    
+}
