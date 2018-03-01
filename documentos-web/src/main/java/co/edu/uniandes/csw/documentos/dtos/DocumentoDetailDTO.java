@@ -5,6 +5,9 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.AreaDeConocimientoEntity;
+import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,9 +22,31 @@ public class DocumentoDetailDTO extends DocumentoDTO {
      * Constructor por defecto
      */
     public DocumentoDetailDTO(){
-        
+        super();
     }
     
+    public DocumentoDetailDTO(DocumentoEntity entity){
+        super(entity);
+       // if(entity.getAreas() != null){
+       //     areas = new ArrayList<>();
+        //    for(AreaDeConocimientoEntity areaEntity :entity.getAreas()){
+         //       areas.add(new AreaDeConocimiento(areaEntity));
+         //   }
+      //  }
+    }
+    
+    @Override
+    public DocumentoEntity toEntity(){
+        DocumentoEntity documentoE = super.toEntity();
+        //if(this.getAreas() != null){
+          //  List<AreaDeConocimientoEntity> areasEntity =new ArrayList<>();
+            //for(AreaDeConocimientoDTO dtoArea : this.getAreas()){
+              //  areasEntity.add(dtoArea.toEntity())
+           // }
+            //documentoE.setAreas(areasEntity);
+        //}
+        return documentoE;
+    }
     /**
      * Relacion a varias imagenes
      */
@@ -45,7 +70,7 @@ public class DocumentoDetailDTO extends DocumentoDTO {
     /**
      * Relacion de 0 a 1 curso.
      */
-    private CursoDTO curso;
+    private List<CursoDTO> cursos;
 
     /**
      * Devuelve las imagenes asociadas a este documento.
@@ -115,16 +140,16 @@ public class DocumentoDetailDTO extends DocumentoDTO {
      * Devuelve el curso al cual pertenece el documento.
      * @return el curso del documento.
      */
-    public CursoDTO getCurso() {
-        return curso;
+    public List<CursoDTO> getCurso() {
+        return cursos;
     }
 
     /**
      * Modifica el curso del documento
-     * @param curso del documento.
+     * @param cursos del documento.
      */
-    public void setCurso(CursoDTO curso) {
-        this.curso = curso;
+    public void setCurso(List<CursoDTO> cursos) {
+        this.cursos = cursos;
     }
     
     

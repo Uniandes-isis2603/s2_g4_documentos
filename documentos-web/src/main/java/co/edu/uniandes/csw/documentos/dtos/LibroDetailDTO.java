@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.LibroEntity;
+
 /**
  *Clase que extiende de {@link DocumentoDetailDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
@@ -18,6 +20,27 @@ public class LibroDetailDTO extends DocumentoDetailDTO {
      */
     public LibroDetailDTO(){
         
+    }
+    
+    /**
+     * Constructor que recibe un libroentity y lo convierte a dto.
+     * @param libroE libro que va a convertir a dto.
+     */
+    public LibroDetailDTO(LibroEntity libroE){
+        
+        super(libroE);
+    }
+    
+    @Override
+    public LibroEntity toEntity(){
+        LibroEntity libroE =  new LibroEntity();
+        libroE.setId(super.getId());
+        libroE.setNombre(super.getNombre());
+        libroE.setCalificacionPromedio(super.getCalificacionPromedio());
+        libroE.setPrecio(super.getPrecio());
+        libroE.setDescripcion(super.getDescripcion());
+        libroE.setCaratula(super.getCaratula());
+        return libroE;
     }
     
     /**

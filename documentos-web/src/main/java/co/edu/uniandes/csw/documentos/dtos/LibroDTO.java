@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.LibroEntity;
 import java.util.Date;
 
 /**
@@ -51,6 +52,38 @@ public class LibroDTO extends DocumentoDTO {
      */
     public LibroDTO() {
         
+    }
+    
+    /**
+     * Constructor para transformar un entity a dto.
+     * @param libroE la entidad de la cual se construye el dto.
+     */
+    public LibroDTO(LibroEntity libroE) {
+        if(libroE != null)
+        {
+            super.setId(libroE.getId());
+            super.setNombre(libroE.getNombre());
+            super.setPrecio(libroE.getPrecio());
+            super.setCalificacionPromedio(libroE.getCalificacionPromedio());
+            super.setCaratula(libroE.getCaratula());
+            super.setDescripcion(libroE.getDescripcion());
+            this.ISBN = libroE.getIsbn();
+            this.fechaPublicacion = libroE.getFechaPublicacion();
+        }
+    }
+    
+    @Override
+    public LibroEntity toEntity(){
+        LibroEntity libroE = new LibroEntity();
+        libroE.setId(super.getId());
+        libroE.setNombre(super.getNombre());
+        libroE.setPrecio(super.getPrecio());
+        libroE.setCalificacionPromedio(super.getCalificacionPromedio());
+        libroE.setCaratula(super.getCaratula());
+        libroE.setDescripcion(super.getDescripcion());
+        libroE.setFechaPublicacion(this.fechaPublicacion);
+        libroE.setIsbn(this.ISBN);
+        return libroE;
     }
     
     private String ISBN;

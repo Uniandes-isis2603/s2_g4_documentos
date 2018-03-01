@@ -5,6 +5,9 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
+import co.edu.uniandes.csw.documentos.entities.FotocopiaEntity;
+
 /**
  * Fotocopia DTO Objeto de transferencia de datos de Bookzon. Los DTO contienen 
  * las representaciones de los JSON que se transfiere entre el cliente y el servidor.
@@ -53,8 +56,47 @@ public class FotocopiaDTO extends DocumentoDTO{
         
     }
     
+    /**
+     * Constructor para tranformar un entity a dto.
+     * @param fotocopiaE la entidad  de la cual se construye el dto.
+     */
+    public FotocopiaDTO(FotocopiaEntity fotocopiaE)
+    {
+        if(fotocopiaE != null){
+            super.setId(fotocopiaE.getId());
+            super.setNombre(fotocopiaE.getNombre());
+            super.setPrecio(fotocopiaE.getPrecio());
+            super.setCalificacionPromedio(fotocopiaE.getCalificacionPromedio());
+            super.setCaratula(fotocopiaE.getCaratula());
+            super.setDescripcion(fotocopiaE.getDescripcion());
+            this.capitulos = fotocopiaE.getCapitulo();
+            this.nroPaginas = fotocopiaE.getNroPaginas();
+            this.profesor = fotocopiaE.getProfesor();
+        }
+    }
+    
+    /**
+     * Metodo para transformar el dto a una entidad.
+     * @return la entidad de la fotocopia asociada.
+     */
+    @Override
+    public FotocopiaEntity toEntity(){
+        FotocopiaEntity fotocopiaE = new FotocopiaEntity();
+        fotocopiaE.setId(super.getId());
+        fotocopiaE.setNombre(super.getNombre());
+        fotocopiaE.setPrecio(super.getPrecio());
+        fotocopiaE.setCalificacionPromedio(super.getCalificacionPromedio());
+        fotocopiaE.setCaratula(super.getCaratula());
+        fotocopiaE.setDescripcion(super.getDescripcion());
+        fotocopiaE.setCapitulo(this.capitulos);
+        fotocopiaE.setNroPaginas(this.nroPaginas);
+        fotocopiaE.setProfesor(this.profesor);
+        
+        return fotocopiaE;
+    }
+    
     private String profesor;
-    private String nroPaginas;
+    private Integer nroPaginas;
     private String capitulos;
 
     /**
@@ -77,7 +119,7 @@ public class FotocopiaDTO extends DocumentoDTO{
      *  
      * @return numero de paginas de las fotocopias.
      */
-    public String getNroPaginas() {
+    public Integer getNroPaginas() {
         return nroPaginas;
     }
 
@@ -85,7 +127,7 @@ public class FotocopiaDTO extends DocumentoDTO{
      * 
      * @param nroPaginas nuevo numero de paginas.
      */
-    public void setNroPaginas(String nroPaginas) {
+    public void setNroPaginas(Integer nroPaginas) {
         this.nroPaginas = nroPaginas;
     }
 

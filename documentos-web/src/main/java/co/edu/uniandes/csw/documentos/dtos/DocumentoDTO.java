@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
+
 /**
  * DocumentoDTO Objetode transferencia de datos de Bookzon. Los DTO contienen las
  * representaciones de los JSON que se transfierene entre el cliente y el servidor.
@@ -43,7 +45,20 @@ public class DocumentoDTO {
     public DocumentoDTO() {
         
     }
-    
+    /**
+     * Constructor  a partir de la entidad
+     * @param documentoE la entidad del documento.
+     */
+    public DocumentoDTO(DocumentoEntity documentoE){
+        if(documentoE != null){
+            this.id = documentoE.getId();
+            this.nombre = documentoE.getNombre();
+            this.precio = documentoE.getPrecio();
+            this.calificacionPromedio = documentoE.getCalificacionPromedio();
+            this.caratula = documentoE.getCaratula();
+            this.descripcion = documentoE.getDescripcion();
+        }
+    }
     private Long id;
     private String nombre;
     private Double calificacionPromedio;
@@ -51,6 +66,22 @@ public class DocumentoDTO {
     private Double precio;
     private String caratula;
 
+    /**
+     * Metodo para transformar el dto a una entidad.
+     * @return la entidad del documento asociado.
+     */
+    public DocumentoEntity toEntity(){
+        
+        DocumentoEntity documentoE = new DocumentoEntity();
+        documentoE.setId(this.id);
+        documentoE.setNombre(this.nombre);
+        documentoE.setPrecio(this.precio);
+        documentoE.setDescripcion(this.descripcion);
+        documentoE.setCalificacionPromedio(this.calificacionPromedio);
+        documentoE.setCaratula(this.caratula);
+        
+        return documentoE;
+    }
     /**
      * 
      * @return El id del documento
