@@ -19,6 +19,7 @@ import javax.inject.Inject;
  *
  * @author f.marroquin10
  */
+
 public class UsuarioLogic {
 
     @Inject
