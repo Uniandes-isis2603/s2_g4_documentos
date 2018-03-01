@@ -16,6 +16,7 @@ import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -25,7 +26,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import org.jboss.arquillian.core.api.annotation.Inject;
+
 /**
  * <pre> Clase que implementa el recurso "Curso".
  * URL: /api/cursos
@@ -75,14 +76,14 @@ private CursoLogic logica;
      * 
      */
     @POST
-    public CursoDTO createCurso(CursoDTO elcurso ) 
+    public CursoDetailedDTO createCurso(CursoDetailedDTO elcurso ) throws BusinessLogicException 
     {
                 
        CursoEntity editorialEntity = elcurso.toEntity();
       
        CursoEntity nuevoEditorial = logica.createCurso(editorialEntity);
     
-       return new CursoDTO(nuevoEditorial);
+       return new CursoDetailedDTO(nuevoEditorial);
        
     }
     

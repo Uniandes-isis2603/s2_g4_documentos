@@ -37,6 +37,26 @@ public class CursoPersistence {
         
          return entidadNueva;
     }
+    public CursoEntity findByName(String nombre)
+    {
+        TypedQuery query = entidad.createQuery("Select e From CursoEntity e where e.nombre = :nombre", CursoEntity.class);
+        
+        query = query.setParameter("nombre", nombre);
+        // Se invoca el query se obtiene la lista resultado
+        List<CursoEntity> sameName = query.getResultList();
+       CursoEntity result = null; 
+         if (sameName == null ) {
+            result = null;
+        } else if (sameName.isEmpty()) {
+             result = null;
+        } else {
+            result =  sameName.get(0);
+        }
+       
+        
+        return result;
+    }
+    
     /**
      * 
      * @param idDeLaEntidad que se desea buscar

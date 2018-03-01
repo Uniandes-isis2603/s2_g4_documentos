@@ -12,7 +12,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import org.jboss.arquillian.core.api.annotation.Inject;
+import javax.inject.Inject;
+
 
 
 /**
@@ -28,8 +29,12 @@ public class CursoLogic
     private CursoPersistence persistencia;
     
     
-    public CursoEntity createCurso(CursoEntity entity)
+    public CursoEntity createCurso(CursoEntity entity) throws BusinessLogicException
     {
+        if(persistencia.findByName(entity.getNombre())!=null)
+        {
+            throw new BusinessLogicException("Ya existe el curso con ese nombre");
+        }
         
         return persistencia.create(entity);
     }
