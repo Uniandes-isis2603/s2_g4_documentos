@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+
 import co.edu.uniandes.csw.documentos.entities.CompraEntity;
-import co.edu.uniandes.csw.documentos.entities.CursoEntity;
 import java.util.List;
 
 /**
@@ -40,7 +40,7 @@ public class CompraDetailedDTO extends CompraDTO
       */
     public CompraDetailedDTO() 
     {
-    super();   
+      
     }
 /**
  * 
@@ -56,10 +56,15 @@ public class CompraDetailedDTO extends CompraDTO
     public void setDocumentos(List<DocumentoDTO> documentos) {
         this.documentos = documentos;
     }
+     @Override
       public CompraEntity toEntity()
     {
        CompraEntity rta= super.toEntity();
        return rta;
     }
-    
+    public CompraDetailedDTO(CompraEntity compra)
+            
+    {
+        super(compra);
+    }
 }

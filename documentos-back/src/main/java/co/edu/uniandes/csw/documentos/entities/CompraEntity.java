@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.documentos.entities;
 
+import co.edu.uniandes.csw.documentos.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 
 
@@ -29,7 +32,9 @@ public class CompraEntity implements Serializable
      private Long id;
      
      private Double costo;
-     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+     
+     @Temporal(TemporalType.DATE)
+     @PodamStrategyValue(DateStrategy.class)
      private Date fecha;
      private String tipoDeCompra;
      
