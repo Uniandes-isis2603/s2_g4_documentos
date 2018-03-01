@@ -38,10 +38,15 @@ public class CursoLogic
         
         return persistencia.create(entity);
     }
-      public List<CursoEntity> getCursos() {
+    
+      public List<CursoEntity> getCursos() throws BusinessLogicException {
 
         
         List<CursoEntity> editorials = persistencia.findAll();
+        if(editorials.size()==0)
+        {
+            throw new BusinessLogicException("No existen cursos en el sistema");
+        }
         
         return editorials;
     }
@@ -50,23 +55,22 @@ public class CursoLogic
         
         
         CursoEntity editorial = persistencia.find(id);
-        if (editorial == null) {
-           
-        }
-        
+       
         return editorial;
+        
     }
         public CursoEntity updateCurso(Long id, CursoEntity entity) 
         {
-        
-        
         CursoEntity newEntity = persistencia.update(entity);
        
         return newEntity;
         }
-         public void deleteCurso(Long id) throws BusinessLogicException 
+         public void deleteCurso(Long id) throws BusinessLogicException
          {
-            
+            if(persistencia.find(id)==null)
+            {
+                throw new BusinessLogicException("No existe curso con el id puesto por parametro");
+            }
             persistencia.delete(getCurso(id));
            
         }

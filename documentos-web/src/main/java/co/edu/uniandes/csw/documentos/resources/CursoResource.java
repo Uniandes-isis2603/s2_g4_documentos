@@ -99,9 +99,16 @@ private CursoLogic logica;
      * @return JSONArray {@link AutorDetailDTO} - Los cursos  encontradas dentro de la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<CursoDetailedDTO> getCursos()
+    public List<CursoDetailedDTO> getCursos() throws BusinessLogicException
     {
-        return new ArrayList<>();
+        List<CursoDetailedDTO> lista=new ArrayList<>();
+        for (CursoEntity en :logica.getCursos()) 
+        {
+           
+           lista.add(new CursoDetailedDTO(en));
+        }
+        
+        return lista;
     }
     
     /**
@@ -123,7 +130,7 @@ private CursoLogic logica;
     @Path("{id: \\d+}")
     public CursoDetailedDTO getCurso(@PathParam("id") Long id)
     {
-      return null;
+      return new  CursoDetailedDTO(logica.getCurso(id));
     }
     
      /**
@@ -147,9 +154,10 @@ private CursoLogic logica;
      */
     @PUT
     @Path("{id: \\d+}")
-    public CursoDetailedDTO updateCurso (@PathParam("id)") Long id, CursoDetailedDTO Curso) 
+    public CursoDetailedDTO updateCurso (@PathParam("id") Long id, CursoDetailedDTO Curso) 
     {
-        return Curso;
+        Curso.setId(id);
+        return new CursoDetailedDTO(logica.updateCurso(id, Curso.toEntity()));
     }
     
     /**
@@ -168,9 +176,9 @@ private CursoLogic logica;
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteCurso (@PathParam("id") Long id)
+    public void deleteCurso (@PathParam("id") Long id) throws BusinessLogicException
     {
-        // Void
+        logica.deleteCurso(id);
     }
 }
 

@@ -82,7 +82,7 @@ public class CursoPersistence {
      */
      public void delete(CursoEntity id)
      {
-         LOGGER.info("Borrando el curso del sistema");
+         
            CursoEntity entity = entidad.find(CursoEntity.class, id.getId());
          entidad.remove(entity);
       
