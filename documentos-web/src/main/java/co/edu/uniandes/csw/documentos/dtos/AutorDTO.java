@@ -23,7 +23,6 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
-import java.util.Date;
 
 /**
  * AutorDTO Objeto de transferencia de datos de Autor. Los DTO contienen las
@@ -34,8 +33,7 @@ import java.util.Date;
  * <pre>
  *   {
  *      "id": number,
- *      "nombre": string,
- *      "fechaNacimiento": Date
+ *      "nombre": string
  *   }
  * </pre>
  * Por ejemplo una ciudad se representa asi:<br>
@@ -44,8 +42,7 @@ import java.util.Date;
  * 
  *   {
  *      "id": 91852,
- *      "nombre": "Gabriel Garcia Marquez",
- *      "fechaNacimiento": 06/03/1927
+ *      "nombre": "Gabriel Garcia Marquez"
  *   }
  *
  * </pre>
@@ -55,7 +52,6 @@ public class AutorDTO {
 
     private Long id;
     private String nombre;
-    private Date fechaNacimiento;
 
     /**
      * Constructor por defecto
@@ -90,19 +86,7 @@ public class AutorDTO {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-        /**
-     * @return la fecha de nacimiento del autor
-     */
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
 
-    /**
-     * @param fechaNacimiento la nueva fecha de nacimiento del autor
-     */
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
+
 
 }

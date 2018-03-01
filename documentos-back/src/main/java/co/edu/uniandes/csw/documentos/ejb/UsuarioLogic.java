@@ -5,21 +5,30 @@
  */
 package co.edu.uniandes.csw.documentos.ejb;
 
+
+import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.UsuarioPersistence;
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- * Clase que implementa la conexion con la persistencia para la entidad de Usuario.
+ *
  * @author f.marroquin10
  */
-
-@Stateless
 public class UsuarioLogic {
     
-    @Inject
-    private UsuarioPersistence persistence;
-    
-    
-    
+     @Inject
+    private UsuarioPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+
+     public UsuarioEntity getUsuario(Long id)
+     {
+         return persistence.find(id);
+     }
+     
+     public void CreateUsuario(UsuarioEntity user)throws BusinessLogicException
+     {
+         
+     }
+     
+     
 }

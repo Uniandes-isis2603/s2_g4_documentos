@@ -5,53 +5,63 @@
  */
 package co.edu.uniandes.csw.documentos.entities;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.io.Serializable;
 
 /**
  *
- * @author n.sotelo
+ * @author Camilojaravila
  */
 @Entity
-public class EditorialEntity implements Serializable{
+public class AutorEntity implements Serializable{
     
+    /**
+     * Id que identifica el Autor
+     */
     @Id
-     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     
-      private Long id;
-    
+    /**
+     * Nombre del Autor
+    */
     private String nombre;
-/**
- * 
- * @return de la entidad 
- */
+    
+
+    /**
+     * Retorna el Id del Autor
+     * @return id. El Id del Autor
+     */
     public Long getId() {
         return id;
     }
-    /**
-     * 
-     * @param id nuevo para la editorial 
-     */
 
+    /**
+     * Asigna un nuevo id al Autor
+     * @param id Nuevo id del Autor
+     */
     public void setId(Long id) {
         this.id = id;
     }
-/**
- * 
- * @return nombre de la editorial 
- */
+
+    /**
+     * Retorna el nombre del autor
+     * @return nombre. El nombre del autor
+     */
     public String getNombre() {
         return nombre;
     }
-/**
- * 
- * @param nombre nuevo para la editorial 
- */
+
+    /**
+     * Asigna el nuevo nombre al autor
+     * @param nombre Nuevo nombre del autor 
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-  
+ 
+    
 }

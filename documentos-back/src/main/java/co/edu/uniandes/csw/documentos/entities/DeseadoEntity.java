@@ -6,22 +6,34 @@
 package co.edu.uniandes.csw.documentos.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
+
 /**
  *
  * @author f.marroquin10
  */
 @Entity
 public class DeseadoEntity implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
     private String nombre;
     private double cantidad;
+
+     /**
+     * documentos, relación unidireccional
+     */
+    @PodamExclude
+    @OneToMany
+    private List<DocumentoEntity> documentos;
 
     /**
      *
@@ -38,8 +50,6 @@ public class DeseadoEntity implements Serializable {
     public String getNombre() {
         return nombre;
     }
-
-   
 
     /**
      *
@@ -66,8 +76,6 @@ public class DeseadoEntity implements Serializable {
 
     }
 
-   
-
     /**
      *
      * @param pCantidad nuevo número de objetos en deseados.
@@ -76,5 +84,5 @@ public class DeseadoEntity implements Serializable {
         this.cantidad = pCantidad;
 
     }
-    
+
 }

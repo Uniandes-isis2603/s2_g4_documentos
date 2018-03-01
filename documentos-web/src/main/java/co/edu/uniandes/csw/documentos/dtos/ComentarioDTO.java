@@ -18,7 +18,7 @@ import java.util.Date;
  *   {
  *      "comentario":string,
  *      "fecha":date
- *      "calificacion": integer,
+ *     
  *      
  *   }
  * </pre>
@@ -29,7 +29,7 @@ import java.util.Date;
  *   {
  *      "comentario": "El libro es muy interesante",
  *      "fecha": 05/06/2017
- *      "calificacion": 4
+ *     
  *   }
  *
  * </pre>
@@ -40,7 +40,7 @@ public class ComentarioDTO
 {
 private String comentario;
 private Date fecha;
-private Integer calificacion;
+
 /**
  * Consturctor por defecto
  */
@@ -74,19 +74,6 @@ private Integer calificacion;
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-/**
- * 
- * @return calificacion sobre un libro
- */
-    public Integer getCalificacion() {
-        return calificacion;
-    }
-/**
- * 
- * @param calificacion nueva sobre un libro 
- */
-    public void setCalificacion(Integer calificacion) 
-    {
-        this.calificacion = calificacion;
-    }
+
+
 }
