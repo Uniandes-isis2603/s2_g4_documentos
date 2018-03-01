@@ -6,10 +6,14 @@
 package co.edu.uniandes.csw.documentos.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -17,6 +21,8 @@ import javax.persistence.Id;
  */
 @Entity
 public class AutorEntity implements Serializable{
+    
+
     
     /**
      * Id que identifica el Autor
@@ -30,7 +36,13 @@ public class AutorEntity implements Serializable{
     */
     private String nombre;
     
-
+    /**
+     * Documentos asociados al autor
+     */
+    @PodamExclude
+    @ManyToMany(fetch=FetchType.LAZY, mappedBy = "autores")
+    private List<DocumentoEntity> documentos;
+    
     /**
      * Retorna el Id del Autor
      * @return id. El Id del Autor
