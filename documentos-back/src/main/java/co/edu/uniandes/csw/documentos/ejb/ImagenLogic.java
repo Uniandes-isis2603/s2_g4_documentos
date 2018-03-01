@@ -68,7 +68,7 @@ public class ImagenLogic {
     }
     
      /**
-     * Obtiene los datos de una instancia de un Area de Conocimiento a partir de su ID.
+     * Obtiene los datos de una instancia de una Imagen a partir de su ID.
      *
      * @param id Identificador de la instancia a consultar
      * @return Instancia de ImagenEntity con los datos de la Imagen consultada.
