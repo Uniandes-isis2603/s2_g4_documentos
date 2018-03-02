@@ -44,37 +44,39 @@ public class TarjetaDeCreditoLogic
      if(entity != null)
      {
          LOGGER.log(Level.INFO, "La TDC ya existe");
+         return null;
      }
-     else if (entity.getTipoDeTarjeta().equals("Visa"))
+     
+     if (TDC.getTipoDeTarjeta().equals("Visa"))
         {
-            if (entity.getNroDeLaTarjeta().length() != 16){
+            if (TDC.getNroDeLaTarjeta().length() != 16){
                 LOGGER.log(Level.INFO, "Error en el numero de la tarjeta");
                 check = false;
             }
             
             
-            if(!entity.getNroDeLaTarjeta().startsWith("4")){
+            if(!TDC.getNroDeLaTarjeta().startsWith("4")){
                 LOGGER.log(Level.INFO, "Error en el numero de la tarjeta");  
                 check = false;
             }
 
         }
-     else if (entity.getTipoDeTarjeta().equals("MasterCard")){
+     if (TDC.getTipoDeTarjeta().equals("MasterCard")){
                if (entity.getNroDeLaTarjeta().length() != 16){
                 LOGGER.log(Level.INFO, "Error en el numero de la tarjeta tipo");
                 check = false;
                }
 
-            if(!entity.getNroDeLaTarjeta().startsWith("(5[1-5])")){
+            if(!TDC.getNroDeLaTarjeta().startsWith("(5[1-5]\\s)+")){
                 LOGGER.log(Level.INFO, "Error en el numero de la tarjeta tipo"); 
                 check = false;            
             }
             }
-     else if (entity.getNumeroDeSeguridad().toString().length() != 3){
+     if (TDC.getNumeroDeSeguridad().toString().length() != 3){
             LOGGER.log(Level.INFO, "Error en el numero de seguridad de la tarjeta tipo "); 
                 check = false;  
         }
-     if (!entity.getNombreEnLaTarjeta().matches("([A-Z]|[a-z]|[0-9]\\s)+")){
+     if (!TDC.getNombreEnLaTarjeta().matches("([A-Z]|[a-z]|[0-9]\\s)+")){
             LOGGER.log(Level.INFO, "Error en el nombre del usuario de la tarjeta nro. "); 
             check = false;
         }
@@ -82,6 +84,7 @@ public class TarjetaDeCreditoLogic
      {
          return persistence.create(TDC);
      }
+     
      
      return null;
     }

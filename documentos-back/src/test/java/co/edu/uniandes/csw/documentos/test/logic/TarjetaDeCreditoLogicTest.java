@@ -112,16 +112,9 @@ public class TarjetaDeCreditoLogicTest {
         return entity;
     }
     
-//     @Test
-//    public void crearTarjetaDeCredito()
-//    {
-//        TarjetaDeCreditoEntity newEntity = crearEntity();
-//        TarjetaDeCreditoEntity result = TDCLogic.createTarjetaDeCredito(newEntity);
-//        Assert.assertNotNull(result);
-//    }
     
     @Test
-    public void crearTarjeta2()
+    public void crearTarjeta()
     {
       TarjetaDeCreditoEntity newEntity = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
       newEntity.setTipoDeTarjeta("dinero");
