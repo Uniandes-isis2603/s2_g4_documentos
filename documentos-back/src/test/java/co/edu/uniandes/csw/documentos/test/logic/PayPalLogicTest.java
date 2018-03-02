@@ -88,7 +88,6 @@ public class PayPalLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from PayPalEntity").executeUpdate();
-        em.createQuery("delete from UsuarioEntity").executeUpdate();
     }
 
     /**
