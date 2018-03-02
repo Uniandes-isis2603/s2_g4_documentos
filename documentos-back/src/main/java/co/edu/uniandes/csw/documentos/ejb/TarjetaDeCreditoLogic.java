@@ -36,54 +36,57 @@ public class TarjetaDeCreditoLogic
      */
     public TarjetaDeCreditoEntity createTarjetaDeCredito(TarjetaDeCreditoEntity TDC)
     {
+        
      LOGGER.log(Level.INFO, "Empezando la creacion de nueva TarjetaDeCredito");
-
-        boolean check = true;
-        TarjetaDeCreditoEntity entity = persistence.find(TDC.getId());
-        if(entity != null)
-        {
-        LOGGER.log(Level.INFO, "La TDC con el id {0} ya existe ", entity.getId());
-        }
-        else if (entity.getTipoDeTarjeta().equals("Visa"))
+     TarjetaDeCreditoEntity entity = persistence.find(TDC.getId());
+     boolean check = true;
+     
+     if(entity != null)
+     {
+         LOGGER.log(Level.INFO, "La TDC ya existe");
+     }
+     else if (entity.getTipoDeTarjeta().equals("Visa"))
         {
             if (entity.getNroDeLaTarjeta().length() != 16){
-                LOGGER.log(Level.INFO, "Error en el numero de la tarjeta, {0} ", entity.getTipoDeTarjeta());
+                LOGGER.log(Level.INFO, "Error en el numero de la tarjeta");
                 check = false;
             }
             
             
-            else if(!entity.getNroDeLaTarjeta().startsWith("4")){
-                LOGGER.log(Level.INFO, "Error en el numero de la tarjeta, {0} ", entity.getTipoDeTarjeta());    
+            if(!entity.getNroDeLaTarjeta().startsWith("4")){
+                LOGGER.log(Level.INFO, "Error en el numero de la tarjeta");  
                 check = false;
             }
 
         }
-        else if (entity.getTipoDeTarjeta().equals("MasterCard")){
+     else if (entity.getTipoDeTarjeta().equals("MasterCard")){
                if (entity.getNroDeLaTarjeta().length() != 16){
-                LOGGER.log(Level.INFO, "Error en el numero de la tarjeta tipo {0} ", entity.getTipoDeTarjeta());
+                LOGGER.log(Level.INFO, "Error en el numero de la tarjeta tipo");
                 check = false;
                }
 
-            else if(!entity.getNroDeLaTarjeta().startsWith("(5[1-5])")){
-                LOGGER.log(Level.INFO, "Error en el numero de la tarjeta tipo {0} ", entity.getTipoDeTarjeta()); 
+            if(!entity.getNroDeLaTarjeta().startsWith("(5[1-5])")){
+                LOGGER.log(Level.INFO, "Error en el numero de la tarjeta tipo"); 
                 check = false;            
             }
             }
-        if (entity.getNumeroDeSeguridad().toString().length() != 3){
-            LOGGER.log(Level.INFO, "Error en el numero de seguridad de la tarjeta tipo {0} ", entity.getTipoDeTarjeta()); 
+     else if (entity.getNumeroDeSeguridad().toString().length() != 3){
+            LOGGER.log(Level.INFO, "Error en el numero de seguridad de la tarjeta tipo "); 
                 check = false;  
         }
-        
-        if (!entity.getNombreEnLaTarjeta().matches("([A-Z]|[a-z]\\s)+")){
-            LOGGER.log(Level.INFO, "Error en el nombre del usuario de la tarjeta nro. {0} ", entity.getNroDeLaTarjeta()); 
+     if (!entity.getNombreEnLaTarjeta().matches("([A-Z]|[a-z]|[0-9]\\s)+")){
+            LOGGER.log(Level.INFO, "Error en el nombre del usuario de la tarjeta nro. "); 
             check = false;
         }
-            
-        if(check == true){
-        return persistence.create(TDC);}
-        
-        return null;
+     if(check == true)
+     {
+         return persistence.create(TDC);
+     }
+     
+     return null;
     }
+    
+    
     
     /**
      * Obtiene la lista de las TarjetaDeCredito

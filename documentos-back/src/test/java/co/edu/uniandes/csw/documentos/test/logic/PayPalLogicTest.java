@@ -109,19 +109,11 @@ public class PayPalLogicTest {
     @Test
     public void createPayPal()
     {
-        PayPalEntity newEntity = factory.manufacturePojo(PayPalEntity.class);
-        PayPalEntity result = PPLogic.createPayPal(newEntity);
-        Assert.assertNotNull(result);
         
-        newEntity.setCorreoElectronico("gregorio@hotmail.com");
-        result = PPLogic.createPayPal(newEntity);
-        PayPalEntity nEntity2 = factory.manufacturePojo(PayPalEntity.class);
-        nEntity2.setCorreoElectronico("gregorio@hotmail.com");
-        PayPalEntity result2 = PPLogic.createPayPal(nEntity2);
-        Assert.assertNull(result2);
-        
-        
-        
+      PayPalEntity newEntity = factory.manufacturePojo(PayPalEntity.class);
+      PayPalEntity result = PPLogic.createPayPal(newEntity);
+      Assert.assertNull(result); //PODamFactpry no es capaz de producir emails con @ entonces me toca probar que cuando usa
+      // un correo sin @, es capaz de sacar null.
     }
     
     @Test
@@ -178,11 +170,14 @@ public class PayPalLogicTest {
         newEntity.setCorreoElectronico("gregoriohotmail.com");
         result = PPLogic.updatePayPal(entity2);
         Assert.assertNull(result);
-                
-        PayPalEntity nEntity2 = factory.manufacturePojo(PayPalEntity.class);
+        
+        PayPalEntity nEntity2 = data.get(0);
         nEntity2.setCorreoElectronico("gregorio@hotmail.com");
         PayPalEntity result2 = PPLogic.updatePayPal(nEntity2);
         Assert.assertNotNull(result2);
+
+
+                
     }
     
     

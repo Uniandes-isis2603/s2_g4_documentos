@@ -58,21 +58,26 @@ public class PayPalLogic {
      * @return instancia de cuenta PayPal
      */
     public PayPalEntity createPayPal(PayPalEntity payp)
-    {
-        PayPalEntity busqueda = persistence.findByMail(payp.getCorreoElectronico());        
-        if(busqueda != null)
-        {
-         LOGGER.log(Level.INFO, "La cuenta con el correo {0} ya existe", busqueda.getCorreoElectronico());
-         return null;
-        }
-        if(!payp.getCorreoElectronico().contains("@"))
-        {
-         LOGGER.log(Level.INFO, "La cuenta con el correo {0} ya existe", busqueda.getCorreoElectronico());
-         return null;  
-        }
-        
+    {        
         LOGGER.log(Level.INFO, "Empezando la creacion de nueva cuenta PayPal");
-        return persistence.create(payp);
+        
+        if(payp.getCorreoElectronico().contains("@"))
+        {
+            if(persistence.findByMail(payp.getCorreoElectronico()) == null)
+            {
+               if(persistence.find(payp.getId()) == null)
+               {
+                return persistence.create(payp);
+               }
+               LOGGER.log(Level.INFO, "El id de la cuenta no es valido");
+               return null;
+            }
+            LOGGER.log(Level.INFO, "el mail de la cuenta PayPal ya esta registrado");
+            return null;
+            
+        }
+        LOGGER.log(Level.INFO, "El correo no es valido");
+        return null;
     }
     
     /**
@@ -83,21 +88,22 @@ public class PayPalLogic {
      */
     public PayPalEntity updatePayPal(PayPalEntity payp)
     {
-         PayPalEntity busqueda = persistence.findByMail(payp.getCorreoElectronico());        
-        if(busqueda != null)
-        {
-        if(!payp.getCorreoElectronico().contains("@"))
-            {
-                LOGGER.log(Level.INFO, "El mail {0} no es valido", busqueda.getCorreoElectronico());
-                return null;  
-            }
-        
+       
          LOGGER.log(Level.INFO, "Comenzando proceso para actualizar instancia de PayPal");
-         return persistence.update(payp);
-        }
-        
-        LOGGER.log(Level.INFO, "La cuenta con el correo {0} no existe", busqueda.getCorreoElectronico());
+         
+         if(payp.getCorreoElectronico().contains("@"))
+         {
+             if(persistence.find(payp.getId()) != null)
+                     {
+                        return persistence.update(payp);
+                     }
+            LOGGER.log(Level.INFO, "El id a actualizar no existe, recuerde que el id no puede ser modificado");
+            return null;
+         }
+         LOGGER.log(Level.INFO, "el mail que ingreso no es valido");
          return null;
+         
+        
     }
     
     /**

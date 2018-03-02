@@ -30,7 +30,7 @@ public class TarjetaDeCreditoLogicTest {
     private PodamFactory factory = new PodamFactoryImpl();
     
     @Inject
-    private TarjetaDeCreditoLogic PPLogic;
+    private TarjetaDeCreditoLogic TDCLogic;
     
     @PersistenceContext
     private EntityManager em;
@@ -100,10 +100,47 @@ public class TarjetaDeCreditoLogicTest {
         }
     }
     
-    @Test
-    public void getPayPal()
+    
+    private TarjetaDeCreditoEntity crearEntity()
     {
-        List<TarjetaDeCreditoEntity> list = PPLogic.getTarjetaDeCredito();
+        TarjetaDeCreditoEntity entity = new TarjetaDeCreditoEntity();
+        entity.setNombreEnLaTarjeta("GREGORIO");
+        entity.setNroDeLaTarjeta("1234567890123456");
+        entity.setTipoDeTarjeta("Visa");
+        entity.setId(new Long(1223345));
+      
+        return entity;
+    }
+    
+//     @Test
+//    public void crearTarjetaDeCredito()
+//    {
+//        TarjetaDeCreditoEntity newEntity = crearEntity();
+//        TarjetaDeCreditoEntity result = TDCLogic.createTarjetaDeCredito(newEntity);
+//        Assert.assertNotNull(result);
+//    }
+    
+    @Test
+    public void crearTarjeta2()
+    {
+      TarjetaDeCreditoEntity newEntity = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
+      newEntity.setTipoDeTarjeta("dinero");
+      TarjetaDeCreditoEntity result = TDCLogic.createTarjetaDeCredito(newEntity);
+      Assert.assertNull(result);
+      
+      newEntity = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
+      TarjetaDeCreditoEntity existe = data.get(0);
+      newEntity.setId(existe.getId());
+      result = TDCLogic.createTarjetaDeCredito(newEntity);
+      Assert.assertNull(result);
+      
+
+    }
+    
+    @Test
+    public void getTarjetaDeCredito()
+    {
+        List<TarjetaDeCreditoEntity> list = TDCLogic.getTarjetaDeCredito();
         Assert.assertEquals(data.size(), list.size());
         for(TarjetaDeCreditoEntity entity : list)
         {
@@ -120,10 +157,20 @@ public class TarjetaDeCreditoLogicTest {
     }
     
     @Test
-    public void getPayPal2()
+    public void updateTarjetaDeCredito()
+    {
+        TarjetaDeCreditoEntity entity = crearEntity();
+        TarjetaDeCreditoEntity entity2 = data.get(0);
+        entity.setId(entity2.getId());
+        TarjetaDeCreditoEntity result = TDCLogic.createTarjetaDeCredito(entity);
+        Assert.assertNull(result);
+    }
+    
+    @Test
+    public void getTarjetaDeCredito2()
     {
         Long id = new Long ("1234567890");
-        TarjetaDeCreditoEntity resultEntity = PPLogic.getTarjetaDeCredito(id);
+        TarjetaDeCreditoEntity resultEntity = TDCLogic.getTarjetaDeCredito(id);
         Assert.assertNull(resultEntity);
     }
 }
