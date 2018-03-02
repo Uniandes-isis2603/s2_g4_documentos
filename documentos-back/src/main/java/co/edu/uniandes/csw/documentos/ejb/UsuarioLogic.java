@@ -39,7 +39,7 @@ public class UsuarioLogic {
         UsuarioEntity buscado = persistence.find(entity.getId());
         if (buscado != null) {
             LOGGER.log(Level.INFO, "El Usuario con el id {0} ya existe ", entity.getId());
-        } else if(entity.getNombre()==null||entity.getContraseña()==null||entity.getUserName()==null||null==entity.getId())
+        } else if(entity.getNombre()==null||entity.getUserName()==null||null==entity.getId()||0==entity.getEdad()||entity.getCorreo()==null)
         { LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
         }else if (!entity.getNombre().matches("([A-Z]|[a-z]|\\s)+")) {
             LOGGER.log(Level.INFO, "El nombre del Usuario no puede contener caracteres especiales");

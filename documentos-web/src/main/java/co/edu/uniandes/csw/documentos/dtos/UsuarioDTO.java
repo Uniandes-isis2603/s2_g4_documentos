@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
+
 /**
  * UsuarioDTO Objeto de transferencia de datos de Bookzon. Los DTO contienen las
  * representaciones de los JSON que se transfierene entre el cliente y el servidor.
@@ -41,13 +43,47 @@ public class UsuarioDTO {
     
     private String nombreUsuario;
     
-    private String contraseña;
     
     private String correo;
     
     private int genero;
     private int edad;
     
+    
+    
+    
+      /**
+     * Constructor a partir de la entidad
+     * @param usuario  La entidad del usuario
+     */
+    public UsuarioDTO(UsuarioEntity usuario) {
+        if (usuario != null) {
+            this.id = usuario.getId();
+            this.nombre = usuario.getNombre();
+            this.nombreUsuario = usuario.getUserName();
+            this.correo = usuario.getCorreo();
+            this.genero = usuario.getGenero();
+            this.edad = usuario.getEdad();
+            
+        }
+    }
+
+    /**
+     * Método para transformar el DTO a una entidad.
+     * @return La entidad del usuario asociado.
+     */
+    public UsuarioEntity toEntity() {
+
+        UsuarioEntity user = new UsuarioEntity();
+        user.setId(this.id);
+        user.setNombre(this.nombre);
+        user.setNombreUsuario(this.nombreUsuario);
+        user.setCorreo(this.correo);
+        user.setEdad(this.edad);
+        user.setGenero(this.genero);
+     
+        return user;
+    }
     
     /**
      * constructor por defecto
@@ -82,13 +118,7 @@ public class UsuarioDTO {
         return nombreUsuario;
     } 
      
-      /**
-     * @return  la contraseña del usuario
-     */
-     public String getContraseña()
-     {
-         return contraseña;
-     }
+ 
      
      
      /**
@@ -120,15 +150,6 @@ public class UsuarioDTO {
          nombreUsuario= pNombre;
      }
        
-       
-       /**
-     * 
-     * @param pContraseña nuevo pContraseña
-     */
-        public void setContraseña(String pContraseña)
-     {
-         contraseña=pContraseña;
-     }
 
     /**
      * @return the correo

@@ -44,13 +44,6 @@ public class ComentarioEntity implements Serializable
     }
     
 
-    public String getComentario() {
-        return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
 
     public Date getFecha() {
         return fecha;

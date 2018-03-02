@@ -70,7 +70,7 @@ public class UsuarioEntity implements Serializable {
      */
     @PodamExclude
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DeseadoEntity> deseado;
+    private DeseadoEntity deseado;
 
     /**
      *
@@ -215,14 +215,14 @@ public class UsuarioEntity implements Serializable {
     /**
      * @return the deseado
      */
-    public List<DeseadoEntity> getDeseado() {
+    public DeseadoEntity getDeseado() {
         return deseado;
     }
 
     /**
      * @param deseado the deseado to set
      */
-    public void setDeseado(List<DeseadoEntity> deseado) {
+    public void setDeseado(DeseadoEntity deseado) {
         this.deseado = deseado;
     }
 
