@@ -87,8 +87,8 @@ private Date fecha;
     }
 public ComentarioDTO( ComentarioEntity entidad)
 {    id= entidad.getId();
-    comentario=entidad.getComentario();
-    fecha= entidad.getFecha();
+     comentario=entidad.getComentario();
+     fecha= entidad.getFecha();
             
 }
 public ComentarioEntity toEntity()
@@ -96,9 +96,8 @@ public ComentarioEntity toEntity()
             ComentarioEntity rta= new ComentarioEntity();
            
            rta.setId(this.id);
-     
-      rta.setFecha(this.fecha);
-      rta.setComentario(this.comentario);
+           rta.setFecha(this.fecha);
+           rta.setComentario(this.comentario);
           
            return rta;
         }
