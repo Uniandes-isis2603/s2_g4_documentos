@@ -43,6 +43,10 @@ public class UsuarioDTO {
     
     private String contraseña;
     
+    private String correo;
+    
+    private int genero;
+    private int edad;
     
     
     /**
@@ -125,6 +129,48 @@ public class UsuarioDTO {
      {
          contraseña=pContraseña;
      }
+
+    /**
+     * @return the correo
+     */
+    public String getCorreo() {
+        return correo;
+    }
+
+    /**
+     * @param correo the correo to set
+     */
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    /**
+     * @return the genero
+     */
+    public int getGenero() {
+        return genero;
+    }
+
+    /**
+     * @param genero the genero to set
+     */
+    public void setGenero(int genero) {
+        this.genero = genero;
+    }
+
+    /**
+     * @return the edad
+     */
+    public int getEdad() {
+        return edad;
+    }
+
+    /**
+     * @param edad the edad to set
+     */
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
         
         
        

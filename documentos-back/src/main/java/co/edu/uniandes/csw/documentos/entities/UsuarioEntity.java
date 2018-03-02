@@ -26,8 +26,9 @@ public class UsuarioEntity implements Serializable {
     private Long id;
     private String nombre;
     private String nombreUsuario;
-    private String contraseña;
     private int edad;
+   private String correo;
+   private int genero;
 
     /**
      * reservas, relación de composición unidireccional
@@ -95,13 +96,7 @@ public class UsuarioEntity implements Serializable {
         return nombreUsuario;
     }
 
-    /**
-     *
-     * @return contraseña del usuario
-     */
-    public String getContraseña() {
-        return contraseña;
-    }
+  
 
      /**
      *
@@ -145,14 +140,7 @@ public class UsuarioEntity implements Serializable {
         this.nombreUsuario = pNombre;
     }
 
-    /**
-     *
-     * @param pContraseña nueva contraseña del usuario.
-     */
-    public void setContraseña(String pContraseña) {
-        this.contraseña = pContraseña;
-
-    }
+ 
 
     /**
      * @return the reservas
@@ -236,6 +224,34 @@ public class UsuarioEntity implements Serializable {
      */
     public void setDeseado(List<DeseadoEntity> deseado) {
         this.deseado = deseado;
+    }
+
+    /**
+     * @return the correo
+     */
+    public String getCorreo() {
+        return correo;
+    }
+
+    /**
+     * @param correo the correo to set
+     */
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    /**
+     * @return the genero
+     */
+    public int getGenero() {
+        return genero;
+    }
+
+    /**
+     * @param genero the genero to set
+     */
+    public void setGenero(int genero) {
+        this.genero = genero;
     }
 
     
