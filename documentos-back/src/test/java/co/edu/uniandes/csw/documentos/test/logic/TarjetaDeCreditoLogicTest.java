@@ -80,7 +80,7 @@ public class TarjetaDeCreditoLogicTest {
      *
      */
     private void clearData() {
-        em.createQuery("delete from PayPalEntity").executeUpdate();
+        em.createQuery("delete from TarjetaDeCreditoEntity").executeUpdate();
     }
 
     /**
@@ -91,11 +91,39 @@ public class TarjetaDeCreditoLogicTest {
      */
     private void insertData() {
 
-        for (int i = 0; i < 3; i++) {
-            PayPalEntity entity = factory.manufacturePojo(PayPalEntity.class);
+        for (int i = 0; i < 3; i++) 
+        {
+            TarjetaDeCreditoEntity entity = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
             
             em.persist(entity);
             data.add(entity);
         }
+    }
+    
+    @Test
+    public void getPayPal()
+    {
+        List<TarjetaDeCreditoEntity> list = PPLogic.getTarjetaDeCredito();
+        Assert.assertEquals(data.size(), list.size());
+        for(TarjetaDeCreditoEntity entity : list)
+        {
+            boolean found = false;
+            for(TarjetaDeCreditoEntity storedEntity : data)
+            {
+                if(entity.getId().equals(storedEntity.getId()))
+                {
+                    found = true;
+                }    
+                }
+                    Assert.assertTrue(found);
+        }
+    }
+    
+    @Test
+    public void getPayPal2()
+    {
+        Long id = new Long ("1234567890");
+        TarjetaDeCreditoEntity resultEntity = PPLogic.getTarjetaDeCredito(id);
+        Assert.assertNull(resultEntity);
     }
 }
