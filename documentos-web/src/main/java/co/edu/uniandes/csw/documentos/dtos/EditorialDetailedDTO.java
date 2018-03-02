@@ -20,6 +20,8 @@ import java.util.List;
 public class EditorialDetailedDTO extends EditorialDTO{
     
     private List<LibroDTO> libros;
+
+   
 /**
  * 
  * @return lista de libros que pertenecen a la editorial
@@ -39,13 +41,17 @@ public class EditorialDetailedDTO extends EditorialDTO{
 /**
  * consturctor por defecto
  */
-    public EditorialDetailedDTO() {
-        super();
+    public EditorialDetailedDTO() 
+    {
+      
     }
      public EditorialEntity toEntity()
     {
        EditorialEntity rta= super.toEntity();
        return rta;
     }
-    
+    public EditorialDetailedDTO( EditorialEntity entidad)
+    {
+        super(entidad);
+    }
 }

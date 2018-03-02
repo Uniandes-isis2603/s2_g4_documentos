@@ -17,7 +17,7 @@ import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
- *      "ISBN":long,
+ *      
  *      "nombre": string,
  *      
  *   }
@@ -27,7 +27,7 @@ import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
  * <pre>
  * 
  *   {
- *      "ISBN": 978849,
+ *      
  *      "nombre": "Torre de Babel"
  *   }
  *
@@ -75,8 +75,6 @@ public class EditorialDTO
     {
         if (entidad!=null)
         {      this.id= entidad.getId();
-        
-               
                this.nombre= entidad.getNombre();
         }
      
