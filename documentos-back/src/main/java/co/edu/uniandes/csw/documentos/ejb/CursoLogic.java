@@ -47,6 +47,7 @@ public class CursoLogic
         {
             throw new BusinessLogicException("Formato no valido");
         }
+        
         return persistencia.create(entity);
     }
     

@@ -26,7 +26,11 @@ public class EditorialLogic {
     {
         if(persistencia.findByName(entity.getNombre())!=null)
         {
-            throw new BusinessLogicException("Ya existe el curso con ese nombre");
+            throw new BusinessLogicException("Ya existe la editorial con ese nombre");
+        }
+        if(entity.getNombre().isEmpty())
+        {
+            throw new BusinessLogicException("El nombre no puede ser vacio");
         }
         
         return persistencia.create(entity);
@@ -36,9 +40,9 @@ public class EditorialLogic {
 
         
         List<EditorialEntity> editorials = persistencia.findAll();
-        if(editorials.size()==0)
+        if(editorials.isEmpty())
         {
-            throw new BusinessLogicException("No existen cursos en el sistema");
+            throw new BusinessLogicException("No existen editoriales en el sistema");
         }
         
         return editorials;
@@ -61,6 +65,10 @@ public class EditorialLogic {
         {
             throw new BusinessLogicException("No existe elemento que coincida con tu busqueda");
         }
+             if(entity.getNombre().isEmpty())
+        {
+            throw new BusinessLogicException("El nombre no puede ser vacio");
+        }
         EditorialEntity newEntity = persistencia.update(entity);
        
         return newEntity;
@@ -69,7 +77,7 @@ public class EditorialLogic {
          {
             if(persistencia.find(id)==null)
             {
-                throw new BusinessLogicException("No existe curso con el id puesto por parametro");
+                throw new BusinessLogicException("No existe editorial con el id puesto por parametro");
             }
             persistencia.delete(getEditorial(id));
            

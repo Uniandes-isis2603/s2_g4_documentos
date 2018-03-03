@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.documentos.ejb;
 import co.edu.uniandes.csw.documentos.entities.ComentarioEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.ComentarioPersistence;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -19,10 +20,18 @@ public class ComentarioLogic {
      @Inject
     private ComentarioPersistence persistencia;
     public ComentarioEntity createComentario(ComentarioEntity entity) throws BusinessLogicException
-    {
+    {Date fecha= new Date();
         if(persistencia.find(entity.getId())!=null)
         {
             throw new BusinessLogicException("Ya existe el comentario con ese id");
+        }
+        if ( entity.getComentario().isEmpty())
+        {
+            throw new BusinessLogicException("El comentario no puede ser vacio");
+        }
+        if(entity.getFecha().after(fecha))
+        {
+           throw new BusinessLogicException("La fecha no es valida");   
         }
         
         return persistencia.create(entity);
@@ -53,9 +62,20 @@ public class ComentarioLogic {
     }
         public ComentarioEntity updateComentario(Long id, ComentarioEntity entity) throws BusinessLogicException
         {
+            Date fecha= new Date();
             if (persistencia.find(id)==null)
         {
             throw new BusinessLogicException("No existe elemento que coincida con tu busqueda");
+            
+        }
+            if (entity.getComentario().isEmpty())
+            {
+                throw new BusinessLogicException("No se puede actualizar un comentario para que no tenga informacion");
+            
+            }
+            if(entity.getFecha().after(fecha))
+        {
+           throw new BusinessLogicException("La fecha no es valida");   
         }
         ComentarioEntity newEntity = persistencia.update(entity);
        
