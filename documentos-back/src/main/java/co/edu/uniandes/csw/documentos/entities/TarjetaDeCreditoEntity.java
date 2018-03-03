@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.documentos.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -15,7 +17,9 @@ import javax.persistence.Entity;
 @Entity
 public class TarjetaDeCreditoEntity extends BaseEntity implements Serializable{
     
-    
+    @PodamExclude
+    @ManyToOne
+    private UsuarioEntity usuario;
     /**
      * tipo de tarjeta (ej. Visa, MasterCard, Maestro)
      */
@@ -87,6 +91,20 @@ public class TarjetaDeCreditoEntity extends BaseEntity implements Serializable{
      */
     public void setNumeroDeSeguridad(Integer numeroDeSeguridad) {
         this.numeroDeSeguridad = numeroDeSeguridad;
+    }
+
+    /**
+     * @return the usuario
+     */
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
     }
 
     
