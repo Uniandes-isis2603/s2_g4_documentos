@@ -10,6 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 
 /**
@@ -25,6 +29,17 @@ public class CursoEntity implements Serializable
     private String nombre;
     private String codigo;
     private String departamento;
+    @PodamExclude
+    @ManyToMany(mappedBy = "bibliogarfiaDelCurso")
+    private List<DocumentoEntity> bibliografiaDelCurso;
+
+    public List<DocumentoEntity> getBibliografiaDelCurso() {
+        return bibliografiaDelCurso;
+    }
+
+    public void setBibliografiaDelCurso(List<DocumentoEntity> bibliografiaDelCurso) {
+        this.bibliografiaDelCurso = bibliografiaDelCurso;
+    }
   
     
 
