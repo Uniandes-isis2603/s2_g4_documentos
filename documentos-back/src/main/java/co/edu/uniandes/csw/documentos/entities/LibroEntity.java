@@ -8,7 +8,9 @@ package co.edu.uniandes.csw.documentos.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -24,7 +26,31 @@ public class LibroEntity extends DocumentoEntity implements Serializable{
     private Date fechaPublicacion;
     
     private String isbn;
+    
+    /**
+     * Representa la editorial a la que pertenece el libro.
+     */
+    @PodamExclude
+    @ManyToOne
+    private EditorialEntity editorial;
 
+    /**
+     * Devuelve la editorial a la que pertenece el libro.
+     * @return editorial del documento.
+     */
+    public EditorialEntity getEditorial() {
+        return editorial;
+    }
+
+    /**
+     * Modifica la editorial a la que pertenece el libro.
+     * @param editorial nueva.
+     */
+    public void setEditorial(EditorialEntity editorial) {
+        this.editorial = editorial;
+    }
+
+    
     public String getIsbn() {
         return isbn;
     }
