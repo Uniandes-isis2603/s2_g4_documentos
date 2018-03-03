@@ -6,10 +6,13 @@
 package co.edu.uniandes.csw.documentos.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.*;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -24,6 +27,48 @@ public class UsuarioEntity implements Serializable {
     private String nombre;
     private String nombreUsuario;
     private String contraseña;
+
+    /**
+     * reservas, relación de composición unidireccional
+     */
+    @PodamExclude
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ReservaEntity> reservas;
+
+    /**
+     * reservas, relación de composición unidireccional
+     */
+    @PodamExclude
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CompraEntity> compras;
+
+    /**
+     * comentarios, relación unidireccional
+     */
+    @PodamExclude
+    @OneToMany
+    private List<ComentarioEntity> comentarios;
+
+    /**
+     * paypal, relación de composición biidireccional
+     */
+    @PodamExclude
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PayPalEntity> paypal;
+
+    /**
+     * tarjetasCredito, relación de composición bidireccional
+     */
+    @PodamExclude
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TarjetaDeCreditoEntity> tarjetasCredito;
+
+    /**
+     * deseado, relación de composición unidireccional
+     */
+    @PodamExclude
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DeseadoEntity> deseado;
 
     /**
      *

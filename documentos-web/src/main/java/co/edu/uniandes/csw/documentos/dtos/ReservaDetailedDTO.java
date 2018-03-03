@@ -12,8 +12,14 @@ package co.edu.uniandes.csw.documentos.dtos;
 public class ReservaDetailedDTO extends ReservaDTO{
     
     /**
+     * uno a maximo uno
+     */
+    private DocumentoDTO documento;
+    
+    /**
      * constructor por defecto
      */
+    
     public ReservaDetailedDTO()
     {
         

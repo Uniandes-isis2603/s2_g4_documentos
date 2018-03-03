@@ -21,7 +21,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class TarjetaDeCreditoPersistence {
  
-    private static final Logger LOGGER = Logger.getLogger(CityPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(TarjetaDeCreditoPersistence.class.getName());
 
     @PersistenceContext(unitName = "DocumentosPU")
     protected EntityManager em;

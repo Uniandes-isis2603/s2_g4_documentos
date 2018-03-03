@@ -25,11 +25,13 @@ package co.edu.uniandes.csw.documentos.resources;
 
 
 import co.edu.uniandes.csw.documentos.dtos.AutorDetailDTO;
+import co.edu.uniandes.csw.documentos.ejb.AutorLogic;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 
 import javax.ws.rs.DELETE;
@@ -61,6 +63,12 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class AutorResource {
+    
+    /**
+     * Injecta las reglas de negocio del autor
+     */
+    @Inject
+    private AutorLogic autorLogic;
 
     /**
      * <h1>POST /api/autores : Crear un autor.</h1>
@@ -85,7 +93,8 @@ public class AutorResource {
      */
     @POST
     public AutorDetailDTO createAutor(AutorDetailDTO autor) throws BusinessLogicException {
-        return autor;
+        
+        return new AutorDetailDTO(autorLogic.createAutor(autor.toEntity()));
     }
 
     /**

@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.PayPalEntity;
+
 /**
  * <h1>PayPalDTO Objeto que representa una cuenta del servicio de pago PayPal.</h1>
  * 
@@ -36,10 +38,30 @@ public class PayPalDTO {
     private String correoElectronico;
     private String usuario;
     
-    PayPalDTO()
+    public PayPalDTO()
     {
         
     }
+    
+    public PayPalDTO(PayPalEntity entity)
+    {
+        if(entity != null)
+        {
+            this.Id = entity.getId();
+            this.correoElectronico = entity.getCorreoElectronico();
+            this.usuario = entity.getUsuario();
+        }
+    }
+    
+    public PayPalEntity toEntity()
+    {
+        PayPalEntity entity = new PayPalEntity();
+        entity.setId(this.Id);
+        entity.setCorreoElectronico(this.correoElectronico);
+        entity.setUsuario(this.usuario);
+        
+        return entity;
+        }
 
     /**
      * @return the correoElectronico
