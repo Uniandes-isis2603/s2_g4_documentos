@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.documentos.test.logic;
 
 import co.edu.uniandes.csw.documentos.ejb.AutorLogic;
 import co.edu.uniandes.csw.documentos.entities.AutorEntity;
+import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
 import co.edu.uniandes.csw.documentos.persistence.AutorPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,8 @@ public class AutorLogicTest {
     private UserTransaction utx;
 
     private List<AutorEntity> data = new ArrayList<AutorEntity>();
+    
+    private List<DocumentoEntity> dataDocumentos = new ArrayList<DocumentoEntity>();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -97,13 +100,32 @@ public class AutorLogicTest {
         for (int i = 0; i < 3; i++) {
             AutorEntity entity = factory.manufacturePojo(AutorEntity.class);
             em.persist(entity);
+            insertDataDocumentos();
+            entity.setDocumentos(dataDocumentos);
             data.add(entity);
          
         }
 
     }
+    
+     /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
+     *
+     *
+     */
+    private void insertDataDocumentos() {
 
-        /**
+        for (int i = 0; i < 3; i++) {
+            DocumentoEntity entity = factory.manufacturePojo(DocumentoEntity.class);
+            em.persist(entity);
+            dataDocumentos.add(entity);
+         
+        }
+
+    }
+
+     /**
      * Prueba para crear un Autor no valido
      *
      *

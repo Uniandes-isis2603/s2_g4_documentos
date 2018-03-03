@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.documentos.test.logic;
 import co.edu.uniandes.csw.documentos.ejb.ImagenLogic;
 import co.edu.uniandes.csw.documentos.entities.ImagenEntity;
 import co.edu.uniandes.csw.documentos.persistence.ImagenPersistence;
+import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
+import co.edu.uniandes.csw.documentos.persistence.DocumentoPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -43,7 +45,9 @@ public class ImagenLogicTest {
     @Inject
     private UserTransaction utx;
 
-    private List<ImagenEntity> data = new ArrayList<ImagenEntity>();
+    private List<ImagenEntity> dataImagenes = new ArrayList<ImagenEntity>();
+    
+    private List<DocumentoEntity> dataDocumentos = new ArrayList<DocumentoEntity>();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -98,11 +102,12 @@ public class ImagenLogicTest {
             ImagenEntity entity = factory.manufacturePojo(ImagenEntity.class);
             entity.setImg(entity.getImg() + ".jpg");
             em.persist(entity);
-            data.add(entity);
+            dataImagenes.add(entity);
          
         }
 
     }
+
 
         /**
      * Prueba para crear una imagen no valida
@@ -122,7 +127,7 @@ public class ImagenLogicTest {
         Assert.assertNull(result);
         
         newEntity = factory.manufacturePojo(ImagenEntity.class);
-        ImagenEntity existe = data.get(0);
+        ImagenEntity existe = dataImagenes.get(0);
         newEntity.setId(existe.getId());
         result = imagenLogic.createImagen(newEntity);
         Assert.assertNull(result);
@@ -155,10 +160,10 @@ public class ImagenLogicTest {
     @Test
     public void getImagenesTest() {
         List<ImagenEntity> list = imagenLogic.getImagenes();
-        Assert.assertEquals(data.size(), list.size());
+        Assert.assertEquals(dataImagenes.size(), list.size());
         for (ImagenEntity entity : list) {
             boolean found = false;
-            for (ImagenEntity storedEntity : data) {
+            for (ImagenEntity storedEntity : dataImagenes) {
                 if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
@@ -189,7 +194,7 @@ public class ImagenLogicTest {
      */
     @Test
     public void getImagenTest2() {
-        ImagenEntity entity = data.get(0);
+        ImagenEntity entity = dataImagenes.get(0);
         ImagenEntity resultEntity = imagenLogic.getImagen(entity.getId());
         Assert.assertNotNull(resultEntity);
         
@@ -207,7 +212,7 @@ public class ImagenLogicTest {
      */
     @Test
     public void deleteImagenTest() {
-        ImagenEntity entity = data.get(0);
+        ImagenEntity entity = dataImagenes.get(0);
         imagenLogic.deleteImagen(entity.getId());
         ImagenEntity deleted = em.find(ImagenEntity.class, entity.getId());
         Assert.assertNull(deleted);
@@ -245,7 +250,7 @@ public class ImagenLogicTest {
      */
     @Test
     public void updateImagenTest2() {
-        ImagenEntity entity = data.get(0);
+        ImagenEntity entity = dataImagenes.get(0);
         ImagenEntity pojoEntity = factory.manufacturePojo(ImagenEntity.class);
 
         pojoEntity.setId(entity.getId());
