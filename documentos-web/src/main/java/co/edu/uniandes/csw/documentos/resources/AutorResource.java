@@ -24,8 +24,11 @@ SOFTWARE.
 package co.edu.uniandes.csw.documentos.resources;
 
 
+import co.edu.uniandes.csw.documentos.dtos.AreaDeConocimientoDetailDTO;
 import co.edu.uniandes.csw.documentos.dtos.AutorDetailDTO;
 import co.edu.uniandes.csw.documentos.ejb.AutorLogic;
+import co.edu.uniandes.csw.documentos.entities.AreaDeConocimientoEntity;
+import co.edu.uniandes.csw.documentos.entities.AutorEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
@@ -56,7 +59,7 @@ import javax.ws.rs.Produces;
  * RequestScoped: Inicia una transacción desde el llamado de cada método (servicio). 
  * </pre>
  * @author Camilojaravila  
- * @version 1.0
+ * @version 2.0
  */
 @Path("autores")
 @Produces("application/json")
@@ -70,6 +73,20 @@ public class AutorResource {
     @Inject
     private AutorLogic autorLogic;
 
+        /**
+     * Convierte una lista de AutorEntity a una lista de AutorDetailDTO.
+     *
+     * @param entityList Lista de AutorEntity a convertir.
+     * @return Lista de AutorDetailDTO convertida.
+     * 
+     */
+    private List<AutorDetailDTO> listEntity2DTO(List<AutorEntity> entityList) {
+        List<AutorDetailDTO> list = new ArrayList<>();
+        for (AutorEntity entity : entityList) {
+            list.add(new AutorDetailDTO(entity));
+        }
+        return list;       
+    }
     /**
      * <h1>POST /api/autores : Crear un autor.</h1>
      * 
@@ -110,7 +127,7 @@ public class AutorResource {
      */
     @GET
     public List<AutorDetailDTO> getAutores() {
-        return new ArrayList<>();
+        return listEntity2DTO(autorLogic.getAutores());
     }
 
     /**
@@ -132,7 +149,7 @@ public class AutorResource {
     @GET
     @Path("{id: \\d+}")
     public AutorDetailDTO getAutor(@PathParam("id") Long id) {
-        return null;
+        return new AutorDetailDTO(autorLogic.getAutor(id));
     }
     
     /**
@@ -156,7 +173,9 @@ public class AutorResource {
     @PUT
     @Path("{id: \\d+}")
     public AutorDetailDTO updateAutor(@PathParam("id") Long id, AutorDetailDTO autor) throws BusinessLogicException {
-        return autor;
+        AutorEntity entity = autor.toEntity();
+        entity.setId(id);
+        return new AutorDetailDTO(autorLogic.updateAutor(entity));
     }
     
     /**
@@ -172,10 +191,12 @@ public class AutorResource {
      * </code>
      * </pre>
      * @param id Identificador del autor que se desea borrar. Este debe ser una cadena de dígitos.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no encontrar el autor.
      */
     @DELETE
     @Path("{id: \\d+}")
-     public void deleteAutor(@PathParam("id") Long id) {
+     public void deleteAutor(@PathParam("id") Long id) throws BusinessLogicException {
         // Void
+        autorLogic.deleteAutor(id);
     }
 }
