@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.csw.documentos.test.logic;
 
 import co.edu.uniandes.csw.documentos.ejb.UsuarioLogic;
@@ -65,6 +60,12 @@ public class UsuarioLogicTest {
                 .addPackage(UsuarioEntity.class.getPackage())
                 .addPackage(UsuarioLogic.class.getPackage())
                 .addPackage(UsuarioPersistence.class.getPackage())
+                .addPackage(ReservaEntity.class.getPackage())
+                .addPackage(PayPalEntity.class.getPackage())
+                .addPackage(TarjetaDeCreditoEntity.class.getPackage())
+                .addPackage(ComentarioEntity.class.getPackage())
+                .addPackage(CompraEntity.class.getPackage())
+                
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -102,7 +103,7 @@ public class UsuarioLogicTest {
         em.createQuery("delete from PayPalEntity").executeUpdate();
         em.createQuery("delete from TarjetaDeCreditoEntity").executeUpdate();
         em.createQuery("delete from ComentarioEntity").executeUpdate();
-        em.createQuery("delete from ComprasEntity").executeUpdate();
+        em.createQuery("delete from CompraEntity").executeUpdate();
 
     }
 
@@ -162,7 +163,7 @@ public class UsuarioLogicTest {
      *
      */
     @Test
-    public void createUsuarioTest() {
+    public void createUsuarioTestValido() {
         UsuarioEntity result = UsuarioLogic.createUsuario(data.get(0));
         Assert.assertNotNull(result);
         UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
@@ -221,7 +222,7 @@ public class UsuarioLogicTest {
      *
      */
     @Test
-    public void getUsuarioTest() {
+    public void getUsuarioTestValido() {
         UsuarioEntity entity = data.get(0);
         UsuarioEntity resultEntity = UsuarioLogic.getUsuario(data.get(0).getId());
         Assert.assertNotNull(resultEntity);
@@ -272,7 +273,7 @@ public class UsuarioLogicTest {
      *
      */
     @Test
-    public void updateUsuarioTest() {
+    public void updateUsuarioTestValido() {
         UsuarioEntity entity = data.get(0);
         UsuarioEntity pojoEntity = factory.manufacturePojo(UsuarioEntity.class);
 
@@ -288,6 +289,30 @@ public class UsuarioLogicTest {
         Assert.assertEquals(pojoEntity.getEdad(), resp.getEdad());
         Assert.assertEquals(pojoEntity.getGenero(), resp.getGenero());
         Assert.assertEquals(pojoEntity.getCorreo(), resp.getCorreo());
+
+    }
+      /**
+     * Prueba para actualizar una Reserva no valida
+     *
+     *
+     */
+    @Test
+    public void updateReservaTestInvalido() {
+
+        UsuarioEntity pojoEntity = factory.manufacturePojo(UsuarioEntity.class);
+
+        Long id = new Long("1");
+        pojoEntity.setId(id);
+
+        UsuarioLogic.updateUsuario(pojoEntity);
+        UsuarioEntity encontrar = UsuarioLogic.getUsuario(pojoEntity.getId());
+        Assert.assertNull(encontrar);
+
+        pojoEntity.setId(data.get(0).getId());
+        pojoEntity.setNombre("as###$%&/#");
+        UsuarioLogic.updateUsuario(pojoEntity);
+        encontrar = UsuarioLogic.getUsuario(pojoEntity.getId());
+        Assert.assertNull(encontrar);
 
     }
 }

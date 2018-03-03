@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.documentos.ejb;
 
 import co.edu.uniandes.csw.documentos.entities.ReservaEntity;
 import co.edu.uniandes.csw.documentos.persistence.ReservaPersistence;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,15 +20,13 @@ import javax.inject.Inject;
  */
 @Stateless
 public class ReservaLogic {
-    
+
     private static final Logger LOGGER = Logger.getLogger(ReservaLogic.class.getName());
 
     @Inject
     private ReservaPersistence persistence;
 
-    //@Inject
-    //private DocumentoLogic DocumentoLogic;
-    
+   
     /**
      * Se encarga de crear una Reserva en la base de datos.
      *
@@ -36,24 +35,22 @@ public class ReservaLogic {
      */
     public ReservaEntity createReserva(ReservaEntity entity) {
         LOGGER.log(Level.INFO, "Inicia proceso de crear una Reserva ");
-       
+
         ReservaEntity buscado = persistence.find(entity.getId());
-        if (buscado != null){
+        if (buscado != null) {
             LOGGER.log(Level.INFO, "La Reserva con el id {0} ya existe ", entity.getId());
-        }
-        else if (entity.getId()==null||entity.getFecha()==null||entity.getCosto()==0){
+        } else if (entity.getId() == null || entity.getFecha() == null || entity.getCosto() == 0) {
             LOGGER.log(Level.INFO, "los atributos son nulos o invalidos");
-        }
-        else if(entity.getCosto()<0){  LOGGER.log(Level.INFO, "La Reserva tiene un valor menor a cero");
-        }
-        else{
+        } else if (entity.getCosto() < 0) {
+            LOGGER.log(Level.INFO, "La Reserva tiene un valor menor a cero");
+        } else {
             return persistence.create(entity);
-         }
-        
+        }
+
         return null;
     }
-    
-             /**
+
+    /**
      * Obtiene la lista de los registros de Reservaes de un Documento dado.
      *
      * @return Colección de objetos de ReservaEntity.
@@ -62,12 +59,14 @@ public class ReservaLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todas las Reservaes");
         return persistence.findAll();
     }
-    
-     /**
-     * Obtiene los datos de una instancia de un Area de Conocimiento a partir de su ID.
+
+    /**
+     * Obtiene los datos de una instancia de un Reserva a partir de
+     * su ID.
      *
      * @param id Identificador de la instancia a consultar
-     * @return Instancia de ReservaEntity con los datos de la Reserva consultada.
+     * @return Instancia de ReservaEntity con los datos de la Reserva
+     * consultada.
      */
     public ReservaEntity getReserva(Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar una Reserva con id = {0}", id);
@@ -82,20 +81,21 @@ public class ReservaLogic {
      */
     public ReservaEntity updateReserva(ReservaEntity entity) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar una Reserva ");
-        
+
         ReservaEntity buscado = persistence.find(entity.getId());
-        if (buscado != null){
+        if (buscado != null) {
             LOGGER.log(Level.INFO, "La Reserva con el id {0} no existe ", entity.getId());
-        }
-         else if (entity.getId()==null||entity.getFecha()==null||entity.getCosto()==0){
+        } else if (entity.getId() == null || entity.getFecha() == null || entity.getCosto() == 0) {
             LOGGER.log(Level.INFO, "los atributos son nulos o invalidos");
+        } else if (entity.getCosto() < 0) {
+            LOGGER.log(Level.INFO, "La Reserva tiene un valor menor a cero");
+        } else if (entity.getFecha().before(new Date())) {
+            LOGGER.log(Level.INFO, "la fecha de la reserva es anterior a la fecha actual");
+
+        } else {
+            return persistence.update(entity);
         }
-        else if(entity.getCosto()<0){  LOGGER.log(Level.INFO, "La Reserva tiene un valor menor a cero");
-        }
-        else{
-             return persistence.update(entity);
-         }
-        
+
         return null;
     }
 
@@ -105,17 +105,14 @@ public class ReservaLogic {
      * @param id Identificador de la instancia a eliminar.
      */
     public void deleteReserva(Long id) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar un area ");
-        
-        ReservaEntity buscado = persistence.find(id);
-        if (buscado != null){
-            LOGGER.log(Level.INFO, "El area de conocimiento con el id {0} no existe ", id);
-        }
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un reserva ");
 
-        else{
-             persistence.delete(id);
-         }
+        ReservaEntity buscado = persistence.find(id);
+        if (buscado != null) {
+            LOGGER.log(Level.INFO, "la Reserva con el id {0} no existe ", id);
+        } else {
+            persistence.delete(id);
+        }
     }
 
 }
-
