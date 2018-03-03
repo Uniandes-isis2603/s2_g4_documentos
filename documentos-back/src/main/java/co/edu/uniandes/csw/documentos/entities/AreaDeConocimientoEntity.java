@@ -6,10 +6,15 @@
 package co.edu.uniandes.csw.documentos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -29,6 +34,13 @@ public class AreaDeConocimientoEntity implements Serializable {
      * Tipo de Area de Conocimiento
      */
     private String tipo;
+    
+    /**
+     * Relación de Documentos a Areas de Conocimiento
+     */
+    @PodamExclude
+    @ManyToMany(mappedBy = "areas", fetch = FetchType.LAZY)
+    private List<DocumentoEntity> documentos = new ArrayList<DocumentoEntity>();
 
     /**
      * Retorna el Id del Area de Conocimiento
@@ -61,6 +73,13 @@ public class AreaDeConocimientoEntity implements Serializable {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
-    
+
+    public List<DocumentoEntity> getDocumentos() {
+        return documentos;
+    }
+
+    public void setDocumentos(List<DocumentoEntity> documentos) {
+        this.documentos = documentos;
+    }
+     
 }

@@ -24,8 +24,6 @@ SOFTWARE.
 package co.edu.uniandes.csw.documentos.dtos;
 
 import co.edu.uniandes.csw.documentos.entities.AutorEntity;
-import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,9 +45,11 @@ public class AutorDetailDTO extends AutorDTO {
    
     }
     
-        /**
-     * Crea un objeto AuthorDetailDTO a partir de un objeto AuthorEntity
-     * incluyendo los atributos de AuthorDTO.
+    
+    
+     /**
+     * Crea un objeto AutorDetailDTO a partir de un objeto AutorEntity
+     * incluyendo los atributos de AutorDTO.
      *
      * @param entity Entidad AuthorEntity desde la cual se va a crear el nuevo
      * objeto.
@@ -67,7 +67,21 @@ public class AutorDetailDTO extends AutorDTO {
 
     }
     
-        /**
+    /**
+     * @return los documentos que contienen el autor
+     */
+    public List<DocumentoDTO> getDocumentos() {
+        return documentos;
+    }
+
+    /**
+     * @param documentos Una nueva lista con todos los documentos del autor
+     */
+    public void setDocumentos(List<DocumentoDTO> documentos) {
+        this.documentos = documentos;
+    }
+
+    /**
      * Convierte un objeto AutorDetailDTO a AutorEntity incluyendo los
      * atributos de AutorDTO.
      *
@@ -86,21 +100,5 @@ public class AutorDetailDTO extends AutorDTO {
 //        }
 
         return entity;
-    }
-
-    /**
-     * @return los documentos que contienen el autor
-     */
-    public List<DocumentoDTO> getDocumentos() {
-        return documentos;
-    }
-
-    /**
-     * @param documentos Una nueva lista con todos los documentos del autor
-     */
-    public void setDocumentos(List<DocumentoDTO> documentos) {
-        this.documentos = documentos;
-    }
-
-    
+    }    
 }

@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.documentos.test.logic;
 
 import co.edu.uniandes.csw.documentos.ejb.AutorLogic;
 import co.edu.uniandes.csw.documentos.entities.AutorEntity;
+import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.AutorPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +46,8 @@ public class AutorLogicTest {
     private UserTransaction utx;
 
     private List<AutorEntity> data = new ArrayList<AutorEntity>();
+    
+    private List<DocumentoEntity> dataDocumentos = new ArrayList<DocumentoEntity>();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -97,13 +101,32 @@ public class AutorLogicTest {
         for (int i = 0; i < 3; i++) {
             AutorEntity entity = factory.manufacturePojo(AutorEntity.class);
             em.persist(entity);
+            insertDataDocumentos();
+            entity.setDocumentos(dataDocumentos);
             data.add(entity);
          
         }
 
     }
+    
+     /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
+     *
+     *
+     */
+    private void insertDataDocumentos() {
 
-        /**
+        for (int i = 0; i < 3; i++) {
+            DocumentoEntity entity = factory.manufacturePojo(DocumentoEntity.class);
+            em.persist(entity);
+            dataDocumentos.add(entity);
+         
+        }
+
+    }
+
+     /**
      * Prueba para crear un Autor no valido
      *
      *
@@ -112,18 +135,36 @@ public class AutorLogicTest {
     public void createAutorTest1() {
         
         AutorEntity newEntity = factory.manufacturePojo(AutorEntity.class);
-        AutorEntity result = autorLogic.createAutor(newEntity);
-        Assert.assertNotNull(result);
         
-        newEntity.setNombre("er$$2/34e");
-        result = autorLogic.createAutor(newEntity);
-        Assert.assertNull(result);
+        try{
+             autorLogic.createAutor(newEntity);
+        } catch (BusinessLogicException e) {
+            Assert.fail(e.getMessage());
+        }
+
+        try{
+            newEntity.setNombre("er$$2/34e");
+            autorLogic.createAutor(newEntity);
+            
+            //No deberia llegar hasta aca
+            Assert.fail("No se generó el error esperado");            
+        } catch (BusinessLogicException e) {
+            
+        }
         
-        newEntity = factory.manufacturePojo(AutorEntity.class);
-        AutorEntity existe = data.get(0);
-        newEntity.setId(existe.getId());
-        result = autorLogic.createAutor(newEntity);
-        Assert.assertNull(result);
+        try{
+            newEntity = factory.manufacturePojo(AutorEntity.class);
+            AutorEntity existe = data.get(0);
+            newEntity.setId(existe.getId());
+            autorLogic.createAutor(newEntity);
+            
+            //No deberia llegar hasta aca
+            Assert.fail("No se generó el error esperado");            
+        } catch (BusinessLogicException e) {
+            
+        }
+        
+
     }
     
     /**
@@ -134,14 +175,15 @@ public class AutorLogicTest {
     @Test
     public void createAutorTest2() {
         
-        AutorEntity newEntity = factory.manufacturePojo(AutorEntity.class);
-        AutorEntity result = autorLogic.createAutor(newEntity);
-        Assert.assertNotNull(result);
-        
-        AutorEntity entity = em.find(AutorEntity.class, result.getId());
-        Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
-        
+        try{
+            AutorEntity newEntity = factory.manufacturePojo(AutorEntity.class);
+            AutorEntity result = autorLogic.createAutor(newEntity);          
+            AutorEntity entity = em.find(AutorEntity.class, result.getId());
+            Assert.assertEquals(newEntity.getId(), entity.getId());
+            Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+        } catch (BusinessLogicException e) {
+            Assert.fail(e.getMessage());
+        }
     }
 
     /**
@@ -202,10 +244,15 @@ public class AutorLogicTest {
      */
     @Test
     public void deleteAutorTest() {
-        AutorEntity entity = data.get(0);
-        autorLogic.deleteAutor(entity.getId());
-        AutorEntity deleted = em.find(AutorEntity.class, entity.getId());
-        Assert.assertNull(deleted);
+        try{
+            AutorEntity entity = data.get(0);
+            autorLogic.deleteAutor(entity.getId());
+            AutorEntity deleted = em.find(AutorEntity.class, entity.getId());
+            Assert.assertNull(deleted);
+        } catch (BusinessLogicException e) {
+           Assert.fail(e.getMessage());
+        }
+
     }
     
      /**
@@ -218,17 +265,28 @@ public class AutorLogicTest {
 
         AutorEntity pojoEntity = factory.manufacturePojo(AutorEntity.class);
 
-       Long id = new Long("11111");
-        pojoEntity.setId(id);
+        try{
+            Long id = new Long("11111");
+            pojoEntity.setId(id);
+            autorLogic.updateAutor(pojoEntity);
+            autorLogic.getAutor(pojoEntity.getId());
+            
+            //No deberia llegar aca
+            Assert.fail("No se generó el error esperado");
+         
+        } catch (BusinessLogicException e) {
 
-        autorLogic.updateAutor(pojoEntity);
-        AutorEntity encontrar = autorLogic.getAutor(pojoEntity.getId());
-        Assert.assertNull(encontrar);
-        
-        pojoEntity.setNombre("rt4#$%#fdsgds");
-        autorLogic.updateAutor(pojoEntity);
-        encontrar = autorLogic.getAutor(pojoEntity.getId());
-        Assert.assertNull(encontrar);
+        }
+
+        try{
+            pojoEntity.setNombre("rt4#$%#fdsgds");
+            autorLogic.updateAutor(pojoEntity);
+            
+            //No deberia llegar aca
+            Assert.fail("No se generó el error esperado");
+        } catch (BusinessLogicException e) {
+            
+        }
         
     }
     
@@ -243,14 +301,19 @@ public class AutorLogicTest {
         AutorEntity entity = data.get(0);
         AutorEntity pojoEntity = factory.manufacturePojo(AutorEntity.class);
 
-        pojoEntity.setId(entity.getId());
+        try{
+            pojoEntity.setId(entity.getId());
+            autorLogic.updateAutor(pojoEntity);
 
-        autorLogic.updateAutor(pojoEntity);
+            AutorEntity resp = em.find(AutorEntity.class, entity.getId());
 
-        AutorEntity resp = em.find(AutorEntity.class, entity.getId());
+            Assert.assertEquals(pojoEntity.getId(), resp.getId());
+            Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre()); 
+        }
+        catch (BusinessLogicException e){
+            Assert.fail(e.getMessage());
+        }
 
-        Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
     }
     
 }
