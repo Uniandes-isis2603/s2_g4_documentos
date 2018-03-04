@@ -24,7 +24,6 @@ SOFTWARE.
 package co.edu.uniandes.csw.documentos.dtos;
 
 import co.edu.uniandes.csw.documentos.entities.AutorEntity;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -56,6 +55,8 @@ public class AutorDTO {
 
     private Long id;
     private String nombre;
+    
+    private List<DocumentoDTO> documentos;
 
     /**
      * Constructor por defecto

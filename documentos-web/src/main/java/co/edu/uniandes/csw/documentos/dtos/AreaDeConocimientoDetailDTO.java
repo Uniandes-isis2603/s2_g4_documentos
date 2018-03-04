@@ -23,6 +23,9 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.AreaDeConocimientoEntity;
+import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,6 +45,27 @@ public class AreaDeConocimientoDetailDTO extends AreaDeConocimientoDTO {
     super();
     
     }
+    
+    
+    /**
+     * Crea un objeto AreaDeConocimientoDetailDTO a partir de un objeto AreaDeConocimientoEntity
+     * incluyendo los atributos de AreaDeConocimientoDTO.
+     *
+     * @param entity Entidad AreaDeConocimientoEntity desde la cual se va a crear el nuevo
+     *
+     */
+    
+    public AreaDeConocimientoDetailDTO(AreaDeConocimientoEntity entity) {
+        super(entity);
+        if (entity != null) {
+            documentos = new ArrayList<>();
+            for (DocumentoEntity entityDocumento : entity.getDocumentos()) {
+//                documentos.add(new DocumentoDTO(entityDocumento));
+            }
+
+        }
+
+    }
  
     /**
      * @return los documentos que contienen el area de conocimiento
@@ -55,6 +79,26 @@ public class AreaDeConocimientoDetailDTO extends AreaDeConocimientoDTO {
      */
     public void setDocumentos(List<DocumentoDTO> documentos) {
         this.documentos = documentos;
+    }
+    
+     /* Convierte un objeto AreaDeConocimientoDetailDTO a AutorEntity incluyendo los
+     * atributos de AreaDeConocimientorDTO.
+     *
+     * @return Nuevo objeto AutorEntity.
+     *
+     */
+    @Override
+    public AreaDeConocimientoEntity toEntity() {
+        AreaDeConocimientoEntity entity = super.toEntity();
+//        if (documentos != null) {
+//            List<DocumentoEntity> documentosEntity = new ArrayList<>();
+//            for (DocumentoDTO dtoDocumento : documentos) {
+//                documentosEntity.add(dtoDocumento.toEntity());
+//            }
+//            entity.setDocumento(documentossEntity);
+//        }
+
+        return entity;
     }
 
     

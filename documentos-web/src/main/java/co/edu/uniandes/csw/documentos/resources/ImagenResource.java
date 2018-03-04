@@ -25,11 +25,14 @@ package co.edu.uniandes.csw.documentos.resources;
 
 
 import co.edu.uniandes.csw.documentos.dtos.ImagenDTO;
+import co.edu.uniandes.csw.documentos.ejb.ImagenLogic;
+import co.edu.uniandes.csw.documentos.entities.ImagenEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 
 import javax.ws.rs.DELETE;
@@ -54,7 +57,7 @@ import javax.ws.rs.Produces;
  * RequestScoped: Inicia una transacción desde el llamado de cada método (servicio). 
  * </pre>
  * @author Camilojaravila  
- * @version 1.0
+ * @version 2.0
  */
 @Path("documentos/{documentoId: \\d+}/imagenes")
 @Produces("application/json")
@@ -62,6 +65,16 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class ImagenResource {
 
+    @Inject
+    private ImagenLogic imagenLogic;
+    
+    private List<ImagenDTO> listEntity2DTO(List<ImagenEntity> entityList) {
+        List<ImagenDTO> list = new ArrayList<>();
+        for (ImagenEntity entity : entityList) {
+            list.add(new ImagenDTO(entity));
+        }
+        return list;
+    }
     /**
      * <h1>POST /api/imagen : Crear una imagen.</h1>
      * 
@@ -86,7 +99,7 @@ public class ImagenResource {
     @Path("documentos/{documentoId: \\d+}")
     @POST
     public ImagenDTO createImagen(ImagenDTO imagen) throws BusinessLogicException {
-        return imagen;
+        return new ImagenDTO(imagenLogic.createImagen(imagen.toEntity()));
     }
 
     /**
@@ -101,8 +114,9 @@ public class ImagenResource {
      * @return JSONArray {@link ImagenDTO} - Las imagenes encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<ImagenDTO> getCities() {
-        return new ArrayList<>();
+    @Path("{documentoId: \\d+}/imagenes")
+    public List<ImagenDTO> getImagenes() {
+        return listEntity2DTO(imagenLogic.getImagenes());
     }
 
     /**
@@ -124,7 +138,7 @@ public class ImagenResource {
     @GET
     @Path("documentos/{documentoId: \\d+}/imagenes/{id: \\d+}")
     public ImagenDTO getImagen(@PathParam("id") Long id) {
-        return null;
+        return new ImagenDTO(imagenLogic.getImagen(id));
     }
     
     /**
@@ -148,7 +162,9 @@ public class ImagenResource {
     @PUT
     @Path("documentos/{documentoId: \\d+}/imagenes/{id: \\d+}")
     public ImagenDTO updateImagen(@PathParam("id") Long id, ImagenDTO imagen) throws BusinessLogicException {
-        return imagen;
+        ImagenEntity entity = imagen.toEntity();
+        entity.setId(id);
+        return new ImagenDTO(imagenLogic.updateImagen(entity));
     }
     
     /**
@@ -164,10 +180,12 @@ public class ImagenResource {
      * </code>
      * </pre>
      * @param id Identificador de la imagen que se desea borrar. Este debe ser una cadena de dígitos.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no encontrar la imagen.
      */
     @DELETE
     @Path("documentos/{documentoId: \\d+}/imagenes/{id: \\d+}")
-     public void deleteImagen(@PathParam("id") Long id) {
+     public void deleteImagen(@PathParam("id") Long id) throws BusinessLogicException{
         // Void
+        imagenLogic.deleteImagen(id);
     }
 }

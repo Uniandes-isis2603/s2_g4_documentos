@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.documentos.test.logic;
 
 import co.edu.uniandes.csw.documentos.ejb.AreaDeConocimientoLogic;
 import co.edu.uniandes.csw.documentos.entities.AreaDeConocimientoEntity;
+import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.AreaDeConocimientoPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +46,8 @@ public class AreaDeConocimientoLogicTest {
     private UserTransaction utx;
 
     private List<AreaDeConocimientoEntity> data = new ArrayList<AreaDeConocimientoEntity>();
+    
+    private List<DocumentoEntity> dataDocumentos = new ArrayList<DocumentoEntity>();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -98,8 +102,26 @@ public class AreaDeConocimientoLogicTest {
         for (int i = 0; i < 3; i++) {
             AreaDeConocimientoEntity entity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
             em.persist(entity);
+            insertDataDocumentos();
+            entity.setDocumentos(dataDocumentos);
             data.add(entity);
          
+        }
+
+    }
+    
+     /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
+     *
+     *
+     */
+    private void insertDataDocumentos() {
+
+        for (int i = 0; i < 3; i++) {
+            DocumentoEntity entity = factory.manufacturePojo(DocumentoEntity.class);
+            em.persist(entity);
+            dataDocumentos.add(entity);
         }
 
     }
@@ -113,18 +135,42 @@ public class AreaDeConocimientoLogicTest {
     public void createAreaTest1() {
         
         AreaDeConocimientoEntity newEntity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
-        AreaDeConocimientoEntity result = areaLogic.createArea(newEntity);
-        Assert.assertNotNull(result);
         
-        newEntity.setTipo("er$$2/34e");
-        result = areaLogic.createArea(newEntity);
-        Assert.assertNull(result);
+        try
+        {
+            areaLogic.createArea(newEntity);
+        }
+        catch(BusinessLogicException e)
+        {
+            Assert.fail(e.getMessage());
+        }
+       
+        try{     
+            newEntity.setTipo("er$$2/34e");
+            areaLogic.createArea(newEntity);
+            
+            //No deberia llegar hasta aca
+            Assert.fail("No se generó el error esperado");
+        }
+        catch(BusinessLogicException e)
+        {
+            
+        }
         
-        newEntity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
-        AreaDeConocimientoEntity existe = data.get(0);
-        newEntity.setId(existe.getId());
-        result = areaLogic.createArea(newEntity);
-        Assert.assertNull(result);
+        try{
+            newEntity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
+            AreaDeConocimientoEntity existe = data.get(0);
+            newEntity.setId(existe.getId());
+            areaLogic.createArea(newEntity);
+            
+            //No deberia llegar hasta aca
+            Assert.fail("No se generó el error esperado");
+        }
+        catch(BusinessLogicException e)
+        {
+            
+        }
+        
     }
     
     /**
@@ -135,13 +181,19 @@ public class AreaDeConocimientoLogicTest {
     @Test
     public void createAreaTest2() {
         
+        try{
+        
         AreaDeConocimientoEntity newEntity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
         AreaDeConocimientoEntity result = areaLogic.createArea(newEntity);
         Assert.assertNotNull(result);
         
         AreaDeConocimientoEntity entity = em.find(AreaDeConocimientoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
+        Assert.assertEquals(newEntity.getTipo(), entity.getTipo());  
+        }
+        catch(BusinessLogicException e){
+            Assert.fail(e.getMessage());
+        }
         
     }
 
@@ -203,10 +255,16 @@ public class AreaDeConocimientoLogicTest {
      */
     @Test
     public void deleteAreaTest() {
-        AreaDeConocimientoEntity entity = data.get(0);
-        areaLogic.deleteArea(entity.getId());
-        AreaDeConocimientoEntity deleted = em.find(AreaDeConocimientoEntity.class, entity.getId());
-        Assert.assertNull(deleted);
+        try{
+            AreaDeConocimientoEntity entity = data.get(0);
+            areaLogic.deleteArea(entity.getId());
+            AreaDeConocimientoEntity deleted = em.find(AreaDeConocimientoEntity.class, entity.getId());
+            Assert.assertNull(deleted);
+        } 
+        catch (BusinessLogicException e) {
+            Assert.fail(e.getMessage());
+        }
+
     }
     
      /**
@@ -219,23 +277,34 @@ public class AreaDeConocimientoLogicTest {
 
         AreaDeConocimientoEntity pojoEntity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
 
-        Long id = new Long("11111");
-        pojoEntity.setId(id);
+        try{
+            Long id = new Long("11111");
+            pojoEntity.setId(id);
+            areaLogic.updateArea(pojoEntity);
+            areaLogic.getArea(pojoEntity.getId());
+            
+            //No deberia llegar aca
+            Assert.fail("No se generó el error esperado");
+         
+        } catch (BusinessLogicException e) {
 
-        areaLogic.updateArea(pojoEntity);
-        AreaDeConocimientoEntity encontrar = areaLogic.getArea(pojoEntity.getId());
-        Assert.assertNull(encontrar);
-        
-        pojoEntity.setTipo("rt4#$%#fdsgds");
-        areaLogic.updateArea(pojoEntity);
-        encontrar = areaLogic.getArea(pojoEntity.getId());
-        Assert.assertNull(encontrar);
+        }
+
+        try{
+            pojoEntity.setTipo("rt4#$%#fdsgds");
+            areaLogic.updateArea(pojoEntity);
+            
+            //No deberia llegar aca
+            Assert.fail("No se generó el error esperado");
+        } catch (BusinessLogicException e) {
+            
+        }
         
     }
     
 
     /**
-     * Prueba para actualizar una area valido
+     * Prueba para actualizar una area valida
      *
      *
      */
@@ -244,14 +313,19 @@ public class AreaDeConocimientoLogicTest {
         AreaDeConocimientoEntity entity = data.get(0);
         AreaDeConocimientoEntity pojoEntity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
 
-        pojoEntity.setId(entity.getId());
+        try{
+            pojoEntity.setId(entity.getId());
+            areaLogic.updateArea(pojoEntity);
 
-        areaLogic.updateArea(pojoEntity);
+            AreaDeConocimientoEntity resp = em.find(AreaDeConocimientoEntity.class, entity.getId());
 
-        AreaDeConocimientoEntity resp = em.find(AreaDeConocimientoEntity.class, entity.getId());
+            Assert.assertEquals(pojoEntity.getId(), resp.getId());
+            Assert.assertEquals(pojoEntity.getTipo(), resp.getTipo()); 
+        }
+        catch (BusinessLogicException e){
+            Assert.fail(e.getMessage());
+        }
 
-        Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getTipo(), resp.getTipo());
     }
     
 }
