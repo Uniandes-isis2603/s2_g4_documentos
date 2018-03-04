@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.documentos.ejb;
 
 import co.edu.uniandes.csw.documentos.entities.ImagenEntity;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.ImagenPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -33,28 +34,31 @@ public class ImagenLogic {
      *
      * @param entity Objeto de ImagenEntity con los datos nuevos
      * @return Objeto de ImagenEntity con los datos nuevos y su ID.
+     * @throws BusinessLogicException Excepción cuando se incumple una regla de negocio.
      */
-    public ImagenEntity createImagen(ImagenEntity entity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de crear un autor ");
+    public ImagenEntity createImagen(ImagenEntity entity) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de crear una imagen");
        
         ImagenEntity buscado = persistence.find(entity.getId());
         if (buscado != null){
-            LOGGER.log(Level.INFO, "La Imagen con el id {0} ya existe ", entity.getId());
+            LOGGER.log(Level.INFO, "La Imagen con el id {0} ya existe", entity.getId());
+            throw new BusinessLogicException("La Imagen con el id "+ entity.getId()+ " ya existe");
         }
-        else if (!entity.getNombre().matches("([A-Z]|[a-z]|[0-9]|\\s)+")){
+        else if (!(entity.getNombre().matches("([A-Z]|[a-z]|[0-9]|\\s)+") | entity.getNombre().contains(" "))){
             LOGGER.log(Level.INFO, "El nombre de la imagen no puede contener caracteres especiales");
+            throw new BusinessLogicException("El nombre de la imagen no puede contener caracteres especiales");
         }
-        else if(!(entity.getImg().endsWith(".jpg") | entity.getImg().endsWith(".png") | entity.getImg().endsWith(".pdf") | entity.getImg().endsWith(".bmp") | entity.getImg().endsWith(".tif"))){
+        else if(!(entity.getImg().endsWith(".jpg") | entity.getImg().endsWith(".png") | entity.getImg().endsWith(".pdf") | 
+                entity.getImg().endsWith(".bmp") | entity.getImg().endsWith(".tif"))){
             LOGGER.log(Level.INFO, "La Imagen tiene un formato no soportado");
+            throw new BusinessLogicException( "La Imagen tiene un formato no soportado");
         }
-        else{
-            return persistence.create(entity);
-         }
-        
-        return null;
+
+        return persistence.create(entity);
+
     }
     
-             /**
+    /**
      * Obtiene la lista de los registros de Imagenes de un Documento dado.
      *
      * @return Colección de objetos de ImagenEntity.
@@ -80,43 +84,44 @@ public class ImagenLogic {
      *
      * @param entity Instancia de ImagenEntity con los nuevos datos.
      * @return Instancia de ImagenEntity con los datos actualizados.
+     * @throws BusinessLogicException Excepción cuando se incumple una regla de negocio.
      */
-    public ImagenEntity updateImagen(ImagenEntity entity) {
+    public ImagenEntity updateImagen(ImagenEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar una Imagen ");
         
         ImagenEntity buscado = persistence.find(entity.getId());
         if (buscado == null){
-            LOGGER.log(Level.INFO, "La Imagen con el id {0} no existe ", entity.getId());
+            LOGGER.log(Level.INFO, "La Imagen con el id {0} no existe", entity.getId());
+            throw new BusinessLogicException("La Imagen con el id "+ entity.getId()+ " no existe");
         }
-        else if (!entity.getNombre().matches("([A-Z]|[a-z]|[0-9]|\\s)+")){
-            LOGGER.log(Level.INFO, "El nombre de la Imagen no puede contener caracteres especiales");
+        else if (!(entity.getNombre().matches("([A-Z]|[a-z]|[0-9]|\\s)+") | entity.getNombre().contains(" "))){
+            LOGGER.log(Level.INFO, "El nombre de la imagen no puede contener caracteres especiales");
+            throw new BusinessLogicException("El nombre de la imagen no puede contener caracteres especiales");
         }
-        else if(!(entity.getImg().endsWith(".jpg") | entity.getImg().endsWith(".png") | entity.getImg().endsWith(".pdf") | entity.getImg().endsWith(".bmp") | entity.getImg().endsWith(".tif"))){
+        else if(!(entity.getImg().endsWith(".jpg") | entity.getImg().endsWith(".png") | entity.getImg().endsWith(".pdf") | 
+                entity.getImg().endsWith(".bmp") | entity.getImg().endsWith(".tif"))){
             LOGGER.log(Level.INFO, "La Imagen tiene un formato no soportado");
+            throw new BusinessLogicException( "La Imagen tiene un formato no soportado");
         }
-        else{
-             return persistence.update(entity);
-         }
         
-        return null;
+        return persistence.update(entity);
     }
 
     /**
      * Elimina una instancia de Imagen de la base de datos.
      *
      * @param id Identificador de la instancia a eliminar.
+     * @throws BusinessLogicException Excepción cuando se incumple una regla de negocio.
      */
-    public void deleteImagen(Long id) {
+    public void deleteImagen(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un area ");
         
         ImagenEntity buscado = persistence.find(id);
         if (buscado == null){
-            LOGGER.log(Level.INFO, "El area de conocimiento con el id {0} no existe ", id);
+            LOGGER.log(Level.INFO, "La Imagen con el id {0} no existe", id);
+            throw new BusinessLogicException("La Imagen con el id "+ id+ " no existe");
         }
-
-        else{
-             persistence.delete(id);
-         }
+        persistence.delete(id);
     }
 
 }
