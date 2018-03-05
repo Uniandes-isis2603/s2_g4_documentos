@@ -8,12 +8,12 @@
  * Created: 4/03/2018
  */
 
-delete from DocumentoEntity;
 delete from LibroEntity;
 delete from FotocopiaEntity;
+delete from DocumentoEntity;
 
-insert into DocumentoEntity (id,nombre,caratula,descripcion,calificacionpromedio,precio) values (100,'amor en los tiempos del colera','abc.jph','una novela',3.2,100.2);
-insert into DocumentoEntity (id,nombre,caratula,descripcion,calificacionpromedio,precio) values (200,'calculo diferencial','calculo.jpg','libro de matematicas',3.4,200.2);
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (100,'LibroEntity','amor en los tiempos del colera','abc.jph','una novela',3.2,100.2);
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (200,'FotocopiaEntity','calculo diferencial','calculo.jpg','libro de matematicas',3.4,200.2);
 
 insert into LibroEntity (id,fechapublicacion,isbn) values (100,'09/20/2012','978-0307387264');
 
