@@ -57,6 +57,21 @@ public class LibroLogic {
     }
     
     /**
+     * Busca los libros segun el nombre.
+     * @param nombre el nombre del libro a buscar.
+     * @return La lista de libros que tienen ese mismo nombre.
+     */
+    public List<LibroEntity> getLibrosByName(String nombre){
+        LOGGER.log(Level.INFO,"Inicia proceso de consultar libro con el nombre={}",nombre);
+        List<LibroEntity> libros = persistence.findByName(nombre);
+        if(libros.isEmpty()){
+            LOGGER.log(Level.SEVERE,"El libro con el id={} no existe",nombre);
+        }
+        LOGGER.log(Level.INFO,"Termina proceso de consultar libro con nombre={}",nombre);
+        return libros;
+    }
+    
+    /**
      * Metodo que crea un libro en la base de datos.
      * @param entity entidad que va a persistir en la base de datos.
      * @return el libro creado.
@@ -81,10 +96,10 @@ public class LibroLogic {
         {
             throw new BusinessLogicException("El codigo isbn del libro no es correcto");
         }
-        else
-        {
+        
+        entity.setCalificacionPromedio(-1.0);
         persistence.create(entity);
-        }
+        
         LOGGER.info("Termina proceso de creacion de libro");
         return entity;
     }
@@ -144,7 +159,7 @@ public class LibroLogic {
      */
     public boolean validarCompletitud(LibroEntity entity) {
         
-        return !(entity.getNombre() == null || entity.getPrecio() == null || entity.getCaratula() == null || entity.getDescripcion() != null);
+        return !(entity.getNombre() == null || entity.getPrecio() == null || entity.getCaratula() == null || entity.getDescripcion() == null);
     }
     
     /**

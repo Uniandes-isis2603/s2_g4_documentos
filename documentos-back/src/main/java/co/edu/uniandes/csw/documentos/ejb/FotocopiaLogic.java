@@ -43,15 +43,29 @@ public class FotocopiaLogic {
      * @param id El id de la fotocopia a buscar.
      * @return La fotocopia encontrada, null si no existe.
      */
-    public FotocopiaEntity getFotocopia(Long id)
-    {
+    public FotocopiaEntity getFotocopia(Long id){
         LOGGER.log(Level.INFO,"Inicia proceso de consultar fotocopia con id={0}",id);
         FotocopiaEntity fotocopia = persistence.find(id);
-        if(fotocopia == null)
-        {
-            LOGGER.log(Level.SEVERE,"El libro con el id={0} no existe", id);
+        if(fotocopia == null){
+            LOGGER.log(Level.SEVERE,"La fotocopia con el id={0} no existe", id);
         }
+        LOGGER.log(Level.INFO,"Termina proceso de consultar fotocopia con id={0}",id);
         return fotocopia;
+    }
+    
+    /**
+     * Busca las fotocopias que tengan el nombre del profesor indicado.
+     * @param profesor nombre del profesor que dejo las fotocopias.
+     * @return lista de fotocopias.
+     */
+    public List<FotocopiaEntity> getFotocopiaByProfesor(String profesor){
+        LOGGER.log(Level.INFO,"Inicia proceso de consultar fotocopia con profesor={}",profesor);
+        List<FotocopiaEntity> fotocopias = persistence.findByProfesor(profesor);
+        if(fotocopias.isEmpty())
+        {
+            LOGGER.log(Level.SEVERE,"La fotocopia con el profesor={} no existe", profesor);
+        }
+        return fotocopias;
     }
     
     /**
@@ -79,6 +93,9 @@ public class FotocopiaLogic {
         {
             entity.setProfesor("N/A");
         }
+        
+        entity.setCalificacionPromedio(-1.0);
+        
         
         persistence.create(entity);
         LOGGER.info("Termina proceso de creacion de la fotocopia");
@@ -139,7 +156,7 @@ public class FotocopiaLogic {
      */
     public boolean validarCompletitud(FotocopiaEntity entity) {
         
-        return !(entity.getNombre() == null || entity.getPrecio() == null || entity.getCaratula() == null || entity.getDescripcion() != null || entity.getNroPaginas() == null || entity.getCapitulo() == null);
+        return !(entity.getNombre() == null || entity.getPrecio() == null || entity.getCaratula() == null || entity.getDescripcion() == null || entity.getNroPaginas() == null || entity.getCapitulo() == null);
     }
     
     
