@@ -5,14 +5,31 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.PayPalEntity;
+
 /**
  *
  * @author g.ospinaa
  */
 public class PayPalDetailDTO extends PayPalDTO {
     
+    private UsuarioDTO usuario;
+    
     public PayPalDetailDTO()
     {
+     super();   
+    }
+    
+    public PayPalDetailDTO(PayPalEntity entity)
+    {
+        super(entity);
+    }
+    
+    @Override
+    public PayPalEntity toEntity()
+    {
+        PayPalEntity entity = super.toEntity();
         
+        return entity;
     }
 }

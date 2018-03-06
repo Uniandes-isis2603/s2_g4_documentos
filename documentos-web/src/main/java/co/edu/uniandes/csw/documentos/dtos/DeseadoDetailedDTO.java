@@ -11,7 +11,10 @@ package co.edu.uniandes.csw.documentos.dtos;
  */
 public class DeseadoDetailedDTO {
     
-    
+    /**
+     * cero a muchos
+     */
+    private DocumentoDTO documento;
     /**
      * constructor por defecto
      */

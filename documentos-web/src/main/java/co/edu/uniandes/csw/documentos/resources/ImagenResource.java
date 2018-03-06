@@ -56,7 +56,7 @@ import javax.ws.rs.Produces;
  * @author Camilojaravila  
  * @version 1.0
  */
-@Path("imagenes")
+@Path("documentos/{documentoId: \\d+}/imagenes")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -83,6 +83,7 @@ public class ImagenResource {
      * @return JSON {@link ImagenDTO}  - La imagen guardada con el atributo id autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la imagen.
      */
+    @Path("documentos/{documentoId: \\d+}")
     @POST
     public ImagenDTO createImagen(ImagenDTO imagen) throws BusinessLogicException {
         return imagen;
@@ -121,7 +122,7 @@ public class ImagenResource {
      * @return JSON {@link ImagenDTO} - La imagen buscada
      */
     @GET
-    @Path("{id: \\d+}")
+    @Path("documentos/{documentoId: \\d+}/imagenes/{id: \\d+}")
     public ImagenDTO getImagen(@PathParam("id") Long id) {
         return null;
     }
@@ -145,7 +146,7 @@ public class ImagenResource {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la imagen porque ya existe una con ese nombre.
      */
     @PUT
-    @Path("{id: \\d+}")
+    @Path("documentos/{documentoId: \\d+}/imagenes/{id: \\d+}")
     public ImagenDTO updateImagen(@PathParam("id") Long id, ImagenDTO imagen) throws BusinessLogicException {
         return imagen;
     }
@@ -165,7 +166,7 @@ public class ImagenResource {
      * @param id Identificador de la imagen que se desea borrar. Este debe ser una cadena de dígitos.
      */
     @DELETE
-    @Path("{id: \\d+}")
+    @Path("documentos/{documentoId: \\d+}/imagenes/{id: \\d+}")
      public void deleteImagen(@PathParam("id") Long id) {
         // Void
     }

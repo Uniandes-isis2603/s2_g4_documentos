@@ -7,25 +7,38 @@ package co.edu.uniandes.csw.documentos.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+
 import javax.persistence.*;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
  * @author f.marroquin10
  */
 @Entity
-public class ReservaEntity  implements Serializable{
+public class ReservaEntity implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
+    
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fecha;
     private double costo;
+
+    /**
+     * documentos, relación unidireccional
+     */
+    @PodamExclude
+    @OneToMany
+    private List<DocumentoEntity> documentos;
 
     /**
      *
@@ -42,8 +55,6 @@ public class ReservaEntity  implements Serializable{
     public Date getFecha() {
         return fecha;
     }
-
-   
 
     /**
      *
@@ -70,8 +81,6 @@ public class ReservaEntity  implements Serializable{
 
     }
 
-   
-
     /**
      *
      * @param pCosto valor del costo de la reserva.
@@ -80,5 +89,5 @@ public class ReservaEntity  implements Serializable{
         this.costo = pCosto;
 
     }
-    
+
 }
