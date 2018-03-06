@@ -29,7 +29,7 @@ public class EditorialEntity implements Serializable{
     
     private String nombre;
     @PodamExclude
-    @OneToMany(mappedBy = "editorial")
+    @OneToMany
     private List<LibroEntity> libros;
 /**
  * 

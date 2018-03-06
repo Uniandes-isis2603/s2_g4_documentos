@@ -30,7 +30,7 @@ public class CursoEntity implements Serializable
     private String codigo;
     private String departamento;
     @PodamExclude
-    @ManyToMany(mappedBy = "bibliogarfiaDelCurso")
+    @ManyToMany
     private List<DocumentoEntity> bibliografiaDelCurso;
 
     public List<DocumentoEntity> getBibliografiaDelCurso() {
