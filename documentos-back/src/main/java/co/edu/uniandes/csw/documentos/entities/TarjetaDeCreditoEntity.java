@@ -103,7 +103,7 @@ public class TarjetaDeCreditoEntity extends MetodoDePagoEntity implements Serial
     /**
      * @param UEntity the UEntity to set
      */
-    public void setMPEntity(UsuarioEntity UEntity) {
+    public void setUEntity(UsuarioEntity UEntity) {
         this.UEntity = UEntity;
     }
 

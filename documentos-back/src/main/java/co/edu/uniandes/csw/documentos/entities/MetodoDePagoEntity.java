@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -20,8 +21,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  *
  * @author g.ospinaa
  */
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public class MetodoDePagoEntity implements Serializable{
     
     @Id
@@ -40,5 +40,21 @@ public class MetodoDePagoEntity implements Serializable{
      */
     public void setId(Long Id) {
         this.Id = Id;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this.getId() != null && ((BaseEntity) obj).getId() != null) {
+            return this.getId().equals(((BaseEntity) obj).getId());
+        }
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        if (this.getId() != null) {
+            return this.getId().hashCode();
+        }
+        return super.hashCode();
     }
 }

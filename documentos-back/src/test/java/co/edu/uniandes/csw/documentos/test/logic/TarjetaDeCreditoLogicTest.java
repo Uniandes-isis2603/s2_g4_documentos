@@ -2,6 +2,7 @@ package co.edu.uniandes.csw.documentos.test.logic;
 
 import co.edu.uniandes.csw.documentos.ejb.TarjetaDeCreditoLogic;
 import co.edu.uniandes.csw.documentos.entities.TarjetaDeCreditoEntity;
+import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.documentos.persistence.TarjetaDeCreditoPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -112,22 +113,31 @@ public class TarjetaDeCreditoLogicTest {
         return entity;
     }
     
-    
+      
     @Test
     public void crearTarjeta()
     {
+       PodamFactory factory = new PodamFactoryImpl();
       TarjetaDeCreditoEntity newEntity = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
+       UsuarioEntity uEntity = factory.manufacturePojo(UsuarioEntity.class);
+       newEntity.setUEntity(uEntity);
       newEntity.setTipoDeTarjeta("dinero");
+      UsuarioEntity uEntity2 = factory.manufacturePojo(UsuarioEntity.class);
+      System.out.println("Vaca es marica " + newEntity.getId());
       TarjetaDeCreditoEntity result = TDCLogic.createTarjetaDeCredito(newEntity);
-      Assert.assertNull(result);
       
-      newEntity = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
-      TarjetaDeCreditoEntity existe = data.get(0);
-      newEntity.setId(existe.getId());
-      result = TDCLogic.createTarjetaDeCredito(newEntity);
       Assert.assertNull(result);
-      
-
+  
+    }
+    
+    @Test
+    public void test2()
+    {
+    TarjetaDeCreditoEntity newEntity = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
+    TarjetaDeCreditoEntity existe = data.get(0);
+    newEntity.setId(existe.getId());
+    TarjetaDeCreditoEntity result = TDCLogic.createTarjetaDeCredito(newEntity);
+    Assert.assertNull(result);
     }
     
     @Test
