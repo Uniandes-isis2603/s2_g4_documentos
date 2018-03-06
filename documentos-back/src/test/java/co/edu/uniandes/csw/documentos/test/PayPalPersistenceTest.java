@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.documentos.test.persistence;
+package co.edu.uniandes.csw.documentos.test;
 
 import co.edu.uniandes.csw.documentos.entities.PayPalEntity;
 import co.edu.uniandes.csw.documentos.persistence.PayPalPersistence;
