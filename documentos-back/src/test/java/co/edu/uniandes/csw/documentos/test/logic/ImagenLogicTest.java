@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.documentos.test.logic;
 import co.edu.uniandes.csw.documentos.ejb.ImagenLogic;
 import co.edu.uniandes.csw.documentos.entities.ImagenEntity;
 import co.edu.uniandes.csw.documentos.persistence.ImagenPersistence;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -96,13 +97,15 @@ public class ImagenLogicTest {
 
         for (int i = 0; i < 3; i++) {
             ImagenEntity entity = factory.manufacturePojo(ImagenEntity.class);
-            entity.setImg(entity.getImg() + ".jpg");
+            
+            entity.setImg("Imagen"+ i+ ".jpg");
             em.persist(entity);
             data.add(entity);
          
         }
 
     }
+
 
         /**
      * Prueba para crear una imagen no valida
@@ -113,19 +116,35 @@ public class ImagenLogicTest {
     public void createImagenTest1() {
         
         ImagenEntity newEntity = factory.manufacturePojo(ImagenEntity.class);
-        newEntity.setImg(newEntity.getImg() + ".png");
-        ImagenEntity result = imagenLogic.createImagen(newEntity);
-        Assert.assertNotNull(result);
+        newEntity.setImg("Portada.png");
+        try{
+             imagenLogic.createImagen(newEntity);
+        } catch (BusinessLogicException e) {
+            Assert.fail(e.getMessage());
+        }
+
+        try{
+            newEntity.setNombre("er$$2/34e");
+            imagenLogic.createImagen(newEntity);
+            
+            //No deberia llegar hasta aca
+            Assert.fail("No se generó el error esperado");            
+        } catch (BusinessLogicException e) {
+            
+        }
         
-        newEntity.setNombre("er$$2/34e");
-        result = imagenLogic.createImagen(newEntity);
-        Assert.assertNull(result);
+        try{
+            newEntity = factory.manufacturePojo(ImagenEntity.class);
+            ImagenEntity existe = data.get(0);
+            newEntity.setId(existe.getId());
+            imagenLogic.createImagen(newEntity);
+            
+            //No deberia llegar hasta aca
+            Assert.fail("No se generó el error esperado");            
+        } catch (BusinessLogicException e) {
+            
+        }
         
-        newEntity = factory.manufacturePojo(ImagenEntity.class);
-        ImagenEntity existe = data.get(0);
-        newEntity.setId(existe.getId());
-        result = imagenLogic.createImagen(newEntity);
-        Assert.assertNull(result);
     }
     
     /**
@@ -136,15 +155,17 @@ public class ImagenLogicTest {
     @Test
     public void createImagenTest2() {
         
-        ImagenEntity newEntity = factory.manufacturePojo(ImagenEntity.class);
-        newEntity.setImg(newEntity.getImg() + ".jpg");
-        ImagenEntity result = imagenLogic.createImagen(newEntity);
-        Assert.assertNotNull(result);
-        
-        ImagenEntity entity = em.find(ImagenEntity.class, result.getId());
-        Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
-        Assert.assertEquals(newEntity.getImg(), entity.getImg());
+        try{
+            ImagenEntity newEntity = factory.manufacturePojo(ImagenEntity.class);
+            newEntity.setImg("Portada.png");
+            ImagenEntity result = imagenLogic.createImagen(newEntity);          
+            ImagenEntity entity = em.find(ImagenEntity.class, result.getId());
+            Assert.assertEquals(newEntity.getId(), entity.getId());
+            Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+            Assert.assertEquals(newEntity.getImg(), entity.getImg());
+        } catch (BusinessLogicException e) {
+            Assert.fail(e.getMessage());
+        }
     }
 
     /**
@@ -207,10 +228,14 @@ public class ImagenLogicTest {
      */
     @Test
     public void deleteImagenTest() {
-        ImagenEntity entity = data.get(0);
-        imagenLogic.deleteImagen(entity.getId());
-        ImagenEntity deleted = em.find(ImagenEntity.class, entity.getId());
-        Assert.assertNull(deleted);
+        try{
+            ImagenEntity entity = data.get(0);
+            imagenLogic.deleteImagen(entity.getId());
+            ImagenEntity deleted = em.find(ImagenEntity.class, entity.getId());
+            Assert.assertNull(deleted);
+        } catch (BusinessLogicException e) {
+           Assert.fail(e.getMessage());
+        }
     }
     
      /**
@@ -222,18 +247,30 @@ public class ImagenLogicTest {
     public void updateImagenTest1() {
 
         ImagenEntity pojoEntity = factory.manufacturePojo(ImagenEntity.class);
+        pojoEntity.setNombre("Portada.png");
 
-        Long id = new Long("111111");
-        pojoEntity.setId(id);
+        try{
+            Long id = new Long("11111");
+            pojoEntity.setId(id);
+            imagenLogic.updateImagen(pojoEntity);
+            imagenLogic.getImagen(pojoEntity.getId());
+            
+            //No deberia llegar aca
+            Assert.fail("No se generó el error esperado");
+         
+        } catch (BusinessLogicException | NumberFormatException e) {
 
-        imagenLogic.updateImagen(pojoEntity);
-        ImagenEntity encontrar = imagenLogic.getImagen(pojoEntity.getId());
-        Assert.assertNull(encontrar);
-        
-        pojoEntity.setNombre("rt4#$%#fdsgds");
-        imagenLogic.updateImagen(pojoEntity);
-        encontrar = imagenLogic.getImagen(pojoEntity.getId());
-        Assert.assertNull(encontrar);
+        }
+
+        try{
+            pojoEntity.setNombre("rt4#$%#fdsgds");
+            imagenLogic.updateImagen(pojoEntity);
+            
+            //No deberia llegar aca
+            Assert.fail("No se generó el error esperado");
+        } catch (BusinessLogicException e) {
+            
+        }
         
     }
     
@@ -247,17 +284,23 @@ public class ImagenLogicTest {
     public void updateImagenTest2() {
         ImagenEntity entity = data.get(0);
         ImagenEntity pojoEntity = factory.manufacturePojo(ImagenEntity.class);
+        pojoEntity.setImg(pojoEntity.getImg() + ".png");
 
-        pojoEntity.setId(entity.getId());
-        pojoEntity.setImg(pojoEntity.getImg()+".jpg");
+        try{
+            pojoEntity.setId(entity.getId());
+            imagenLogic.updateImagen(pojoEntity);
 
-        imagenLogic.updateImagen(pojoEntity);
+            ImagenEntity resp = em.find(ImagenEntity.class, entity.getId());
 
-        ImagenEntity resp = em.find(ImagenEntity.class, entity.getId());
+            Assert.assertEquals(pojoEntity.getId(), resp.getId());
+            Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre()); 
+            Assert.assertEquals(pojoEntity.getImg(), resp.getImg()); 
+            
+        }
+        catch (BusinessLogicException e){
+            Assert.fail(e.getMessage());
+        }
 
-        Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
-        Assert.assertEquals(pojoEntity.getImg(), resp.getImg());
     }
    
 }
