@@ -9,6 +9,8 @@ import co.edu.uniandes.csw.documentos.entities.TarjetaDeCreditoEntity;
 import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.UsuarioPersistence;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -157,6 +159,28 @@ public class UsuarioLogicTest {
         }
     }
 
+     /**
+     * Prueba para crear una Reserva no valida
+     *
+     *
+     */
+    @Test
+    public void createReservaTestInvalido() throws ParseException {
+
+        UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
+        UsuarioEntity result = UsuarioLogic.createUsuario(newEntity);
+        Assert.assertNotNull(result);
+
+        newEntity.setNombre("(#/$6jd-´´");
+        result = UsuarioLogic.createUsuario(newEntity);
+        Assert.assertNull(result);
+
+        newEntity = factory.manufacturePojo(UsuarioEntity.class);
+        newEntity.setEdad(-15);
+        result = UsuarioLogic.createUsuario(newEntity);
+        Assert.assertNull(result);
+
+    }
     /**
      * Prueba para crear un Usuario
      *
@@ -216,6 +240,19 @@ public class UsuarioLogicTest {
         }
     }
 
+      /**
+     * Prueba para consultar un Usuario no valido
+     *
+     *
+     */
+    @Test
+    public void getUsuarioTestInvalido() {
+
+        Long id = new Long("1");
+        UsuarioEntity resultEntity = UsuarioLogic.getUsuario(id);
+        Assert.assertNull(resultEntity);
+
+    }
     /**
      * Prueba para consultar un Usuario
      *
@@ -292,12 +329,12 @@ public class UsuarioLogicTest {
 
     }
       /**
-     * Prueba para actualizar una Reserva no valida
+     * Prueba para actualizar un usuario no valido
      *
      *
      */
     @Test
-    public void updateReservaTestInvalido() {
+    public void updateUsuarioTestInvalido() {
 
         UsuarioEntity pojoEntity = factory.manufacturePojo(UsuarioEntity.class);
 

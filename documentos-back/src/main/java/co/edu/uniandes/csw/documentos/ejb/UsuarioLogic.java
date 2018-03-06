@@ -6,20 +6,19 @@
 package co.edu.uniandes.csw.documentos.ejb;
 
 import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
-import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.documentos.persistence.UsuarioPersistence;
 import co.edu.uniandes.csw.documentos.persistence.UsuarioPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author f.marroquin10
  */
-
+@Stateless
 public class UsuarioLogic {
 
     @Inject
