@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.FotocopiaEntity;
+
 /**
  * Fotocopia DTO Objeto de transferencia de datos de Bookzon. Los DTO contienen 
  * las representaciones de los JSON que se transfiere entre el cliente y el servidor.
@@ -53,8 +55,41 @@ public class FotocopiaDTO extends DocumentoDTO{
         
     }
     
+    /**
+     * Constructor a partir de la entidad
+     * @param fotocopiaE La entidad de la fotocopia.
+     */
+    public FotocopiaDTO(FotocopiaEntity fotocopiaE) {
+        super(fotocopiaE);
+        if(fotocopiaE != null) {
+            this.capitulos = fotocopiaE.getCapitulo();
+            this.nroPaginas = fotocopiaE.getNroPaginas();
+            this.profesor = fotocopiaE.getProfesor();
+            
+        }
+    }
+    /**
+     * Transforma un dto a entity.
+     * @return un entity que tiene la informacion del dto.
+     */
+    @Override
+    public FotocopiaEntity toEntity(){
+        
+        FotocopiaEntity fotocopiaE = new FotocopiaEntity();
+        fotocopiaE.setId(this.getId());
+        fotocopiaE.setNombre(this.getNombre());
+        fotocopiaE.setNroPaginas(this.nroPaginas);
+        fotocopiaE.setPrecio(this.getPrecio());
+        fotocopiaE.setProfesor(this.profesor);
+        fotocopiaE.setCalificacionPromedio(this.getCalificacionPromedio());
+        fotocopiaE.setCapitulo(this.capitulos);
+        fotocopiaE.setCaratula(this.getCaratula());
+        fotocopiaE.setDescripcion(this.getDescripcion());
+        return fotocopiaE;
+    }
+    
     private String profesor;
-    private String nroPaginas;
+    private Integer nroPaginas;
     private String capitulos;
 
     /**
@@ -77,7 +112,7 @@ public class FotocopiaDTO extends DocumentoDTO{
      *  
      * @return numero de paginas de las fotocopias.
      */
-    public String getNroPaginas() {
+    public Integer getNroPaginas() {
         return nroPaginas;
     }
 
@@ -85,7 +120,7 @@ public class FotocopiaDTO extends DocumentoDTO{
      * 
      * @param nroPaginas nuevo numero de paginas.
      */
-    public void setNroPaginas(String nroPaginas) {
+    public void setNroPaginas(Integer nroPaginas) {
         this.nroPaginas = nroPaginas;
     }
 
