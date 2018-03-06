@@ -6,9 +6,13 @@
 package co.edu.uniandes.csw.documentos.resources;
 
 import co.edu.uniandes.csw.documentos.dtos.FotocopiaDetailDTO;
+import co.edu.uniandes.csw.documentos.ejb.FotocopiaLogic;
+import co.edu.uniandes.csw.documentos.entities.FotocopiaEntity;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -39,6 +43,8 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class FotocopiaResource {
     
+    @Inject
+    FotocopiaLogic fotocopiaLogic;
     /**
      * <h1> POST /api/fotocopias : Crear una fotocopia. </h1>
      * 
@@ -56,12 +62,13 @@ public class FotocopiaResource {
      * 412 Precodition Failed: Ya existe la fotocopia.
      * </code>
      * </pre>
+     * @throws BusinessLogicException desde la logica.
      * @param fotocopia {@link FotocopiaDetailDTO} - La fotocopia que se desea guardar.
      * @return JSON {@link FotocopiaDetailDTO} - La fotocopia guardada en el id generado.
      */
     @POST
-    public FotocopiaDetailDTO createFotocopia(FotocopiaDetailDTO fotocopia) {
-        return fotocopia;
+    public FotocopiaDetailDTO createFotocopia(FotocopiaDetailDTO fotocopia) throws BusinessLogicException{
+        return new FotocopiaDetailDTO(fotocopiaLogic.createFotocopia(fotocopia.toEntity()));
     }
     
     /**
@@ -78,7 +85,7 @@ public class FotocopiaResource {
      */
     @GET
     public List<FotocopiaDetailDTO> getFotocopias() {
-        return new ArrayList<>();
+        return listFotocopiaEntity2DetailDTO(fotocopiaLogic.getFotocopias());
     }
     
     /**
@@ -100,7 +107,8 @@ public class FotocopiaResource {
     @GET
     @Path("{id: \\d+}")
     public FotocopiaDetailDTO getFotocopia(@PathParam("id") Long id) {
-        return null;
+        FotocopiaEntity entity = fotocopiaLogic.getFotocopia(id);
+        return new FotocopiaDetailDTO(entity);
     }
     
     /**
@@ -120,9 +128,10 @@ public class FotocopiaResource {
      * @return JSON {@link FotocopiaDetailDTO} - La fotocopia con el profesor buscado.
      */
     @GET
-    @Path("{profesor: [a-zA-Z][a-zA-Z_0-9]}")
-    public FotocopiaDetailDTO getFotocopiaByProfesor(@PathParam("profesor") String profesor) {
-        return null;
+    @Path("{profesor}")
+    public List<FotocopiaDetailDTO> getFotocopiasByProfesor(@PathParam("profesor") String profesor) {
+        List<FotocopiaEntity> profesores = fotocopiaLogic.getFotocopiaByProfesor(profesor);
+        return listFotocopiaEntity2DetailDTO(profesores);
     }
     
     /**
@@ -138,14 +147,16 @@ public class FotocopiaResource {
      * 404 Not Found. No existe una fotocopia con el id dado.
      * </code>
      * </pre>
+     * @throws BusinessLogicException atrapada desde la logica.
      * @param id Id de la fotocopia que se desea actualizar.
      * @param fotocopia {@link FotocopiaDetailDTO} La fotocopia que se desea guardar.
      * @return JSON {@link FotocopiaDetailDTO} La fotocopia guardada.
      */
     @PUT
     @Path("{id: \\d+}")
-    public FotocopiaDetailDTO updateFotocopia(@PathParam("id") Long id,FotocopiaDetailDTO fotocopia) {
-        return fotocopia;
+    public FotocopiaDetailDTO updateFotocopia(@PathParam("id") Long id,FotocopiaDetailDTO fotocopia) throws BusinessLogicException{
+        fotocopia.setId(id); 
+        return new FotocopiaDetailDTO(fotocopiaLogic.updateFotocopia(id, fotocopia.toEntity()));
     }
     
     /**
@@ -165,6 +176,14 @@ public class FotocopiaResource {
     @DELETE
     @Path("{id: \\d+}")
     public void deleteFotocopia(@PathParam("id") Long id) {
-        
+        fotocopiaLogic.deleteFotocopia(id);
+    }
+    
+    private List<FotocopiaDetailDTO> listFotocopiaEntity2DetailDTO(List<FotocopiaEntity> entityList) {
+        List<FotocopiaDetailDTO> list = new ArrayList<>();
+        for(FotocopiaEntity entity : entityList) {
+            list.add(new FotocopiaDetailDTO(entity));
+        }
+        return list;
     }
 }
