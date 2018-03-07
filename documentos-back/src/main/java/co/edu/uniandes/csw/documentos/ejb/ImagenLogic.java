@@ -44,7 +44,7 @@ public class ImagenLogic {
             LOGGER.log(Level.INFO, "La Imagen con el id {0} ya existe", entity.getId());
             throw new BusinessLogicException("La Imagen con el id "+ entity.getId()+ " ya existe");
         }
-        else if (!(entity.getNombre().matches("([A-Z]|[a-z]|[0-9]|\\s)+") || entity.getNombre().contains(" "))){
+        else if (!(entity.getNombre().matches("([A-Z]|[a-z]|[0-9]|\\s)+") || entity.getNombre().contains(" ") || entity.getNombre().contains("/"))){
             LOGGER.log(Level.INFO, "El nombre de la imagen no puede contener caracteres especiales");
             throw new BusinessLogicException("El nombre de la imagen no puede contener caracteres especiales");
         }
