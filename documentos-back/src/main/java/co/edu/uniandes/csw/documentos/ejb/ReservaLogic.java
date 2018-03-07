@@ -26,7 +26,6 @@ public class ReservaLogic {
     @Inject
     private ReservaPersistence persistence;
 
-   
     /**
      * Se encarga de crear una Reserva en la base de datos.
      *
@@ -39,10 +38,13 @@ public class ReservaLogic {
         ReservaEntity buscado = persistence.find(entity.getId());
         if (buscado != null) {
             LOGGER.log(Level.INFO, "La Reserva con el id {0} ya existe ", entity.getId());
-        } else if (entity.getId() == null || entity.getFecha() == null || entity.getCosto() == 0) {
+        } else if (entity.getId() == null || entity.getFecha() == null ) {
             LOGGER.log(Level.INFO, "los atributos son nulos o invalidos");
         } else if (entity.getCosto() < 0) {
             LOGGER.log(Level.INFO, "La Reserva tiene un valor menor a cero");
+        } else if (entity.getFecha().before(new Date())) {
+            LOGGER.log(Level.INFO, "la fecha de la reserva es anterior a la fecha actual");
+
         } else {
             return persistence.create(entity);
         }
@@ -61,8 +63,7 @@ public class ReservaLogic {
     }
 
     /**
-     * Obtiene los datos de una instancia de un Reserva a partir de
-     * su ID.
+     * Obtiene los datos de una instancia de un Reserva a partir de su ID.
      *
      * @param id Identificador de la instancia a consultar
      * @return Instancia de ReservaEntity con los datos de la Reserva
@@ -83,7 +84,7 @@ public class ReservaLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar una Reserva ");
 
         ReservaEntity buscado = persistence.find(entity.getId());
-        if (buscado != null) {
+        if (buscado == null) {
             LOGGER.log(Level.INFO, "La Reserva con el id {0} no existe ", entity.getId());
         } else if (entity.getId() == null || entity.getFecha() == null || entity.getCosto() == 0) {
             LOGGER.log(Level.INFO, "los atributos son nulos o invalidos");
@@ -108,7 +109,7 @@ public class ReservaLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un reserva ");
 
         ReservaEntity buscado = persistence.find(id);
-        if (buscado != null) {
+        if (buscado == null) {
             LOGGER.log(Level.INFO, "la Reserva con el id {0} no existe ", id);
         } else {
             persistence.delete(id);

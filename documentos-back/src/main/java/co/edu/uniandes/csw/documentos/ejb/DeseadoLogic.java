@@ -83,11 +83,15 @@ public class DeseadoLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar una Deseado ");
 
         DeseadoEntity buscado = persistence.find(entity.getId());
-        if (buscado != null) {
+        if (buscado == null) {
             LOGGER.log(Level.INFO, "La Deseado con el id {0} no existe ", entity.getId());
         } else if (entity.getNombre() == null || entity.getNombre().equals("") || entity.getNombre().length() > 15) {
             LOGGER.log(Level.INFO, "El nombre de la Deseado no puede ser nulo, vacio o tener mas de 15 caracteres");
-        } else {
+        }else if(entity.getCantidad()<0){
+                        LOGGER.log(Level.INFO, "El deseado no puede tener una cantidad negativa de documentos");
+
+        }
+        else {
             return persistence.update(entity);
         }
 
@@ -103,7 +107,7 @@ public class DeseadoLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un deseado ");
 
         DeseadoEntity buscado = persistence.find(id);
-        if (buscado != null) {
+        if (buscado == null) {
             LOGGER.log(Level.INFO, "el deseado con el id {0} no existe ", id);
         } else {
             persistence.delete(id);

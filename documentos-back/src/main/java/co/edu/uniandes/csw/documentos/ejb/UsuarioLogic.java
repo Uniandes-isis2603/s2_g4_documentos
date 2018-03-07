@@ -48,7 +48,15 @@ public class UsuarioLogic {
         } else if (entity.getEdad() < 17) {
             LOGGER.log(Level.INFO, "La edad del Usuario no puede ser menor a 17");
 
-        } else {
+        } 
+        else if (entity.getGenero() < 0||entity.getGenero()>1) {
+            LOGGER.log(Level.INFO, "el genero debe ser entre 1 y 0");
+
+        }
+         else if (!entity.getCorreo().contains("@")) {
+            LOGGER.log(Level.INFO, "el correo no es valido");
+
+        }else {
             return persistence.create(entity);
         }
 
@@ -86,11 +94,29 @@ public class UsuarioLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar un Usuario ");
 
         UsuarioEntity buscado = persistence.find(entity.getId());
-        if (buscado != null) {
+        if (buscado == null) {
             LOGGER.log(Level.INFO, "El Usuario con el id {0} no existe ", entity.getId());
         } else if (!entity.getNombre().matches("([A-Z]|[a-z]|\\s)+")) {
             LOGGER.log(Level.INFO, "El nombre del Usuario no puede contener caracteres especiales");
-        } else {
+        } else if(entity.getNombre()==null||entity.getUserName()==null||null==entity.getId()||0==entity.getEdad()||entity.getCorreo()==null)
+        { LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
+        }else if (!entity.getNombre().matches("([A-Z]|[a-z]|\\s)+")) {
+            LOGGER.log(Level.INFO, "El nombre del Usuario no puede contener caracteres especiales");
+        } else if (entity.getUserName().length() < 7 || entity.getUserName().length() > 15) {
+            LOGGER.log(Level.INFO, "El nombre del Usuario no puede tener menos de 7 caracteres o mas de 15");
+
+        } else if (entity.getEdad() < 17) {
+            LOGGER.log(Level.INFO, "La edad del Usuario no puede ser menor a 17");
+
+        } 
+        else if (entity.getGenero() < 0||entity.getGenero()>1) {
+            LOGGER.log(Level.INFO, "el genero debe ser entre 1 y 0");
+
+        }
+         else if (!entity.getCorreo().contains("@")) {
+            LOGGER.log(Level.INFO, "el correo no es valido");
+
+        }else {
             return persistence.update(entity);
         }
 
@@ -106,7 +132,7 @@ public class UsuarioLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un Usuario ");
 
         UsuarioEntity buscado = persistence.find(id);
-        if (buscado != null) {
+        if (buscado == null) {
             LOGGER.log(Level.INFO, "El Usuario con el id {0} no existe ", id);
         } else {
             persistence.delete(id);

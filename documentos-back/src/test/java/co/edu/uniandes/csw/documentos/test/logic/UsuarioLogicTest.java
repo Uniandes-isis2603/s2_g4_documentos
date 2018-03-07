@@ -67,7 +67,6 @@ public class UsuarioLogicTest {
                 .addPackage(TarjetaDeCreditoEntity.class.getPackage())
                 .addPackage(ComentarioEntity.class.getPackage())
                 .addPackage(CompraEntity.class.getPackage())
-                
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -159,28 +158,40 @@ public class UsuarioLogicTest {
         }
     }
 
-     /**
-     * Prueba para crear una Reserva no valida
+    /**
+     * Prueba para crear un usuario no valida
      *
      *
      */
     @Test
-    public void createReservaTestInvalido() throws ParseException {
+    public void createUsuarioTestInvalido() throws ParseException {
 
         UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
         UsuarioEntity result = UsuarioLogic.createUsuario(newEntity);
-        Assert.assertNotNull(result);
 
+        Long id = new Long("111");
+        newEntity.setId(id);
         newEntity.setNombre("(#/$6jd-´´");
         result = UsuarioLogic.createUsuario(newEntity);
         Assert.assertNull(result);
 
-        newEntity = factory.manufacturePojo(UsuarioEntity.class);
+        newEntity.setNombre("maria antonia");
         newEntity.setEdad(-15);
         result = UsuarioLogic.createUsuario(newEntity);
         Assert.assertNull(result);
 
+        newEntity.setEdad(18);
+        newEntity.setGenero(-15);
+        result = UsuarioLogic.createUsuario(newEntity);
+        Assert.assertNull(result);
+
+        newEntity.setGenero(0);
+        newEntity.setCorreo("este no es un correo");
+        result = UsuarioLogic.createUsuario(newEntity);
+        Assert.assertNull(result);
+
     }
+
     /**
      * Prueba para crear un Usuario
      *
@@ -188,8 +199,8 @@ public class UsuarioLogicTest {
      */
     @Test
     public void createUsuarioTestValido() {
-        UsuarioEntity result = UsuarioLogic.createUsuario(data.get(0));
-        Assert.assertNotNull(result);
+        UsuarioEntity result = UsuarioLogic.getUsuario(data.get(0).getId());
+
         UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
         Assert.assertEquals(result.getId(), entity.getId());
         Assert.assertEquals(result.getNombre(), entity.getNombre());
@@ -240,7 +251,7 @@ public class UsuarioLogicTest {
         }
     }
 
-      /**
+    /**
      * Prueba para consultar un Usuario no valido
      *
      *
@@ -253,6 +264,7 @@ public class UsuarioLogicTest {
         Assert.assertNull(resultEntity);
 
     }
+
     /**
      * Prueba para consultar un Usuario
      *
@@ -261,7 +273,7 @@ public class UsuarioLogicTest {
     @Test
     public void getUsuarioTestValido() {
         UsuarioEntity entity = data.get(0);
-        UsuarioEntity resultEntity = UsuarioLogic.getUsuario(data.get(0).getId());
+        UsuarioEntity resultEntity = UsuarioLogic.getUsuario(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
@@ -269,26 +281,6 @@ public class UsuarioLogicTest {
         Assert.assertEquals(entity.getCorreo(), resultEntity.getCorreo());
         Assert.assertEquals(entity.getGenero(), resultEntity.getGenero());
         Assert.assertEquals(entity.getUserName(), resultEntity.getUserName());
-        for (int i = 0; i < resultEntity.getComentarios().size(); i++) {
-            Assert.assertEquals(resultEntity.getComentarios().get(i).getId(), entity.getComentarios().get(i).getId());
-
-        }
-        for (int i = 0; i < resultEntity.getReservas().size(); i++) {
-            Assert.assertEquals(resultEntity.getReservas().get(i).getId(), entity.getReservas().get(i).getId());
-
-        }
-        for (int i = 0; i < resultEntity.getCompras().size(); i++) {
-            Assert.assertEquals(resultEntity.getCompras().get(i).getId(), entity.getCompras().get(i).getId());
-
-        }
-        for (int i = 0; i < resultEntity.getPaypal().size(); i++) {
-            Assert.assertEquals(resultEntity.getPaypal().get(i).getId(), entity.getPaypal().get(i).getId());
-
-        }
-        for (int i = 0; i < resultEntity.getTarjetasCredito().size(); i++) {
-            Assert.assertEquals(resultEntity.getTarjetasCredito().get(i).getId(), entity.getTarjetasCredito().get(i).getId());
-
-        }
     }
 
     /**
@@ -299,7 +291,10 @@ public class UsuarioLogicTest {
     @Test
     public void deleteUsuarioTest() {
         UsuarioEntity entity = data.get(0);
-        UsuarioLogic.deleteUsuario(data.get(1).getId());
+        Long id = new Long("1111");
+        entity.setId(id);
+        UsuarioLogic.createUsuario(entity);
+        UsuarioLogic.deleteUsuario(id);
         UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
@@ -311,24 +306,38 @@ public class UsuarioLogicTest {
      */
     @Test
     public void updateUsuarioTestValido() {
-        UsuarioEntity entity = data.get(0);
-        UsuarioEntity pojoEntity = factory.manufacturePojo(UsuarioEntity.class);
 
-        pojoEntity.setId(entity.getId());
+        UsuarioEntity nuevo = new UsuarioEntity();
+        nuevo.setNombre("federico");
+        nuevo.setCorreo("f.marroquin10@uniandes.edu.co");
+        nuevo.setEdad(21);
+        nuevo.setGenero(1);
+        nuevo.setNombreUsuario("fedeGeek");
+        Long id = new Long("1111");
+        nuevo.setId(id);
 
-        UsuarioLogic.updateUsuario(pojoEntity);
-
-        UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
-
-        Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
-        Assert.assertEquals(pojoEntity.getUserName(), resp.getUserName());
-        Assert.assertEquals(pojoEntity.getEdad(), resp.getEdad());
-        Assert.assertEquals(pojoEntity.getGenero(), resp.getGenero());
-        Assert.assertEquals(pojoEntity.getCorreo(), resp.getCorreo());
+        UsuarioEntity user = UsuarioLogic.createUsuario(nuevo);
+        Assert.assertNotNull(user);
+        nuevo.setNombre("federico mb");
+        user = UsuarioLogic.updateUsuario(nuevo);
+        Assert.assertNotNull(user);
+        nuevo.setCorreo("f.mquin10@uniandes.edu.co");
+        user = UsuarioLogic.updateUsuario(nuevo);
+        Assert.assertNotNull(user);
+        nuevo.setEdad(22);
+        user = UsuarioLogic.updateUsuario(nuevo);
+        UsuarioEntity entity = em.find(UsuarioEntity.class, user.getId());
+        Assert.assertNotNull(user);
+        Assert.assertEquals(user.getId(), entity.getId());
+        Assert.assertEquals(user.getNombre(), entity.getNombre());
+        Assert.assertEquals(user.getEdad(), entity.getEdad());
+        Assert.assertEquals(user.getCorreo(), entity.getCorreo());
+        Assert.assertEquals(user.getGenero(), entity.getGenero());
+        Assert.assertEquals(user.getUserName(), entity.getUserName());
 
     }
-      /**
+
+    /**
      * Prueba para actualizar un usuario no valido
      *
      *
@@ -347,8 +356,7 @@ public class UsuarioLogicTest {
 
         pojoEntity.setId(data.get(0).getId());
         pojoEntity.setNombre("as###$%&/#");
-        UsuarioLogic.updateUsuario(pojoEntity);
-        encontrar = UsuarioLogic.getUsuario(pojoEntity.getId());
+        encontrar = UsuarioLogic.updateUsuario(pojoEntity);
         Assert.assertNull(encontrar);
 
     }

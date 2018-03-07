@@ -142,7 +142,7 @@ public class DeseadoLogicTest {
         Assert.assertNull(result);
 
         newEntity = factory.manufacturePojo(DeseadoEntity.class);
-        
+
         newEntity.setCantidad(-4);
         result = DeseadoLogic.createDeseado(newEntity);
         Assert.assertNull(result);
@@ -163,7 +163,6 @@ public class DeseadoLogicTest {
 
         DeseadoEntity entity = em.find(DeseadoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getCantidad(), entity.getCantidad());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
 
     }
@@ -214,7 +213,6 @@ public class DeseadoLogicTest {
         Assert.assertNotNull(resultEntity);
 
         Assert.assertEquals(resultEntity.getId(), entity.getId());
-        Assert.assertEquals(resultEntity.getCantidad(), entity.getCantidad());
         Assert.assertEquals(resultEntity.getNombre(), entity.getNombre());
 
     }
@@ -226,10 +224,13 @@ public class DeseadoLogicTest {
      */
     @Test
     public void deleteDeseadoTest() {
-        DeseadoEntity entity = data.get(0);
-        DeseadoLogic.deleteDeseado(entity.getId());
-        DeseadoEntity deleted = em.find(DeseadoEntity.class, entity.getId());
-        Assert.assertNull(deleted);
+      DeseadoEntity newEntity = factory.manufacturePojo(DeseadoEntity.class);
+        DeseadoEntity result = DeseadoLogic.createDeseado(newEntity);
+        DeseadoLogic.deleteDeseado(result.getId());
+       DeseadoEntity tf= DeseadoLogic.getDeseado(result.getId());
+        Assert.assertNull(tf);
+     
+
     }
 
     /**
@@ -242,18 +243,22 @@ public class DeseadoLogicTest {
 
         DeseadoEntity pojoEntity = factory.manufacturePojo(DeseadoEntity.class);
 
-        Long id = new Long("1");
-        pojoEntity.setId(id);
-
+        pojoEntity.setId(data.get(0).getId());
+        pojoEntity.setNombre("");
         DeseadoLogic.updateDeseado(pojoEntity);
         DeseadoEntity encontrar = DeseadoLogic.getDeseado(pojoEntity.getId());
-        Assert.assertNull(encontrar);
+        Assert.assertNotEquals(encontrar.getNombre(), pojoEntity.getNombre());
 
+        pojoEntity.setId(data.get(0).getId());
+        pojoEntity.setNombre("habiaunavezunalistadedeseadosconunnombrebnlargoalv");
+        DeseadoLogic.updateDeseado(pojoEntity);
+        encontrar = DeseadoLogic.getDeseado(pojoEntity.getId());
+        Assert.assertNotEquals(encontrar.getNombre(), pojoEntity.getNombre());
         pojoEntity.setId(data.get(0).getId());
         pojoEntity.setCantidad(-232134);
         DeseadoLogic.updateDeseado(pojoEntity);
         encontrar = DeseadoLogic.getDeseado(pojoEntity.getId());
-        Assert.assertNull(encontrar);
+        Assert.assertNotEquals(encontrar.getCantidad(), pojoEntity.getCantidad());
 
     }
 
@@ -268,12 +273,12 @@ public class DeseadoLogicTest {
         DeseadoEntity pojoEntity = factory.manufacturePojo(DeseadoEntity.class);
 
         pojoEntity.setId(entity.getId());
-        DeseadoLogic.updateDeseado(pojoEntity);
 
+        DeseadoLogic.updateDeseado(pojoEntity);
         DeseadoEntity resp = em.find(DeseadoEntity.class, entity.getId());
 
-        Assert.assertEquals(pojoEntity.getId(), entity.getId());
-        Assert.assertEquals(pojoEntity.getCantidad(), entity.getCantidad());
-        Assert.assertEquals(pojoEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
     }
+
 }
