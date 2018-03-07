@@ -117,27 +117,37 @@ public class TarjetaDeCreditoLogicTest {
     @Test
     public void crearTarjeta()
     {
-       PodamFactory factory = new PodamFactoryImpl();
-      TarjetaDeCreditoEntity newEntity = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
-       UsuarioEntity uEntity = factory.manufacturePojo(UsuarioEntity.class);
-       newEntity.setUEntity(uEntity);
-      newEntity.setTipoDeTarjeta("dinero");
-      UsuarioEntity uEntity2 = factory.manufacturePojo(UsuarioEntity.class);
-      System.out.println("Vaca es marica " + newEntity.getId());
-      TarjetaDeCreditoEntity result = TDCLogic.createTarjetaDeCredito(newEntity);
-      
-      Assert.assertNull(result);
+        TarjetaDeCreditoEntity entity = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
+       TarjetaDeCreditoEntity existe  = data.get(0);
+       entity.setId(existe.getId());
+       TarjetaDeCreditoEntity result = TDCLogic.createTarjetaDeCredito(entity);
+       Assert.assertNull(result);   
   
     }
     
+    
     @Test
-    public void test2()
+    public void crearTarjeta2()
     {
-    TarjetaDeCreditoEntity newEntity = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
-    TarjetaDeCreditoEntity existe = data.get(0);
-    newEntity.setId(existe.getId());
-    TarjetaDeCreditoEntity result = TDCLogic.createTarjetaDeCredito(newEntity);
-    Assert.assertNull(result);
+        TarjetaDeCreditoEntity newEntity = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
+        newEntity.setNombreEnLaTarjeta("GRegorio");
+        newEntity.setNroDeLaTarjeta("1234567890123456");
+        newEntity.setNumeroDeSeguridad(123);
+        newEntity.setTipoDeTarjeta("Visa");
+        TarjetaDeCreditoEntity result = TDCLogic.createTarjetaDeCredito(newEntity);
+        
+        Assert.assertNotNull(result);
+        
+//        newEntity.setNombreEnLaTarjeta("er$$2/34e");
+//        result = TDCLogic.createTarjetaDeCredito(newEntity);
+//        Assert.assertNull(result);
+//        
+//        newEntity = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
+//        TarjetaDeCreditoEntity existe = data.get(0);
+//        newEntity.setId(existe.getId());
+//        result = TDCLogic.createTarjetaDeCredito(newEntity);
+//        Assert.assertNull(result);
+   
     }
     
     @Test
@@ -159,15 +169,20 @@ public class TarjetaDeCreditoLogicTest {
         }
     }
     
-    @Test
-    public void updateTarjetaDeCredito()
-    {
-        TarjetaDeCreditoEntity entity = crearEntity();
-        TarjetaDeCreditoEntity entity2 = data.get(0);
-        entity.setId(entity2.getId());
-        TarjetaDeCreditoEntity result = TDCLogic.createTarjetaDeCredito(entity);
-        Assert.assertNull(result);
-    }
+//    @Test
+//    public void updateTarjetaDeCredito()
+//    {
+//        
+//        TarjetaDeCreditoEntity pojoEntity = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
+//
+//       Long id = new Long("11111");
+//        pojoEntity.setId(id);
+//
+//        TDCLogic.updateEntity(pojoEntity);
+//        TarjetaDeCreditoEntity encontrar = TDCLogic.getTarjetaDeCredito(pojoEntity.getId());
+//        Assert.assertNull(encontrar);
+//        
+//    }
     
     @Test
     public void getTarjetaDeCredito2()

@@ -38,7 +38,7 @@ public class TarjetaDeCreditoLogic
     {
         
      LOGGER.log(Level.INFO, "Empezando la creacion de nueva TarjetaDeCredito");
-     TarjetaDeCreditoEntity entity = persistence.find(TDC.getId());
+     TarjetaDeCreditoEntity entity = persistence.findByNumber(TDC.getNroDeLaTarjeta());
      boolean check = true;
      
      if(entity != null)
@@ -129,7 +129,7 @@ public class TarjetaDeCreditoLogic
         TarjetaDeCreditoEntity entity = persistence.find(TDC.getId());
         if(entity == null)
         {
-        LOGGER.log(Level.INFO, "La TDC con el id {0} no existe ", entity.getId());
+        LOGGER.log(Level.INFO, "La TDC con el numero {0} no existe ", entity.getNroDeLaTarjeta());
         }
         else if (entity.getTipoDeTarjeta().equals("Visa"))
         {

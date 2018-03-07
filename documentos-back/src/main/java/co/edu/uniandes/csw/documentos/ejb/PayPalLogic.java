@@ -65,12 +65,7 @@ public class PayPalLogic {
         {
             if(persistence.findByMail(payp.getCorreoElectronico()) == null)
             {
-               if(persistence.find(payp.getId()) == null)
-               {
-                return persistence.create(payp);
-               }
-               LOGGER.log(Level.INFO, "El id de la cuenta no es valido");
-               return null;
+               return persistence.create(payp);
             }
             LOGGER.log(Level.INFO, "el mail de la cuenta PayPal ya esta registrado");
             return null;
