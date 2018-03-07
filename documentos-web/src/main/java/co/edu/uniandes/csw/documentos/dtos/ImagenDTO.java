@@ -38,7 +38,7 @@ import co.edu.uniandes.csw.documentos.entities.ImagenEntity;
  *      "img": string
  *   }
  * </pre>
- * Por ejemplo una ciudad se representa asi:<br>
+ * Por ejemplo una imagen se representa asi:<br>
  * 
  * <pre>
  * 
@@ -61,6 +61,7 @@ public class ImagenDTO {
      * Constructor por defecto
      */
     public ImagenDTO() {
+        //Constructor por defecto
     }
     
     /**

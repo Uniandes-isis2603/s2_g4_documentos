@@ -101,6 +101,7 @@ public class AreaDeConocimientoLogicTest {
 
         for (int i = 0; i < 3; i++) {
             AreaDeConocimientoEntity entity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
+            entity.setTipo("Area " + i);
             em.persist(entity);
             insertDataDocumentos();
             entity.setDocumentos(dataDocumentos);
@@ -135,7 +136,7 @@ public class AreaDeConocimientoLogicTest {
     public void createAreaTest1() {
         
         AreaDeConocimientoEntity newEntity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
-        
+        newEntity.setTipo("Calculo");
         try
         {
             areaLogic.createArea(newEntity);
@@ -158,7 +159,6 @@ public class AreaDeConocimientoLogicTest {
         }
         
         try{
-            newEntity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
             AreaDeConocimientoEntity existe = data.get(0);
             newEntity.setId(existe.getId());
             areaLogic.createArea(newEntity);
@@ -184,6 +184,7 @@ public class AreaDeConocimientoLogicTest {
         try{
         
         AreaDeConocimientoEntity newEntity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
+        newEntity.setTipo("Calculo");
         AreaDeConocimientoEntity result = areaLogic.createArea(newEntity);
         Assert.assertNotNull(result);
         
@@ -276,7 +277,8 @@ public class AreaDeConocimientoLogicTest {
     public void updateAreaTest1() {
 
         AreaDeConocimientoEntity pojoEntity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
-
+        pojoEntity.setTipo("Calculo");
+        
         try{
             Long id = new Long("11111");
             pojoEntity.setId(id);

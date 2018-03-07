@@ -44,12 +44,12 @@ public class ImagenLogic {
             LOGGER.log(Level.INFO, "La Imagen con el id {0} ya existe", entity.getId());
             throw new BusinessLogicException("La Imagen con el id "+ entity.getId()+ " ya existe");
         }
-        else if (!(entity.getNombre().matches("([A-Z]|[a-z]|[0-9]|\\s)+") | entity.getNombre().contains(" "))){
+        else if (!(entity.getNombre().matches("([A-Z]|[a-z]|[0-9]|\\s)+") || entity.getNombre().contains(" "))){
             LOGGER.log(Level.INFO, "El nombre de la imagen no puede contener caracteres especiales");
             throw new BusinessLogicException("El nombre de la imagen no puede contener caracteres especiales");
         }
-        else if(!(entity.getImg().endsWith(".jpg") | entity.getImg().endsWith(".png") | entity.getImg().endsWith(".pdf") | 
-                entity.getImg().endsWith(".bmp") | entity.getImg().endsWith(".tif"))){
+        else if(!(entity.getImg().endsWith(".jpg") || entity.getImg().endsWith(".png") || entity.getImg().endsWith(".pdf") || 
+                entity.getImg().endsWith(".bmp") || entity.getImg().endsWith(".tif"))){
             LOGGER.log(Level.INFO, "La Imagen tiene un formato no soportado");
             throw new BusinessLogicException( "La Imagen tiene un formato no soportado");
         }
@@ -94,12 +94,12 @@ public class ImagenLogic {
             LOGGER.log(Level.INFO, "La Imagen con el id {0} no existe", entity.getId());
             throw new BusinessLogicException("La Imagen con el id "+ entity.getId()+ " no existe");
         }
-        else if (!(entity.getNombre().matches("([A-Z]|[a-z]|[0-9]|\\s)+") | entity.getNombre().contains(" "))){
+        else if (!(entity.getNombre().matches("([A-Z]|[a-z]|[0-9]|\\s)+") || entity.getNombre().contains(" "))){
             LOGGER.log(Level.INFO, "El nombre de la imagen no puede contener caracteres especiales");
             throw new BusinessLogicException("El nombre de la imagen no puede contener caracteres especiales");
         }
-        else if(!(entity.getImg().endsWith(".jpg") | entity.getImg().endsWith(".png") | entity.getImg().endsWith(".pdf") | 
-                entity.getImg().endsWith(".bmp") | entity.getImg().endsWith(".tif"))){
+        else if(!(entity.getImg().endsWith(".jpg") || entity.getImg().endsWith(".png") || entity.getImg().endsWith(".pdf") || 
+                entity.getImg().endsWith(".bmp") || entity.getImg().endsWith(".tif"))){
             LOGGER.log(Level.INFO, "La Imagen tiene un formato no soportado");
             throw new BusinessLogicException( "La Imagen tiene un formato no soportado");
         }

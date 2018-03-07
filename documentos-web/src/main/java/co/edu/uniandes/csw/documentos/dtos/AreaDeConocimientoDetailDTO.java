@@ -60,7 +60,7 @@ public class AreaDeConocimientoDetailDTO extends AreaDeConocimientoDTO {
         if (entity != null) {
             documentos = new ArrayList<>();
             for (DocumentoEntity entityDocumento : entity.getDocumentos()) {
-//                documentos.add(new DocumentoDTO(entityDocumento));
+                documentos.add(new DocumentoDTO(entityDocumento));
             }
 
         }
@@ -90,13 +90,13 @@ public class AreaDeConocimientoDetailDTO extends AreaDeConocimientoDTO {
     @Override
     public AreaDeConocimientoEntity toEntity() {
         AreaDeConocimientoEntity entity = super.toEntity();
-//        if (documentos != null) {
-//            List<DocumentoEntity> documentosEntity = new ArrayList<>();
-//            for (DocumentoDTO dtoDocumento : documentos) {
-//                documentosEntity.add(dtoDocumento.toEntity());
-//            }
-//            entity.setDocumento(documentossEntity);
-//        }
+        if (documentos != null) {
+            List<DocumentoEntity> documentosEntity = new ArrayList<>();
+            for (DocumentoDTO dtoDocumento : documentos) {
+                documentosEntity.add(dtoDocumento.toEntity());
+            }
+            entity.setDocumentos(documentosEntity);
+        }
 
         return entity;
     }

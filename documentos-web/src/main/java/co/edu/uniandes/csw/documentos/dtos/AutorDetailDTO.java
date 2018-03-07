@@ -24,6 +24,8 @@ SOFTWARE.
 package co.edu.uniandes.csw.documentos.dtos;
 
 import co.edu.uniandes.csw.documentos.entities.AutorEntity;
+import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -57,13 +59,13 @@ public class AutorDetailDTO extends AutorDTO {
      */
     public AutorDetailDTO(AutorEntity entity) {
         super(entity);
-//        if (entity != null) {
-//            documentos = new ArrayList<>();
-//            for (DocumentoEntity entityDocumentos : entity.getDocumentos()) {
-//                documentos.add(new DocumentoDTO(entityDocumentos));
-//            }
-//
-//        }
+        if (entity != null) {
+            documentos = new ArrayList<>();
+            for (DocumentoEntity entityDocumentos : entity.getDocumentos()) {
+                documentos.add(new DocumentoDTO(entityDocumentos));
+            }
+
+        }
 
     }
     

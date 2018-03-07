@@ -39,7 +39,7 @@ import java.util.List;
  *      "nombre": string
  *   }
  * </pre>
- * Por ejemplo una ciudad se representa asi:<br>
+ * Por ejemplo un autor se representa asi:<br>
  * 
  * <pre>
  * 
@@ -62,6 +62,7 @@ public class AutorDTO {
      * Constructor por defecto
      */
     public AutorDTO() {
+        //Constructor por defecto
     }
     
      /**

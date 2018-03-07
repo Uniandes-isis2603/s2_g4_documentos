@@ -98,7 +98,7 @@ public class ImagenLogicTest {
         for (int i = 0; i < 3; i++) {
             ImagenEntity entity = factory.manufacturePojo(ImagenEntity.class);
             
-            entity.setImg("Imagen"+ i+ ".jpg");
+            entity.setImg("Imagen "+ i+ ".jpg");
             em.persist(entity);
             data.add(entity);
          

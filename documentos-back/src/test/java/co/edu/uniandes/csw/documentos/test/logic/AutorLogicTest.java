@@ -100,6 +100,7 @@ public class AutorLogicTest {
 
         for (int i = 0; i < 3; i++) {
             AutorEntity entity = factory.manufacturePojo(AutorEntity.class);
+            entity.setNombre("Autor "+i);
             em.persist(entity);
             insertDataDocumentos();
             entity.setDocumentos(dataDocumentos);
@@ -135,7 +136,7 @@ public class AutorLogicTest {
     public void createAutorTest1() {
         
         AutorEntity newEntity = factory.manufacturePojo(AutorEntity.class);
-        
+        newEntity.setNombre("Un Nombre");
         try{
              autorLogic.createAutor(newEntity);
         } catch (BusinessLogicException e) {
@@ -154,6 +155,7 @@ public class AutorLogicTest {
         
         try{
             newEntity = factory.manufacturePojo(AutorEntity.class);
+            newEntity.setNombre("Otro Nombre");
             AutorEntity existe = data.get(0);
             newEntity.setId(existe.getId());
             autorLogic.createAutor(newEntity);
@@ -177,6 +179,7 @@ public class AutorLogicTest {
         
         try{
             AutorEntity newEntity = factory.manufacturePojo(AutorEntity.class);
+            newEntity.setNombre("Un Nombre");
             AutorEntity result = autorLogic.createAutor(newEntity);          
             AutorEntity entity = em.find(AutorEntity.class, result.getId());
             Assert.assertEquals(newEntity.getId(), entity.getId());
@@ -264,7 +267,8 @@ public class AutorLogicTest {
     public void updateAutorTest1() {
 
         AutorEntity pojoEntity = factory.manufacturePojo(AutorEntity.class);
-
+        pojoEntity.setNombre("Un Nombre");
+        
         try{
             Long id = new Long("11111");
             pojoEntity.setId(id);
