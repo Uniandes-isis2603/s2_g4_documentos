@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.ReservaEntity;
+import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
 import java.util.Date;
 
 /**
@@ -17,6 +19,34 @@ public class ReservaDTO {
     private double costo;
     private Date fecha;
     
+    
+          /**
+     * Constructor a partir de la entidad
+     * @param reserva  La entidad de la reserva
+     */
+    public ReservaDTO(ReservaEntity reserva) {
+        if (reserva != null) {
+            this.id = reserva.getId();
+            this.costo = reserva.getCosto();
+            this.fecha = reserva.getFecha();
+          
+        }
+    }
+
+    /**
+     * Método para transformar el DTO a una entidad.
+     * @return La entidad de la reserva asociada.
+     */
+    public ReservaEntity toEntity() {
+
+        ReservaEntity reserva = new ReservaEntity();
+        reserva.setId(this.id);
+        reserva.setCosto(this.costo);
+        reserva.setFecha(this.fecha);
+       
+     
+        return reserva;
+    }
     
      /**
      * constructor por defecto
