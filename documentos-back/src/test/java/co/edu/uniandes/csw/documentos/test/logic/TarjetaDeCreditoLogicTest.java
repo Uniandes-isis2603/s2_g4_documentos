@@ -3,6 +3,7 @@ package co.edu.uniandes.csw.documentos.test.logic;
 import co.edu.uniandes.csw.documentos.ejb.TarjetaDeCreditoLogic;
 import co.edu.uniandes.csw.documentos.entities.TarjetaDeCreditoEntity;
 import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.TarjetaDeCreditoPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -106,49 +107,65 @@ public class TarjetaDeCreditoLogicTest {
     {
         TarjetaDeCreditoEntity entity = new TarjetaDeCreditoEntity();
         entity.setNombreEnLaTarjeta("GREGORIO");
-        entity.setNroDeLaTarjeta("1234567890123456");
+        entity.setNroDeLaTarjeta("4234567890123456");
         entity.setTipoDeTarjeta("Visa");
-        entity.setId(new Long(1223345));
+        entity.setNumeroDeSeguridad(123);
       
         return entity;
     }
     
-      
+   
+    
     @Test
     public void crearTarjeta()
     {
-        TarjetaDeCreditoEntity entity = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
-       TarjetaDeCreditoEntity existe  = data.get(0);
-       entity.setId(existe.getId());
-       TarjetaDeCreditoEntity result = TDCLogic.createTarjetaDeCredito(entity);
-       Assert.assertNull(result);   
-  
+        TarjetaDeCreditoEntity entity = data.get(0);
+        try
+        {
+            TarjetaDeCreditoEntity result = TDCLogic.createTarjetaDeCredito(entity);
+        }
+        catch(BusinessLogicException e )
+        {
+            Assert.assertTrue(e.getMessage().equals("La TDC ya existe"));
+        }
+   
     }
     
-    
+       
     @Test
     public void crearTarjeta2()
     {
-        TarjetaDeCreditoEntity newEntity = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
-        newEntity.setNombreEnLaTarjeta("GRegorio");
-        newEntity.setNroDeLaTarjeta("1234567890123456");
-        newEntity.setNumeroDeSeguridad(123);
-        newEntity.setTipoDeTarjeta("Visa");
-        TarjetaDeCreditoEntity result = TDCLogic.createTarjetaDeCredito(newEntity);
-        
-        Assert.assertNotNull(result);
-        
-//        newEntity.setNombreEnLaTarjeta("er$$2/34e");
-//        result = TDCLogic.createTarjetaDeCredito(newEntity);
-//        Assert.assertNull(result);
-//        
-//        newEntity = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
-//        TarjetaDeCreditoEntity existe = data.get(0);
-//        newEntity.setId(existe.getId());
-//        result = TDCLogic.createTarjetaDeCredito(newEntity);
-//        Assert.assertNull(result);
-   
+        boolean check = true;
+        TarjetaDeCreditoEntity entity = crearEntity();
+        try
+        {
+            TarjetaDeCreditoEntity result = TDCLogic.createTarjetaDeCredito(entity);
+        }
+        catch(BusinessLogicException e )
+        {
+            System.out.println(e.getMessage());
+            check = false;
+        }
+        Assert.assertTrue(check);
+  
     }
+    
+    @Test
+    public void crearTarjeta3()
+    {
+        TarjetaDeCreditoEntity entity = crearEntity();
+        entity.setTipoDeTarjeta("Masdfghjklñ");
+         try
+        {
+            TarjetaDeCreditoEntity result = TDCLogic.createTarjetaDeCredito(entity);
+        }
+        catch(BusinessLogicException e )
+        {
+            Assert.assertTrue(e.getMessage().equals("Error creando la tarjeta"));
+        }
+                
+    }
+    
     
     @Test
     public void getTarjetaDeCredito()
