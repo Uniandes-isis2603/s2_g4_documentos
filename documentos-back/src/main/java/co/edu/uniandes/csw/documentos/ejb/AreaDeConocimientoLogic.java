@@ -44,7 +44,7 @@ public class AreaDeConocimientoLogic{
             LOGGER.log(Level.INFO, "El Area de Conocimiento con el id {0} ya existe" , entity.getId());
             throw new BusinessLogicException("El Area de Conocimiento con el id " + entity.getId() + " ya existe");
         }
-        else if (!(entity.getTipo().matches("([A-Z]|[a-z]|[0-9]|\\s)+")| entity.getTipo().contains(" "))){
+        else if (!(entity.getTipo().matches("([A-Z]|[a-z]|[0-9]|\\s)+")|| entity.getTipo().contains(" "))){
             LOGGER.log(Level.INFO, "El nombre del area de conocimiento no puede contener caracteres especiales");
             throw new BusinessLogicException("El nombre del area de conocimiento no puede contener caracteres especiales");
         }
@@ -88,7 +88,7 @@ public class AreaDeConocimientoLogic{
             LOGGER.log(Level.INFO, "El Area de Conocimiento con el id {0} no existe" , entity.getId());
             throw new BusinessLogicException("El Area de Conocimiento con el id " + entity.getId() + " no existe");
         }
-        else if (!(entity.getTipo().matches("([A-Z]|[a-z]|[0-9]|\\s)+")| entity.getTipo().contains(" "))){
+        else if (!(entity.getTipo().matches("([A-Z]|[a-z]|[0-9]|\\s)+")|| entity.getTipo().contains(" "))){
             LOGGER.log(Level.INFO, "El nombre del area de conocimiento no puede contener caracteres especiales");
             throw new BusinessLogicException("El nombre del area de conocimiento no puede contener caracteres especiales");
         }

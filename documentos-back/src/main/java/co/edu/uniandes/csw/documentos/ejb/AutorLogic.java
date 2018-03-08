@@ -44,7 +44,7 @@ public class AutorLogic {
             LOGGER.log(Level.INFO, "El autor con el id {0} ya existe", entity.getId());
             throw new BusinessLogicException("El autor con el id " + entity.getId() + " ya existe");
         }
-        else if (!(entity.getNombre().matches("([A-Z]|[a-z]|[0-9]|\\s)+")| entity.getNombre().contains(" "))){
+        else if (!(entity.getNombre().matches("([A-Z]|[a-z]|[0-9]|\\s)+")|| entity.getNombre().contains(" "))){
             LOGGER.log(Level.INFO, "El nombre del autor no puede contener caracteres especiales");
             throw new BusinessLogicException("El nombre del autor no puede contener caracteres especiales");
         }
