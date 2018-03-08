@@ -6,10 +6,17 @@
 package co.edu.uniandes.csw.documentos.resources;
 
 import co.edu.uniandes.csw.documentos.dtos.ComentarioDTO;
+import co.edu.uniandes.csw.documentos.dtos.CompraDetailedDTO;
+import co.edu.uniandes.csw.documentos.ejb.ComentarioLogic;
+import co.edu.uniandes.csw.documentos.ejb.CompraLogic;
+import co.edu.uniandes.csw.documentos.entities.ComentarioEntity;
+import co.edu.uniandes.csw.documentos.entities.CompraEntity;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -39,6 +46,9 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class ComentarioResource {    
+     @Inject
+private ComentarioLogic  logica;
+     /**
      /**
      * <h1> POST /api/comentarios : crear un nuevo comentario. </h1>
      * <pre> Cuerpo de peticion : JSON {ComentarioDTO}
@@ -59,9 +69,13 @@ public class ComentarioResource {
      * 
      */
     @POST
-    public ComentarioDTO createComentario(ComentarioDTO Comentario ) 
+    public ComentarioDTO createComentario(ComentarioDTO Comentario ) throws BusinessLogicException 
     {
-        return Comentario;
+         ComentarioEntity editorialEntity = Comentario.toEntity();
+      
+       ComentarioEntity nuevoEditorial = logica.createComentario(editorialEntity);
+       
+       return new ComentarioDTO(nuevoEditorial);
     }
     
      /**
@@ -77,9 +91,17 @@ public class ComentarioResource {
      * @return JSONArray {@link ComentarioDTO} - Los comentarios  encontrados dentro de la aplicación. Si no existen se retorna una lista vacía.
      */
     @GET
-    public List<ComentarioDTO> getComentarios()
+    public List<ComentarioDTO> getComentarios()throws BusinessLogicException 
     {
-        return new ArrayList<>();
+       
+         List<ComentarioDTO> lista=new ArrayList<>();
+        for (ComentarioEntity en :logica.getComentarios()) 
+        {
+           
+           lista.add(new ComentarioDTO(en));
+        }
+        
+        return lista;
     }
     
     /**
@@ -99,9 +121,10 @@ public class ComentarioResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public ComentarioDTO getComentario(@PathParam("id") Long id)
+    public ComentarioDTO getComentario(@PathParam("id") Long id)throws BusinessLogicException 
+    
     {
-      return null;
+      return new  ComentarioDTO(logica.getComentario(id));
     }
     
      /**
@@ -125,9 +148,10 @@ public class ComentarioResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public ComentarioDTO updateComentario (@PathParam("id)") Long id, ComentarioDTO Comentario) 
+    public ComentarioDTO updateComentario (@PathParam("id)") Long id, ComentarioDTO Comentario)throws BusinessLogicException 
     {
-        return Comentario;
+         Comentario.setId(id);
+        return new ComentarioDTO(logica.updateComentario(id, Comentario.toEntity()));
     }
     
     /**
@@ -146,9 +170,9 @@ public class ComentarioResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteComentario (@PathParam("id") Long id)
+    public void deleteComentario (@PathParam("id") Long id) throws BusinessLogicException
     {
-        // Void
+        logica.deleteComentario(id);
     }
 }
 

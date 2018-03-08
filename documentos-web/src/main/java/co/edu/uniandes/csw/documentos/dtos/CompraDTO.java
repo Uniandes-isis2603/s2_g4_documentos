@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.CompraEntity;
+
 import java.util.Date;
 
 /**
@@ -106,5 +108,26 @@ public class CompraDTO {
         this.tipoDecompra = tipoDecompra;
     }
     
+   public CompraDTO(CompraEntity entidad)
+    {
+        
+              this.id= entidad.getId();
+               this.fecha=entidad.getFecha();
+               this.costo=entidad.getCosto();
+               this.tipoDecompra= entidad.getTipoDeCompra();
+        
+     
+    }
+        public CompraEntity toEntity()
+        {
+            CompraEntity rta= new CompraEntity();
+           
+           rta.setId(this.id);
+           rta.setCosto(this.costo);
+           rta.setFecha(this.fecha);
+           rta.setTipoDeCompra(this.tipoDecompra);
+          
+           return rta;
+        }
     
 }

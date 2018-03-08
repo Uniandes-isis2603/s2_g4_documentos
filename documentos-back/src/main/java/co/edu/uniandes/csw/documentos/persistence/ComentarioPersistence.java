@@ -22,7 +22,7 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class ComentarioPersistence {
-     private static final Logger LOGGER=Logger.getLogger(ComentarioEntity.class.getName());
+     private  Logger LOGGER=Logger.getLogger(ComentarioEntity.class.getName());
     
     @PersistenceContext(unitName = "DocumentosPU")
     protected  EntityManager entidad;

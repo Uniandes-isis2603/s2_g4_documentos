@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.documentos.persistence;
 
+import co.edu.uniandes.csw.documentos.entities.CursoEntity;
 import co.edu.uniandes.csw.documentos.entities.EditorialEntity
         ;
 import java.util.List;
@@ -32,7 +33,7 @@ public class EditorialPersistence {
      */
     public EditorialEntity create(EditorialEntity entidadNueva)
     {
-        LOGGER.info("Creando una entidad de curso");
+        LOGGER.info("Creando una entidad de Editorial");
         entidad.persist(entidadNueva);
         LOGGER.info("Entidad creada con exito");
         
@@ -53,7 +54,7 @@ public class EditorialPersistence {
      */
     public List<EditorialEntity> findAll()
     {
-        LOGGER.info("Buscando todas los cursos del sistema");
+        LOGGER.info("Buscando todas las editoriales del sistema");
         TypedQuery query= entidad.createQuery("select u from EditorialEntity u", EditorialEntity.class);
         return query.getResultList();
     }
@@ -63,7 +64,7 @@ public class EditorialPersistence {
      */
      public void delete(EditorialEntity id)
      {
-         LOGGER.info("Borrando el curso del sistema");
+         LOGGER.info("Borrando la editorial del sistema");
            EditorialEntity entity = entidad.find(EditorialEntity.class, id.getId());
          entidad.remove(entity);
       
@@ -76,9 +77,28 @@ public class EditorialPersistence {
       */
      public EditorialEntity update(EditorialEntity infoDeEditorial)
      {
-          LOGGER.log(Level.INFO, "Actualizando el curso con id={0}", infoDeEditorial.getId());
+          LOGGER.log(Level.INFO, "Actualizando la editorial con id={0}", infoDeEditorial.getId());
         return entidad.merge(infoDeEditorial);
      }
+
+    public EditorialEntity findByName(String nombre) {
+         TypedQuery query = entidad.createQuery("Select e From EditorialEntity e where e.nombre = :nombre", EditorialEntity.class);
+        
+        query = query.setParameter("nombre", nombre);
+        // Se invoca el query se obtiene la lista resultado
+        List<EditorialEntity> sameName = query.getResultList();
+       EditorialEntity result = null; 
+         if (sameName == null ) {
+            result = null;
+        } else if (sameName.isEmpty()) {
+             result = null;
+        } else {
+            result =  sameName.get(0);
+        }
+       
+        
+        return result;
+    }
     
     
 }
