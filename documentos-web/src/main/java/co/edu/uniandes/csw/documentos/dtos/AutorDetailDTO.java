@@ -47,9 +47,11 @@ public class AutorDetailDTO extends AutorDTO {
    
     }
     
-        /**
-     * Crea un objeto AuthorDetailDTO a partir de un objeto AuthorEntity
-     * incluyendo los atributos de AuthorDTO.
+    
+    
+     /**
+     * Crea un objeto AutorDetailDTO a partir de un objeto AutorEntity
+     * incluyendo los atributos de AutorDTO.
      *
      * @param entity Entidad AuthorEntity desde la cual se va a crear el nuevo
      * objeto.
@@ -57,17 +59,31 @@ public class AutorDetailDTO extends AutorDTO {
      */
     public AutorDetailDTO(AutorEntity entity) {
         super(entity);
-//        if (entity != null) {
-//            documentos = new ArrayList<>();
-//            for (DocumentoEntity entityDocumentos : entity.getDocumentos()) {
-//                documentos.add(new DocumentoDTO(entityDocumentos));
-//            }
-//
-//        }
+        if (entity != null) {
+            documentos = new ArrayList<>();
+            for (DocumentoEntity entityDocumentos : entity.getDocumentos()) {
+                documentos.add(new DocumentoDTO(entityDocumentos));
+            }
+
+        }
 
     }
     
-        /**
+    /**
+     * @return los documentos que contienen el autor
+     */
+    public List<DocumentoDTO> getDocumentos() {
+        return documentos;
+    }
+
+    /**
+     * @param documentos Una nueva lista con todos los documentos del autor
+     */
+    public void setDocumentos(List<DocumentoDTO> documentos) {
+        this.documentos = documentos;
+    }
+
+    /**
      * Convierte un objeto AutorDetailDTO a AutorEntity incluyendo los
      * atributos de AutorDTO.
      *
@@ -86,21 +102,5 @@ public class AutorDetailDTO extends AutorDTO {
 //        }
 
         return entity;
-    }
-
-    /**
-     * @return los documentos que contienen el autor
-     */
-    public List<DocumentoDTO> getDocumentos() {
-        return documentos;
-    }
-
-    /**
-     * @param documentos Una nueva lista con todos los documentos del autor
-     */
-    public void setDocumentos(List<DocumentoDTO> documentos) {
-        this.documentos = documentos;
-    }
-
-    
+    }    
 }

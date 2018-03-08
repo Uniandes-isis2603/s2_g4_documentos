@@ -6,10 +6,15 @@
 package co.edu.uniandes.csw.documentos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -30,7 +35,13 @@ public class AutorEntity implements Serializable{
     */
     private String nombre;
     
-
+    /**
+     * Relación de Documentos a Autores
+     */
+    @PodamExclude
+    @ManyToMany(mappedBy = "autores", fetch = FetchType.LAZY)
+    private List<DocumentoEntity> documentos = new ArrayList<DocumentoEntity>();
+    
     /**
      * Retorna el Id del Autor
      * @return id. El Id del Autor
@@ -61,6 +72,14 @@ public class AutorEntity implements Serializable{
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public List<DocumentoEntity> getDocumentos() {
+        return documentos;
+    }
+
+    public void setDocumentos(List<DocumentoEntity> documentos) {
+        this.documentos = documentos;
     }
  
     
