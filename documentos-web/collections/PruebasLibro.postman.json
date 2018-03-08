@@ -1,0 +1,421 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebasLibro",
+		"_postman_id": "067c0e32-cfec-0a06-978f-b2a625ba8ef2",
+		"description": "Estas son las pruebas iniciales del proyecto para el recurso Libro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un libro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/libros",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"calificacionPromedio\": 3.2,\n        \"caratula\": \"abc.jph\",\n        \"descripcion\": \"una novela\",\n        \"nombre\": \"amor en los tiempos del colera\",\n        \"precio\": 100.2,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"ISBN\": \"978-0307387264\",\n        \"fechaPublicacion\": \"2012-09-20T00:00:00-05:00\"\n    }"
+				},
+				"description": "Crea un libro de manera exitosa"
+			},
+			"response": []
+		},
+		{
+			"name": "Crea un libro con un ISBN equivocado.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/libros",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"calificacionPromedio\": 3.2,\n        \"caratula\": \"abc.jph\",\n        \"descripcion\": \"una novela\",\n        \"nombre\": \"amor en los tiempos del colera\",\n        \"precio\": 100.2,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"ISBN\": \"978-0307387263\",\n        \"fechaPublicacion\": \"2012-09-20T00:00:00-05:00\"\n    }"
+				},
+				"description": "Intenga crear un libro con isbn invalido pero no es exitoso."
+			},
+			"response": []
+		},
+		{
+			"name": "Crea libro con precio negativo.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/libros",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"calificacionPromedio\": 3.2,\n        \"caratula\": \"abc.jph\",\n        \"descripcion\": \"una novela\",\n        \"nombre\": \"amor en los tiempos del colera\",\n        \"precio\": -100.2,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"ISBN\": \"978-0307387264\",\n        \"fechaPublicacion\": \"2012-09-20T00:00:00-05:00\"\n    }"
+				},
+				"description": "Intenga crear un libro con precio negativo pero falla."
+			},
+			"response": []
+		},
+		{
+			"name": "Crea un libro con datos incompletos.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/libros",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"calificacionPromedio\": 3.2,\n        \"caratula\": \"abc.jph\",\n        \"descripcion\": null,\n        \"nombre\": \"amor en los tiempos del colera\",\n        \"precio\": 100.2,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"ISBN\": \"978-0307387264\",\n        \"fechaPublicacion\": \"2012-09-20T00:00:00-05:00\"\n    }"
+				},
+				"description": "Intenta crear un libro con datos incompletos pero falla."
+			},
+			"response": []
+		},
+		{
+			"name": "Crear libro con fecha despues de ahora.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/libros",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"calificacionPromedio\": 3.2,\n        \"caratula\": \"abc.jph\",\n        \"descripcion\": \"Libro\",\n        \"nombre\": \"amor en los tiempos del colera\",\n        \"precio\": 100.2,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"ISBN\": \"978-0307387264\",\n        \"fechaPublicacion\": \"2021-09-20T00:00:00-05:00\"\n    }"
+				},
+				"description": "Intenta crear un libro con fecha incorrecta pero falla."
+			},
+			"response": []
+		},
+		{
+			"name": "Se obtienen todos los libros.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/libros",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Se obtienen todos los libros de manera exitosa."
+			},
+			"response": []
+		},
+		{
+			"name": "Se obtiene un libro con el id.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/libros/100",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Se obtiene un libro con el id exitosamente."
+			},
+			"response": []
+		},
+		{
+			"name": "Se obtiene un libro por el nombre",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/libros/Ojos de fuego",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Se consulta un libro segun el nombre de manera exitosa."
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar libro con fecha incorrecta.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/libros/100",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"calificacionPromedio\": 3.2,\n        \"caratula\": \"abc.jph\",\n        \"descripcion\": \"Libro\",\n        \"nombre\": \"amor\",\n        \"precio\": 100.2,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"ISBN\": \"978-0307387264\",\n        \"fechaPublicacion\": \"2021-09-20T00:00:00-05:00\"\n    }"
+				},
+				"description": "Se intenta modificar libro con fecha incorrecta pero falla."
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar un libro.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/libros/100",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"calificacionPromedio\": 3.2,\n        \"caratula\": \"abc.jph\",\n        \"descripcion\": \"Libro\",\n        \"nombre\": \"amor\",\n        \"precio\": 100.2,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"ISBN\": \"978-0307387264\",\n        \"fechaPublicacion\": \"1992-09-20T00:00:00-05:00\"\n    }"
+				},
+				"description": "Se modifica el libro"
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar libro con ISBN incorrecto.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/libros/100",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"calificacionPromedio\": 3.2,\n        \"caratula\": \"abc.jph\",\n        \"descripcion\": \"Libro\",\n        \"nombre\": \"amor\",\n        \"precio\": 100.2,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"ISBN\": \"978-0327387264\",\n        \"fechaPublicacion\": \"1992-09-20T00:00:00-05:00\"\n    }"
+				},
+				"description": "Se intenta modificar el libro con el isbn incorrecto. pero falla."
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar libro con precio negativo.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/libros/100",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"calificacionPromedio\": 3.2,\n        \"caratula\": \"abc.jph\",\n        \"descripcion\": \"Libro\",\n        \"nombre\": \"amor\",\n        \"precio\": -100.2,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"ISBN\": \"978-0307387264\",\n        \"fechaPublicacion\": \"1992-09-20T00:00:00-05:00\"\n    }"
+				},
+				"description": "Se intenta modificar libro con el precio negativo pero falla."
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar libro con datos incompletos.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/libros/100",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"calificacionPromedio\": 3.2,\n        \"caratula\": \"abc.jph\",\n        \"descripcion\": \"Libro\",\n        \"nombre\": null,\n        \"precio\": 100.2,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"ISBN\": \"978-0307387264\",\n        \"fechaPublicacion\": \"1992-09-20T00:00:00-05:00\"\n    }"
+				},
+				"description": "Se intenta modificar con los datos incompletos, pero falla."
+			},
+			"response": []
+		},
+		{
+			"name": "Se elimina un Libro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/libros/400",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Se elimina un libro de forma exitosa."
+			},
+			"response": []
+		}
+	]
+}
