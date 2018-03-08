@@ -57,7 +57,7 @@ public class PayPalLogic {
      * @param payp cuenta de PayPal a crear
      * @return instancia de cuenta PayPal
      */
-    public PayPalEntity createPayPal(PayPalEntity payp)
+    public PayPalEntity createPayPal(PayPalEntity payp) throws BusinessLogicException
     {        
         LOGGER.log(Level.INFO, "Empezando la creacion de nueva cuenta PayPal");
         
@@ -65,19 +65,14 @@ public class PayPalLogic {
         {
             if(persistence.findByMail(payp.getCorreoElectronico()) == null)
             {
-               if(persistence.find(payp.getId()) == null)
-               {
-                return persistence.create(payp);
-               }
-               LOGGER.log(Level.INFO, "El id de la cuenta no es valido");
-               return null;
+               return persistence.create(payp);
             }
             LOGGER.log(Level.INFO, "el mail de la cuenta PayPal ya esta registrado");
-            return null;
+            throw new BusinessLogicException("el mail de la cuenta PayPal ya esta registrado");
             
         }
         LOGGER.log(Level.INFO, "El correo no es valido");
-        return null;
+        throw new BusinessLogicException("El correo no es valido");
     }
     
     /**
@@ -86,7 +81,7 @@ public class PayPalLogic {
      * @param payp Instancia de PayPal con los nuevos datos
      * @return Instancia de PayPal actualizada.
      */
-    public PayPalEntity updatePayPal(PayPalEntity payp)
+    public PayPalEntity updatePayPal(PayPalEntity payp) throws BusinessLogicException
     {
        
          LOGGER.log(Level.INFO, "Comenzando proceso para actualizar instancia de PayPal");
@@ -98,10 +93,10 @@ public class PayPalLogic {
                         return persistence.update(payp);
                      }
             LOGGER.log(Level.INFO, "El id a actualizar no existe, recuerde que el id no puede ser modificado");
-            return null;
+            throw new BusinessLogicException("El id a actualizar no existe, recuerde que el id no puede ser modificado");
          }
          LOGGER.log(Level.INFO, "el mail que ingreso no es valido");
-         return null;
+         throw new BusinessLogicException("El correo no es valido");
          
         
     }
@@ -111,7 +106,7 @@ public class PayPalLogic {
      * 
      * @param Id Identificador de PayPal a borrar
      */
-    public void deletePayPal(Long Id)
+    public void deletePayPal(Long Id) throws BusinessLogicException
     {
         PayPalEntity busqueda = persistence.find(Id);        
         if(busqueda != null)
@@ -121,8 +116,8 @@ public class PayPalLogic {
         }
         else{
         LOGGER.log(Level.INFO, "La cuenta con el correo {0} no existe", busqueda.getCorreoElectronico());
-        //Void
-        }
+        throw new BusinessLogicException("La cuenta a borrar no existe.");
+    }
     }
     
     

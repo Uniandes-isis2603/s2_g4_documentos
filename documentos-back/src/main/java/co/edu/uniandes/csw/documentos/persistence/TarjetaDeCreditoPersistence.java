@@ -51,7 +51,7 @@ public class TarjetaDeCreditoPersistence {
     {
         LOGGER.log(Level.INFO, "Consultando TDC por numero", numero);
         
-        TypedQuery query = em.createQuery("Select e from PayPalEntity e where e.numero = :numero", TarjetaDeCreditoEntity.class);
+        TypedQuery query = em.createQuery("Select e from TarjetaDeCreditoEntity e where e.nroDeLaTarjeta = :numero", TarjetaDeCreditoEntity.class);
         query = query.setParameter("numero", numero);
         List<TarjetaDeCreditoEntity> sameNumero = query.getResultList();
         if(sameNumero.isEmpty())

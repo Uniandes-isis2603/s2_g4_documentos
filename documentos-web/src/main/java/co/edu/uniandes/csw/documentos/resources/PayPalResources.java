@@ -6,11 +6,15 @@
 package co.edu.uniandes.csw.documentos.resources;
 
 import co.edu.uniandes.csw.documentos.dtos.*;
+import co.edu.uniandes.csw.documentos.ejb.PayPalLogic;
+import co.edu.uniandes.csw.documentos.ejb.UsuarioLogic;
+import co.edu.uniandes.csw.documentos.entities.PayPalEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.mappers.BusinessLogicExceptionMapper;
 import java.util.List;
 import java.util.ArrayList;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,6 +23,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 
 /**
@@ -40,6 +45,9 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class PayPalResources {
+    
+    @Inject
+    PayPalLogic PPLogic;
  
      /**
      * <h1> POST /api/metdodosdepago/paypal : crea una nueva cuenta paypal. </h1>
@@ -80,9 +88,19 @@ public class PayPalResources {
      * @return todas las cuentas paypal que tiene el usuario.
      */
     @GET
-    public List<TarjetaDeCreditoDetailDTO> getPayPal()
+    public List<PayPalDetailDTO> getPayPal()
     {
-        return new ArrayList<>();
+        return listaPP(PPLogic.getPayPal());
+    }
+    
+    private List<PayPalDetailDTO> listaPP(List<PayPalEntity> entityList)
+    {
+        List<PayPalDetailDTO> list = new ArrayList<>();
+        for(PayPalEntity entity : entityList)
+        {
+            list.add(new PayPalDetailDTO(entity));
+        }
+        return list;
     }
     
    /**
@@ -104,6 +122,12 @@ public class PayPalResources {
     @Path("{id: \\d+}")
     public PayPalDetailDTO getPayPal(@PathParam("id") Long id)
     {
+      PayPalEntity entity = PPLogic.getPayPal(id);
+      if(entity == null)
+      {
+          throw new WebApplicationException("el recurso /paypal/");
+         
+      }
       return null;
     }
     

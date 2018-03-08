@@ -15,11 +15,11 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author g.ospinaa
  */
 @Entity
-public class TarjetaDeCreditoEntity extends BaseEntity implements Serializable{
+public class TarjetaDeCreditoEntity extends MetodoDePagoEntity implements Serializable{
     
     @PodamExclude
     @ManyToOne
-    private UsuarioEntity usuario;
+    private UsuarioEntity UEntity;
     /**
      * tipo de tarjeta (ej. Visa, MasterCard, Maestro)
      */
@@ -94,19 +94,19 @@ public class TarjetaDeCreditoEntity extends BaseEntity implements Serializable{
     }
 
     /**
-     * @return the usuario
+     * @return the UEntity
      */
-    public UsuarioEntity getUsuario() {
-        return usuario;
+    public UsuarioEntity getUEntity() {
+        return UEntity;
     }
 
     /**
-     * @param usuario the usuario to set
+     * @param UEntity the UEntity to set
      */
-    public void setUsuario(UsuarioEntity usuario) {
-        this.usuario = usuario;
+    public void setUEntity(UsuarioEntity UEntity) {
+        this.UEntity = UEntity;
     }
 
-    
+  
     
 }
