@@ -128,12 +128,17 @@ public class ReservaLogicTest {
     @Test
     public void createReservaTestInvalido() throws ParseException {
 
-        ReservaEntity newEntity = factory.manufacturePojo(ReservaEntity.class);
+        ReservaEntity newEntity = data.get(0);
         newEntity.setCosto(123);
         newEntity.setFecha(new Date());
         ReservaEntity result = ReservaLogic.createReserva(newEntity);
+        Assert.assertNull(result);
 
-        Assert.assertNotNull(result);
+        ReservaEntity newEntity4 = data.get(1);
+        newEntity4.setCosto(12323);
+        newEntity4.setFecha(new Date());
+        result = ReservaLogic.createReserva(newEntity);
+        Assert.assertNull(result);
 
         ReservaEntity newEntity2 = factory.manufacturePojo(ReservaEntity.class);
 
@@ -157,15 +162,26 @@ public class ReservaLogicTest {
     @Test
     public void createReservaTestValido() {
 
-        ReservaEntity newEntity = factory.manufacturePojo(ReservaEntity.class);
+        ReservaEntity newEntity = data.get(0);
         newEntity.setCosto(123);
         newEntity.setFecha(new Date());
         ReservaEntity result = ReservaLogic.createReserva(newEntity);
-        Assert.assertNotNull(result);
+        Assert.assertNull(result);
 
+        ReservaEntity newEntity4 = data.get(1);
+        newEntity4.setCosto(12323);
+        newEntity4.setFecha(new Date());
+        result = ReservaLogic.createReserva(newEntity);
+        Assert.assertNull(result);
+
+        ReservaEntity newEntity2 = factory.manufacturePojo(ReservaEntity.class);
+        newEntity2.setCosto(23123);
+        newEntity2.setFecha(new Date());
+        result = ReservaLogic.createReserva(newEntity2);
+        Assert.assertNotNull(result);
         ReservaEntity entity = em.find(ReservaEntity.class, result.getId());
-        Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getFecha().toString(), entity.getFecha().toString());
+        Assert.assertEquals(newEntity2.getId(), entity.getId());
+        Assert.assertEquals(newEntity2.getFecha(), entity.getFecha());
 
     }
 
