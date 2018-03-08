@@ -13,10 +13,17 @@ package co.edu.uniandes.csw.documentos.resources;
 
 
 import co.edu.uniandes.csw.documentos.dtos.CompraDetailedDTO;
+import co.edu.uniandes.csw.documentos.dtos.CompraDetailedDTO;
+import co.edu.uniandes.csw.documentos.dtos.CursoDetailedDTO;
+import co.edu.uniandes.csw.documentos.ejb.CompraLogic;
+import co.edu.uniandes.csw.documentos.entities.CompraEntity;
+import co.edu.uniandes.csw.documentos.entities.CursoEntity;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -45,7 +52,8 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
  public class CompraResource {
-
+@Inject
+private CompraLogic logica;
      /**
      * <h1> POST /api/compras : crear una nueva Compra. </h1>
      * <pre> Cuerpo de peticion : JSON {CompraDetailedDTO}
@@ -62,9 +70,14 @@ import javax.ws.rs.Produces;
      * 
      */
     @POST
-    public CompraDetailedDTO createCompra(CompraDetailedDTO Compra ) 
+    public CompraDetailedDTO createCompra(CompraDetailedDTO Compra ) throws BusinessLogicException 
     {
-        return Compra;
+         CompraEntity editorialEntity = Compra.toEntity();
+      
+       CompraEntity nuevoEditorial = logica.createCompra(editorialEntity);
+       
+       return new CompraDetailedDTO(nuevoEditorial);
+        
     }
     
      /**
@@ -80,9 +93,16 @@ import javax.ws.rs.Produces;
      * @return JSONArray {@link CompraDetailedDTO} - Las compras  encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<CompraDetailedDTO> getCompras()
+    public List<CompraDetailedDTO> getCompras()throws BusinessLogicException 
     {
-        return new ArrayList<>();
+         List<CompraDetailedDTO> lista=new ArrayList<>();
+        for (CompraEntity en :logica.getCompras()) 
+        {
+           
+           lista.add(new CompraDetailedDTO(en));
+        }
+        
+        return lista;
     }
     
     /**
@@ -102,9 +122,9 @@ import javax.ws.rs.Produces;
      */
     @GET
     @Path("{id: \\d+}")
-    public CompraDetailedDTO getCompra(@PathParam("id") Long id)
+    public CompraDetailedDTO getCompra(@PathParam("id") Long id) throws BusinessLogicException
     {
-      return null;
+      return new  CompraDetailedDTO(logica.getCompra(id));
     }
     
      /**
@@ -128,9 +148,10 @@ import javax.ws.rs.Produces;
      */
     @PUT
     @Path("{id: \\d+}")
-    public CompraDetailedDTO updateCompra (@PathParam("id)") Long id, CompraDetailedDTO Compra) 
+    public CompraDetailedDTO updateCompra (@PathParam("id)") Long id, CompraDetailedDTO Compra) throws BusinessLogicException 
     {
-        return Compra;
+        Compra.setId(id);
+        return new CompraDetailedDTO(logica.updateCompra(id, Compra.toEntity()));
     }
     
     /**
@@ -149,9 +170,9 @@ import javax.ws.rs.Produces;
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteCompra (@PathParam("id") Long id)
+    public void deleteCompra (@PathParam("id") Long id)throws BusinessLogicException 
     {
-        // Void
+      logica.deleteCompra(id);
     }
 }
 
