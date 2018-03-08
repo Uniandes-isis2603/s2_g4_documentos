@@ -6,10 +6,15 @@
 package co.edu.uniandes.csw.documentos.resources;
 
 import co.edu.uniandes.csw.documentos.dtos.*;
+import co.edu.uniandes.csw.documentos.ejb.EditorialLogic;
+import co.edu.uniandes.csw.documentos.entities.ComentarioEntity;
+import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -40,7 +45,8 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class EditorialResource {
-    
+    @Inject
+    EditorialLogic logica;
      /**
      * <h1> POST /api/editoriales : crear una nueva Editorial. </h1>
      * <pre> Cuerpo de peticion : JSON {EditorialDetailedDTO}
@@ -61,9 +67,13 @@ public class EditorialResource {
      * 
      */
     @POST
-    public EditorialDetailedDTO createEditorial(EditorialDetailedDTO editorial ) 
+    public EditorialDetailedDTO createEditorial(EditorialDetailedDTO editorial ) throws BusinessLogicException 
     {
-        return editorial;
+        EditorialEntity editorialEntity = editorial.toEntity();
+      
+       EditorialEntity nuevoEditorial = logica.createEditorial(editorialEntity);
+       
+       return new EditorialDetailedDTO(nuevoEditorial);
     }
     
      /**
@@ -79,9 +89,16 @@ public class EditorialResource {
      * @return JSONArray {@link EditorialDetailedDTO} - Las editoriales  encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<EditorialDetailedDTO> getEditorial()
+    public List<EditorialDetailedDTO> getEditorial() throws BusinessLogicException
     {
-        return new ArrayList<>();
+       List<EditorialDetailedDTO> lista=new ArrayList<>();
+        for (EditorialEntity en :logica.getEditorials()) 
+        {
+           
+           lista.add(new EditorialDetailedDTO(en));
+        }
+        
+        return lista;
     }
     
     /**
@@ -101,9 +118,9 @@ public class EditorialResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public EditorialDetailedDTO getEditorial(@PathParam("id") Long id)
+    public EditorialDetailedDTO getEditorial(@PathParam("id") Long id) throws BusinessLogicException
     {
-      return null;
+      return new  EditorialDetailedDTO(logica.getEditorial(id));
     }
     
      /**
@@ -129,9 +146,10 @@ public class EditorialResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public EditorialDetailedDTO updateEditorial (@PathParam("fid)") Long id, EditorialDetailedDTO editorial) 
+    public EditorialDetailedDTO updateEditorial (@PathParam("fid)") Long id, EditorialDetailedDTO editorial) throws BusinessLogicException 
     {
-        return editorial;
+         editorial.setId(id);
+        return new EditorialDetailedDTO(logica.updateEditorial(id, editorial.toEntity()));
     }
     
     /**
@@ -150,9 +168,9 @@ public class EditorialResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteEditorial (@PathParam("id") Long id)
+    public void deleteEditorial (@PathParam("id") Long id) throws BusinessLogicException
     {
-        // Void
+        logica.deleteEditorial(id);
     }
 }
 

@@ -76,6 +76,7 @@ public class LibroResource {
      * 
      * <pre> Busca y devuelve todos los libros que existen en la aplicacion.
      * 
+     * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Devuelve todos los libros de la aplicacion.</code>

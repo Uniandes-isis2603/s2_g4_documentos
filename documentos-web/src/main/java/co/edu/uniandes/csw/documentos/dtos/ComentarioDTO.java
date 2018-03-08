@@ -5,11 +5,13 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.ComentarioEntity;
+import co.edu.uniandes.csw.documentos.entities.ComentarioEntity;
 import java.util.Date;
 
 /**
  *
-  * CompraDTO Objeto de transferencia de datos de una editorial . Los DTO contienen las
+  * ComentarioDTO Objeto de transferencia de datos de una editorial . Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
  * servidor.
  * 
@@ -38,6 +40,15 @@ import java.util.Date;
  */
 public class ComentarioDTO 
 {
+    private long id;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 private String comentario;
 private Date fecha;
 
@@ -74,6 +85,21 @@ private Date fecha;
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-
+public ComentarioDTO( ComentarioEntity entidad)
+{    id= entidad.getId();
+     comentario=entidad.getComentario();
+     fecha= entidad.getFecha();
+            
+}
+public ComentarioEntity toEntity()
+        {
+            ComentarioEntity rta= new ComentarioEntity();
+           
+           rta.setId(this.id);
+           rta.setFecha(this.fecha);
+           rta.setComentario(this.comentario);
+          
+           return rta;
+        }
 
 }

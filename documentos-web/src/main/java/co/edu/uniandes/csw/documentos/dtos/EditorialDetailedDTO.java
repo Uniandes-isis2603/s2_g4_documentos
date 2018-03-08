@@ -5,6 +5,11 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.CursoEntity;
+import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
+import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
+import co.edu.uniandes.csw.documentos.entities.LibroEntity;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +23,8 @@ import java.util.List;
 public class EditorialDetailedDTO extends EditorialDTO{
     
     private List<LibroDTO> libros;
+
+   
 /**
  * 
  * @return lista de libros que pertenecen a la editorial
@@ -37,8 +44,34 @@ public class EditorialDetailedDTO extends EditorialDTO{
 /**
  * consturctor por defecto
  */
-    public EditorialDetailedDTO() {
-        super();
+    public EditorialDetailedDTO() 
+    {
+      
     }
-    
+     public EditorialEntity toEntity()
+    {
+       EditorialEntity rta= super.toEntity();
+       if (libros != null) {
+            List<LibroEntity> listaEntity = new ArrayList<>();
+            for (LibroDTO dtoCurso : libros) 
+            {
+                listaEntity.add(dtoCurso.toEntity());
+            }
+            rta.setLibros(listaEntity);
+        }
+       return rta;
+    }
+    public EditorialDetailedDTO( EditorialEntity entidad)
+    {
+        super(entidad);
+        if(entidad!=null)
+        {
+            List<LibroDTO> lista= new ArrayList<>();
+            for (LibroEntity en :entidad.getLibros()) {
+                lista.add(new LibroDTO(en));
+                
+            }
+            this.setLibros(lista);
+        }
+    }
 }
