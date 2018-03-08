@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.documentos.test;
+package co.edu.uniandes.csw.documentos.test.logic;
 
-import co.edu.uniandes.csw.documentos.ejb.CompraLogic;
+import co.edu.uniandes.csw.documentos.ejb.EditorialLogic;
 import co.edu.uniandes.csw.documentos.entities.CursoEntity;
-import co.edu.uniandes.csw.documentos.entities.CompraEntity;
+import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.CursoPersistence;
 import java.util.ArrayList;
@@ -36,12 +36,12 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author n.sotelo
  */
 @RunWith(Arquillian.class)
-public class CompraLogicTest {
+public class EditorialLogicTest {
     
   private PodamFactory factory = new PodamFactoryImpl();
 
       @Inject
-    private CompraLogic cursoLogic;
+    private EditorialLogic cursoLogic;
 
     
     @PersistenceContext
@@ -50,27 +50,27 @@ public class CompraLogicTest {
  
     @Inject
     private UserTransaction utx;
-    private List<CompraEntity> datos = new ArrayList<>();
+    private List<EditorialEntity> datos = new ArrayList<>();
 
     
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(CompraEntity.class.getPackage())
-                .addPackage(CompraLogic.class.getPackage())
+                .addPackage(EditorialEntity.class.getPackage())
+                .addPackage(EditorialLogic.class.getPackage())
                 .addPackage(CursoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
      private void clearData() {
-        em.createQuery("delete from CompraEntity").executeUpdate();
+        em.createQuery("delete from EditorialEntity").executeUpdate();
         
     }
      
      private void insertData() {
         for (int i = 0; i < 3; i++) {
-            CompraEntity curso = factory.manufacturePojo(CompraEntity.class);
+            EditorialEntity curso = factory.manufacturePojo(EditorialEntity.class);
             em.persist(curso);
             datos.add(curso);
         }
@@ -96,19 +96,16 @@ public class CompraLogicTest {
     }
     
   @Test
-    public void createCompraTest() throws BusinessLogicException {
+    public void createEditorialTest() throws BusinessLogicException {
         
         try{
-            CompraEntity newEntity = factory.manufacturePojo(CompraEntity.class);
-             CompraEntity resultado = cursoLogic.createCompra(newEntity);
+            EditorialEntity newEntity = factory.manufacturePojo(EditorialEntity.class);
+             EditorialEntity resultado = cursoLogic.createEditorial(newEntity);
              Assert.assertNotNull(resultado);
-             CompraEntity entity = em.find(CompraEntity.class, resultado.getId());
+             EditorialEntity entity = em.find(EditorialEntity.class, resultado.getId());
         
         
-        Assert.assertEquals(newEntity.getCosto(), entity.getCosto());
-        Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
-        Assert.assertEquals(newEntity.getTipoDeCompra(), entity.getTipoDeCompra());
-        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
         }
         catch(BusinessLogicException e)
         {
@@ -116,13 +113,13 @@ public class CompraLogicTest {
         } 
     }
      @Test
-    public void getCompraesTest() {
+    public void getEditorialesTest() {
          try{
-        List<CompraEntity> list = cursoLogic.getCompras();
+        List<EditorialEntity> list = cursoLogic.getEditorials();
         Assert.assertEquals(datos.size(), list.size());
-        for (CompraEntity entity : list) {
+        for (EditorialEntity entity : list) {
             boolean found = false;
-            for (CompraEntity storedEntity : datos) {
+            for (EditorialEntity storedEntity : datos) {
                 if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
@@ -137,20 +134,18 @@ public class CompraLogicTest {
     }
     
       @Test
-    public void getCompraTest() 
+    public void getEditorialTest() 
     {
         
         try{
-            CompraEntity entity = datos.get(0);
-            CompraEntity resultEntity = cursoLogic.getCompra(entity.getId());
+            EditorialEntity entity = datos.get(0);
+            EditorialEntity resultEntity = cursoLogic.getEditorial(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         
            Assert.assertEquals(resultEntity.getId(), entity.getId());
         
-        Assert.assertEquals(resultEntity.getCosto(), entity.getCosto());
-        Assert.assertEquals(resultEntity.getFecha(), entity.getFecha());
-        Assert.assertEquals(resultEntity.getTipoDeCompra(), entity.getTipoDeCompra());
+        Assert.assertEquals(resultEntity.getNombre(), entity.getNombre());
         
         }
          catch(BusinessLogicException e)
@@ -159,11 +154,11 @@ public class CompraLogicTest {
         } 
     }
      @Test
-    public void deleteCompraTest() {
+    public void deleteEditorialTest() {
         try{
-        CompraEntity entity = datos.get(0);
-        cursoLogic.deleteCompra(entity.getId());
-        CompraEntity deleted = em.find(CompraEntity.class, entity.getId());
+        EditorialEntity entity = datos.get(0);
+        cursoLogic.deleteEditorial(entity.getId());
+        EditorialEntity deleted = em.find(EditorialEntity.class, entity.getId());
         Assert.assertNull(deleted);
          }
          catch(BusinessLogicException e)
@@ -172,24 +167,20 @@ public class CompraLogicTest {
         } 
     }
      @Test
-    public void updateComprasTest() throws BusinessLogicException {
-        CompraEntity entity = datos.get(0);
-        CompraEntity pojoEntity = factory.manufacturePojo(CompraEntity.class);
+    public void updateEditorialesTest() throws BusinessLogicException {
+        EditorialEntity entity = datos.get(0);
+        EditorialEntity pojoEntity = factory.manufacturePojo(EditorialEntity.class);
 
         pojoEntity.setId(entity.getId());
 
-        cursoLogic.updateCompra(pojoEntity.getId(), pojoEntity);
+        cursoLogic.updateEditorial(pojoEntity.getId(), pojoEntity);
 
-        CompraEntity resp = em.find(CompraEntity.class, entity.getId());
+        EditorialEntity resp = em.find(EditorialEntity.class, entity.getId());
 
       
           
          
-        
-         Assert.assertEquals(pojoEntity.getCosto(), resp.getCosto());
-        Assert.assertEquals(pojoEntity.getFecha(), resp.getFecha());
-        Assert.assertEquals(pojoEntity.getTipoDeCompra(), resp.getTipoDeCompra());
-        
+        Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
         
     }
     @BeforeClass

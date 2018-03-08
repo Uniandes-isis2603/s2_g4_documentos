@@ -3,18 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.documentos.test;
+package co.edu.uniandes.csw.documentos.test.logic;
 
-import co.edu.uniandes.csw.documentos.ejb.EditorialLogic;
+import co.edu.uniandes.csw.documentos.ejb.CursoLogic;
 import co.edu.uniandes.csw.documentos.entities.CursoEntity;
-import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.CursoPersistence;
+import com.sun.webkit.CursorManager;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -36,12 +37,11 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author n.sotelo
  */
 @RunWith(Arquillian.class)
-public class EditorialLogicTest {
-    
-  private PodamFactory factory = new PodamFactoryImpl();
+public class CursoLogicTest {
+     private PodamFactory factory = new PodamFactoryImpl();
 
       @Inject
-    private EditorialLogic cursoLogic;
+    private CursoLogic cursoLogic;
 
     
     @PersistenceContext
@@ -50,33 +50,34 @@ public class EditorialLogicTest {
  
     @Inject
     private UserTransaction utx;
-    private List<EditorialEntity> datos = new ArrayList<>();
+    private List<CursoEntity> datos = new ArrayList<>();
 
     
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(EditorialEntity.class.getPackage())
-                .addPackage(EditorialLogic.class.getPackage())
+                .addPackage(CursoEntity.class.getPackage())
+                .addPackage(CursoLogic.class.getPackage())
                 .addPackage(CursoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
      private void clearData() {
-        em.createQuery("delete from EditorialEntity").executeUpdate();
+        em.createQuery("delete from CursoEntity").executeUpdate();
         
     }
      
      private void insertData() {
         for (int i = 0; i < 3; i++) {
-            EditorialEntity curso = factory.manufacturePojo(EditorialEntity.class);
+            CursoEntity curso = factory.manufacturePojo(CursoEntity.class);
             em.persist(curso);
             datos.add(curso);
         }
      }
-    
-    
+    public CursoLogicTest()
+    {
+    }
     
     @Before
     public void configTest() {
@@ -96,15 +97,15 @@ public class EditorialLogicTest {
     }
     
   @Test
-    public void createEditorialTest() throws BusinessLogicException {
-        
+    public void createCursoTest() throws BusinessLogicException {
+        CursoEntity newEntity = factory.manufacturePojo(CursoEntity.class);
         try{
-            EditorialEntity newEntity = factory.manufacturePojo(EditorialEntity.class);
-             EditorialEntity resultado = cursoLogic.createEditorial(newEntity);
+             CursoEntity resultado = cursoLogic.createCurso(newEntity);
              Assert.assertNotNull(resultado);
-             EditorialEntity entity = em.find(EditorialEntity.class, resultado.getId());
-        
-        
+             CursoEntity entity = em.find(CursoEntity.class, resultado.getId());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getCodigo(), entity.getCodigo());
+        Assert.assertEquals(newEntity.getDepartamento(), entity.getDepartamento());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
         }
         catch(BusinessLogicException e)
@@ -113,13 +114,13 @@ public class EditorialLogicTest {
         } 
     }
      @Test
-    public void getEditorialesTest() {
+    public void getCursosTest() {
          try{
-        List<EditorialEntity> list = cursoLogic.getEditorials();
+        List<CursoEntity> list = cursoLogic.getCursos();
         Assert.assertEquals(datos.size(), list.size());
-        for (EditorialEntity entity : list) {
+        for (CursoEntity entity : list) {
             boolean found = false;
-            for (EditorialEntity storedEntity : datos) {
+            for (CursoEntity storedEntity : datos) {
                 if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
@@ -134,18 +135,18 @@ public class EditorialLogicTest {
     }
     
       @Test
-    public void getEditorialTest() 
+    public void getCursoTest() 
     {
         
         try{
-            EditorialEntity entity = datos.get(0);
-            EditorialEntity resultEntity = cursoLogic.getEditorial(entity.getId());
+            CursoEntity entity = datos.get(0);
+            CursoEntity resultEntity = cursoLogic.getCurso(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         
-           Assert.assertEquals(resultEntity.getId(), entity.getId());
-        
-        Assert.assertEquals(resultEntity.getNombre(), entity.getNombre());
+          Assert.assertEquals(entity.getCodigo(), resultEntity.getCodigo());
+        Assert.assertEquals(entity.getDepartamento(), resultEntity.getDepartamento());
+        Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
         
         }
          catch(BusinessLogicException e)
@@ -154,11 +155,11 @@ public class EditorialLogicTest {
         } 
     }
      @Test
-    public void deleteEditorialTest() {
+    public void deleteCursoTest() {
         try{
-        EditorialEntity entity = datos.get(0);
-        cursoLogic.deleteEditorial(entity.getId());
-        EditorialEntity deleted = em.find(EditorialEntity.class, entity.getId());
+        CursoEntity entity = datos.get(0);
+        cursoLogic.deleteCurso(entity.getId());
+        CursoEntity deleted = em.find(CursoEntity.class, entity.getId());
         Assert.assertNull(deleted);
          }
          catch(BusinessLogicException e)
@@ -167,19 +168,19 @@ public class EditorialLogicTest {
         } 
     }
      @Test
-    public void updateEditorialesTest() throws BusinessLogicException {
-        EditorialEntity entity = datos.get(0);
-        EditorialEntity pojoEntity = factory.manufacturePojo(EditorialEntity.class);
+    public void updateCursoTest() throws BusinessLogicException {
+        CursoEntity entity = datos.get(0);
+        CursoEntity pojoEntity = factory.manufacturePojo(CursoEntity.class);
 
         pojoEntity.setId(entity.getId());
 
-        cursoLogic.updateEditorial(pojoEntity.getId(), pojoEntity);
+        cursoLogic.updateCurso(pojoEntity.getId(), pojoEntity);
 
-        EditorialEntity resp = em.find(EditorialEntity.class, entity.getId());
+        CursoEntity resp = em.find(CursoEntity.class, entity.getId());
 
-      
-          
-         
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+         Assert.assertEquals(pojoEntity.getCodigo(), resp.getCodigo());
+        Assert.assertEquals(pojoEntity.getDepartamento(), resp.getDepartamento());
         Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
         
     }
@@ -199,5 +200,10 @@ public class EditorialLogicTest {
     public void tearDown() {
     }
 
-
+    // TODO add test methods here.
+    // The methods must be annotated with annotation @Test. For example:
+    //
+    // @Test
+    // public void hello() {}
 }
+

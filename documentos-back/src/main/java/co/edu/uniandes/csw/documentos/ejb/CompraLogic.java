@@ -41,7 +41,7 @@ public class CompraLogic {
         }
         if(entity.getFecha().after(fecha))
         {
-           throw new BusinessLogicException("La fecha no es valida");   
+           throw new BusinessLogicException("La fecha no es valida. fecha = " + entity.getFecha());   
         }
         return persistencia.create(entity);
     }

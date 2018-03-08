@@ -36,8 +36,7 @@ public class CompraEntity implements Serializable
      
      private Double costo;
      
-     @Temporal(TemporalType.DATE)
-     @PodamStrategyValue(DateStrategy.class)
+     @Temporal(TemporalType.TIMESTAMP)
      private Date fecha;
      private String tipoDeCompra;
      
