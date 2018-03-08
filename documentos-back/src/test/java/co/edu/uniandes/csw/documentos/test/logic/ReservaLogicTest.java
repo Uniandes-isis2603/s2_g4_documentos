@@ -177,6 +177,9 @@ public class ReservaLogicTest {
         ReservaEntity newEntity2 = factory.manufacturePojo(ReservaEntity.class);
         newEntity2.setCosto(23123);
         newEntity2.setFecha(new Date());
+        newEntity2.setDocumentos(null);
+         Long id = new Long("112");
+        newEntity2.setId(id);
         result = ReservaLogic.createReserva(newEntity2);
         Assert.assertNotNull(result);
         ReservaEntity entity = em.find(ReservaEntity.class, result.getId());
