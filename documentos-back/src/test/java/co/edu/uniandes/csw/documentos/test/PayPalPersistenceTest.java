@@ -138,7 +138,6 @@ public class PayPalPersistenceTest {
         
         PayPalEntity entity = em.find(PayPalEntity.class, result.getId());
         
-        Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getCorreoElectronico(), entity.getCorreoElectronico());
         Assert.assertEquals(newEntity.getUsuario(), entity.getUsuario());
     }

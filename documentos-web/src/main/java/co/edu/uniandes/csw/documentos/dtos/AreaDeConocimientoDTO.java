@@ -23,10 +23,12 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.AreaDeConocimientoEntity;
+
 /**
  * AreaDeConocimientoDTO Objeto de transferencia de datos de AreaDeConocimiento. Los DTO contienen las
- * represnetaciones de los JSON que se transfieren entre el cliente y el
- * servidor.
+ * represnetaciones de los JSON que se transfieren entre el cliente o usuario y el
+ * servidor
  * 
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
@@ -35,7 +37,7 @@ package co.edu.uniandes.csw.documentos.dtos;
  *      "tipo": string,
  *   }
  * </pre>
- * Por ejemplo una ciudad se representa asi:<br>
+ * Por ejemplo una area se representa asi:<br>
  * 
  * <pre>
  * 
@@ -52,10 +54,26 @@ public class AreaDeConocimientoDTO {
     private Long id;
     private String tipo;
 
+    
+    
     /**
-     * Constructor por defecto
+     * Constructor por defecto.
      */
     public AreaDeConocimientoDTO() {
+        //Este es un constructor por defecto
+    }
+    
+     /**
+     * Crea un objeto AreaDeConocimientoDTO a partir de un objeto AreaDeConocimientoEntity.
+     *
+     * @param entity Entidad AreaDeConocimientoEntity desde la cual se va a crear el nuevo
+     * objeto.
+     */
+    public AreaDeConocimientoDTO(AreaDeConocimientoEntity entity) {
+        if (entity != null) {
+            this.id = entity.getId();
+            this.tipo = entity.getTipo();
+        }
     }
 
     /**
@@ -86,4 +104,16 @@ public class AreaDeConocimientoDTO {
         this.tipo = tipo;
     }
 
+     /**
+     * Convierte un objeto AreaDeConocimientoDTO a AreaDeConocimientoEntity.
+     *
+     * @return Nueva objeto AreaDeConocimientoEntity.
+     * 
+     */
+    public AreaDeConocimientoEntity toEntity() {
+        AreaDeConocimientoEntity entity = new AreaDeConocimientoEntity();
+        entity.setId(this.getId());
+        entity.setTipo(this.getTipo());
+        return entity;
+    }
 }

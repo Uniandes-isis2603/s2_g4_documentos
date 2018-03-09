@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.documentos.ejb;
 import co.edu.uniandes.csw.documentos.entities.TarjetaDeCreditoEntity;
 import co.edu.uniandes.csw.documentos.entities.TarjetaDeCreditoEntity;
 import co.edu.uniandes.csw.documentos.entities.TarjetaDeCreditoEntity;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.TarjetaDeCreditoPersistence;
 import co.edu.uniandes.csw.documentos.persistence.TarjetaDeCreditoPersistence;
 import java.util.List;
@@ -34,17 +35,17 @@ public class TarjetaDeCreditoLogic
      * @param TDC tarjeta de TarjetaDeCredito a crear
      * @return instancia de TarjetaDeCredito
      */
-    public TarjetaDeCreditoEntity createTarjetaDeCredito(TarjetaDeCreditoEntity TDC)
+    public TarjetaDeCreditoEntity createTarjetaDeCredito(TarjetaDeCreditoEntity TDC) throws BusinessLogicException
     {
         
      LOGGER.log(Level.INFO, "Empezando la creacion de nueva TarjetaDeCredito");
-     TarjetaDeCreditoEntity entity = persistence.find(TDC.getId());
+     TarjetaDeCreditoEntity entity = persistence.findByNumber(TDC.getNroDeLaTarjeta());
      boolean check = true;
      
      if(entity != null)
      {
          LOGGER.log(Level.INFO, "La TDC ya existe");
-         return null;
+         throw new BusinessLogicException("La TDC ya existe");
      }
      
      if (TDC.getTipoDeTarjeta().equals("Visa"))
@@ -86,7 +87,7 @@ public class TarjetaDeCreditoLogic
      }
      
      
-     return null;
+     throw new BusinessLogicException("Error creando la tarjeta");
     }
     
     
@@ -129,7 +130,7 @@ public class TarjetaDeCreditoLogic
         TarjetaDeCreditoEntity entity = persistence.find(TDC.getId());
         if(entity == null)
         {
-        LOGGER.log(Level.INFO, "La TDC con el id {0} no existe ", entity.getId());
+        LOGGER.log(Level.INFO, "La TDC con el numero {0} no existe ", entity.getNroDeLaTarjeta());
         }
         else if (entity.getTipoDeTarjeta().equals("Visa"))
         {

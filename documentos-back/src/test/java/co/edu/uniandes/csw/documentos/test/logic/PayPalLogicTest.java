@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.documentos.test.logic;
 
 import co.edu.uniandes.csw.documentos.ejb.PayPalLogic;
 import co.edu.uniandes.csw.documentos.entities.PayPalEntity;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.PayPalPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -109,11 +110,28 @@ public class PayPalLogicTest {
     @Test
     public void createPayPal()
     {
+        PayPalEntity entity = factory.manufacturePojo(PayPalEntity.class);
+        entity.setCorreoElectronico("correoINVALIDO");
+        boolean check = true;
+        try
+        {
+        PayPalEntity result = PPLogic.createPayPal(entity);
+        }
+        catch(BusinessLogicException e)
+        {
+            Assert.assertTrue(e.getMessage().equals("El correo no es valido"));
+        }
         
-      PayPalEntity newEntity = factory.manufacturePojo(PayPalEntity.class);
-      PayPalEntity result = PPLogic.createPayPal(newEntity);
-      Assert.assertNull(result); //PODamFactpry no es capaz de producir emails con @ entonces me toca probar que cuando usa
-      // un correo sin @, es capaz de sacar null.
+        PayPalEntity entity2 = factory.manufacturePojo(PayPalEntity.class);
+        entity.setCorreoElectronico("correo@VALIDO");
+        try
+        {
+            PayPalEntity result = PPLogic.createPayPal(entity2);
+        }
+        catch(BusinessLogicException d)
+        {
+            System.out.println("Error grave en Logica");
+        }
     }
     
     @Test
@@ -122,9 +140,14 @@ public class PayPalLogicTest {
         
        PayPalEntity entity = factory.manufacturePojo(PayPalEntity.class);
        PayPalEntity existe  = data.get(0);
-       entity.setId(existe.getId());
-       PayPalEntity result = PPLogic.createPayPal(entity);
-       Assert.assertNull(result);              
+       entity.setCorreoElectronico(existe.getCorreoElectronico());
+        try {
+                PayPalEntity result = PPLogic.createPayPal(entity);
+        } catch (BusinessLogicException e) {
+            System.out.println(e.getMessage());
+            Assert.assertTrue(e.getMessage().equals("El correo no es valido"));
+        }
+   
     }
     
     @Test
@@ -155,27 +178,38 @@ public class PayPalLogicTest {
     }
     
     @Test
+    public void getPayPal3()
+    {
+        Long id = data.get(0).getId();
+        PayPalEntity result = PPLogic.getPayPal(id);
+        Assert.assertNotNull(result);
+    }
+    
+    @Test
     public void updatePayPal()
     {
         PayPalEntity newEntity = factory.manufacturePojo(PayPalEntity.class);
+        data.get(0).setCorreoElectronico("nofuncionagmail");
+        try
+        {
+         PPLogic.updatePayPal(data.get(0));
+        }
+        catch(BusinessLogicException e)
+        {
+            Assert.assertTrue(e.getMessage().equals("El correo no es valido"));
+        }
         
-        Long id  = new Long ("1234567890");
-        newEntity.setId(id);
-        
-        PPLogic.updatePayPal(newEntity);
-        PayPalEntity result = PPLogic.getPayPal(newEntity.getId());
-        Assert.assertNull(result);
-        
-        PayPalEntity entity2 = factory.manufacturePojo(PayPalEntity.class);
-        newEntity.setCorreoElectronico("gregoriohotmail.com");
-        result = PPLogic.updatePayPal(entity2);
-        Assert.assertNull(result);
-        
+        boolean check = true;
         PayPalEntity nEntity2 = data.get(0);
         nEntity2.setCorreoElectronico("gregorio@hotmail.com");
+        try{
         PayPalEntity result2 = PPLogic.updatePayPal(nEntity2);
-        Assert.assertNotNull(result2);
-
+        }
+        catch(BusinessLogicException e)
+        {
+        check = false;
+        }
+        Assert.assertTrue(check);
 
                 
     }
@@ -183,8 +217,16 @@ public class PayPalLogicTest {
     
     @Test
     public void deletePayPalTest() {
+        boolean check = true;
         PayPalEntity entity = data.get(0);
+        try{
         PPLogic.deletePayPal(entity.getId());
+        }
+        catch(BusinessLogicException e)
+        {
+            check = false;
+        }
+        Assert.assertTrue(check);
         PayPalEntity deleted = em.find(PayPalEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }

@@ -24,7 +24,6 @@ SOFTWARE.
 package co.edu.uniandes.csw.documentos.dtos;
 
 import co.edu.uniandes.csw.documentos.entities.AutorEntity;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -40,7 +39,7 @@ import java.util.List;
  *      "nombre": string
  *   }
  * </pre>
- * Por ejemplo una ciudad se representa asi:<br>
+ * Por ejemplo un autor se representa asi:<br>
  * 
  * <pre>
  * 
@@ -56,11 +55,14 @@ public class AutorDTO {
 
     private Long id;
     private String nombre;
+    
+    private List<DocumentoDTO> documentos;
 
     /**
      * Constructor por defecto
      */
     public AutorDTO() {
+        //Constructor por defecto
     }
     
      /**

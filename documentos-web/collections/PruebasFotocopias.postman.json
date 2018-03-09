@@ -1,0 +1,359 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebasFotocopias",
+		"_postman_id": "6bbf8d63-8fa9-1d72-d2bb-78737217db9a",
+		"description": "Pruebas de postman para el recurso Fotocopias.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear fotocopia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/fotocopias",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\n        \"calificacionPromedio\": 3.4,\n        \"caratula\": \"historia.jpg\",\n        \"descripcion\": \"libro de historia\",\n        \"nombre\": \"Historia de la vida\",\n        \"precio\": 120.5,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"capitulos\": \"todos\",\n        \"nroPaginas\": 25,\n        \"profesor\": \"Ana\"\n    }"
+				},
+				"description": "Crea fotocopia exitosamente"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear fotocopia con datos incompletos.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/fotocopias",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\n        \"calificacionPromedio\": 3.4,\n        \"caratula\": \"historia.jpg\",\n        \"descripcion\": \"libro de historia\",\n        \"nombre\": \"Historia de la vida\",\n        \"precio\": 120.5,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"capitulos\": \"todos\",\n        \"nroPaginas\": null,\n        \"profesor\": \"Ana\"\n    }"
+				},
+				"description": "Intenta crear una fotocopia con datos incompletos pero falla."
+			},
+			"response": []
+		},
+		{
+			"name": "Crea fotocopia con precio negativo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/fotocopias",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\n        \"calificacionPromedio\": 3.4,\n        \"caratula\": \"historia.jpg\",\n        \"descripcion\": \"libro de historia\",\n        \"nombre\": \"Historia de la vida\",\n        \"precio\": -120.5,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"capitulos\": \"todos\",\n        \"nroPaginas\": 12,\n        \"profesor\": \"Ana\"\n    }"
+				},
+				"description": "Intenta crear una fotocopia con precio negativo, pero falla."
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una fotocopia con un numero de paginas incorrecto.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/fotocopias",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\n        \"calificacionPromedio\": 3.4,\n        \"caratula\": \"historia.jpg\",\n        \"descripcion\": \"libro de historia\",\n        \"nombre\": \"Historia de la vida\",\n        \"precio\": 120.5,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"capitulos\": \"todos\",\n        \"nroPaginas\": 0,\n        \"profesor\": \"Ana\"\n    }"
+				},
+				"description": "Intenta crear una fotocopia con 0 paginas pero falla."
+			},
+			"response": []
+		},
+		{
+			"name": "Modifica una fotocopia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/fotocopias/200",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\n        \"calificacionPromedio\": 3.4,\n        \"caratula\": \"historia.jpg\",\n        \"descripcion\": \"libro de historia\",\n        \"nombre\": \"Historia de la vida\",\n        \"precio\": 120.5,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"capitulos\": \"todos\",\n        \"nroPaginas\": 24,\n        \"profesor\": \"Ana\"\n    }"
+				},
+				"description": "Modifica una fotocopia de manera exitosa"
+			},
+			"response": []
+		},
+		{
+			"name": "Modifica una fotocopia con datos incompletos.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/fotocopias/200",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\n        \"calificacionPromedio\": 3.4,\n        \"caratula\": \"historia.jpg\",\n        \"descripcion\": \"libro de historia\",\n        \"nombre\": \"Historia de la vida\",\n        \"precio\": 120.5,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"capitulos\": null,\n        \"nroPaginas\": 24,\n        \"profesor\": \"Ana\"\n    }"
+				},
+				"description": "Intenta modificar una fotocopia con datos incompletos pero falla."
+			},
+			"response": []
+		},
+		{
+			"name": "Modifica fotocopia  con paginas incorrectas.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/fotocopias/200",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\n        \"calificacionPromedio\": 3.4,\n        \"caratula\": \"historia.jpg\",\n        \"descripcion\": \"libro de historia\",\n        \"nombre\": \"Historia de la vida\",\n        \"precio\": 120.5,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"capitulos\": 123,\n        \"nroPaginas\": 0,\n        \"profesor\": \"Ana\"\n    }"
+				},
+				"description": "Intenta modificar una fotocopia con cero paginas pero falla."
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar fotocopia con precio negativo.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/fotocopias/200",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\n        \"calificacionPromedio\": 3.4,\n        \"caratula\": \"historia.jpg\",\n        \"descripcion\": \"libro de historia\",\n        \"nombre\": \"Historia de la vida\",\n        \"precio\": -120.5,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"capitulos\": 123,\n        \"nroPaginas\": 0,\n        \"profesor\": \"Ana\"\n    }"
+				},
+				"description": "Se intenta modificar una fotocopia con precio negativo pero falla."
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta todas las fotocopias.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/fotocopias",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Obtiene las fotocopias de manera efectiva."
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta una fotocopia por id.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/fotocopias/200",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Obtiene la fotocopia con id de manera exitosa."
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar una fotocopia segun el profesor.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/fotocopias/juan carlos",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Obtiene las fotocopias que puso ese profesor exitosamente."
+			},
+			"response": []
+		},
+		{
+			"name": "Elimina fotocopia.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/fotocopias/300",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Elimina fotocopia segun el id de manera exitosa."
+			},
+			"response": []
+		}
+	]
+}

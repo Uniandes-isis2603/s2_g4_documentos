@@ -25,11 +25,14 @@ package co.edu.uniandes.csw.documentos.resources;
 
 
 import co.edu.uniandes.csw.documentos.dtos.AreaDeConocimientoDetailDTO;
+import co.edu.uniandes.csw.documentos.ejb.AreaDeConocimientoLogic;
+import co.edu.uniandes.csw.documentos.entities.AreaDeConocimientoEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 
 import javax.ws.rs.DELETE;
@@ -61,6 +64,24 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class AreaDeConocimientoResource {
+    
+    @Inject
+    private AreaDeConocimientoLogic areaLogic;
+    
+    /**
+     * Convierte una lista de AreaDeConocimientoEntity a una lista de AreaDeConocimientoDetailDTO.
+     *
+     * @param entityList Lista de AreaDeConocimientoEntity a convertir.
+     * @return Lista de AreaDeConocimientoDetailDTO convertida.
+     * 
+     */
+    private List<AreaDeConocimientoDetailDTO> listEntity2DTO(List<AreaDeConocimientoEntity> entityList) {
+        List<AreaDeConocimientoDetailDTO> list = new ArrayList<>();
+        for (AreaDeConocimientoEntity entity : entityList) {
+            list.add(new AreaDeConocimientoDetailDTO(entity));
+        }
+        return list;
+    }
 
     /**
      * <h1>POST /api/areas : Crear un area.</h1>
@@ -86,7 +107,7 @@ public class AreaDeConocimientoResource {
      */
     @POST
     public AreaDeConocimientoDetailDTO createAreaDeConocimiento(AreaDeConocimientoDetailDTO area) throws BusinessLogicException {
-        return area;
+         return new AreaDeConocimientoDetailDTO(areaLogic.createArea(area.toEntity()));
     }
 
     /**
@@ -102,7 +123,7 @@ public class AreaDeConocimientoResource {
      */
     @GET
     public List<AreaDeConocimientoDetailDTO> getAreas() {
-        return new ArrayList<>();
+        return listEntity2DTO(areaLogic.getAreas());
     }
 
     /**
@@ -124,7 +145,8 @@ public class AreaDeConocimientoResource {
     @GET
     @Path("{id: \\d+}")
     public AreaDeConocimientoDetailDTO getArea(@PathParam("id") Long id) {
-        return null;
+        
+        return new AreaDeConocimientoDetailDTO(areaLogic.getArea(id));
     }
     
     /**
@@ -148,7 +170,9 @@ public class AreaDeConocimientoResource {
     @PUT
     @Path("{id: \\d+}")
     public AreaDeConocimientoDetailDTO updateArea(@PathParam("id") Long id, AreaDeConocimientoDetailDTO area) throws BusinessLogicException {
-        return area;
+        AreaDeConocimientoEntity entity = area.toEntity();
+        entity.setId(id);
+        return new AreaDeConocimientoDetailDTO(areaLogic.updateArea(entity));
     }
     
     /**
@@ -164,10 +188,12 @@ public class AreaDeConocimientoResource {
      * </code>
      * </pre>
      * @param id Identificador del area que se desea borrar. Este debe ser una cadena de dígitos.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no encontrar el area.
      */
     @DELETE
     @Path("{id: \\d+}")
-     public void deleteArea(@PathParam("id") Long id) {
+     public void deleteArea(@PathParam("id") Long id) throws BusinessLogicException {
         // Void
+        areaLogic.deleteArea(id);
     }
 }

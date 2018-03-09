@@ -50,7 +50,7 @@ public class PayPalPersistence {
     {
         LOGGER.log(Level.INFO, "COnsultando la cuenta por correoElectronico", correo);
         
-        TypedQuery query = em.createQuery("Select e From PayPalEntity e Where correoElectronico = ?1", PayPalEntity.class);
+        TypedQuery query = em.createQuery("Select e From PayPalEntity e Where e.correoElectronico = ?1", PayPalEntity.class);
         query = query.setParameter("1", correo);
         List<PayPalEntity> sameCorreo = query.getResultList();
         if(sameCorreo.isEmpty()){
