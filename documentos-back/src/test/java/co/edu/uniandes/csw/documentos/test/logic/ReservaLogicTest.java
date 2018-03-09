@@ -111,7 +111,7 @@ public class ReservaLogicTest {
                 entity.setCosto(entity.getCosto() * (-1));
             }
             if (entity.getFecha().before(new Date())) {
-                entity.setDocumentos(documentoData);
+                entity.setFecha(new Date());
             }
             em.persist(entity);
             data.add(entity);
@@ -174,9 +174,9 @@ public class ReservaLogicTest {
         result = ReservaLogic.createReserva(newEntity);
         Assert.assertNull(result);
 
-        ReservaEntity newEntity2 = factory.manufacturePojo(ReservaEntity.class);
+        ReservaEntity newEntity2 = data.get(0);
         newEntity2.setCosto(23123);
-        newEntity2.setFecha(new Date());
+        newEntity2.setFecha(new Date() );
         newEntity2.setDocumentos(null);
          Long id = new Long("112");
         newEntity2.setId(id);
