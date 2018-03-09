@@ -26,7 +26,9 @@ public class UsuarioEntity implements Serializable {
     private Long id;
     private String nombre;
     private String nombreUsuario;
-    private String contraseña;
+    private int edad;
+   private String correo;
+   private int genero;
 
     /**
      * reservas, relación de composición unidireccional
@@ -68,7 +70,7 @@ public class UsuarioEntity implements Serializable {
      */
     @PodamExclude
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DeseadoEntity> deseado;
+    private DeseadoEntity deseado;
 
     /**
      *
@@ -94,14 +96,25 @@ public class UsuarioEntity implements Serializable {
         return nombreUsuario;
     }
 
-    /**
-     *
-     * @return contraseña del usuario
-     */
-    public String getContraseña() {
-        return contraseña;
-    }
+  
 
+     /**
+     *
+     * @return edad del usuario
+     */
+    public int getEdad()
+    {
+        return edad;
+    }
+    
+     /**
+     *
+     * @param pEdad nueva edad del usuario.
+     */
+    public void setEdad(int pEdad)
+    {
+        this.edad=pEdad;
+    }
     /**
      *
      * @param pId nuevo id del usuario.
@@ -127,13 +140,120 @@ public class UsuarioEntity implements Serializable {
         this.nombreUsuario = pNombre;
     }
 
-    /**
-     *
-     * @param pContraseña nueva contraseña del usuario.
-     */
-    public void setContraseña(String pContraseña) {
-        this.contraseña = pContraseña;
+ 
 
+    /**
+     * @return the reservas
+     */
+    public List<ReservaEntity> getReservas() {
+        return reservas;
     }
 
+    /**
+     * @param reservas the reservas to set
+     */
+    public void setReservas(List<ReservaEntity> reservas) {
+        this.reservas = reservas;
+    }
+
+    /**
+     * @return the compras
+     */
+    public List<CompraEntity> getCompras() {
+        return compras;
+    }
+
+    /**
+     * @param compras the compras to set
+     */
+    public void setCompras(List<CompraEntity> compras) {
+        this.compras = compras;
+    }
+
+    /**
+     * @return the comentarios
+     */
+    public List<ComentarioEntity> getComentarios() {
+        return comentarios;
+    }
+
+    /**
+     * @param comentarios the comentarios to set
+     */
+    public void setComentarios(List<ComentarioEntity> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    /**
+     * @return the paypal
+     */
+    public List<PayPalEntity> getPaypal() {
+        return paypal;
+    }
+
+    /**
+     * @param paypal the paypal to set
+     */
+    public void setPaypal(List<PayPalEntity> paypal) {
+        this.paypal = paypal;
+    }
+
+    /**
+     * @return the tarjetasCredito
+     */
+    public List<TarjetaDeCreditoEntity> getTarjetasCredito() {
+        return tarjetasCredito;
+    }
+
+    /**
+     * @param tarjetasCredito the tarjetasCredito to set
+     */
+    public void setTarjetasCredito(List<TarjetaDeCreditoEntity> tarjetasCredito) {
+        this.tarjetasCredito = tarjetasCredito;
+    }
+
+    /**
+     * @return the deseado
+     */
+    public DeseadoEntity getDeseado() {
+        return deseado;
+    }
+
+    /**
+     * @param deseado the deseado to set
+     */
+    public void setDeseado(DeseadoEntity deseado) {
+        this.deseado = deseado;
+    }
+
+    /**
+     * @return the correo
+     */
+    public String getCorreo() {
+        return correo;
+    }
+
+    /**
+     * @param correo the correo to set
+     */
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    /**
+     * @return the genero
+     */
+    public int getGenero() {
+        return genero;
+    }
+
+    /**
+     * @param genero the genero to set
+     */
+    public void setGenero(int genero) {
+        this.genero = genero;
+    }
+
+    
+    
 }
