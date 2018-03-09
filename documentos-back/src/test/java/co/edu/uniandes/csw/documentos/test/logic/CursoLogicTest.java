@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.documentos.test.logic;
 
 import co.edu.uniandes.csw.documentos.ejb.CursoLogic;
@@ -38,20 +38,20 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class CursoLogicTest {
-     private PodamFactory factory = new PodamFactoryImpl();
-
-      @Inject
+    private PodamFactory factory = new PodamFactoryImpl();
+    
+    @Inject
     private CursoLogic cursoLogic;
-
+    
     
     @PersistenceContext
     private EntityManager em;
-
- 
+    
+    
     @Inject
     private UserTransaction utx;
     private List<CursoEntity> datos = new ArrayList<>();
-
+    
     
     @Deployment
     public static JavaArchive createDeployment() {
@@ -63,18 +63,18 @@ public class CursoLogicTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
-     private void clearData() {
+    private void clearData() {
         em.createQuery("delete from CursoEntity").executeUpdate();
         
     }
-     
-     private void insertData() {
+    
+    private void insertData() {
         for (int i = 0; i < 3; i++) {
             CursoEntity curso = factory.manufacturePojo(CursoEntity.class);
             em.persist(curso);
             datos.add(curso);
         }
-     }
+    }
     public CursoLogicTest()
     {
     }
@@ -95,91 +95,107 @@ public class CursoLogicTest {
             }
         }
     }
-    
-  @Test
+    /**
+     * Test para crear un curso
+     * @throws BusinessLogicException si no se cumple con las reglas de negocio
+     */
+    @Test
     public void createCursoTest() throws BusinessLogicException {
         CursoEntity newEntity = factory.manufacturePojo(CursoEntity.class);
         try{
-             CursoEntity resultado = cursoLogic.createCurso(newEntity);
-             Assert.assertNotNull(resultado);
-             CursoEntity entity = em.find(CursoEntity.class, resultado.getId());
-        Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getCodigo(), entity.getCodigo());
-        Assert.assertEquals(newEntity.getDepartamento(), entity.getDepartamento());
-        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+            CursoEntity resultado = cursoLogic.createCurso(newEntity);
+            Assert.assertNotNull(resultado);
+            CursoEntity entity = em.find(CursoEntity.class, resultado.getId());
+            Assert.assertEquals(newEntity.getId(), entity.getId());
+            Assert.assertEquals(newEntity.getCodigo(), entity.getCodigo());
+            Assert.assertEquals(newEntity.getDepartamento(), entity.getDepartamento());
+            Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
         }
         catch(BusinessLogicException e)
         {
             Assert.assertNotNull(e);
-        } 
-    }
-     @Test
-    public void getCursosTest() {
-         try{
-        List<CursoEntity> list = cursoLogic.getCursos();
-        Assert.assertEquals(datos.size(), list.size());
-        for (CursoEntity entity : list) {
-            boolean found = false;
-            for (CursoEntity storedEntity : datos) {
-                if (entity.getId().equals(storedEntity.getId())) {
-                    found = true;
-                }
-            }
-            Assert.assertTrue(found);
         }
-         }
-          catch(BusinessLogicException e)
+    }
+    /**
+     * Test para obtener todos los cursos y validar que sea correcta
+     */
+    @Test
+    public void getCursosTest() {
+        try{
+            List<CursoEntity> list = cursoLogic.getCursos();
+            Assert.assertEquals(datos.size(), list.size());
+            for (CursoEntity entity : list) {
+                boolean found = false;
+                for (CursoEntity storedEntity : datos) {
+                    if (entity.getId().equals(storedEntity.getId())) {
+                        found = true;
+                    }
+                }
+                Assert.assertTrue(found);
+            }
+        }
+        catch(BusinessLogicException e)
         {
             Assert.assertNotNull(e);
-        } 
+        }
     }
+    /**
+     * Test para obtener una editorial
+     */
     
-      @Test
-    public void getCursoTest() 
+    @Test
+    public void getCursoTest()
     {
         
         try{
             CursoEntity entity = datos.get(0);
             CursoEntity resultEntity = cursoLogic.getCurso(entity.getId());
-        Assert.assertNotNull(resultEntity);
-        Assert.assertEquals(entity.getId(), resultEntity.getId());
-        
-          Assert.assertEquals(entity.getCodigo(), resultEntity.getCodigo());
-        Assert.assertEquals(entity.getDepartamento(), resultEntity.getDepartamento());
-        Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
-        
+            Assert.assertNotNull(resultEntity);
+            Assert.assertEquals(entity.getId(), resultEntity.getId());
+            
+            Assert.assertEquals(entity.getCodigo(), resultEntity.getCodigo());
+            Assert.assertEquals(entity.getDepartamento(), resultEntity.getDepartamento());
+            Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
+            
         }
-         catch(BusinessLogicException e)
+        catch(BusinessLogicException e)
         {
             Assert.assertNotNull(e);
-        } 
+        }
     }
-     @Test
+    /**
+     * Test para borrar de manera correcta una entidad de tipo curso
+     */
+    @Test
     public void deleteCursoTest() {
         try{
-        CursoEntity entity = datos.get(0);
-        cursoLogic.deleteCurso(entity.getId());
-        CursoEntity deleted = em.find(CursoEntity.class, entity.getId());
-        Assert.assertNull(deleted);
-         }
-         catch(BusinessLogicException e)
+            CursoEntity entity = datos.get(0);
+            cursoLogic.deleteCurso(entity.getId());
+            CursoEntity deleted = em.find(CursoEntity.class, entity.getId());
+            Assert.assertNull(deleted);
+        }
+        catch(BusinessLogicException e)
         {
             Assert.assertNotNull(e);
-        } 
+        }
     }
-     @Test
+    /**
+     *  Test para actualizar la informacion de una enitdad.
+     * @throws BusinessLogicException
+     */
+    @Test
     public void updateCursoTest() throws BusinessLogicException {
         CursoEntity entity = datos.get(0);
         CursoEntity pojoEntity = factory.manufacturePojo(CursoEntity.class);
-
+        
         pojoEntity.setId(entity.getId());
-
+        
         cursoLogic.updateCurso(pojoEntity.getId(), pojoEntity);
-
+        
         CursoEntity resp = em.find(CursoEntity.class, entity.getId());
-
+        
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-         Assert.assertEquals(pojoEntity.getCodigo(), resp.getCodigo());
+        Assert.assertEquals(pojoEntity.getCodigo(), resp.getCodigo());
         Assert.assertEquals(pojoEntity.getDepartamento(), resp.getDepartamento());
         Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
         
@@ -199,7 +215,7 @@ public class CursoLogicTest {
     @After
     public void tearDown() {
     }
-
+    
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //

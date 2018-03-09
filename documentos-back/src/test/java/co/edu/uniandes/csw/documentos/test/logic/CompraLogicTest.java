@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.documentos.test.logic;
 
 import co.edu.uniandes.csw.documentos.ejb.CompraLogic;
@@ -42,20 +42,20 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class CompraLogicTest {
     
-  private PodamFactory factory = new PodamFactoryImpl();
-
-      @Inject
+    private PodamFactory factory = new PodamFactoryImpl();
+    
+    @Inject
     private CompraLogic cursoLogic;
-
+    
     
     @PersistenceContext
     private EntityManager em;
-
- 
+    
+    
     @Inject
     private UserTransaction utx;
     private List<CompraEntity> datos = new ArrayList<>();
-
+    
     
     @Deployment
     public static JavaArchive createDeployment() {
@@ -67,31 +67,31 @@ public class CompraLogicTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
-     private void clearData() {
+    private void clearData() {
         em.createQuery("delete from CompraEntity").executeUpdate();
         
     }
-     
-     private void insertData() {
-         
+    
+    private void insertData() {
+        
         for (int i = 0; i < 3; i++) {
             CompraEntity curso = factory.manufacturePojo(CompraEntity.class);
-         
+            
             curso.setFecha(fechaaux.getTime());
             
             em.persist(curso);
             datos.add(curso);
         }
-     }
+    }
     
-   
+    
     private Calendar fechaaux;
     
     
     @Before
     public void configTest() {
-              fechaaux = Calendar.getInstance();
-              fechaaux.set(2010, 3, 16);
+        fechaaux = Calendar.getInstance();
+        fechaaux.set(2010, 3, 16);
         try {
             utx.begin();
             clearData();
@@ -106,23 +106,26 @@ public class CompraLogicTest {
             }
         }
     }
-    
-  @Test
+    /**
+     * Test para crear una compra
+     * @throws BusinessLogicException si no se cumple con las reglas de negocio
+     */
+    @Test
     public void createCompraTest() throws BusinessLogicException {
         
         try{
             
-           
-            CompraEntity newEntity = factory.manufacturePojo(CompraEntity.class);
-          
-            newEntity.setFecha(fechaaux.getTime());
-          
-             CompraEntity resultado = cursoLogic.createCompra(newEntity);
             
-             Assert.assertNotNull(resultado);
-             
-             CompraEntity entity = em.find(CompraEntity.class, resultado.getId());
-             
+            CompraEntity newEntity = factory.manufacturePojo(CompraEntity.class);
+            
+            newEntity.setFecha(fechaaux.getTime());
+            
+            CompraEntity resultado = cursoLogic.createCompra(newEntity);
+            
+            Assert.assertNotNull(resultado);
+            
+            CompraEntity entity = em.find(CompraEntity.class, resultado.getId());
+            
             Assert.assertEquals(newEntity.getCosto(), entity.getCosto());
             Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
             Assert.assertEquals(newEntity.getTipoDeCompra(), entity.getTipoDeCompra());
@@ -131,31 +134,37 @@ public class CompraLogicTest {
         catch(BusinessLogicException e)
         {
             Assert.assertNotNull(e);
-        } 
-    }
-     @Test
-    public void getCompraesTest() {
-         try{
-        List<CompraEntity> list = cursoLogic.getCompras();
-        Assert.assertEquals(datos.size(), list.size());
-        for (CompraEntity entity : list) {
-            boolean found = false;
-            for (CompraEntity storedEntity : datos) {
-                if (entity.getId().equals(storedEntity.getId())) {
-                    found = true;
-                }
-            }
-            Assert.assertTrue(found);
         }
-         }
-          catch(BusinessLogicException e)
+    }
+    /**
+     * Test para obtener todas las compras
+     */
+    
+    @Test
+    public void getCompraesTest() {
+        try{
+            List<CompraEntity> list = cursoLogic.getCompras();
+            Assert.assertEquals(datos.size(), list.size());
+            for (CompraEntity entity : list) {
+                boolean found = false;
+                for (CompraEntity storedEntity : datos) {
+                    if (entity.getId().equals(storedEntity.getId())) {
+                        found = true;
+                    }
+                }
+                Assert.assertTrue(found);
+            }
+        }
+        catch(BusinessLogicException e)
         {
             Assert.assertNotNull(e);
-        } 
+        }
     }
-    
-      @Test
-    public void getCompraTest() 
+    /**
+     * Test para obtener una compra y validar que sea correcta
+     */
+    @Test
+    public void getCompraTest()
     {
         
         try{
@@ -165,49 +174,55 @@ public class CompraLogicTest {
             System.out.println("Resultado:"+resultEntity.getFecha()+"entity"+entity.getFecha());
             
             Assert.assertNotNull(resultEntity);
-           Assert.assertEquals(resultEntity.getId(), entity.getId());
-           Assert.assertEquals(resultEntity.getId(), entity.getId());   
-         Assert.assertEquals(resultEntity.getCosto(), entity.getCosto());
-        Assert.assertEquals(resultEntity.getFecha(), entity.getFecha());
-        Assert.assertEquals(resultEntity.getTipoDeCompra(), entity.getTipoDeCompra());
-        
+            Assert.assertEquals(resultEntity.getId(), entity.getId());
+            Assert.assertEquals(resultEntity.getId(), entity.getId());
+            Assert.assertEquals(resultEntity.getCosto(), entity.getCosto());
+            Assert.assertEquals(resultEntity.getFecha(), entity.getFecha());
+            Assert.assertEquals(resultEntity.getTipoDeCompra(), entity.getTipoDeCompra());
+            
         }
-         catch(BusinessLogicException e)
+        catch(BusinessLogicException e)
         {
             Assert.assertNotNull(e);
-        } 
+        }
     }
-     @Test
+    /**
+     * Test para borrar de manera correcta una entidad de tipo compra
+     */
+    @Test
     public void deleteCompraTest() {
         try{
-        CompraEntity entity = datos.get(0);
-        cursoLogic.deleteCompra(entity.getId());
-        CompraEntity deleted = em.find(CompraEntity.class, entity.getId());
-        Assert.assertNull(deleted);
-         }
-         catch(BusinessLogicException e)
+            CompraEntity entity = datos.get(0);
+            cursoLogic.deleteCompra(entity.getId());
+            CompraEntity deleted = em.find(CompraEntity.class, entity.getId());
+            Assert.assertNull(deleted);
+        }
+        catch(BusinessLogicException e)
         {
             Assert.assertNotNull(e);
-        } 
+        }
     }
+    /**
+     *  Test para actualizar la informacion de una enitdad.
+     * @throws BusinessLogicException
+     */
     
-    
-     @Test
+    @Test
     public void updateComprasTest() throws BusinessLogicException {
-       
+        
         CompraEntity entity = datos.get(0);
         
         CompraEntity pojoEntity = factory.manufacturePojo(CompraEntity.class);
         
-       
         
-         
+        
+        
         pojoEntity.setId(entity.getId());
         
         cursoLogic.updateCompra(pojoEntity.getId(), pojoEntity);
-         
+        
         CompraEntity resp = em.find(CompraEntity.class, entity.getId());
-
+        
         Assert.assertEquals(pojoEntity.getCosto(), resp.getCosto());
         Assert.assertEquals(pojoEntity.getFecha(), resp.getFecha());
         Assert.assertEquals(pojoEntity.getTipoDeCompra(), resp.getTipoDeCompra());
@@ -229,6 +244,6 @@ public class CompraLogicTest {
     @After
     public void tearDown() {
     }
-
-
+    
+    
 }
