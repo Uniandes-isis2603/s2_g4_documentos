@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.documentos.test.logic;
 
 import co.edu.uniandes.csw.documentos.ejb.EditorialLogic;
@@ -38,20 +38,19 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class EditorialLogicTest {
     
-  private PodamFactory factory = new PodamFactoryImpl();
-
-      @Inject
+    private PodamFactory factory = new PodamFactoryImpl();
+    
+    @Inject
     private EditorialLogic cursoLogic;
-
+    
     
     @PersistenceContext
     private EntityManager em;
-
- 
+    
+    
     @Inject
     private UserTransaction utx;
     private List<EditorialEntity> datos = new ArrayList<>();
-
     
     @Deployment
     public static JavaArchive createDeployment() {
@@ -63,18 +62,18 @@ public class EditorialLogicTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
-     private void clearData() {
+    private void clearData() {
         em.createQuery("delete from EditorialEntity").executeUpdate();
         
     }
-     
-     private void insertData() {
+    
+    private void insertData() {
         for (int i = 0; i < 3; i++) {
             EditorialEntity curso = factory.manufacturePojo(EditorialEntity.class);
             em.persist(curso);
             datos.add(curso);
         }
-     }
+    }
     
     
     
@@ -95,91 +94,107 @@ public class EditorialLogicTest {
         }
     }
     
-  @Test
+    /**
+     * Test para crear una editorial
+     * @throws BusinessLogicException si no se cumple con las reglas de negocio
+     */
+    @Test
     public void createEditorialTest() throws BusinessLogicException {
         
         try{
             EditorialEntity newEntity = factory.manufacturePojo(EditorialEntity.class);
-             EditorialEntity resultado = cursoLogic.createEditorial(newEntity);
-             Assert.assertNotNull(resultado);
-             EditorialEntity entity = em.find(EditorialEntity.class, resultado.getId());
-        
-        
-        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+            EditorialEntity resultado = cursoLogic.createEditorial(newEntity);
+            Assert.assertNotNull(resultado);
+            EditorialEntity entity = em.find(EditorialEntity.class, resultado.getId());
+            
+            
+            Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
         }
         catch(BusinessLogicException e)
         {
             Assert.assertNotNull(e);
-        } 
-    }
-     @Test
-    public void getEditorialesTest() {
-         try{
-        List<EditorialEntity> list = cursoLogic.getEditorials();
-        Assert.assertEquals(datos.size(), list.size());
-        for (EditorialEntity entity : list) {
-            boolean found = false;
-            for (EditorialEntity storedEntity : datos) {
-                if (entity.getId().equals(storedEntity.getId())) {
-                    found = true;
-                }
-            }
-            Assert.assertTrue(found);
         }
-         }
-          catch(BusinessLogicException e)
+    }
+    /**
+     * Test para obtener todas las editoriales y validar que sea correcta
+     */
+    @Test
+    public void getEditorialesTest() {
+        try{
+            List<EditorialEntity> list = cursoLogic.getEditorials();
+            Assert.assertEquals(datos.size(), list.size());
+            for (EditorialEntity entity : list) {
+                boolean found = false;
+                for (EditorialEntity storedEntity : datos) {
+                    if (entity.getId().equals(storedEntity.getId())) {
+                        found = true;
+                    }
+                }
+                Assert.assertTrue(found);
+            }
+        }
+        catch(BusinessLogicException e)
         {
             Assert.assertNotNull(e);
-        } 
+        }
     }
-    
-      @Test
-    public void getEditorialTest() 
+    /**
+     * Test para obtener una editorial
+     */
+    @Test
+    public void getEditorialTest()
     {
         
         try{
             EditorialEntity entity = datos.get(0);
             EditorialEntity resultEntity = cursoLogic.getEditorial(entity.getId());
-        Assert.assertNotNull(resultEntity);
-        Assert.assertEquals(entity.getId(), resultEntity.getId());
-        
-           Assert.assertEquals(resultEntity.getId(), entity.getId());
-        
-        Assert.assertEquals(resultEntity.getNombre(), entity.getNombre());
-        
+            Assert.assertNotNull(resultEntity);
+            Assert.assertEquals(entity.getId(), resultEntity.getId());
+            
+            Assert.assertEquals(resultEntity.getId(), entity.getId());
+            
+            Assert.assertEquals(resultEntity.getNombre(), entity.getNombre());
+            
         }
-         catch(BusinessLogicException e)
+        catch(BusinessLogicException e)
         {
             Assert.assertNotNull(e);
-        } 
+        }
     }
-     @Test
+    /**
+     * Test para borrar de manera correcta una entidad de tipo editorial
+     */
+    @Test
     public void deleteEditorialTest() {
         try{
-        EditorialEntity entity = datos.get(0);
-        cursoLogic.deleteEditorial(entity.getId());
-        EditorialEntity deleted = em.find(EditorialEntity.class, entity.getId());
-        Assert.assertNull(deleted);
-         }
-         catch(BusinessLogicException e)
+            EditorialEntity entity = datos.get(0);
+            cursoLogic.deleteEditorial(entity.getId());
+            EditorialEntity deleted = em.find(EditorialEntity.class, entity.getId());
+            Assert.assertNull(deleted);
+        }
+        catch(BusinessLogicException e)
         {
             Assert.assertNotNull(e);
-        } 
+        }
     }
-     @Test
+    /**
+     *  Test para actualizar la informacion de una enitdad.
+     * @throws BusinessLogicException
+     */
+    @Test
     public void updateEditorialesTest() throws BusinessLogicException {
         EditorialEntity entity = datos.get(0);
         EditorialEntity pojoEntity = factory.manufacturePojo(EditorialEntity.class);
-
+        
         pojoEntity.setId(entity.getId());
-
+        
         cursoLogic.updateEditorial(pojoEntity.getId(), pojoEntity);
-
+        
         EditorialEntity resp = em.find(EditorialEntity.class, entity.getId());
-
-      
-          
-         
+        
+        
+        
+        
         Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
         
     }
@@ -198,6 +213,6 @@ public class EditorialLogicTest {
     @After
     public void tearDown() {
     }
-
-
+    
+    
 }
