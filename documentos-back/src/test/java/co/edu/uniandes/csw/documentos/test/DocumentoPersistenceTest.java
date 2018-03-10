@@ -5,8 +5,10 @@
  */
 package co.edu.uniandes.csw.documentos.test;
 
+import co.edu.uniandes.csw.documentos.entities.AreaDeConocimientoEntity;
 import co.edu.uniandes.csw.documentos.entities.AutorEntity;
 import co.edu.uniandes.csw.documentos.entities.ComentarioEntity;
+import co.edu.uniandes.csw.documentos.entities.CursoEntity;
 import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
 import co.edu.uniandes.csw.documentos.entities.ImagenEntity;
 import co.edu.uniandes.csw.documentos.persistence.DocumentoPersistence;
@@ -46,6 +48,8 @@ public class DocumentoPersistenceTest {
                 .addPackage(ComentarioEntity.class.getPackage())
                 .addPackage(ImagenEntity.class.getPackage())
                 .addPackage(AutorEntity.class.getPackage())
+                .addPackage(AreaDeConocimientoEntity.class.getPackage())
+                .addPackage(CursoEntity.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }
@@ -108,6 +112,8 @@ public class DocumentoPersistenceTest {
         em.createQuery("delete from ComentarioEntity").executeUpdate();
         em.createQuery("delete from ImagenEntity").executeUpdate();
         em.createQuery("delete from AutorEntity").executeUpdate();
+        em.createQuery("delete from AreaDeConocimientoEntity").executeUpdate();
+        em.createQuery("delete from ComentarioEntity").executeUpdate();
     }
     
     /**
@@ -161,6 +167,36 @@ public class DocumentoPersistenceTest {
     private List<AutorEntity> autoresUpdate = new ArrayList<>();
     
     /**
+     * Lista de areas de conocimiento para las pruebas.
+     */
+    private List<AreaDeConocimientoEntity> areas = new ArrayList<>();
+    
+    /**
+     * Lista de areas de conocimiento  para las pruebas de crear.
+     */
+    private List<AreaDeConocimientoEntity> areasCreate = new ArrayList<>();
+    
+    /**
+     * Lista de areas de conocimiento para las pruebas de actualizar.
+     */
+    private List<AreaDeConocimientoEntity> areasUpdate = new ArrayList<>();
+    
+    /**
+     * Lista de cursos para las pruebas.
+     */
+    private List<CursoEntity> cursos = new ArrayList<>();
+    
+    /**
+     * Lista de cursos para las pruebas de crear.
+     */
+    private List<CursoEntity> cursosCreate = new ArrayList<>();
+    
+    /**
+     * Lista de cursos para las pruebas de actualizar.
+     */
+    private List<CursoEntity> cursosUpdate = new ArrayList<>();
+    
+    /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
      */
     private void insertData() {
@@ -171,29 +207,46 @@ public class DocumentoPersistenceTest {
             ComentarioEntity comentario = factory.manufacturePojo(ComentarioEntity.class);
             ImagenEntity imagen = factory.manufacturePojo(ImagenEntity.class);
             AutorEntity autor = factory.manufacturePojo(AutorEntity.class);
+            AreaDeConocimientoEntity area = factory.manufacturePojo(AreaDeConocimientoEntity.class);
+            CursoEntity curso = factory.manufacturePojo(CursoEntity.class);
+            
             em.persist(comentario);
             em.persist(imagen);
             em.persist(autor);
+            em.persist(area);
+            em.persist(curso);
+            
             comentarios.add(comentario);
             imagenes.add(imagen);
             autores.add(autor);
+            areas.add(area);
+            cursos.add(curso);
         }
         
-        //
+        //Agrego las relaciones al documento.
         for(int i = 0; i < 3; i++) {
             DocumentoEntity entity = factory.manufacturePojo(DocumentoEntity.class);
+            
             List<ComentarioEntity> comentariosDocumento = new ArrayList<>();
             List<ImagenEntity> imagenesDocumento = new ArrayList<>();
             List<AutorEntity> autoresDocumento = new ArrayList<>();
+            List<AreaDeConocimientoEntity> areasDocumento = new ArrayList<>();
+            List<CursoEntity> cursosDocumento = new ArrayList<>();
+            
             for(int k = i; k <= 9 ; k = k+3){
             comentariosDocumento.add(comentarios.get(k));
             imagenesDocumento.add(imagenes.get(k));
             autoresDocumento.add(autores.get(k));
+            areasDocumento.add(areas.get(k));
+            cursosDocumento.add(cursos.get(k));
         }
             //Se las relaciono a el documento y lo persisto todo junto
             entity.setComentarios(comentariosDocumento);
             entity.setImagenes(imagenesDocumento);
             entity.setAutores(autoresDocumento);
+            entity.setAreas(areasDocumento);
+            entity.setCursos(cursosDocumento);
+            
             em.persist(entity);
             data.add(entity);
         }
@@ -203,14 +256,20 @@ public class DocumentoPersistenceTest {
             ComentarioEntity comentario = factory.manufacturePojo(ComentarioEntity.class);
             ImagenEntity imagen = factory.manufacturePojo(ImagenEntity.class);
             AutorEntity autor = factory.manufacturePojo(AutorEntity.class);
+            AreaDeConocimientoEntity area = factory.manufacturePojo(AreaDeConocimientoEntity.class);
+            CursoEntity curso = factory.manufacturePojo(CursoEntity.class);
             
             em.persist(comentario);
             em.persist(imagen);
             em.persist(autor);
+            em.persist(area);
+            em.persist(curso);
             
             comentariosCreate.add(comentario);
             imagenesCreate.add(imagen);
             autoresCreate.add(autor);
+            areasCreate.add(area);
+            cursosCreate.add(curso);
         }
         
         //Se pueblan los datos que se van a probar en la prueba de actualizar.
@@ -219,14 +278,20 @@ public class DocumentoPersistenceTest {
             ComentarioEntity comentario = factory.manufacturePojo(ComentarioEntity.class);
             ImagenEntity imagen = factory.manufacturePojo(ImagenEntity.class);
             AutorEntity autor = factory.manufacturePojo(AutorEntity.class);
+            AreaDeConocimientoEntity area = factory.manufacturePojo(AreaDeConocimientoEntity.class);
+            CursoEntity curso = factory.manufacturePojo(CursoEntity.class);
             
             em.persist(comentario);
             em.persist(imagen);
             em.persist(autor);
+            em.persist(area);
+            em.persist(curso);
             
             comentariosUpdate.add(comentario);
             imagenesUpdate.add(imagen);
             autoresUpdate.add(autor);
+            areasUpdate.add(area);
+            cursosUpdate.add(curso);
         }
     }
     
@@ -245,6 +310,8 @@ public class DocumentoPersistenceTest {
        newEntity.setComentarios(comentariosCreate);
        newEntity.setImagenes(imagenesCreate);
        newEntity.setAutores(autoresCreate);
+       newEntity.setAreas(areasCreate);
+       newEntity.setCursos(cursosCreate);
        DocumentoEntity result = documentoPersistence.create(newEntity);
        
        Assert.assertNotNull(result);
@@ -256,6 +323,8 @@ public class DocumentoPersistenceTest {
            boolean foundComentario  = false;
            boolean foundImagen = false;
            boolean foundAutor = false;
+           boolean foundArea = false;
+           boolean foundCurso = false;
            for(int k = 0; k < 3; k++){
                if(newEntity.getComentarios().get(j).getId().equals(entity.getComentarios().get(k).getId())) {
                    foundComentario = true;
@@ -266,10 +335,18 @@ public class DocumentoPersistenceTest {
                if(newEntity.getAutores().get(j).getId().equals(entity.getAutores().get(k).getId())) {
                    foundAutor = true;
                }
+               if(newEntity.getAreas().get(j).getId().equals(entity.getAreas().get(k).getId())) {
+                   foundArea = true;
+               }
+               if(newEntity.getCursos().get(j).getId().equals(entity.getCursos().get(k).getId())) {
+                   foundCurso = true;
+               }
            }
            Assert.assertTrue(foundComentario);
            Assert.assertTrue(foundImagen);
            Assert.assertTrue(foundAutor);
+           Assert.assertTrue(foundArea);
+           Assert.assertTrue(foundCurso);
        }
        
    }
@@ -318,6 +395,25 @@ public class DocumentoPersistenceTest {
                        foundAutor = true;
                    }
                }
+               Assert.assertTrue(foundAutor);
+           }
+           for(AreaDeConocimientoEntity area : ent.getAreas()) {
+               boolean foundArea = false;
+               for(AreaDeConocimientoEntity areaData : areas) {
+                   if(area.getId().equals(areaData.getId())){
+                       foundArea = true;
+                   }
+               }
+               Assert.assertTrue(foundArea);
+           }
+           for(CursoEntity curso : ent.getCursos()) {
+               boolean foundCurso = false;
+               for(CursoEntity cursoData : cursos) {
+                   if(curso.getId().equals(cursoData.getId())){
+                       foundCurso = true;
+                   }
+               }
+               Assert.assertTrue(foundCurso);
            }
            
            Assert.assertTrue(found);
@@ -366,6 +462,24 @@ public class DocumentoPersistenceTest {
                }
                Assert.assertTrue(foundAutor);
            }
+           for(AreaDeConocimientoEntity area : entity.getAreas()) {
+               boolean foundArea = false;
+               for(AreaDeConocimientoEntity areaPrueba : areas) {
+                   if(area.getTipo().equals(areaPrueba.getTipo())) {
+                       foundArea = true;
+                   }
+               }
+               Assert.assertTrue(foundArea);
+           }
+           for(CursoEntity curso : entity.getCursos()) {
+               boolean foundCurso = false;
+               for(CursoEntity cursoPrueba : cursos) {
+                   if(curso.getNombre().equals(cursoPrueba.getNombre())) {
+                       foundCurso = true;
+                   }
+               }
+               Assert.assertTrue(foundCurso);
+           }
             
        }
        
@@ -389,6 +503,8 @@ public class DocumentoPersistenceTest {
        newEntity.setComentarios(comentariosUpdate);
        newEntity.setImagenes(imagenesUpdate);
        newEntity.setAutores(autoresUpdate);
+       newEntity.setAreas(areasUpdate);
+       newEntity.setCursos(cursosUpdate);
        
        documentoPersistence.update(newEntity);
        
@@ -425,6 +541,24 @@ public class DocumentoPersistenceTest {
            }
            Assert.assertTrue(foundAutor);
        }
+       for(AreaDeConocimientoEntity area : resp.getAreas()){ 
+           boolean foundArea = false;
+           for(AreaDeConocimientoEntity areaPrueba : areasUpdate) {
+               if(area.getTipo().equals(areaPrueba.getTipo())){
+                   foundArea = true;
+               }
+           }
+           Assert.assertTrue(foundArea);
+       }
+       for(CursoEntity curso : resp.getCursos()) {
+           boolean foundCurso = false;
+           for(CursoEntity cursoPrueba : cursosUpdate) {
+               if(curso.getNombre().equals(cursoPrueba.getNombre())) {
+                   foundCurso =true;
+               }
+           }
+           Assert.assertTrue(foundCurso);
+       }
    }
    
    /**
@@ -454,6 +588,14 @@ public class DocumentoPersistenceTest {
        for(AutorEntity autorPrueba : entity.getAutores()) {
            AutorEntity autor = em.find(AutorEntity.class,autorPrueba.getId());
            Assert.assertNotNull(autor);
+       }
+       for(AreaDeConocimientoEntity areaPrueba : entity.getAreas()) {
+           AreaDeConocimientoEntity area = em.find(AreaDeConocimientoEntity.class,areaPrueba.getId());
+           Assert.assertNotNull(area);
+       }
+       for(CursoEntity cursoPrueba : entity.getCursos()) {
+           CursoEntity curso = em.find(CursoEntity.class,cursoPrueba.getId());
+           Assert.assertNotNull(curso);
        }
        
    }
