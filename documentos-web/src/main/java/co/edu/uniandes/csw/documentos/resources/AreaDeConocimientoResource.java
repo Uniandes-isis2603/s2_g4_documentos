@@ -107,7 +107,7 @@ public class AreaDeConocimientoResource {
      */
     @POST
     public AreaDeConocimientoDetailDTO createAreaDeConocimiento(AreaDeConocimientoDetailDTO area) throws BusinessLogicException {
-         return new AreaDeConocimientoDetailDTO(areaLogic.createArea(area.toEntity()));
+        return new AreaDeConocimientoDetailDTO(areaLogic.createArea(area.toEntity()));
     }
 
     /**
@@ -123,7 +123,7 @@ public class AreaDeConocimientoResource {
      */
     @GET
     public List<AreaDeConocimientoDetailDTO> getAreas() {
-        return listEntity2DTO(areaLogic.getAreas());
+        return listEntity2DTO(areaLogic.getAreas());        
     }
 
     /**

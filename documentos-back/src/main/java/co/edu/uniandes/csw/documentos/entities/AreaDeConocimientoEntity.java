@@ -73,11 +73,17 @@ public class AreaDeConocimientoEntity implements Serializable {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
+    /**
+     * Retorna una nueva lista de Documentos al Area de Conocimiento
+     * @return documentos La lista de documentos asociada al area de Conocimiento
+     */
     public List<DocumentoEntity> getDocumentos() {
         return documentos;
     }
-
+    /**
+     * Coloca una nueva lista de Documentos al Area de Conocimiento
+     * @param documentos La nueva lista de documentos asociada al area de conocimiento
+     */
     public void setDocumentos(List<DocumentoEntity> documentos) {
         this.documentos = documentos;
     }
