@@ -90,6 +90,9 @@ public class FotocopiaPersistenceTest {
         em.createQuery("delete from FotocopiaEntity").executeUpdate();
     }
     
+    /**
+     * Lista de fotocopias que se quieren probar.
+     */
     private List<FotocopiaEntity> data = new ArrayList<>();
     
     /**
