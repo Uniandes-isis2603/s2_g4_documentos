@@ -5,7 +5,10 @@
  */
 package co.edu.uniandes.csw.documentos.test;
 
+import co.edu.uniandes.csw.documentos.entities.AutorEntity;
+import co.edu.uniandes.csw.documentos.entities.ComentarioEntity;
 import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
+import co.edu.uniandes.csw.documentos.entities.ImagenEntity;
 import co.edu.uniandes.csw.documentos.persistence.DocumentoPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +34,18 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class DocumentoPersistenceTest {
     
+    /**
+     * Deployment por defecto.
+     * @return un wrap que contiene todos los elementos a utilizar en la prueba.
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(DocumentoEntity.class.getPackage())
                 .addPackage(DocumentoPersistence.class.getPackage())
+                .addPackage(ComentarioEntity.class.getPackage())
+                .addPackage(ImagenEntity.class.getPackage())
+                .addPackage(AutorEntity.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }
@@ -62,7 +72,9 @@ public class DocumentoPersistenceTest {
     UserTransaction utx;
     
     
-    
+    /**
+     * Constructor por defeco
+     */
     public DocumentoPersistenceTest() {
     }
     
@@ -93,20 +105,128 @@ public class DocumentoPersistenceTest {
      */
     private void clearData() {
         em.createQuery("delete from DocumentoEntity").executeUpdate();
+        em.createQuery("delete from ComentarioEntity").executeUpdate();
+        em.createQuery("delete from ImagenEntity").executeUpdate();
+        em.createQuery("delete from AutorEntity").executeUpdate();
     }
     
+    /**
+     * Lista de documentoentity para probar.
+     */
     private List<DocumentoEntity> data = new ArrayList<>();
+    
+    /**
+     * Lista de comentarios para pruebas.
+     */
+    private List<ComentarioEntity> comentarios = new ArrayList<>();
+    
+    /**
+     * Lista de comentarios para la prueba de crear.
+     */
+    private List<ComentarioEntity> comentariosCreate = new ArrayList<>();
+    
+    /**
+     * Lista de comentarios para la prueba de actualizar.
+     */
+    private List<ComentarioEntity> comentariosUpdate = new ArrayList<>();
+    
+    /**
+     * Lista de imagenes para las pruebas.
+     */
+    private List<ImagenEntity> imagenes = new ArrayList<>();
+    
+    /**
+     * Lista de imagenes para las pruebas de crear.
+     */
+    private List<ImagenEntity> imagenesCreate = new ArrayList<>();
+    
+    /**
+     * Lista de imagenes para las pruebas de actualizar.
+     */
+    private List<ImagenEntity> imagenesUpdate = new ArrayList<>();
+    
+    /**
+     * Lista de autores para las pruebas.
+     */
+    private List<AutorEntity> autores = new ArrayList<>();
+    
+    /**
+     * Lista de autores para la prueba de crear.
+     */
+    private List<AutorEntity> autoresCreate = new ArrayList<>();
+    
+    /**
+     * Lista de autores para la prueba de actualizar.
+     */
+    private List<AutorEntity> autoresUpdate = new ArrayList<>();
     
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
+        
+        //Creo las relaciones posibles y las agrego tanto a la base de datos como a la lista de pruebas.
+        for(int j = 0; j <= 9; j++) {
+            ComentarioEntity comentario = factory.manufacturePojo(ComentarioEntity.class);
+            ImagenEntity imagen = factory.manufacturePojo(ImagenEntity.class);
+            AutorEntity autor = factory.manufacturePojo(AutorEntity.class);
+            em.persist(comentario);
+            em.persist(imagen);
+            em.persist(autor);
+            comentarios.add(comentario);
+            imagenes.add(imagen);
+            autores.add(autor);
+        }
+        
+        //
         for(int i = 0; i < 3; i++) {
             DocumentoEntity entity = factory.manufacturePojo(DocumentoEntity.class);
-            
+            List<ComentarioEntity> comentariosDocumento = new ArrayList<>();
+            List<ImagenEntity> imagenesDocumento = new ArrayList<>();
+            List<AutorEntity> autoresDocumento = new ArrayList<>();
+            for(int k = i; k <= 9 ; k = k+3){
+            comentariosDocumento.add(comentarios.get(k));
+            imagenesDocumento.add(imagenes.get(k));
+            autoresDocumento.add(autores.get(k));
+        }
+            //Se las relaciono a el documento y lo persisto todo junto
+            entity.setComentarios(comentariosDocumento);
+            entity.setImagenes(imagenesDocumento);
+            entity.setAutores(autoresDocumento);
             em.persist(entity);
             data.add(entity);
+        }
+        //Se pueblan los datos que se van a probar en la prueba de crear.
+        //por lo tanto no se agregan a ninguna entidad, solo se persisten y se agregan a las listas.
+        for(int l = 0; l < 3; l++){
+            ComentarioEntity comentario = factory.manufacturePojo(ComentarioEntity.class);
+            ImagenEntity imagen = factory.manufacturePojo(ImagenEntity.class);
+            AutorEntity autor = factory.manufacturePojo(AutorEntity.class);
+            
+            em.persist(comentario);
+            em.persist(imagen);
+            em.persist(autor);
+            
+            comentariosCreate.add(comentario);
+            imagenesCreate.add(imagen);
+            autoresCreate.add(autor);
+        }
+        
+        //Se pueblan los datos que se van a probar en la prueba de actualizar.
+        //por lo tanto no se agregan a ninguna entidad, solo se persisten y se agregan a las listas.
+        for(int l = 0; l < 3; l++){
+            ComentarioEntity comentario = factory.manufacturePojo(ComentarioEntity.class);
+            ImagenEntity imagen = factory.manufacturePojo(ImagenEntity.class);
+            AutorEntity autor = factory.manufacturePojo(AutorEntity.class);
+            
+            em.persist(comentario);
+            em.persist(imagen);
+            em.persist(autor);
+            
+            comentariosUpdate.add(comentario);
+            imagenesUpdate.add(imagen);
+            autoresUpdate.add(autor);
         }
     }
     
@@ -118,13 +238,39 @@ public class DocumentoPersistenceTest {
       
        PodamFactory factory  = new PodamFactoryImpl();
        DocumentoEntity newEntity = factory.manufacturePojo(DocumentoEntity.class);
+       
+       
+       //Agrego al documento entidades relacionadas a el que existen en la base
+       //de datos pero que no es parte de ningun documento.
+       newEntity.setComentarios(comentariosCreate);
+       newEntity.setImagenes(imagenesCreate);
+       newEntity.setAutores(autoresCreate);
        DocumentoEntity result = documentoPersistence.create(newEntity);
        
        Assert.assertNotNull(result);
-       
        DocumentoEntity entity = em.find(DocumentoEntity.class, result.getId());
-       
        Assert.assertEquals(newEntity.getNombre(),entity.getNombre());
+       
+       //Compruebo si al persistir si quedan como parte del documento.
+       for(int j = 0; j < 3; j++) {
+           boolean foundComentario  = false;
+           boolean foundImagen = false;
+           boolean foundAutor = false;
+           for(int k = 0; k < 3; k++){
+               if(newEntity.getComentarios().get(j).getId().equals(entity.getComentarios().get(k).getId())) {
+                   foundComentario = true;
+               }
+               if(newEntity.getImagenes().get(j).getId().equals(entity.getImagenes().get(k).getId())) {
+                   foundImagen = true;
+               }
+               if(newEntity.getAutores().get(j).getId().equals(entity.getAutores().get(k).getId())) {
+                   foundAutor = true;
+               }
+           }
+           Assert.assertTrue(foundComentario);
+           Assert.assertTrue(foundImagen);
+           Assert.assertTrue(foundAutor);
+       }
        
    }
    
@@ -136,12 +282,41 @@ public class DocumentoPersistenceTest {
        
        List<DocumentoEntity> list = documentoPersistence.findAll();
        Assert.assertEquals(data.size(), list.size());
-       
+      
+       //Compruebo que obtenga  a todos los documentos.
        for(DocumentoEntity ent : list){
            boolean found = false;
            for(DocumentoEntity entity: data) {
                if(ent.getId().equals(entity.getId())){
                    found = true;
+               }
+           }
+          
+           //Compruebo que obtengo los atributos de relacion que son segun la lista de pruebas
+           for(ComentarioEntity comentario : ent.getComentarios()){
+               boolean foundComentario = false;
+               for(ComentarioEntity comentarioData : comentarios) {
+                   if(comentario.getId().equals(comentarioData.getId())){
+                       foundComentario = true;
+                   }
+               }
+               Assert.assertTrue(foundComentario);
+           }
+           for(ImagenEntity imagen : ent.getImagenes()){
+               boolean foundImagen = false;
+               for(ImagenEntity imagenData : imagenes) {
+                   if(imagen.getId().equals(imagenData.getId())) {
+                       foundImagen = true;
+                   }
+               }
+               Assert.assertTrue(foundImagen);
+           }
+           for(AutorEntity autor : ent.getAutores()) {
+               boolean foundAutor = false;
+               for(AutorEntity autorData : autores) {
+                   if(autor.getId().equals(autorData.getId())){
+                       foundAutor = true;
+                   }
                }
            }
            
@@ -156,10 +331,44 @@ public class DocumentoPersistenceTest {
    @Test
    public void getDocumentoTest(){
        
-       DocumentoEntity entity = data.get(0);
-       DocumentoEntity newEntity = documentoPersistence.find(entity.getId());
-       Assert.assertNotNull(newEntity);
-       Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+       //Compruebo de que segun el id consigo los documentos.
+       for(int i = 0; i < data.size(); i++){
+           DocumentoEntity entity = data.get(i);
+           DocumentoEntity newEntity = documentoPersistence.find(entity.getId());
+           Assert.assertNotNull(newEntity);
+           Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+       
+           //Compruebo por cada relacion que en un documento especifico exista en la lista de pruebas
+           for(ComentarioEntity comentario : entity.getComentarios()){
+               boolean foundComentario = false;
+               for(ComentarioEntity comentarioPrueba : comentarios) {
+                   if(comentario.getComentario().equals(comentarioPrueba.getComentario())){
+                       foundComentario = true;
+                   }
+               }
+               Assert.assertTrue(foundComentario);
+           }
+           for(ImagenEntity imagen : entity.getImagenes()) {
+               boolean foundImagen = false;
+               for(ImagenEntity imagenPrueba : imagenes) {
+                   if(imagen.getNombre().equals(imagenPrueba.getNombre())){
+                       foundImagen = true;
+                   }
+               }
+               Assert.assertTrue(foundImagen);
+           }
+           for(AutorEntity autor : entity.getAutores()) {
+               boolean foundAutor = false;
+               for(AutorEntity autorPrueba : autores) {
+                   if(autor.getNombre().equals(autorPrueba.getNombre())) {
+                       foundAutor = true;
+                   }
+               }
+               Assert.assertTrue(foundAutor);
+           }
+            
+       }
+       
    }
    
    
@@ -168,17 +377,54 @@ public class DocumentoPersistenceTest {
     */
    @Test
    public void UpdateDocumentoTest() {
+       //se obtiene un documento en especifico
        DocumentoEntity entity = data.get(0);
        PodamFactory factory = new PodamFactoryImpl();
+       
+       //se crea otro documento con podam
        DocumentoEntity newEntity = factory.manufacturePojo(DocumentoEntity.class);
        
+       //se asegura que el documento tenga un id que ya existe, y le agrega las relaciones.
        newEntity.setId(entity.getId());
+       newEntity.setComentarios(comentariosUpdate);
+       newEntity.setImagenes(imagenesUpdate);
+       newEntity.setAutores(autoresUpdate);
        
        documentoPersistence.update(newEntity);
        
+       //Actualiza el documento y prueba que los cambios se hayan realizado.
        DocumentoEntity resp = em.find(DocumentoEntity.class, entity.getId());
-       
        Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
+       
+       //prueba que los cambios se realizaron en las relaciones del documento.
+       for(ComentarioEntity comentario : resp.getComentarios()){
+           boolean foundComentario = false;
+           for(ComentarioEntity comentarioPrueba: comentariosUpdate){
+               if(comentario.getComentario().equals(comentarioPrueba.getComentario()))
+               {
+                   foundComentario = true;
+               }
+           }
+           Assert.assertTrue(foundComentario);
+       }
+       for(ImagenEntity imagen : resp.getImagenes()){
+           boolean foundImagen = false;
+           for(ImagenEntity imagenPrueba : imagenesUpdate) {
+               if(imagen.getNombre().equals(imagenPrueba.getNombre())){
+                   foundImagen = true;
+               }
+           }
+           Assert.assertTrue(foundImagen);
+       }
+       for(AutorEntity autor : resp.getAutores()) {
+           boolean foundAutor = false;
+           for(AutorEntity autorPrueba : autoresUpdate) {
+               if(autor.getNombre().equals(autorPrueba.getNombre())){
+                   foundAutor =true;
+               }
+           }
+           Assert.assertTrue(foundAutor);
+       }
    }
    
    /**
@@ -186,9 +432,29 @@ public class DocumentoPersistenceTest {
     */
    @Test
    public void deleteDocumentoTest() {
+       //Obtengo un documento.
        DocumentoEntity entity = data.get(0);
+       //lo elimino.
        documentoPersistence.delete(entity.getId());
+       //Pruebo que no exista.
        DocumentoEntity deleted = em.find(DocumentoEntity.class, entity.getId());
        Assert.assertNull(deleted);
+       
+       //Pruebo que si la relacion es de composicion se debe eliminar todo rastro de la base dedatos
+       //Si no lo es, debe seguir existiendo.
+       for(ComentarioEntity comentarioPrueba : entity.getComentarios())
+       {
+           ComentarioEntity deletedComentario = em.find(ComentarioEntity.class, comentarioPrueba.getId());
+           Assert.assertNull(deletedComentario);
+       }
+       for(ImagenEntity imagenPrueba : entity.getImagenes()) {
+           ImagenEntity deletedImagen = em.find(ImagenEntity.class,imagenPrueba.getId());
+           Assert.assertNull(deletedImagen);
+       }
+       for(AutorEntity autorPrueba : entity.getAutores()) {
+           AutorEntity autor = em.find(AutorEntity.class,autorPrueba.getId());
+           Assert.assertNotNull(autor);
+       }
+       
    }
 }

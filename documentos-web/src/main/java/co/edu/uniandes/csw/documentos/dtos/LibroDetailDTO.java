@@ -65,7 +65,7 @@ public class LibroDetailDTO extends DocumentoDetailDTO {
         libroE.setDescripcion(super.toEntity().getDescripcion());
         libroE.setFechaPublicacion(this.fechaPublicacion);
         if(this.getEditorial() != null) {
-          //  libroE.setEditorial(this.getEditorial().toEntity());
+          libroE.setEditorial(this.getEditorial().toEntity());
         }
         
         return libroE;
