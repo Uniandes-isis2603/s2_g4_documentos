@@ -26,6 +26,7 @@ public class PayPalLogic {
     @Inject
     private PayPalPersistence persistence;
     
+    
     /**
      * Obtiene la lista de las cuentas PayPal
      * 
