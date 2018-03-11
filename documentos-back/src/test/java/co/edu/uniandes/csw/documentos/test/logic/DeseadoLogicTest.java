@@ -5,6 +5,7 @@ import co.edu.uniandes.csw.documentos.ejb.DeseadoLogic;
 import co.edu.uniandes.csw.documentos.entities.DeseadoEntity;
 import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
 import co.edu.uniandes.csw.documentos.entities.DeseadoEntity;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.DeseadoPersistence;
 import co.edu.uniandes.csw.documentos.persistence.DeseadoPersistence;
 import java.text.ParseException;
@@ -12,6 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -134,17 +137,30 @@ public class DeseadoLogicTest {
     public void createDeseadoTest1() throws ParseException {
 
         DeseadoEntity newEntity = factory.manufacturePojo(DeseadoEntity.class);
-        DeseadoEntity result = DeseadoLogic.createDeseado(newEntity);
+        DeseadoEntity result = null;
+        try {
+            result = DeseadoLogic.createDeseado(newEntity);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNotNull(result);
-
+        result = null;
         newEntity.setNombre("%$#hs_ñ");
-        result = DeseadoLogic.createDeseado(newEntity);
+        try {
+            result = DeseadoLogic.createDeseado(newEntity);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNull(result);
 
         newEntity = factory.manufacturePojo(DeseadoEntity.class);
 
         newEntity.setCantidad(-4);
-        result = DeseadoLogic.createDeseado(newEntity);
+        try {
+            result = DeseadoLogic.createDeseado(newEntity);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNull(result);
 
     }
@@ -158,7 +174,12 @@ public class DeseadoLogicTest {
     public void createDeseadoTest2() {
 
         DeseadoEntity newEntity = factory.manufacturePojo(DeseadoEntity.class);
-        DeseadoEntity result = DeseadoLogic.createDeseado(newEntity);
+        DeseadoEntity result = null;
+        try {
+            result = DeseadoLogic.createDeseado(newEntity);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNotNull(result);
 
         DeseadoEntity entity = em.find(DeseadoEntity.class, result.getId());
@@ -174,7 +195,7 @@ public class DeseadoLogicTest {
      */
     @Test
     public void getDeseadoesTest() {
-        List<DeseadoEntity> list = DeseadoLogic.getDeseadoes();
+        List<DeseadoEntity> list = DeseadoLogic.getDeseados();
         Assert.assertEquals(data.size(), list.size());
         for (DeseadoEntity entity : list) {
             boolean found = false;
@@ -224,12 +245,20 @@ public class DeseadoLogicTest {
      */
     @Test
     public void deleteDeseadoTest() {
-      DeseadoEntity newEntity = factory.manufacturePojo(DeseadoEntity.class);
-        DeseadoEntity result = DeseadoLogic.createDeseado(newEntity);
-        DeseadoLogic.deleteDeseado(result.getId());
-       DeseadoEntity tf= DeseadoLogic.getDeseado(result.getId());
+        DeseadoEntity newEntity = factory.manufacturePojo(DeseadoEntity.class);
+        DeseadoEntity result = null;
+        try {
+            result = DeseadoLogic.createDeseado(newEntity);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            DeseadoLogic.deleteDeseado(result.getId());
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DeseadoEntity tf = DeseadoLogic.getDeseado(result.getId());
         Assert.assertNull(tf);
-     
 
     }
 
@@ -245,18 +274,30 @@ public class DeseadoLogicTest {
 
         pojoEntity.setId(data.get(0).getId());
         pojoEntity.setNombre("");
-        DeseadoLogic.updateDeseado(pojoEntity);
+        try {
+            DeseadoLogic.updateDeseado(pojoEntity);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         DeseadoEntity encontrar = DeseadoLogic.getDeseado(pojoEntity.getId());
         Assert.assertNotEquals(encontrar.getNombre(), pojoEntity.getNombre());
 
         pojoEntity.setId(data.get(0).getId());
         pojoEntity.setNombre("habiaunavezunalistadedeseadosconunnombrebnlargoalv");
-        DeseadoLogic.updateDeseado(pojoEntity);
+        try {
+            DeseadoLogic.updateDeseado(pojoEntity);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         encontrar = DeseadoLogic.getDeseado(pojoEntity.getId());
         Assert.assertNotEquals(encontrar.getNombre(), pojoEntity.getNombre());
         pojoEntity.setId(data.get(0).getId());
         pojoEntity.setCantidad(-232134);
-        DeseadoLogic.updateDeseado(pojoEntity);
+        try {
+            DeseadoLogic.updateDeseado(pojoEntity);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         encontrar = DeseadoLogic.getDeseado(pojoEntity.getId());
         Assert.assertNotEquals(encontrar.getCantidad(), pojoEntity.getCantidad());
 
@@ -274,7 +315,11 @@ public class DeseadoLogicTest {
 
         pojoEntity.setId(entity.getId());
 
-        DeseadoLogic.updateDeseado(pojoEntity);
+        try {
+            DeseadoLogic.updateDeseado(pojoEntity);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         DeseadoEntity resp = em.find(DeseadoEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());

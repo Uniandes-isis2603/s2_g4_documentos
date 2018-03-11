@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.documentos.ejb;
 
 import co.edu.uniandes.csw.documentos.entities.ReservaEntity;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.ReservaPersistence;
 import java.util.Date;
 import java.util.List;
@@ -31,25 +32,29 @@ public class ReservaLogic {
      *
      * @param entity Objeto de ReservaEntity con los datos nuevos
      * @return Objeto de ReservaEntity con los datos nuevos y su ID.
+     * @throws co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException
      */
-    public ReservaEntity createReserva(ReservaEntity entity) {
+    public ReservaEntity createReserva(ReservaEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de crear una Reserva ");
-
+        Date date = new Date();
         ReservaEntity buscado = persistence.find(entity.getId());
         if (buscado != null) {
             LOGGER.log(Level.INFO, "La Reserva con el id {0} ya existe ", entity.getId());
-        } else if (entity.getId() == null || entity.getFecha() == null ) {
+           throw new BusinessLogicException("La Reserva con el id  ya existe");
+           
+        } else if (entity.getId() == null || entity.getFecha() == null) {
             LOGGER.log(Level.INFO, "los atributos son nulos o invalidos");
-        } else if (entity.getCosto() < 0) {
+          throw new BusinessLogicException("los atributos son nulos o invalidos");
+           
+        } else if (entity.getCosto() <= 0) {
             LOGGER.log(Level.INFO, "La Reserva tiene un valor menor a cero");
-        } else if (entity.getFecha().before(new Date())) {
-            LOGGER.log(Level.INFO, "la fecha de la reserva es anterior a la fecha actual");
+         throw new BusinessLogicException("La Reserva tiene un valor menor a cero");
 
         } else {
             return persistence.create(entity);
         }
 
-        return null;
+     
     }
 
     /**
@@ -57,7 +62,7 @@ public class ReservaLogic {
      *
      * @return Colección de objetos de ReservaEntity.
      */
-    public List<ReservaEntity> getReservaes() {
+    public List<ReservaEntity> getReservas() {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todas las Reservaes");
         return persistence.findAll();
     }
@@ -80,24 +85,31 @@ public class ReservaLogic {
      * @param entity Instancia de ReservaEntity con los nuevos datos.
      * @return Instancia de ReservaEntity con los datos actualizados.
      */
-    public ReservaEntity updateReserva(ReservaEntity entity) {
+    public ReservaEntity updateReserva(ReservaEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar una Reserva ");
 
         ReservaEntity buscado = persistence.find(entity.getId());
         if (buscado == null) {
             LOGGER.log(Level.INFO, "La Reserva con el id {0} no existe ", entity.getId());
+            throw new BusinessLogicException("La Reserva con el id dado no existe ");
+
         } else if (entity.getId() == null || entity.getFecha() == null || entity.getCosto() == 0) {
+
             LOGGER.log(Level.INFO, "los atributos son nulos o invalidos");
+            throw new BusinessLogicException("los atributos son nulos o invalidos");
+
         } else if (entity.getCosto() < 0) {
             LOGGER.log(Level.INFO, "La Reserva tiene un valor menor a cero");
+            throw new BusinessLogicException("La Reserva tiene un valor menor a cero");
+
         } else if (entity.getFecha().before(new Date())) {
             LOGGER.log(Level.INFO, "la fecha de la reserva es anterior a la fecha actual");
+            throw new BusinessLogicException("la fecha de la reserva es anterior a la fecha actual");
 
         } else {
             return persistence.update(entity);
         }
 
-        return null;
     }
 
     /**
@@ -105,12 +117,14 @@ public class ReservaLogic {
      *
      * @param id Identificador de la instancia a eliminar.
      */
-    public void deleteReserva(Long id) {
+    public void deleteReserva(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un reserva ");
 
         ReservaEntity buscado = persistence.find(id);
         if (buscado == null) {
             LOGGER.log(Level.INFO, "la Reserva con el id {0} no existe ", id);
+            throw new BusinessLogicException("la reserva con el id dado no existe " + id);
+
         } else {
             persistence.delete(id);
         }

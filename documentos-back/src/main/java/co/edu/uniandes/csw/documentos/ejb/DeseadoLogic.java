@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.documentos.ejb;
 
 import co.edu.uniandes.csw.documentos.entities.DeseadoEntity;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.DeseadoPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -33,22 +34,26 @@ public class DeseadoLogic {
      * @param entity Objeto de DeseadoEntity con los datos nuevos
      * @return Objeto de DeseadoEntity con los datos nuevos y su ID.
      */
-    public DeseadoEntity createDeseado(DeseadoEntity entity) {
+    public DeseadoEntity createDeseado(DeseadoEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de crear un deseado ");
 
         DeseadoEntity buscado = persistence.find(entity.getId());
         if (buscado != null) {
             LOGGER.log(Level.INFO, "el Deseado con el id {0} ya existe ", entity.getId());
+            throw new BusinessLogicException("La Deseado con el id dado ya existe ");
+
         } else if (entity.getNombre() == null || entity.getNombre().equals("") || entity.getNombre().length() > 15) {
             LOGGER.log(Level.INFO, "El nombre de la Deseado no puede ser nulo, vacio o tener mas de 15 caracteres");
+            throw new BusinessLogicException("El nombre de la Deseado no puede ser nulo, vacio o tener mas de 15 caracteres ");
+
         } else if (entity.getCantidad() < 0) {
             LOGGER.log(Level.INFO, "el Deseado no puede tener una cantidad menor a cero");
+            throw new BusinessLogicException("el Deseado no puede tener una cantidad menor a cero");
 
         } else {
             return persistence.create(entity);
         }
 
-        return null;
     }
 
     /**
@@ -56,7 +61,7 @@ public class DeseadoLogic {
      *
      * @return Colección de objetos de DeseadoEntity.
      */
-    public List<DeseadoEntity> getDeseadoes() {
+    public List<DeseadoEntity> getDeseados() {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todas las Deseadoes");
         return persistence.findAll();
     }
@@ -79,23 +84,23 @@ public class DeseadoLogic {
      * @param entity Instancia de DeseadoEntity con los nuevos datos.
      * @return Instancia de DeseadoEntity con los datos actualizados.
      */
-    public DeseadoEntity updateDeseado(DeseadoEntity entity) {
+    public DeseadoEntity updateDeseado(DeseadoEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar una Deseado ");
 
         DeseadoEntity buscado = persistence.find(entity.getId());
         if (buscado == null) {
             LOGGER.log(Level.INFO, "La Deseado con el id {0} no existe ", entity.getId());
+            throw new BusinessLogicException("La Deseado con el id dado no existe ");
         } else if (entity.getNombre() == null || entity.getNombre().equals("") || entity.getNombre().length() > 15) {
             LOGGER.log(Level.INFO, "El nombre de la Deseado no puede ser nulo, vacio o tener mas de 15 caracteres");
-        }else if(entity.getCantidad()<0){
-                        LOGGER.log(Level.INFO, "El deseado no puede tener una cantidad negativa de documentos");
+            throw new BusinessLogicException("El nombre de la Deseado no puede ser nulo, vacio o tener mas de 15 caracteres ");
+        } else if (entity.getCantidad() < 0) {
+            LOGGER.log(Level.INFO, "El deseado no puede tener una cantidad negativa de documentos");
+            throw new BusinessLogicException("El deseado no puede tener una cantidad negativa de documentos");
 
-        }
-        else {
+        } else {
             return persistence.update(entity);
         }
-
-        return null;
     }
 
     /**
@@ -103,12 +108,13 @@ public class DeseadoLogic {
      *
      * @param id Identificador de la instancia a eliminar.
      */
-    public void deleteDeseado(Long id) {
+    public void deleteDeseado(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un deseado ");
 
         DeseadoEntity buscado = persistence.find(id);
         if (buscado == null) {
             LOGGER.log(Level.INFO, "el deseado con el id {0} no existe ", id);
+            throw new BusinessLogicException("el deseado con el id {0} no existe " + id);
         } else {
             persistence.delete(id);
         }

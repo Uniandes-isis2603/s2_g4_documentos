@@ -13,6 +13,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -147,7 +149,17 @@ public class UsuarioLogicTest {
 
         for (int i = 0; i < 3; i++) {
             UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
-
+            if (entity.getEdad() < 17 || entity.getEdad() > 100) {
+                entity.setEdad(20);
+            } else if (entity.getGenero() < 0 || entity.getGenero() > 1) {
+                entity.setGenero(1);
+            } else if (!entity.getCorreo().contains("@")) {
+                entity.setCorreo("f.marroquin10@uniandes.edu.co");
+            }else if(entity.getUserName().length() < 7 || entity.getUserName().length() > 15)
+            {
+                entity.setNombreUsuario("el ferchis12");
+            }
+            entity.setNombre("el papa");
             entity.setComentarios(comentarioData);
             entity.setReservas(reservaData);
             entity.setCompras(compraData);
@@ -156,6 +168,8 @@ public class UsuarioLogicTest {
             em.persist(entity);
             data.add(entity);
         }
+        
+        
     }
 
     /**
@@ -164,30 +178,47 @@ public class UsuarioLogicTest {
      *
      */
     @Test
-    public void createUsuarioTestInvalido() throws ParseException {
+    public void createUsuarioTestInvalido() {
 
         UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
-        UsuarioEntity result = UsuarioLogic.createUsuario(newEntity);
+        UsuarioEntity result = null;
 
         Long id = new Long("111");
         newEntity.setId(id);
         newEntity.setNombre("(#/$6jd-´´");
-        result = UsuarioLogic.createUsuario(newEntity);
+        try {
+            result = UsuarioLogic.createUsuario(newEntity);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(UsuarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
         Assert.assertNull(result);
 
         newEntity.setNombre("maria antonia");
         newEntity.setEdad(-15);
-        result = UsuarioLogic.createUsuario(newEntity);
+        try {
+            result = UsuarioLogic.createUsuario(newEntity);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(UsuarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNull(result);
 
         newEntity.setEdad(18);
         newEntity.setGenero(-15);
-        result = UsuarioLogic.createUsuario(newEntity);
+        try {
+            result = UsuarioLogic.createUsuario(newEntity);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(UsuarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNull(result);
 
         newEntity.setGenero(0);
         newEntity.setCorreo("este no es un correo");
-        result = UsuarioLogic.createUsuario(newEntity);
+        try {
+            result = UsuarioLogic.createUsuario(newEntity);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(UsuarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNull(result);
 
     }
@@ -199,36 +230,34 @@ public class UsuarioLogicTest {
      */
     @Test
     public void createUsuarioTestValido() {
-        UsuarioEntity result = UsuarioLogic.getUsuario(data.get(0).getId());
+
+        UsuarioEntity newo = data.get(0);
+        Long d= new Long("123");
+        newo.setId(d);
+        newo.setNombre("carlos florez");
+        newo.setNombreUsuario("roger123");
+        newo.setCorreo("12jasd@hotmail.com");
+        newo.setEdad(32);
+        newo.setGenero(1);
+        newo.setNombreUsuario("roger123");
+        UsuarioEntity result = null;
+        newo.setId(new Long("23"));
+        try {
+            result = UsuarioLogic.createUsuario(newo);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(UsuarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Assert.assertNotNull(result);
 
         UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
+        Assert.assertNotNull(entity);
         Assert.assertEquals(result.getId(), entity.getId());
         Assert.assertEquals(result.getNombre(), entity.getNombre());
         Assert.assertEquals(result.getEdad(), entity.getEdad());
         Assert.assertEquals(result.getGenero(), entity.getGenero());
         Assert.assertEquals(result.getUserName(), entity.getUserName());
         Assert.assertEquals(result.getCorreo(), entity.getCorreo());
-        for (int i = 0; i < result.getComentarios().size(); i++) {
-            Assert.assertEquals(result.getComentarios().get(i).getId(), entity.getComentarios().get(i).getId());
-
-        }
-        for (int i = 0; i < result.getReservas().size(); i++) {
-            Assert.assertEquals(result.getReservas().get(i).getId(), entity.getReservas().get(i).getId());
-
-        }
-        for (int i = 0; i < result.getCompras().size(); i++) {
-            Assert.assertEquals(result.getCompras().get(i).getId(), entity.getCompras().get(i).getId());
-
-        }
-        for (int i = 0; i < result.getPaypal().size(); i++) {
-            Assert.assertEquals(result.getPaypal().get(i).getId(), entity.getPaypal().get(i).getId());
-
-        }
-        for (int i = 0; i < result.getTarjetasCredito().size(); i++) {
-            Assert.assertEquals(result.getTarjetasCredito().get(i).getId(), entity.getTarjetasCredito().get(i).getId());
-
-        }
-
+ 
     }
 
     /**
@@ -237,7 +266,7 @@ public class UsuarioLogicTest {
      *
      */
     @Test
-    public void getUsuariosTest() throws BusinessLogicException {
+    public void getUsuariosTest() {
         List<UsuarioEntity> list = UsuarioLogic.getUsuarios();
         Assert.assertEquals(data.size(), list.size());
         for (UsuarioEntity entity : list) {
@@ -260,11 +289,28 @@ public class UsuarioLogicTest {
     public void getUsuarioTestInvalido() {
 
         Long id = new Long("1");
-        UsuarioEntity resultEntity = UsuarioLogic.getUsuario(id);
+        UsuarioEntity resultEntity = null;
+        try {
+            resultEntity = UsuarioLogic.getUsuario(id);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(UsuarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNull(resultEntity);
 
     }
 
+    @Test
+    public void getUsuarioByname()
+    {
+        UsuarioEntity entity = null;
+        try {
+             entity= UsuarioLogic.getUsuarioByName(data.get(0).getUserName());
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(UsuarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                Assert.assertNotNull(entity);
+
+    }
     /**
      * Prueba para consultar un Usuario
      *
@@ -273,7 +319,12 @@ public class UsuarioLogicTest {
     @Test
     public void getUsuarioTestValido() {
         UsuarioEntity entity = data.get(0);
-        UsuarioEntity resultEntity = UsuarioLogic.getUsuario(entity.getId());
+        UsuarioEntity resultEntity = null;
+        try {
+            resultEntity = UsuarioLogic.getUsuario(entity.getId());
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(UsuarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
@@ -293,8 +344,16 @@ public class UsuarioLogicTest {
         UsuarioEntity entity = data.get(0);
         Long id = new Long("1111");
         entity.setId(id);
-        UsuarioLogic.createUsuario(entity);
-        UsuarioLogic.deleteUsuario(id);
+        try {
+            UsuarioLogic.createUsuario(entity);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(UsuarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            UsuarioLogic.deleteUsuario(id);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(UsuarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
@@ -316,16 +375,33 @@ public class UsuarioLogicTest {
         Long id = new Long("1111");
         nuevo.setId(id);
 
-        UsuarioEntity user = UsuarioLogic.createUsuario(nuevo);
+        UsuarioEntity user = null;
+        try {
+            user = UsuarioLogic.createUsuario(nuevo);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(UsuarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNotNull(user);
         nuevo.setNombre("federico mb");
-        user = UsuarioLogic.updateUsuario(nuevo);
+        try {
+            user = UsuarioLogic.updateUsuario(nuevo);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(UsuarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNotNull(user);
         nuevo.setCorreo("f.mquin10@uniandes.edu.co");
-        user = UsuarioLogic.updateUsuario(nuevo);
+        try {
+            user = UsuarioLogic.updateUsuario(nuevo);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(UsuarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNotNull(user);
         nuevo.setEdad(22);
-        user = UsuarioLogic.updateUsuario(nuevo);
+        try {
+            user = UsuarioLogic.updateUsuario(nuevo);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(UsuarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         UsuarioEntity entity = em.find(UsuarioEntity.class, user.getId());
         Assert.assertNotNull(user);
         Assert.assertEquals(user.getId(), entity.getId());
@@ -350,13 +426,26 @@ public class UsuarioLogicTest {
         Long id = new Long("1");
         pojoEntity.setId(id);
 
-        UsuarioLogic.updateUsuario(pojoEntity);
-        UsuarioEntity encontrar = UsuarioLogic.getUsuario(pojoEntity.getId());
+        try {
+            UsuarioLogic.updateUsuario(pojoEntity);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(UsuarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        UsuarioEntity encontrar = null;
+        try {
+            encontrar = UsuarioLogic.getUsuario(pojoEntity.getId());
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(UsuarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNull(encontrar);
 
         pojoEntity.setId(data.get(0).getId());
         pojoEntity.setNombre("as###$%&/#");
-        encontrar = UsuarioLogic.updateUsuario(pojoEntity);
+        try {
+            encontrar = UsuarioLogic.updateUsuario(pojoEntity);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(UsuarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNull(encontrar);
 
     }
