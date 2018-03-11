@@ -8,9 +8,13 @@ package co.edu.uniandes.csw.documentos.test.logic;
 import co.edu.uniandes.csw.documentos.ejb.AutorLogic;
 import co.edu.uniandes.csw.documentos.entities.AutorEntity;
 import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
+import co.edu.uniandes.csw.documentos.entities.FotocopiaEntity;
+import co.edu.uniandes.csw.documentos.entities.LibroEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.AutorPersistence;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -88,6 +92,9 @@ public class AutorLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from AutorEntity").executeUpdate();
+        em.createQuery("delete from DocumentoEntity").executeUpdate();
+        em.createQuery("delete from LibroEntity").executeUpdate();
+        em.createQuery("delete from FotocopiaEntity").executeUpdate();
     }
 
     /**
@@ -102,26 +109,8 @@ public class AutorLogicTest {
             AutorEntity entity = factory.manufacturePojo(AutorEntity.class);
             entity.setNombre("Autor "+i);
             em.persist(entity);
-            insertDataDocumentos();
             entity.setDocumentos(dataDocumentos);
             data.add(entity);
-         
-        }
-
-    }
-    
-     /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las
-     * pruebas.
-     *
-     *
-     */
-    private void insertDataDocumentos() {
-
-        for (int i = 0; i < 3; i++) {
-            DocumentoEntity entity = factory.manufacturePojo(DocumentoEntity.class);
-            em.persist(entity);
-            dataDocumentos.add(entity);
          
         }
 
@@ -296,7 +285,7 @@ public class AutorLogicTest {
     
 
     /**
-     * Prueba para actualizar un Autor valido
+     * Prueba para actualizar un Autor valido sin Documentos
      *
      *
      */
@@ -319,6 +308,110 @@ public class AutorLogicTest {
             Assert.fail(e.getMessage());
         }
 
+    }
+    
+    /**
+     * Prueba para actualizar un Autor valido pero Documentos no validos
+     *
+     *
+     */
+    @Test
+    public void updateAutorTest3() {
+        AutorEntity entity = data.get(0);
+        AutorEntity pojoEntity = factory.manufacturePojo(AutorEntity.class);
+        pojoEntity.setNombre("Juan");
+        pojoEntity.setDocumentos(addDocumentos());
+
+        try{
+            pojoEntity.setId(entity.getId());
+            autorLogic.updateAutor(pojoEntity);
+
+            AutorEntity resp = em.find(AutorEntity.class, entity.getId());
+
+            Assert.assertEquals(pojoEntity.getId(), resp.getId());
+            Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre()); 
+        }
+        catch (BusinessLogicException e){
+            Assert.fail(e.getMessage());
+        }
+        
+        pojoEntity.setDocumentos(addDocumentosMalos());
+        try{
+            pojoEntity.setId(entity.getId());
+            autorLogic.updateAutor(pojoEntity);
+            
+            //No deberia llegar aca
+            Assert.fail("No se generó el error esperado");
+        }
+        catch (BusinessLogicException e){
+            //Debe llegar acá
+        }
+
+
+    }
+    /**
+     * Metodo que permite agregar documentos validos
+     * @return documentos. Lista de documentos validos, entre Libros y Fotocopias
+     */
+    private List<DocumentoEntity> addDocumentos() {
+        List<DocumentoEntity> documentos = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            LibroEntity entity1 = factory.manufacturePojo(LibroEntity.class);
+            FotocopiaEntity entity2 = factory.manufacturePojo(FotocopiaEntity.class);
+            entity1.setPrecio(5.4);
+            entity1.setCalificacionPromedio(4.3);
+            entity1.setIsbn("978-0451524935");
+            Date fecha = new GregorianCalendar(2012,02,22).getTime();
+            entity1.setFechaPublicacion(fecha);
+            entity2.setNroPaginas(i+40);
+            entity2.setPrecio(5.4);
+            entity2.setProfesor("Profesor " + i);           
+
+            documentos.add(entity1);
+            documentos.add(entity2);
+        }
+        return documentos;
+    }
+
+    /**
+     * Metodo que retorna Documentos no vlaidos
+     * @return documentos. Lista donde los primeros 3 son validos y el resto no son validos
+     */
+    private List<DocumentoEntity> addDocumentosMalos() {
+        List<DocumentoEntity> documentos = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            if(i<3){
+                LibroEntity entity1 = factory.manufacturePojo(LibroEntity.class);
+                FotocopiaEntity entity2 = factory.manufacturePojo(FotocopiaEntity.class);
+                entity1.setPrecio(5.4);
+                entity1.setCalificacionPromedio(4.3);
+                entity1.setIsbn("978-0451524935");
+                Date fecha = new GregorianCalendar(2012,02,22).getTime();
+                entity1.setFechaPublicacion(fecha);
+                entity2.setNroPaginas(i+40);
+                entity2.setPrecio(5.4);
+                entity2.setProfesor("Profesor " + i);
+
+                documentos.add(entity1);
+                documentos.add(entity2);
+            }
+            else{
+                LibroEntity entity1 = factory.manufacturePojo(LibroEntity.class);
+                FotocopiaEntity entity2 = factory.manufacturePojo(FotocopiaEntity.class);
+                entity1.setPrecio(5.4);
+                entity1.setCalificacionPromedio(4.3);
+                Date fecha = new GregorianCalendar(2012,02,22).getTime();
+                entity1.setFechaPublicacion(fecha);
+                entity2.setNroPaginas(i-40);
+                entity2.setPrecio(5.4);
+                entity2.setProfesor("Profesor " + i);
+
+                documentos.add(entity1);
+                documentos.add(entity2);
+            }
+
+        }
+        return documentos;
     }
     
 }

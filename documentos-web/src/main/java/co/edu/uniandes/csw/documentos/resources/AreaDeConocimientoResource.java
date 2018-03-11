@@ -94,10 +94,10 @@ public class AreaDeConocimientoResource {
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Creó el nuevo area de conocimiento .
+     * 200 OK Creó el nuevo area de conocimiento.
      * </code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 412 Precodition Failed: Ya existe el area de conocimiento
+     * 412 Precodition Failed: Ya existe el area de conocimiento.
      * .
      * </code>
      * </pre>

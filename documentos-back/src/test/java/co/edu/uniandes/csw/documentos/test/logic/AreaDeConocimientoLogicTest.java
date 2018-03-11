@@ -294,7 +294,7 @@ public class AreaDeConocimientoLogicTest {
     
 
     /**
-     * Prueba para actualizar una area valida
+     * Prueba para actualizar una area valida sin documentos
      *
      *
      */
