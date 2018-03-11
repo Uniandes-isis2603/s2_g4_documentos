@@ -120,9 +120,9 @@ public class FotocopiaLogicTest {
         for(Integer i = 0; i < 3; i++)
         {
             FotocopiaEntity entity = factory.manufacturePojo(FotocopiaEntity.class);
-            entity.setId(i.longValue());
+            entity.setId(i.longValue()+1);
             em.persist(entity);
-            data.add(0,entity);
+            data.add(i,entity);
         }
         
         //Creando entities para prueba
