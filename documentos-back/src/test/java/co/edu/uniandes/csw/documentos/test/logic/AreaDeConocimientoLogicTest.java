@@ -8,9 +8,13 @@ package co.edu.uniandes.csw.documentos.test.logic;
 import co.edu.uniandes.csw.documentos.ejb.AreaDeConocimientoLogic;
 import co.edu.uniandes.csw.documentos.entities.AreaDeConocimientoEntity;
 import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
+import co.edu.uniandes.csw.documentos.entities.FotocopiaEntity;
+import co.edu.uniandes.csw.documentos.entities.LibroEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.AreaDeConocimientoPersistence;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -45,9 +49,7 @@ public class AreaDeConocimientoLogicTest {
     @Inject
     private UserTransaction utx;
 
-    private List<AreaDeConocimientoEntity> data = new ArrayList<AreaDeConocimientoEntity>();
-    
-    private List<DocumentoEntity> dataDocumentos = new ArrayList<DocumentoEntity>();
+    private List<AreaDeConocimientoEntity> data = new ArrayList<>();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -88,7 +90,9 @@ public class AreaDeConocimientoLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from AreaDeConocimientoEntity").executeUpdate();
-
+        em.createQuery("delete from DocumentoEntity").executeUpdate();
+        em.createQuery("delete from LibroEntity").executeUpdate();
+        em.createQuery("delete from FotocopiaEntity").executeUpdate();
     }
 
     /**
@@ -103,29 +107,12 @@ public class AreaDeConocimientoLogicTest {
             AreaDeConocimientoEntity entity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
             entity.setTipo("Area " + i);
             em.persist(entity);
-            insertDataDocumentos();
-            entity.setDocumentos(dataDocumentos);
             data.add(entity);
          
         }
 
     }
     
-     /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las
-     * pruebas.
-     *
-     *
-     */
-    private void insertDataDocumentos() {
-
-        for (int i = 0; i < 3; i++) {
-            DocumentoEntity entity = factory.manufacturePojo(DocumentoEntity.class);
-            em.persist(entity);
-            dataDocumentos.add(entity);
-        }
-
-    }
 
      /**
      * Prueba para crear un area no valido
@@ -137,6 +124,7 @@ public class AreaDeConocimientoLogicTest {
         
         AreaDeConocimientoEntity newEntity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
         newEntity.setTipo("Calculo");
+        newEntity.setDocumentos(addDocumentos());
         try
         {
             areaLogic.createArea(newEntity);
@@ -189,8 +177,8 @@ public class AreaDeConocimientoLogicTest {
         Assert.assertNotNull(result);
         
         AreaDeConocimientoEntity entity = em.find(AreaDeConocimientoEntity.class, result.getId());
-        Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getTipo(), entity.getTipo());  
+        Assert.assertEquals(result.getId(), entity.getId());
+        Assert.assertEquals(result.getTipo(), entity.getTipo());  
         }
         catch(BusinessLogicException e){
             Assert.fail(e.getMessage());
@@ -329,6 +317,110 @@ public class AreaDeConocimientoLogicTest {
             Assert.fail(e.getMessage());
         }
 
+    }
+
+    /**
+     * Prueba para actualizar una area valida pero documentos no validos
+     *
+     *
+     */
+    @Test
+    public void updateAreaTest3() {
+        AreaDeConocimientoEntity entity = data.get(0);
+        AreaDeConocimientoEntity pojoEntity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
+        pojoEntity.setTipo("Calculo");
+        pojoEntity.setDocumentos(addDocumentos());
+
+        try{
+            pojoEntity.setId(entity.getId());
+            areaLogic.updateArea(pojoEntity);
+
+            AreaDeConocimientoEntity resp = em.find(AreaDeConocimientoEntity.class, entity.getId());
+
+            Assert.assertEquals(pojoEntity.getId(), resp.getId());
+            Assert.assertEquals(pojoEntity.getTipo(), resp.getTipo()); 
+        }
+        catch (BusinessLogicException e){
+            Assert.fail(e.getMessage());
+        }
+        
+        pojoEntity.setDocumentos(addDocumentosMalos());
+        try{
+            pojoEntity.setId(entity.getId());
+            areaLogic.updateArea(pojoEntity);
+            
+            //No deberia llegar aca
+            Assert.fail("No se generó el error esperado");
+        }
+        catch (BusinessLogicException e){
+            //Debe llegar acá
+        }
+
+    }
+    
+    /**
+     * Metodo que permite agregar documentos validos
+     * @return documentos. Lista de documentos validos, entre Libros y Fotocopias
+     */
+    private List<DocumentoEntity> addDocumentos() {
+        List<DocumentoEntity> documentos = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            LibroEntity entity1 = factory.manufacturePojo(LibroEntity.class);
+            FotocopiaEntity entity2 = factory.manufacturePojo(FotocopiaEntity.class);
+            entity1.setPrecio(5.4);
+            entity1.setCalificacionPromedio(4.3);
+            entity1.setIsbn("978-0451524935");
+            Date fecha = new GregorianCalendar(2012,02,22).getTime();
+            entity1.setFechaPublicacion(fecha);
+            entity2.setNroPaginas(i+40);
+            entity2.setPrecio(5.4);
+            entity2.setProfesor("Profesor " + i);           
+
+            documentos.add(entity1);
+            documentos.add(entity2);
+        }
+        return documentos;
+    }
+
+    /**
+     * Metodo que retorna Documentos no vlaidos
+     * @return documentos. Lista donde los primeros 3 son validos y el resto no son validos
+     */
+    private List<DocumentoEntity> addDocumentosMalos() {
+        List<DocumentoEntity> documentos = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            if(i<3){
+                LibroEntity entity1 = factory.manufacturePojo(LibroEntity.class);
+                FotocopiaEntity entity2 = factory.manufacturePojo(FotocopiaEntity.class);
+                entity1.setPrecio(5.4);
+                entity1.setCalificacionPromedio(4.3);
+                entity1.setIsbn("978-0451524935");
+                Date fecha = new GregorianCalendar(2012,02,22).getTime();
+                entity1.setFechaPublicacion(fecha);
+                entity2.setNroPaginas(i+40);
+                entity2.setPrecio(5.4);
+                entity2.setProfesor("Profesor " + i);
+
+                documentos.add(entity1);
+                documentos.add(entity2);
+            }
+            else{
+                LibroEntity entity1 = factory.manufacturePojo(LibroEntity.class);
+                FotocopiaEntity entity2 = factory.manufacturePojo(FotocopiaEntity.class);
+                entity1.setPrecio(5.4);
+                entity1.setCalificacionPromedio(4.3);
+                Date fecha = new GregorianCalendar(2012,02,22).getTime();
+                entity1.setFechaPublicacion(fecha);
+                entity2.setNroPaginas(i-40);
+                entity2.setPrecio(5.4);
+                entity2.setProfesor("Profesor " + i);
+
+                documentos.add(entity1);
+                documentos.add(entity2);
+            }
+
+        }
+        return documentos;
     }
     
 }

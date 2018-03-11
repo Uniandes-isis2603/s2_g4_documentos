@@ -182,8 +182,8 @@ public class AutorLogicTest {
             newEntity.setNombre("Un Nombre");
             AutorEntity result = autorLogic.createAutor(newEntity);          
             AutorEntity entity = em.find(AutorEntity.class, result.getId());
-            Assert.assertEquals(newEntity.getId(), entity.getId());
-            Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+            Assert.assertEquals(result.getId(), entity.getId());
+            Assert.assertEquals(result.getNombre(), entity.getNombre());
         } catch (BusinessLogicException e) {
             Assert.fail(e.getMessage());
         }

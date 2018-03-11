@@ -141,35 +141,32 @@ public class AreaDeConocimientoLogic{
      * @throws BusinessLogicException Excepción cuando se incumple una regla de negocio.
      */
     private void addDocumentos(AreaDeConocimientoEntity entity) throws BusinessLogicException{
-        if (entity.getDocumentos() != null){
-            ArrayList<DocumentoEntity> documentos = new ArrayList<>();
+        ArrayList<DocumentoEntity> documentos = new ArrayList<>();
+        if (!entity.getDocumentos().isEmpty()){
+            
             for (DocumentoEntity documentoEntity: entity.getDocumentos()){
-                FotocopiaEntity fotocopia = fotocopiaLogic.getFotocopia(documentoEntity.getId());
-                LibroEntity libro = libroLogic.getLibro(documentoEntity.getId());
                 try{
-                    if (fotocopia != null){
-                        fotocopiaLogic.updateFotocopia(fotocopia.getId(), fotocopia);
+                    if (LibroEntity.class.equals(documentoEntity.getClass())){
+                        LibroEntity libro = libroLogic.getLibro(documentoEntity.getId());
+                        if (libro != null)
+                            libroLogic.updateLibro(libro.getId(), libro);
+                        else
+                            libroLogic.createLibro((LibroEntity) documentoEntity); 
                     }
-                    else if (libro != null){
-                        libroLogic.updateLibro(libro.getId(), libro);
-                    }
-                }
+                    else{
+                        FotocopiaEntity fotocopia = fotocopiaLogic.getFotocopia(documentoEntity.getId());
+                        if (fotocopia != null)
+                            fotocopiaLogic.updateFotocopia(fotocopia.getId(), fotocopia);
+                        else
+                            fotocopiaLogic.createFotocopia((FotocopiaEntity) documentoEntity); 
+                    }    
+                }    
                 catch(BusinessLogicException e){
-                    throw new BusinessLogicException(e.getMessage());    
+                    throw new BusinessLogicException(e.getMessage());  
                 }
-
-                try{
-                    fotocopiaLogic.createFotocopia(fotocopia);
-                }
-                catch(BusinessLogicException e){
-                    try{
-                        libroLogic.createLibro(libro);
-                    }
-                    catch(BusinessLogicException ex){
-                        throw new BusinessLogicException(e.getMessage() + "\n" + ex.getMessage());   
-                    }
-                }
+                documentos.add(documentoEntity);
             }
+            entity.setDocumentos(documentos);
         }
     }
 }
