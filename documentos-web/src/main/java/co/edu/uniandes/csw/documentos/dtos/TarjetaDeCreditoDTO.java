@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.TarjetaDeCreditoEntity;
+
 /**
  * <h1>TarjetaDeCreditoDTO Objeto que representa una tarjeta de credito para compras</h1>
  * <i>. Los DTO contienen las represnetaciones de los JSON que se 
@@ -57,6 +59,30 @@ public class TarjetaDeCreditoDTO {
     
     public TarjetaDeCreditoDTO(){
         
+    }
+    
+    public TarjetaDeCreditoDTO(TarjetaDeCreditoEntity entity)
+    {
+        if(entity != null)
+        {
+            this.Id = entity.getId();
+            this.nombreEnLaTarjeta = entity.getNombreEnLaTarjeta();
+            this.nroDeLaTarjeta = entity.getNroDeLaTarjeta();
+            this.numeroDeSeguridad = entity.getNumeroDeSeguridad();
+            this.tipoDeTarjeta = entity.getTipoDeTarjeta();
+        }
+    }
+    
+    public TarjetaDeCreditoEntity toEntity()
+    {
+        TarjetaDeCreditoEntity entity = new TarjetaDeCreditoEntity();
+        entity.setId(this.getId());
+        entity.setNombreEnLaTarjeta(this.getNombreEnLaTarjeta());
+        entity.setNroDeLaTarjeta(this.getNroDeLaTarjeta());
+        entity.setNumeroDeSeguridad(this.getNumeroDeSeguridad());
+        entity.setTipoDeTarjeta(this.getTipoDeTarjeta());
+        
+        return entity;
     }
     /**
      * @return the tipoDeTarjeta

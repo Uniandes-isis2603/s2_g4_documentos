@@ -5,15 +5,19 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
+import co.edu.uniandes.csw.documentos.entities.CursoEntity;
+import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
+
 /**
-  * CompraDTO Objeto de transferencia de datos de una editorial . Los DTO contienen las
+  * EditorialDTO Objeto de transferencia de datos de una editorial . Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
  * servidor.
  * 
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
- *      "ISBN":long,
+ *      
  *      "nombre": string,
  *      
  *   }
@@ -23,15 +27,24 @@ package co.edu.uniandes.csw.documentos.dtos;
  * <pre>
  * 
  *   {
- *      "ISBN": 978849,
+ *      
  *      "nombre": "Torre de Babel"
  *   }
  *
  * </pre>
  */
 public class EditorialDTO 
-{
-    private long ISBN;
+{  
+    private long id;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     private String nombre;
 /**
  * Constructor por defecto
@@ -40,13 +53,7 @@ public class EditorialDTO
     {
      
     }
-/**
- * 
- * @param ISBN Nuevo de la editorial
- */
-    public void setISBN(long ISBN) {
-        this.ISBN = ISBN;
-    }
+
 /**
  * 
  * @param nombre nuevo de la editorial 
@@ -56,13 +63,7 @@ public class EditorialDTO
         this.nombre = nombre;
     }
     
-/**
- * 
- * @return el isbn de la editorial 
- */
-    public long getISBN() {
-        return ISBN;
-    }
+
 /**
  * 
  * @return el nombre de la editorial
@@ -70,4 +71,24 @@ public class EditorialDTO
     public String getNombre() {
         return nombre;
     }
+     public EditorialDTO(EditorialEntity entidad)
+    {
+        if (entidad!=null)
+        {      this.id= entidad.getId();
+               this.nombre= entidad.getNombre();
+        }
+     
+    }
+     public EditorialEntity toEntity()
+        {
+            EditorialEntity rta= new EditorialEntity();
+           
+           rta.setId(this.id);
+   
+     rta.setNombre(this.nombre);
+     
+          
+           return rta;
+        }
+   
 }

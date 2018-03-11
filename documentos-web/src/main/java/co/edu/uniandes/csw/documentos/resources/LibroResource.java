@@ -6,9 +6,13 @@
 package co.edu.uniandes.csw.documentos.resources;
 
 import co.edu.uniandes.csw.documentos.dtos.LibroDetailDTO;
+import co.edu.uniandes.csw.documentos.ejb.LibroLogic;
+import co.edu.uniandes.csw.documentos.entities.LibroEntity;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -39,6 +43,8 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class LibroResource {
     
+    @Inject
+    LibroLogic libroLogic;
     /**
      * <h1> POST /api/libros : Crear un libro. </h1>
      * 
@@ -56,18 +62,20 @@ public class LibroResource {
      * 412 Precodition Failed: Ya existe el libro.
      * </code>
      * </pre>
+     * @throws BusinessLogicException desde la logica.
      * @param libro {@link LibroDetailDTO} - El libro que se desea guardar.
      * @return JSON {@link LibroDetailDTO} - El libro guardado con el id generado.
      */
     @POST
-    public LibroDetailDTO createLibro(LibroDetailDTO libro) {
-        return libro;
+    public LibroDetailDTO createLibro(LibroDetailDTO libro) throws BusinessLogicException{
+        return new LibroDetailDTO(libroLogic.createLibro(libro.toEntity()));
     }
     
     /**
      * <h1> GET /api/libros : Obtener todos los libros. </h1>
      * 
      * <pre> Busca y devuelve todos los libros que existen en la aplicacion.
+     * 
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
@@ -78,7 +86,7 @@ public class LibroResource {
      */
     @GET
     public List<LibroDetailDTO> getLibros() {
-        return new ArrayList<>();
+        return listLibroEntity2DetailDTO(libroLogic.getLibros());
     }
     
     /**
@@ -100,7 +108,8 @@ public class LibroResource {
     @GET
     @Path("{id: \\d+}")
     public LibroDetailDTO getLibro(@PathParam("id") Long id) {
-        return null;
+        LibroEntity entity = libroLogic.getLibro(id);
+        return new LibroDetailDTO(entity);
     }
     
     /**
@@ -120,9 +129,10 @@ public class LibroResource {
      * @return JSON {@link LibroDetailDTO} - El libro con el nombre buscado.
      */
     @GET
-    @Path("{nombre: [a-zA-Z][a-zA-Z_0-9]}")
-    public LibroDetailDTO getLibroByName(@PathParam("nombre") String nombre) {
-        return null;
+    @Path("{nombre}")
+    public List<LibroDetailDTO> getLibroByName(@PathParam("nombre") String nombre) {
+        List<LibroEntity> nombres = libroLogic.getLibrosByName(nombre);
+        return listLibroEntity2DetailDTO(nombres);
     }
     
     /**
@@ -138,14 +148,16 @@ public class LibroResource {
      * 404 Not Found. No existe un libro con el id dado.
      * </code>
      * </pre>
+     * @throws BusinessLogicException atrapada desde la logica.
      * @param id Id del libro que se desea actualizar.
      * @param libro {@link LibroDetailDTO} El libro que se desea guardar.
      * @return JSON {@link LibroDetailDTO} El libro guardado.
      */
     @PUT
     @Path("{id: \\d+}")
-    public LibroDetailDTO updateLibro(@PathParam("id") Long id, LibroDetailDTO libro) {
-        return libro;
+    public LibroDetailDTO updateLibro(@PathParam("id") Long id, LibroDetailDTO libro) throws BusinessLogicException{
+       libro.setId(id);
+       return new LibroDetailDTO(libroLogic.updateLibro(id, libro.toEntity()));
     }
     
     /**
@@ -166,6 +178,14 @@ public class LibroResource {
     @DELETE
     @Path("{id: \\d+}")
     public void deleteLibro(@PathParam("id") Long id){
-        
+        libroLogic.deleteLibro(id);
+    }
+    
+    private List<LibroDetailDTO> listLibroEntity2DetailDTO(List<LibroEntity> entityList) {
+        List<LibroDetailDTO> list = new ArrayList<>();
+        for(LibroEntity entity : entityList) {
+            list.add(new LibroDetailDTO(entity));
+        }
+        return list;
     }
 }

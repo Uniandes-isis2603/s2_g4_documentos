@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.MetodoDePagoEntity;
+
 /**
  *
  * @author g.ospinaa
@@ -12,24 +14,32 @@ package co.edu.uniandes.csw.documentos.dtos;
 public class MetodoDePagoDTO {
     
     
-    private String tipo;
+    private Long id;
     
     
     public MetodoDePagoDTO(){
 }
-
-    /**
-     * @return the tipo
-     */
-    public String getTipo() {
-        return tipo;
+    
+    public MetodoDePagoEntity toEntity()
+    {
+        MetodoDePagoEntity entity = new MetodoDePagoEntity();
+        entity.setId(this.id);
+        
+        return entity;
     }
 
     /**
-     * @param tipo the tipo to set
+     * @return the id
      */
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
     
     

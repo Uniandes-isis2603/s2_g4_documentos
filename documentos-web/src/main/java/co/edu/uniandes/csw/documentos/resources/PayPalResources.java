@@ -6,11 +6,16 @@
 package co.edu.uniandes.csw.documentos.resources;
 
 import co.edu.uniandes.csw.documentos.dtos.*;
+import co.edu.uniandes.csw.documentos.ejb.PayPalLogic;
+import co.edu.uniandes.csw.documentos.ejb.UsuarioLogic;
+import co.edu.uniandes.csw.documentos.entities.PayPalEntity;
+import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.mappers.BusinessLogicExceptionMapper;
 import java.util.List;
 import java.util.ArrayList;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,6 +24,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 
 /**
@@ -35,11 +41,17 @@ import javax.ws.rs.Produces;
  * 
  * @author g.ospinaa
  */
-@Path ("metodosdepago/paypal")
+@Path ("usuario/{usuarioId: \\d+}/metodosdepago/paypal")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class PayPalResources {
+    
+    @Inject
+    PayPalLogic PPLogic;
+    
+    @Inject
+    UsuarioLogic uLogic;
  
      /**
      * <h1> POST /api/metdodosdepago/paypal : crea una nueva cuenta paypal. </h1>
@@ -60,10 +72,17 @@ public class PayPalResources {
      * 
      */
     @POST
-    public PayPalDetailDTO createPayPal(PayPalDetailDTO payPal) throws BusinessLogicException
+    public PayPalDetailDTO createPayPal(@PathParam("usuarioId") Long Uid, PayPalDetailDTO payPal) throws BusinessLogicException
     {
+        UsuarioEntity entity = uLogic.getUsuario(Uid);
+        if(entity != null)
+        {
         return payPal;
+        }
+        
+        throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
     }
+
     
      /**
      * <h1> GET /api/metdodosdepago/paypal : encuentra todas las cuentas Paypal asociadas al usuario</h1>
@@ -80,9 +99,24 @@ public class PayPalResources {
      * @return todas las cuentas paypal que tiene el usuario.
      */
     @GET
-    public List<TarjetaDeCreditoDetailDTO> getPayPal()
+    public List<PayPalDetailDTO> getPayPal(@PathParam("usuarioId") Long Uid)
     {
-        return new ArrayList<>();
+        UsuarioEntity entity = uLogic.getUsuario(Uid);
+        if(entity != null)
+        {
+                return listaPP(PPLogic.getPayPal());
+        }
+        throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+    }
+    
+    private List<PayPalDetailDTO> listaPP(List<PayPalEntity> entityList)
+    {
+        List<PayPalDetailDTO> list = new ArrayList<>();
+        for(PayPalEntity entity : entityList)
+        {
+            list.add(new PayPalDetailDTO(entity));
+        }
+        return list;
     }
     
    /**
@@ -102,9 +136,20 @@ public class PayPalResources {
      */
     @GET
     @Path("{id: \\d+}")
-    public PayPalDetailDTO getPayPal(@PathParam("id") Long id)
+    public PayPalDetailDTO getPayPal(@PathParam("usuarioId") Long Uid, @PathParam("id") Long id)
     {
-      return null;
+        UsuarioEntity Uentity = uLogic.getUsuario(Uid);
+        if(Uentity != null)
+        {
+                throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe", 404);
+        }
+      PayPalEntity entity = PPLogic.getPayPal(id);
+      if(entity == null)
+      {
+          throw new WebApplicationException("el recurso no existe", 404);
+         
+      }
+      return new PayPalDetailDTO(entity);
     }
     
      /**
@@ -130,9 +175,22 @@ public class PayPalResources {
      */
     @PUT
     @Path("{id: \\d+}")
-    public PayPalDetailDTO updatePayPal(@PathParam("id)") Long id, PayPalDetailDTO paypal) throws BusinessLogicException
+    public PayPalDetailDTO updatePayPal(@PathParam("usuarioId") Long Uid, @PathParam("id)") Long id, PayPalDetailDTO paypal) throws BusinessLogicException
     {
-        return paypal;
+        UsuarioEntity Uentity = uLogic.getUsuario(Uid);
+        if(Uentity != null)
+        {
+                throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+        }
+        PayPalEntity entity = paypal.toEntity();
+        entity.setId(id);
+        PayPalEntity oldEntity = PPLogic.getPayPal(id);
+        if(oldEntity == null )
+        {
+            throw new WebApplicationException("La cuenta paypal no existe");
+        }
+        return new PayPalDetailDTO(PPLogic.updatePayPal(entity));
+        
     }
     
      /**
@@ -151,8 +209,20 @@ public class PayPalResources {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deletePayPal (@PathParam("id") Long id)
+    public void deletePayPal (@PathParam("usuarioId") Long Uid, @PathParam("id") Long id) throws BusinessLogicException
     {
-        // Void
+        UsuarioEntity Uentity = uLogic.getUsuario(Uid);
+        if(Uentity != null)
+        {
+                throw new WebApplicationException("el usuario al que le quiere modificar el recurso no existe");
+        }
+         PayPalEntity entity = PPLogic.getPayPal(id);
+        if (entity == null) {
+            throw new WebApplicationException("La cuenta paypal no existe", 404);
+        }
+        
+        PPLogic.deletePayPal(id);
+       
+       
     }
 }

@@ -23,6 +23,8 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.ImagenEntity;
+
 /**
  * ImagenDTO Objeto de transferencia de datos de AreaDeConocimiento. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -36,7 +38,7 @@ package co.edu.uniandes.csw.documentos.dtos;
  *      "img": string
  *   }
  * </pre>
- * Por ejemplo una ciudad se representa asi:<br>
+ * Por ejemplo una imagen se representa asi:<br>
  * 
  * <pre>
  * 
@@ -59,6 +61,21 @@ public class ImagenDTO {
      * Constructor por defecto
      */
     public ImagenDTO() {
+        //Constructor por defecto
+    }
+    
+    /**
+     * Crea un objeto AuthorDTO a partir de un objeto AuthorEntity.
+     *
+     * @param entity Entidad AuthorEntity desde la cual se va a crear el nuevo
+     * objeto.
+     * 
+     */
+    public ImagenDTO(ImagenEntity entity) {
+        if (entity != null) {
+            this.id = entity.getId();
+            this.nombre = entity.getNombre();
+        }
     }
     /**
      * @return el id de la imagen 
@@ -102,4 +119,17 @@ public class ImagenDTO {
         this.img = img;
     }
 
+    /**
+     * Convierte un objeto AuthorDTO a AuthorEntity.
+     *
+     * @return Nueva objeto AuthorEntity.
+     * 
+     */
+    public ImagenEntity toEntity() {
+        ImagenEntity entity = new ImagenEntity();
+        entity.setId(this.getId());
+        entity.setNombre(this.getNombre());
+
+        return entity;
+    }
 }

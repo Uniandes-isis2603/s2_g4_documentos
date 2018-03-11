@@ -5,6 +5,13 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.AreaDeConocimientoEntity;
+import co.edu.uniandes.csw.documentos.entities.AutorEntity;
+import co.edu.uniandes.csw.documentos.entities.ComentarioEntity;
+import co.edu.uniandes.csw.documentos.entities.CursoEntity;
+import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
+import co.edu.uniandes.csw.documentos.entities.ImagenEntity;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,11 +22,93 @@ import java.util.List;
  */
 public class DocumentoDetailDTO extends DocumentoDTO {
     
+    
     /**
      * Constructor por defecto
      */
     public DocumentoDetailDTO(){
+        super();
+    }
+    
+    /**
+     * Constructor  a partir de un entity.
+     * @param entity  entidad documento.
+     */
+    public DocumentoDetailDTO(DocumentoEntity entity){
         
+        super(entity);
+        if(entity.getAreas() != null) {
+            areas = new ArrayList<>();
+            for(AreaDeConocimientoEntity entityArea : entity.getAreas()) {
+               // areas.add(new AreaDeConocimientoDTO(entityArea));
+            }
+        } 
+        if(entity.getAutores() != null) {
+            autores = new ArrayList<>();
+            for(AutorEntity entityAutor : entity.getAutores()) {
+                autores.add(new AutorDTO(entityAutor));
+            }
+        }
+        if(entity.getComentarios() != null) {
+            comentarios = new ArrayList<>();
+            for(ComentarioEntity entityComentario : entity.getComentarios()){
+               // comentarios.add(new ComentarioDTO(entityComentario))
+            }
+        }
+        if(entity.getCursos() != null){
+            cursos = new ArrayList<>();
+            for(CursoEntity entityCurso : entity.getCursos()){
+                //cursos.add(new CursoDTO(entityCurso));
+            }
+        }
+        if(entity.getImagenes() != null) {
+            imagenes = new ArrayList<>();
+            for(ImagenEntity entityImagen : entity.getImagenes()) {
+                //imagenes.add(new ImagenDTO(entityImagen));
+            }
+        }
+        
+    }
+    @Override
+    public DocumentoEntity toEntity() {
+        DocumentoEntity documentoE = super.toEntity();
+        if(this.getAreas() != null) {
+            List<AreaDeConocimientoEntity> areasEntity = new ArrayList<>();
+            for(AreaDeConocimientoDTO dtoAreas : getAreas()){
+              //  areasEntity.add(dtoAreas.toEntity());
+            }
+            documentoE.setAreas(areasEntity);
+        }
+        if(this.getAutores() != null) {
+            List<AutorEntity> autoresEntity = new ArrayList<>();
+            for(AutorDTO dtoAutores : getAutores()) {
+                autoresEntity.add(dtoAutores.toEntity());
+            }
+            documentoE.setAutores(autoresEntity);
+        }
+        if(this.getComentarios() != null) {
+            List<ComentarioEntity> comentariosEntity = new ArrayList<>();
+            for(ComentarioDTO dtoComentarios : getComentarios()) {
+             //   comentariosEntity.add(dtoComentarios.toEntity());
+            }
+            documentoE.setComentarios(comentariosEntity);
+        }
+        if(this.getCursos() != null) {
+            List<CursoEntity> cursosEntity = new ArrayList<>();
+            for(CursoDTO dtoCursos : getCursos()) {
+             //   cursosEntity.add(dtoCursos.toEntity());
+            }
+            documentoE.setCursos(cursosEntity);
+        }
+        if(this.getImagenes() != null) {
+            List<ImagenEntity> imagenesEntity = new ArrayList<>();
+            for(ImagenDTO dtoImagenes : getImagenes()) {
+               // imagenesEntity.add(dtoImagenes.toEntity());
+            }
+            documentoE.setImagenes(imagenesEntity);
+        }
+        
+        return documentoE;
     }
     
     /**
@@ -45,7 +134,7 @@ public class DocumentoDetailDTO extends DocumentoDTO {
     /**
      * Relacion de 0 a 1 curso.
      */
-    private CursoDTO curso;
+    private List<CursoDTO> cursos;
 
     /**
      * Devuelve las imagenes asociadas a este documento.
@@ -115,16 +204,16 @@ public class DocumentoDetailDTO extends DocumentoDTO {
      * Devuelve el curso al cual pertenece el documento.
      * @return el curso del documento.
      */
-    public CursoDTO getCurso() {
-        return curso;
+    public List<CursoDTO> getCursos() {
+        return cursos;
     }
 
     /**
      * Modifica el curso del documento
-     * @param curso del documento.
+     * @param cursos del documento.
      */
-    public void setCurso(CursoDTO curso) {
-        this.curso = curso;
+    public void setCursos(List<CursoDTO> cursos) {
+        this.cursos = cursos;
     }
     
     

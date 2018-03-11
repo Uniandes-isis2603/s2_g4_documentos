@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.documentos.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 
 /**
@@ -15,8 +17,12 @@ import javax.persistence.Entity;
  * @author g.ospinaa
  */
 @Entity
-public class PayPalEntity extends BaseEntity implements Serializable{
+public class PayPalEntity extends MetodoDePagoEntity implements Serializable{
 
+    @PodamExclude
+    @ManyToOne
+    private UsuarioEntity UEntity;
+    
     private String usuario;
     private String correoElectronico;
     
@@ -47,6 +53,22 @@ public class PayPalEntity extends BaseEntity implements Serializable{
      */
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
+    }
+
+    
+
+    /**
+     * @return the UEntity
+     */
+    public UsuarioEntity getUEntity() {
+        return UEntity;
+    }
+
+    /**
+     * @param UEntity the UEntity to set
+     */
+    public void setUEntity(UsuarioEntity UEntity) {
+        this.UEntity = UEntity;
     }
     
 

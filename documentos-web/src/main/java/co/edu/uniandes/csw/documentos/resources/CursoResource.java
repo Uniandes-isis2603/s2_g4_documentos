@@ -8,10 +8,16 @@ package co.edu.uniandes.csw.documentos.resources;
 
 
 import co.edu.uniandes.csw.documentos.dtos.*;
+import co.edu.uniandes.csw.documentos.ejb.*;
+import co.edu.uniandes.csw.documentos.entities.CursoEntity;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
+
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -20,6 +26,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+
 /**
  * <pre> Clase que implementa el recurso "Curso".
  * URL: /api/cursos
@@ -43,9 +50,10 @@ import javax.ws.rs.Produces;
 public class CursoResource {
     
     
- 
 
 
+@Inject
+private CursoLogic logica;
     
      /**
      * <h1> POST /api/cursos : crear una nueva Curso. </h1>
@@ -62,14 +70,21 @@ public class CursoResource {
      * </code>
      * </pre>
      * 
-     * @param Curso {@link CursoDetailedDTO} - El curso nuevo para crear.
+     * @param elcurso {@link CursoDetailedDTO} - El curso nuevo para crear.
      * @return JSON {@link CursoDetailedDTO}  -El curso guardado.
+     
      * 
      */
     @POST
-    public CursoDetailedDTO createCurso(CursoDetailedDTO Curso ) 
+    public CursoDetailedDTO createCurso(CursoDetailedDTO elcurso ) throws BusinessLogicException 
     {
-        return Curso;
+                
+       CursoEntity editorialEntity = elcurso.toEntity();
+      
+       CursoEntity nuevoEditorial = logica.createCurso(editorialEntity);
+    
+       return new CursoDetailedDTO(nuevoEditorial);
+       
     }
     
      /**
@@ -84,9 +99,16 @@ public class CursoResource {
      * @return JSONArray {@link AutorDetailDTO} - Los cursos  encontradas dentro de la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<CursoDetailedDTO> getCursos()
+    public List<CursoDetailedDTO> getCursos() throws BusinessLogicException
     {
-        return new ArrayList<>();
+        List<CursoDetailedDTO> lista=new ArrayList<>();
+        for (CursoEntity en :logica.getCursos()) 
+        {
+           
+           lista.add(new CursoDetailedDTO(en));
+        }
+        
+        return lista;
     }
     
     /**
@@ -106,9 +128,9 @@ public class CursoResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public CursoDetailedDTO getCurso(@PathParam("id") Long id)
+    public CursoDetailedDTO getCurso(@PathParam("id") Long id)throws BusinessLogicException
     {
-      return null;
+      return new  CursoDetailedDTO(logica.getCurso(id));
     }
     
      /**
@@ -132,9 +154,10 @@ public class CursoResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public CursoDetailedDTO updateCurso (@PathParam("id)") Long id, CursoDetailedDTO Curso) 
+    public CursoDetailedDTO updateCurso (@PathParam("id") Long id, CursoDetailedDTO Curso) throws BusinessLogicException
     {
-        return Curso;
+        Curso.setId(id);
+        return new CursoDetailedDTO(logica.updateCurso(id, Curso.toEntity()));
     }
     
     /**
@@ -153,9 +176,9 @@ public class CursoResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteCurso (@PathParam("id") Long id)
+    public void deleteCurso (@PathParam("id") Long id) throws BusinessLogicException
     {
-        // Void
+        logica.deleteCurso(id);
     }
 }
 
