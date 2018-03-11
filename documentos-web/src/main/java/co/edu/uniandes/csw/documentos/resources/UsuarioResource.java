@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,9 +7,13 @@
 package co.edu.uniandes.csw.documentos.resources;
 
 import co.edu.uniandes.csw.documentos.dtos.UsuarioDetailedDTO;
+import co.edu.uniandes.csw.documentos.ejb.UsuarioLogic;
+import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
+import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -39,6 +44,16 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class UsuarioResource {
     
+    @Inject
+    UsuarioLogic logic;
+    
+     private List<UsuarioDetailedDTO> listUsuarioEntity2DetailDTO(List<UsuarioEntity> entityList) {
+        List<UsuarioDetailedDTO> list = new ArrayList<>();
+        for(UsuarioEntity entity : entityList) {
+            list.add(new UsuarioDetailedDTO(entity));
+        }
+        return list;
+    }
     /**
      * <h1> POST /api/usuarios : Crear un usuario. </h1>
      * 
@@ -60,8 +75,8 @@ public class UsuarioResource {
      * @return JSON {@link UsuarioDetailedDTO} - El Usuario guardado con el id generado.
      */
     @POST
-    public UsuarioDetailedDTO createUsuario(UsuarioDetailedDTO Usuario) {
-        return Usuario;
+    public UsuarioDetailedDTO createUsuario(UsuarioDetailedDTO Usuario) throws BusinessLogicException {
+        return new UsuarioDetailedDTO(logic.createUsuario(Usuario.toEntity()));
     }
     
     /**
@@ -77,7 +92,9 @@ public class UsuarioResource {
      */
     @GET
     public List<UsuarioDetailedDTO> getUsuarioDTO() {
-        return new ArrayList<>();
+       List<UsuarioDetailedDTO> lista= new ArrayList<>();
+       lista= listUsuarioEntity2DetailDTO(logic.getUsuarios());
+       return lista;
     }
     
     /**
@@ -98,14 +115,14 @@ public class UsuarioResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public UsuarioDetailedDTO getUsuario(@PathParam("id") Long id) {
-        return null;
+    public UsuarioDetailedDTO getUsuario(@PathParam("id") Long id) throws BusinessLogicException {
+        return new UsuarioDetailedDTO(logic.getUsuario(id));
     }
     
     /**
-     * <h1> GET /api/Usuarios/{nombre} : Obtener el Usuario por el nombre.</h1>
+     * <h1> GET /api/Usuarios/{nombre} : Obtener el Usuario por el nombre de usuario.</h1>
      * 
-     * <pre> Busca el Usuario con el nombre recibido en la URL y lo devuelve.
+     * <pre> Busca el Usuario con el nombre de usuario recibido en la URL y lo devuelve.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
@@ -120,8 +137,8 @@ public class UsuarioResource {
      */
     @GET
     @Path("{nombre: [a-zA-Z][a-zA-Z_0-9]}")
-    public UsuarioDetailedDTO getUsuarioByName(@PathParam("nombre") String nombre) {
-        return null;
+    public UsuarioDetailedDTO getUsuarioByName(@PathParam("nombre") String nombre) throws BusinessLogicException {
+        return new UsuarioDetailedDTO(logic.getUsuarioByName(nombre));
     }
     
     /**
@@ -143,8 +160,9 @@ public class UsuarioResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public UsuarioDetailedDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailedDTO Usuario) {
-        return Usuario;
+    public UsuarioDetailedDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailedDTO Usuario) throws BusinessLogicException {
+        Usuario.setId(id);
+        return  new UsuarioDetailedDTO(logic.updateUsuario(Usuario.toEntity()));
     }
     
     /**
@@ -164,8 +182,8 @@ public class UsuarioResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteUsuario(@PathParam("id") Long id){
-        
+    public void deleteUsuario(@PathParam("id") Long id) throws BusinessLogicException{
+        logic.deleteUsuario(id);
     }
     
     

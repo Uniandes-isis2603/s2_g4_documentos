@@ -58,6 +58,8 @@ x     * @param userEntity entidad que se va a crear.
     public UsuarioEntity find(Long id) {
         return em.find(UsuarioEntity.class, id);
     }
+    
+ 
 
     /**
      * 

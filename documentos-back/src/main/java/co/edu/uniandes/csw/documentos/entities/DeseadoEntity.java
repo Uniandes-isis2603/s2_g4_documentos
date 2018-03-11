@@ -21,10 +21,25 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class DeseadoEntity implements Serializable {
 
+    /**
+     * @return the documentos
+     */
+    public List<DocumentoEntity> getDocumentos() {
+        return documentos;
+    }
+
+    /**
+     * @param documentos the documentos to set
+     */
+    public void setDocumentos(List<DocumentoEntity> documentos) {
+        this.documentos = documentos;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
+    
+    
     private String nombre;
     private double cantidad;
 
