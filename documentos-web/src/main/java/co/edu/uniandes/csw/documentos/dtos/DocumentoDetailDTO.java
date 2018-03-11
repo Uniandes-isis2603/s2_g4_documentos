@@ -40,7 +40,7 @@ public class DocumentoDetailDTO extends DocumentoDTO {
         if(entity.getAreas() != null) {
             areas = new ArrayList<>();
             for(AreaDeConocimientoEntity entityArea : entity.getAreas()) {
-               // areas.add(new AreaDeConocimientoDTO(entityArea));
+                areas.add(new AreaDeConocimientoDTO(entityArea));
             }
         } 
         if(entity.getAutores() != null) {
@@ -69,6 +69,11 @@ public class DocumentoDetailDTO extends DocumentoDTO {
         }
         
     }
+    
+    /**
+     * Metodo que convierte a entity.
+     * @return entity convertido.
+     */
     @Override
     public DocumentoEntity toEntity() {
         DocumentoEntity documentoE = super.toEntity();

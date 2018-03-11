@@ -37,7 +37,7 @@ public class LibroDetailDTO extends DocumentoDetailDTO {
             
             if(libroE.getEditorial() != null)
             {
-               // this.editorial = new EditorialDTO(libroE.getEditorial());
+               this.editorial = new EditorialDTO(libroE.getEditorial());
             } else {
                 libroE.setEditorial(null);
             }
@@ -76,7 +76,14 @@ public class LibroDetailDTO extends DocumentoDetailDTO {
      */
     private EditorialDTO editorial;
     
+    /**
+     * isbn del libro.
+     */
     private String ISBN;
+    
+    /**
+     * fecha de publicacion del libro.
+     */
     private Date fechaPublicacion;
     
 

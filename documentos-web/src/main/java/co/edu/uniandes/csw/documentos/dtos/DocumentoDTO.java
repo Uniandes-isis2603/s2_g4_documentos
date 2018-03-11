@@ -79,11 +79,34 @@ public class DocumentoDTO {
         return documentoE;
     }
     
+    /**
+     * id del documento.
+     */
     private Long id;
+    
+    /**
+     * nombre del documento.
+     */
     private String nombre;
+    
+    /**
+     * calificacionPromedio del documento.
+     */
     private Double calificacionPromedio;
+    
+    /**
+     * descripcion del documento.
+     */
     private String descripcion;
+    
+    /**
+     * precio del  documento.
+     */
     private Double precio;
+    
+    /**
+     * caratula del documento.
+     */
     private String caratula;
 
     /**
