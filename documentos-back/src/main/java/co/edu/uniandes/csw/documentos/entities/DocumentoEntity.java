@@ -65,14 +65,14 @@ public class DocumentoEntity implements Serializable {
      * Representa los comentarios hechos a un documento.
      */
     @PodamExclude
-    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ComentarioEntity> comentarios = new ArrayList<>();
     
     /**
      * Representa las imagenes asociadas al documento.
      */
     @PodamExclude
-    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ImagenEntity> imagenes = new ArrayList<>();
     
     /**

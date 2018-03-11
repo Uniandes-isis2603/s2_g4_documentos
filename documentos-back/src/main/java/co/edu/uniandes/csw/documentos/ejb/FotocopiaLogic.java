@@ -21,8 +21,14 @@ import javax.inject.Inject;
 @Stateless
 public class FotocopiaLogic {
     
+    /**
+     * Logger que se va a utilizar para loguear las operaciones.
+     */
     private static final Logger LOGGER = Logger.getLogger(FotocopiaLogic.class.getName());
     
+    /**
+     * Se inyecta la dependencia de fotocopia persistence para hacer operaciones.
+     */
     @Inject
     private FotocopiaPersistence persistence;
     
@@ -46,9 +52,6 @@ public class FotocopiaLogic {
     public FotocopiaEntity getFotocopia(Long id){
         LOGGER.log(Level.INFO,"Inicia proceso de consultar fotocopia con id={0}",id);
         FotocopiaEntity fotocopia = persistence.find(id);
-        if(fotocopia == null){
-            LOGGER.log(Level.SEVERE,"La fotocopia con el id={0} no existe", id);
-        }
         LOGGER.log(Level.INFO,"Termina proceso de consultar fotocopia con id={0}",id);
         return fotocopia;
     }
@@ -61,10 +64,6 @@ public class FotocopiaLogic {
     public List<FotocopiaEntity> getFotocopiaByProfesor(String profesor){
         LOGGER.log(Level.INFO,"Inicia proceso de consultar fotocopia con profesor={}",profesor);
         List<FotocopiaEntity> fotocopias = persistence.findByProfesor(profesor);
-        if(fotocopias.isEmpty())
-        {
-            LOGGER.log(Level.SEVERE,"La fotocopia con el profesor={} no existe", profesor);
-        }
         return fotocopias;
     }
     

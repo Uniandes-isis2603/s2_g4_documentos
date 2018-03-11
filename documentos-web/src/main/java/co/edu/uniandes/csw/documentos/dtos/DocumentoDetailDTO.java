@@ -40,7 +40,7 @@ public class DocumentoDetailDTO extends DocumentoDTO {
         if(entity.getAreas() != null) {
             areas = new ArrayList<>();
             for(AreaDeConocimientoEntity entityArea : entity.getAreas()) {
-               // areas.add(new AreaDeConocimientoDTO(entityArea));
+                areas.add(new AreaDeConocimientoDTO(entityArea));
             }
         } 
         if(entity.getAutores() != null) {
@@ -52,30 +52,35 @@ public class DocumentoDetailDTO extends DocumentoDTO {
         if(entity.getComentarios() != null) {
             comentarios = new ArrayList<>();
             for(ComentarioEntity entityComentario : entity.getComentarios()){
-               // comentarios.add(new ComentarioDTO(entityComentario))
+                comentarios.add(new ComentarioDTO(entityComentario));
             }
         }
         if(entity.getCursos() != null){
             cursos = new ArrayList<>();
             for(CursoEntity entityCurso : entity.getCursos()){
-                //cursos.add(new CursoDTO(entityCurso));
+                cursos.add(new CursoDTO(entityCurso));
             }
         }
         if(entity.getImagenes() != null) {
             imagenes = new ArrayList<>();
             for(ImagenEntity entityImagen : entity.getImagenes()) {
-                //imagenes.add(new ImagenDTO(entityImagen));
+                imagenes.add(new ImagenDTO(entityImagen));
             }
         }
         
     }
+    
+    /**
+     * Metodo que convierte a entity.
+     * @return entity convertido.
+     */
     @Override
     public DocumentoEntity toEntity() {
         DocumentoEntity documentoE = super.toEntity();
         if(this.getAreas() != null) {
             List<AreaDeConocimientoEntity> areasEntity = new ArrayList<>();
             for(AreaDeConocimientoDTO dtoAreas : getAreas()){
-              //  areasEntity.add(dtoAreas.toEntity());
+              areasEntity.add(dtoAreas.toEntity());
             }
             documentoE.setAreas(areasEntity);
         }
@@ -89,21 +94,21 @@ public class DocumentoDetailDTO extends DocumentoDTO {
         if(this.getComentarios() != null) {
             List<ComentarioEntity> comentariosEntity = new ArrayList<>();
             for(ComentarioDTO dtoComentarios : getComentarios()) {
-             //   comentariosEntity.add(dtoComentarios.toEntity());
+              comentariosEntity.add(dtoComentarios.toEntity());
             }
             documentoE.setComentarios(comentariosEntity);
         }
         if(this.getCursos() != null) {
             List<CursoEntity> cursosEntity = new ArrayList<>();
             for(CursoDTO dtoCursos : getCursos()) {
-             //   cursosEntity.add(dtoCursos.toEntity());
+              cursosEntity.add(dtoCursos.toEntity());
             }
             documentoE.setCursos(cursosEntity);
         }
         if(this.getImagenes() != null) {
             List<ImagenEntity> imagenesEntity = new ArrayList<>();
             for(ImagenDTO dtoImagenes : getImagenes()) {
-               // imagenesEntity.add(dtoImagenes.toEntity());
+                imagenesEntity.add(dtoImagenes.toEntity());
             }
             documentoE.setImagenes(imagenesEntity);
         }

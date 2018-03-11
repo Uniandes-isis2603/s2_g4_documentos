@@ -85,7 +85,14 @@ public class LibroDTO extends DocumentoDTO {
         return libroE;
     }
     
+    /**
+     * isbn del libro.
+     */
     private String ISBN;
+    
+    /**
+     * fecha de publicacion del libro.
+     */
     private Date fechaPublicacion;
 
     /**

@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.documentos.test;
 
+import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
 import co.edu.uniandes.csw.documentos.entities.LibroEntity;
 import co.edu.uniandes.csw.documentos.persistence.LibroPersistence;
 import java.util.ArrayList;
@@ -31,11 +32,16 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class LibroPersistenceTest {
     
+    /**
+     * Deployment
+     * @return deployment.
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(LibroEntity.class.getPackage())
-               .addPackage(LibroPersistence.class.getPackage())
+                .addPackage(LibroPersistence.class.getPackage())
+                .addPackage(EditorialEntity.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -87,9 +93,28 @@ public class LibroPersistenceTest {
      */
     private void clearData() {
         em.createQuery("delete from LibroEntity").executeUpdate();
+        em.createQuery("delete from EditorialEntity").executeUpdate();
     }
     
+    /**
+     * Lista de libros que se van a probar.
+     */
     private List<LibroEntity> data = new ArrayList<>();
+    
+    /**
+     * Lista de editoriales que se van a probar par el libro.
+     */
+    private List<EditorialEntity> editoriales = new ArrayList<>();
+    
+    /**
+     * Editorial que se va a probrar en el metodo create.
+     */
+    private EditorialEntity editorialCreate = new EditorialEntity();
+    
+    /**
+     * Editorial que se va a probar en el metodo update.
+     */
+    private EditorialEntity editorialUpdate = new EditorialEntity();
     
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
@@ -98,10 +123,24 @@ public class LibroPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         for(int i = 0; i < 3; i++) {
             LibroEntity entity = factory.manufacturePojo(LibroEntity.class);
+            EditorialEntity editorial = factory.manufacturePojo(EditorialEntity.class);
+            
+            entity.setEditorial(editorial);
             
             em.persist(entity);
+            em.persist(editorial);
+            
             data.add(entity);
+            editoriales.add(editorial);
+            
+            //Se crean nuevas editoriales en la base de datos, pero no al libro.
+            //Que se utilizaran en los metodos create y update.
+            editorialCreate = factory.manufacturePojo(EditorialEntity.class);
+            editorialUpdate = factory.manufacturePojo(EditorialEntity.class);
+            em.persist(editorialCreate);
+            em.persist(editorialUpdate);
         }
+        
     }
     
     /**
@@ -109,15 +148,22 @@ public class LibroPersistenceTest {
      */
     @Test
     public void createLibroTest() {
+        
+        // Se crea una entidad documento
         PodamFactory factory = new PodamFactoryImpl();
         LibroEntity newEntity = factory.manufacturePojo(LibroEntity.class);
+        
+        //Se le agrega una editorial que ya existe.
+        newEntity.setEditorial(editorialCreate);
         LibroEntity result = libroPersistence.create(newEntity);
-        
+        //Se prueba que no haya error creando el libro.
         Assert.assertNotNull(result);
-        
+ 
         LibroEntity entity = em.find(LibroEntity.class,result.getId());
         
+        //Se prueba que el libro tiene la editorial correcta.
         Assert.assertEquals(newEntity.getNombre(),entity.getNombre());
+        Assert.assertEquals(newEntity.getEditorial().getNombre(), entity.getEditorial().getNombre());
     }
     
     /**
@@ -131,12 +177,17 @@ public class LibroPersistenceTest {
         
         for(LibroEntity ent : list) {
             boolean found = false;
+            boolean foundEditorial = false;
             for(LibroEntity entity: data) {
                 if(ent.getId().equals(entity.getId())){
                     found = true;
                 }
+                if(ent.getEditorial().getNombre().equals(entity.getEditorial().getNombre())){
+                    foundEditorial = true;
+                }
             }
             Assert.assertTrue(found);
+            Assert.assertTrue(foundEditorial);
         }
     }
     
@@ -149,7 +200,10 @@ public class LibroPersistenceTest {
         LibroEntity entity = data.get(0);
         LibroEntity newEntity = libroPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
+        
+        //Se prueba que si existe un libro y su editorial.
         Assert.assertEquals(entity.getIsbn(), newEntity.getIsbn());
+        Assert.assertEquals(entity.getEditorial().getNombre(), newEntity.getEditorial().getNombre());
     }
     
     /**
@@ -163,11 +217,16 @@ public class LibroPersistenceTest {
         
         for(LibroEntity ent : newEntity) {
             boolean found = false;
+            boolean foundEditorial = false;
             if(ent.getNombre().equals(entity.getNombre())){
                 found = true;
             }
+            if(ent.getEditorial().getNombre().equals(entity.getEditorial().getNombre())){
+                foundEditorial =true;
+            }
             
             Assert.assertTrue(found);
+            Assert.assertTrue(foundEditorial);
         }
     }
     
@@ -180,13 +239,16 @@ public class LibroPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         LibroEntity newEntity = factory.manufacturePojo(LibroEntity.class);
         
+        //Le agrego el id para que sea igual, y una editorial diferente.
         newEntity.setId(entity.getId());
+        newEntity.setEditorial(editorialUpdate);
         
         libroPersistence.update(newEntity);
         
         LibroEntity resp = em.find(LibroEntity.class, entity.getId());
         
         Assert.assertEquals(newEntity.getNombre(),resp.getNombre());
+        Assert.assertEquals(newEntity.getEditorial().getNombre(), resp.getEditorial().getNombre());
     }
     
     /**
@@ -198,5 +260,10 @@ public class LibroPersistenceTest {
         libroPersistence.delete(entity.getId());
         LibroEntity deleted = em.find(LibroEntity.class, entity.getId());
         Assert.assertNull(deleted);
+        
+        //Se comprueba que la editorial asociada no se elimino.
+        EditorialEntity editorial = entity.getEditorial();
+        EditorialEntity editorialPrueba = em.find(EditorialEntity.class,entity.getEditorial().getId());
+        Assert.assertNotNull(editorialPrueba);
     }
 }

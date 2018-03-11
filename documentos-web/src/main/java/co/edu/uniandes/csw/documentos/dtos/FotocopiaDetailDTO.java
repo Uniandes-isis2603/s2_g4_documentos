@@ -61,9 +61,19 @@ public class FotocopiaDetailDTO extends DocumentoDetailDTO {
         return fotocopiaE;
     }
     
-    
+    /**
+     * profesor de la fotocopia.
+     */
     private String profesor;
+    
+    /**
+     * nroPaginas de la fotocopia.
+     */
     private Integer nroPaginas;
+    
+    /**
+     * capitulos de la fotocopia.
+     */
     private String capitulos;
 
     /**

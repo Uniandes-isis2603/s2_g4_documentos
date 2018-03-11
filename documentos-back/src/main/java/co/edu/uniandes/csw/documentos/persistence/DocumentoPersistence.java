@@ -20,8 +20,14 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class DocumentoPersistence {
     
+    /**
+     * Logger que se va a utilizar para loguear las operaciones.
+     */
     private static final Logger LOGGER = Logger.getLogger(DocumentoPersistence.class.getName());
 
+    /**
+     * Contexto de persistencia en el que se van a hacer las operaciones de base de datos (esta en el persitence.xml).
+     */
     @PersistenceContext(unitName = "DocumentosPU")
     protected EntityManager em;
     
