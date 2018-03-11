@@ -32,6 +32,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class FotocopiaLogicTest {
     
+    /**
+     * Deployment
+     * @return deployment
+     */
     @Deployment
     public static JavaArchive createDeployment(){
          return ShrinkWrap.create(JavaArchive.class)
@@ -98,8 +102,14 @@ public class FotocopiaLogicTest {
         em.createQuery("delete from FotocopiaEntity").executeUpdate();
     }
     
+    /**
+     * Lista de datos que se van a persistir.
+     */
     private List<FotocopiaEntity> data = new ArrayList<>();
     
+    /**
+     * Lista de datos para las pruebas.
+     */
     private List<FotocopiaEntity> dataPrueba = new ArrayList<>();
     
     /**
@@ -357,4 +367,22 @@ public class FotocopiaLogicTest {
         FotocopiaEntity deleted = em.find(FotocopiaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
+    
+    //-----------------------------------
+    //Test de los metodos de validacion
+    //-----------------------------------
+    
+    /**
+     * Prueba que verifica que la completitud de la fotocopia funcione.
+     */
+    @Test
+    public void completitudFotocopiaTest() {
+        
+        FotocopiaEntity entity = dataPrueba.get(0);
+        Assert.assertFalse(fotocopiaLogic.validarCompletitud(entity));
+        FotocopiaEntity entity3 = dataPrueba.get(3);
+        Assert.assertTrue(fotocopiaLogic.validarCompletitud(entity3));
+        
+    }
+    
 }
