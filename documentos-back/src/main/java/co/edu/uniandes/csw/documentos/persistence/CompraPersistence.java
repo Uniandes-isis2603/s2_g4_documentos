@@ -22,7 +22,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @Stateless
 public class CompraPersistence {
-    private static final Logger LOGGER=Logger.getLogger(CompraEntity.class.getName());
+    private  final Logger LOGGER=Logger.getLogger(CompraEntity.class.getName());
     
     @PersistenceContext(unitName = "DocumentosPU")
     protected  EntityManager entidad;

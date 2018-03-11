@@ -6,12 +6,18 @@
 package co.edu.uniandes.csw.documentos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -54,6 +60,121 @@ public class DocumentoEntity implements Serializable {
      * Representa la direccion de la caratula.
      */
     private String caratula;
+    
+    /**
+     * Representa los comentarios hechos a un documento.
+     */
+    @PodamExclude
+    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<ComentarioEntity> comentarios = new ArrayList<>();
+    
+    /**
+     * Representa las imagenes asociadas al documento.
+     */
+    @PodamExclude
+    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<ImagenEntity> imagenes = new ArrayList<>();
+    
+    /**
+     * Representa los autores del documento.
+     */
+    @PodamExclude
+    @ManyToMany
+    private List<AutorEntity> autores = new ArrayList<>();
+    
+    /**
+     * Representa a las areas de coocimientos a las cuales el documento pertenece.
+     */
+    @PodamExclude
+    @ManyToMany
+    private List<AreaDeConocimientoEntity> areas = new ArrayList<>();
+    
+    /**
+     * Representa a los cursos a los cuales puede pertenecer un documento.
+     */
+    @PodamExclude
+    @ManyToMany
+    private List<CursoEntity> cursos = new ArrayList<>();
+
+    /**
+     * Devuelve los comentarios de un documento.
+     * @return los comentarios del documento.
+     */
+    public List<ComentarioEntity> getComentarios() {
+        return comentarios;
+    }
+
+    /**
+     * Modifica los comentarios de un documento.
+     * @param comentarios nuevos.
+     */
+    public void setComentarios(List<ComentarioEntity> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    /**
+     * Devuelve las imagenes de un documento.
+     * @return imagenes del documento.
+     */
+    public List<ImagenEntity> getImagenes() {
+        return imagenes;
+    }
+
+    /**
+     * Modifica las imagenes de un documento.
+     * @param imagenes nuevas.
+     */
+    public void setImagenes(List<ImagenEntity> imagenes) {
+        this.imagenes = imagenes;
+    }
+
+    /**
+     * Devuelve los autores del documento.
+     * @return autores del documento.
+     */
+    public List<AutorEntity> getAutores() {
+        return autores;
+    }
+
+    /**
+     * Modifica a los autores del documento.
+     * @param autores nuevos.
+     */
+    public void setAutores(List<AutorEntity> autores) {
+        this.autores = autores;
+    }
+
+    /**
+     * Devuelve las areas de conocimiento del documento.
+     * @return las areas de conocimiento del documento.
+     */
+    public List<AreaDeConocimientoEntity> getAreas() {
+        return areas;
+    }
+
+    /**
+     * Modifica las areas de conocimiento del documento.
+     * @param areas nuevas.
+     */
+    public void setAreas(List<AreaDeConocimientoEntity> areas) {
+        this.areas = areas;
+    }
+
+    /**
+     * Devuelve los cursos a los que pertenece el documento.
+     * @return curos del documento.
+     */
+    public List<CursoEntity> getCursos() {
+        return cursos;
+    }
+
+    /**
+     * Modifica los cursos a los que pertenece un documento.
+     * @param cursos nuevos.
+     */
+    public void setCursos(List<CursoEntity> cursos) {
+        this.cursos = cursos;
+    }
 
     /**
      * 

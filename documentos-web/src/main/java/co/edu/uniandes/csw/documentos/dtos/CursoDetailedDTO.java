@@ -5,6 +5,9 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.CursoEntity;
+import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,8 +40,36 @@ public class CursoDetailedDTO  extends CursoDTO{
    */
     public CursoDetailedDTO() 
     {
-        super();
+        
     }
-    
+     public CursoDetailedDTO(CursoEntity entidad)
+    {
+       
+        super(entidad);
+
+       if(entidad!=null )
+       {
+           List<DocumentoDTO> lista = new ArrayList<>();
+           for(DocumentoEntity anadido: entidad.getBibliografiaDelCurso())
+           {
+               lista.add(new DocumentoDTO(anadido));
+           }
+           this.setBibliografiaDelCurso(lista);
+       }
+     
+    }
+    public CursoEntity toEntity()
+    {
+       CursoEntity rta= super.toEntity();
+  if (bibliografiaDelCurso != null) {
+            List<DocumentoEntity> listaEntity = new ArrayList<>();
+            for (DocumentoDTO dtoCurso : bibliografiaDelCurso) 
+            {
+                listaEntity.add(dtoCurso.toEntity());
+            }
+            rta.setBibliografiaDelCurso(listaEntity);
+        }
+       return rta;
+    }
     
 }

@@ -20,7 +20,7 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class CursoPersistence {
-     private static final Logger LOGGER=Logger.getLogger(CursoEntity.class.getName());
+     private  final Logger LOGGER=Logger.getLogger(CursoEntity.class.getName());
     
     @PersistenceContext(unitName = "DocumentosPU")
     protected  EntityManager entidad;
@@ -37,6 +37,26 @@ public class CursoPersistence {
         
          return entidadNueva;
     }
+    public CursoEntity findByName(String nombre)
+    {
+        TypedQuery query = entidad.createQuery("Select e From CursoEntity e where e.nombre = :nombre", CursoEntity.class);
+        
+        query = query.setParameter("nombre", nombre);
+        // Se invoca el query se obtiene la lista resultado
+        List<CursoEntity> sameName = query.getResultList();
+       CursoEntity result = null; 
+         if (sameName == null ) {
+            result = null;
+        } else if (sameName.isEmpty()) {
+             result = null;
+        } else {
+            result =  sameName.get(0);
+        }
+       
+        
+        return result;
+    }
+    
     /**
      * 
      * @param idDeLaEntidad que se desea buscar
@@ -62,7 +82,7 @@ public class CursoPersistence {
      */
      public void delete(CursoEntity id)
      {
-         LOGGER.info("Borrando el curso del sistema");
+         
            CursoEntity entity = entidad.find(CursoEntity.class, id.getId());
          entidad.remove(entity);
       

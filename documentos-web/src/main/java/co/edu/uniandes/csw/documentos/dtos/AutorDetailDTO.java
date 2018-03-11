@@ -23,6 +23,9 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.AutorEntity;
+import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,7 +46,29 @@ public class AutorDetailDTO extends AutorDTO {
         super();
    
     }
+    
+    
+    
+     /**
+     * Crea un objeto AutorDetailDTO a partir de un objeto AutorEntity
+     * incluyendo los atributos de AutorDTO.
+     *
+     * @param entity Entidad AuthorEntity desde la cual se va a crear el nuevo
+     * objeto.
+     *
+     */
+    public AutorDetailDTO(AutorEntity entity) {
+        super(entity);
+        if (entity != null) {
+            documentos = new ArrayList<>();
+            for (DocumentoEntity entityDocumentos : entity.getDocumentos()) {
+                documentos.add(new DocumentoDTO(entityDocumentos));
+            }
 
+        }
+
+    }
+    
     /**
      * @return los documentos que contienen el autor
      */
@@ -58,5 +83,24 @@ public class AutorDetailDTO extends AutorDTO {
         this.documentos = documentos;
     }
 
-    
+    /**
+     * Convierte un objeto AutorDetailDTO a AutorEntity incluyendo los
+     * atributos de AutorDTO.
+     *
+     * @return Nuevo objeto AutorEntity.
+     *
+     */
+    @Override
+    public AutorEntity toEntity() {
+        AutorEntity entity = super.toEntity();
+//        if (documentos != null) {
+//            List<DocumentoEntity> documentosEntity = new ArrayList<>();
+//            for (DocumentoDTO dtoDocumento : documentos) {
+//                documentosEntity.add(dtoDocumento.toEntity());
+//            }
+//            entity.setDocumento(documentossEntity);
+//        }
+
+        return entity;
+    }    
 }

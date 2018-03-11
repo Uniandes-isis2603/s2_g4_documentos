@@ -23,6 +23,9 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.AutorEntity;
+import java.util.List;
+
 
 /**
  * AutorDTO Objeto de transferencia de datos de Autor. Los DTO contienen las
@@ -36,7 +39,7 @@ package co.edu.uniandes.csw.documentos.dtos;
  *      "nombre": string
  *   }
  * </pre>
- * Por ejemplo una ciudad se representa asi:<br>
+ * Por ejemplo un autor se representa asi:<br>
  * 
  * <pre>
  * 
@@ -52,11 +55,42 @@ public class AutorDTO {
 
     private Long id;
     private String nombre;
+    
+    private List<DocumentoDTO> documentos;
 
     /**
      * Constructor por defecto
      */
     public AutorDTO() {
+        //Constructor por defecto
+    }
+    
+     /**
+     * Crea un objeto AuthorDTO a partir de un objeto AuthorEntity.
+     *
+     * @param entity Entidad AuthorEntity desde la cual se va a crear el nuevo
+     * objeto.
+     * 
+     */
+    public AutorDTO(AutorEntity entity) {
+        if (entity != null) {
+            this.id = entity.getId();
+            this.nombre = entity.getNombre();
+        }
+    }
+
+    /**
+     * Convierte un objeto AuthorDTO a AuthorEntity.
+     *
+     * @return Nueva objeto AuthorEntity.
+     * 
+     */
+    public AutorEntity toEntity() {
+        AutorEntity entity = new AutorEntity();
+        entity.setId(this.getId());
+        entity.setNombre(this.getNombre());
+
+        return entity;
     }
 
     /**

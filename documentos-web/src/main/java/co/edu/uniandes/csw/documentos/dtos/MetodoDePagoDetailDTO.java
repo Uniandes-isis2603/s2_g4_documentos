@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
+import co.edu.uniandes.csw.documentos.entities.MetodoDePagoEntity;
+
 /**
  *
  * @author g.ospinaa
@@ -17,6 +19,13 @@ public class MetodoDePagoDetailDTO extends MetodoDePagoDTO{
     public MetodoDePagoDetailDTO()
     {
         
+    }
+    
+    @Override
+    public MetodoDePagoEntity toEntity()
+    {
+        MetodoDePagoEntity metodoE = super.toEntity();
+        return metodoE;
     }
     
 }
