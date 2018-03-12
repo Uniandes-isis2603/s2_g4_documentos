@@ -1,0 +1,225 @@
+{
+	"info": {
+		"name": "Compras",
+		"_postman_id": "6802ed40-5834-5622-cff5-a9c77da7cc47",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todas las compras del sistema",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "94b136c3-d618-44c9-96a9-6335c43b75c4",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/compras",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"compras"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una compra del sistema",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "98092274-3ff7-44f9-958c-91c90820d080",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/compras/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"compras",
+						"10000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una compra del sistema fallido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fe2033ed-d8ce-4d87-bc41-1ac5f63f0ad4",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/compras/10005",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"compras",
+						"10005"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Fallo al borrar una compra en el sistema",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3888554e-b9a3-4b3e-b29c-4f002d716762",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/compras/10005",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"compras",
+						"10005"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una compra exitos del sistema",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/compras/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"compras",
+						"10000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "crear compras de manera efectiva",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b75486a2-16c0-415a-8214-848700a987b9",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"costo\": 3000,\n        \"fecha\": \"2018-02-22T20:38:54.973-05:00\",\n        \"tipoDecompra\": \"efectivo\",\n        \"documentos\": []\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/compras/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"compras",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

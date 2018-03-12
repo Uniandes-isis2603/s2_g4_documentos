@@ -51,6 +51,10 @@ public class CompraLogic {
     {
         throw new BusinessLogicException("La fecha no es valida. fecha = " + entity.getFecha());
     }
+    if( entity.getMetodoDePagoPayPal()==null&& entity.getMetodoDePagoTDC()==null)
+    {
+        throw new BusinessLogicException("Tiene que establecerse un metodo de pago");
+    }
     return persistencia.create(entity);
     }
      /**

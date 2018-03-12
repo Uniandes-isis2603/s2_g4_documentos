@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -50,6 +52,51 @@ public class CompraEntity implements Serializable
     @OneToMany
     @PodamExclude
     private List<DocumentoEntity> documentos;
+    /**
+     * representa el metodo de pago usado para realizar un pago con paypal
+     */
+    @OneToOne
+    @JoinColumn(name="METODODEPAGOPAYPAL_ID")
+    @PodamExclude
+    private PayPalEntity metodoDePagoPayPal;
+    /**
+     * representa el metodo de pago usado para realizar un pago con tarjeta de credito
+     */
+    @OneToOne
+    @JoinColumn(name="METODODEPAGOTDC_ID")
+    @PodamExclude
+    private TarjetaDeCreditoEntity metodoDePagoTDC;
+    /**
+     *
+     * @return metodo de pago con paypal
+     */
+    public PayPalEntity getMetodoDePagoPayPal() {
+        return metodoDePagoPayPal;
+    }
+    /**
+     *
+     * @param metodoDePagoPayPal nuevo metodo de pago
+     */
+    public void setMetodoDePagoPayPal(PayPalEntity metodoDePagoPayPal) {
+        this.metodoDePagoPayPal = metodoDePagoPayPal;
+    }
+    /**
+     *
+     * @return metodo de pago con tarjeta de credito
+     */
+    public TarjetaDeCreditoEntity getMetodoDePagoTDC() {
+        return metodoDePagoTDC;
+    }
+    /**
+     *
+     * @param metodoDePagoTDC nuevo metodo de pago.
+     */
+    public void setMetodoDePagoTDC(TarjetaDeCreditoEntity metodoDePagoTDC) {
+        this.metodoDePagoTDC = metodoDePagoTDC;
+    }
+    
+    
+    
     /**
      *
      * @return lista de documentos que hacen parte de una compra

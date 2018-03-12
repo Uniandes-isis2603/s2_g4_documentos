@@ -1,0 +1,307 @@
+{
+	"info": {
+		"name": "Cursos",
+		"_postman_id": "098a93c0-ef92-32d7-5cf7-5871e14e96d7",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todos los cursos del sistema",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "53324ec1-6533-46d7-9c8e-fbf369040450",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/cursos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"cursos"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post de un curso de manera adecuad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "641d9e95-45d0-452e-8043-caa6ded29c7a",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"codigo\": \"Ma206\",\n        \"departamento\":\"Mate\",\n        \"nombre\": \"Matematica\",\n        \"bibliografiaDelCurso\":\n        []\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/cursos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"cursos"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Fallo de un posteo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b0f8eee8-169a-4118-b30c-743dac8f0293",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"codigo\": \"Ma206\",\n        \"departamento\":\"Mate\",\n        \"nombre\": \"Matematica\",\n        \"bibliografiaDelCurso\":\n        []\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/cursos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"cursos"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un curso especifico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bb83b6a8-55bd-4ae2-956b-1d7ca85d3f0c",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"codigo\": \"Ma206\",\n        \"departamento\":\"Mate\",\n        \"nombre\": \"Matematica\",\n        \"bibliografiaDelCurso\":\n        []\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/cursos/3000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"cursos",
+						"3000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un curso fallo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d1eb74df-b3a7-4ba7-be94-2cdc91fb9d6d",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"codigo\": \"Ma206\",\n        \"departamento\":\"Mate\",\n        \"nombre\": \"Matematica\",\n        \"bibliografiaDelCurso\":\n        []\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/cursos/3001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"cursos",
+						"3001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un curso valido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f61bf93-712a-445e-8057-9ff72154c842",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"codigo\": \"Ma206\",\n        \"departamento\":\"Mate\",\n        \"nombre\": \"Matematica\",\n        \"bibliografiaDelCurso\":\n        []\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/cursos/3000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"cursos",
+						"3000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un curso fallido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b41a2a45-a05b-4dbb-ba9a-9460cd936bf9",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"codigo\": \"Ma206\",\n        \"departamento\":\"Mate\",\n        \"nombre\": \"Matematica\",\n        \"bibliografiaDelCurso\":\n        []\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/cursos/3001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"cursos",
+						"3001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
