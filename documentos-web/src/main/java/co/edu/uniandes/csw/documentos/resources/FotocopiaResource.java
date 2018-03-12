@@ -43,6 +43,9 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class FotocopiaResource {
     
+    /**
+     * Inyeccion de la dependencia de logica.
+     */
     @Inject
     FotocopiaLogic fotocopiaLogic;
     /**
@@ -101,13 +104,17 @@ public class FotocopiaResource {
      * 404 Not Found No existe una fotocopia con el id dado.
      * </code>
      * </pre>
+     * @throws BusinessLogicException si la fotocopia buscada no existe.
      * @param id Id de la fotocopia que se esta buscandoñ Debe ser una cadena de digitos.
      * @return JSON {@link FotocopiaDetailDTO} - La fotocopia buscada.
      */
     @GET
     @Path("{id: \\d+}")
-    public FotocopiaDetailDTO getFotocopia(@PathParam("id") Long id) {
+    public FotocopiaDetailDTO getFotocopia(@PathParam("id") Long id) throws BusinessLogicException{
         FotocopiaEntity entity = fotocopiaLogic.getFotocopia(id);
+        if(entity == null) {
+            throw new BusinessLogicException("La fotocopia con el id dado no existe.");
+        }
         return new FotocopiaDetailDTO(entity);
     }
     
@@ -124,13 +131,17 @@ public class FotocopiaResource {
      * 404 Not Found No existe un libro con el el profesor dado.
      * </code>
      * </pre>
+     * @throws BusinessLogicException si no existen fotocopias con el profesor dado.
      * @param profesor nombre del profesor que puso esa fotocopia. Debe ser letras de abecedario y/o digitos.
      * @return JSON {@link FotocopiaDetailDTO} - La fotocopia con el profesor buscado.
      */
     @GET
     @Path("{profesor}")
-    public List<FotocopiaDetailDTO> getFotocopiasByProfesor(@PathParam("profesor") String profesor) {
+    public List<FotocopiaDetailDTO> getFotocopiasByProfesor(@PathParam("profesor") String profesor) throws BusinessLogicException {
         List<FotocopiaEntity> profesores = fotocopiaLogic.getFotocopiaByProfesor(profesor);
+        if(profesores.isEmpty()) {
+            throw new BusinessLogicException("La fotocopia con el profesor dado no existe.");
+        }
         return listFotocopiaEntity2DetailDTO(profesores);
     }
     
@@ -156,6 +167,9 @@ public class FotocopiaResource {
     @Path("{id: \\d+}")
     public FotocopiaDetailDTO updateFotocopia(@PathParam("id") Long id,FotocopiaDetailDTO fotocopia) throws BusinessLogicException{
         fotocopia.setId(id); 
+        if(fotocopiaLogic.getFotocopia(id) == null) {
+            throw new BusinessLogicException("La fotocopia con el id dado no existe.");
+        }
         return new FotocopiaDetailDTO(fotocopiaLogic.updateFotocopia(id, fotocopia.toEntity()));
     }
     
@@ -171,11 +185,15 @@ public class FotocopiaResource {
      * 404 Not Found. No existe una fotocopia con el id dado.
      * </code>
      * </pre>
+     * @throws BusinessLogicException si la fotocopia con el id dado no existe.
      * @param id EL codigo de identificacion de la fotocopia a eliminar
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteFotocopia(@PathParam("id") Long id) {
+    public void deleteFotocopia(@PathParam("id") Long id) throws BusinessLogicException{
+        if(fotocopiaLogic.getFotocopia(id) == null) {
+            throw new BusinessLogicException("La fotocopia con el id dado no existe.");
+        }
         fotocopiaLogic.deleteFotocopia(id);
     }
     

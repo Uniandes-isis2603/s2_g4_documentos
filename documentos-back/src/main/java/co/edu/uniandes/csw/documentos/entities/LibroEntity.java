@@ -26,6 +26,9 @@ public class LibroEntity extends DocumentoEntity implements Serializable{
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaPublicacion;
     
+    /**
+     * isbn del libro.
+     */
     private String isbn;
     
     /**

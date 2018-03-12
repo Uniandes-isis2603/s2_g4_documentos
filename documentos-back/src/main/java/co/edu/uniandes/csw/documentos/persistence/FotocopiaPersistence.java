@@ -21,8 +21,14 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class FotocopiaPersistence {
     
+    /**
+     * Logger que se va a utilizar para loguear las operaciones.
+     */
     private static final Logger LOGGER = Logger.getLogger(FotocopiaPersistence.class.getName());
     
+    /**
+     * Contexto de persistencia en el cual se van a realizar las operaciones.
+     */
     @PersistenceContext(unitName = "DocumentosPU")
     protected EntityManager em;
     

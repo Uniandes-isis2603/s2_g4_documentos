@@ -75,6 +75,7 @@ public class ImagenDTO {
         if (entity != null) {
             this.id = entity.getId();
             this.nombre = entity.getNombre();
+            this.img = entity.getImg();
         }
     }
     /**
@@ -129,6 +130,7 @@ public class ImagenDTO {
         ImagenEntity entity = new ImagenEntity();
         entity.setId(this.getId());
         entity.setNombre(this.getNombre());
+        entity.setImg(this.getImg());
 
         return entity;
     }

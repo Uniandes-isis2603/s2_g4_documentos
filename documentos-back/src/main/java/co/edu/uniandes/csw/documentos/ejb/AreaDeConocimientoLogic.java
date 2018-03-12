@@ -6,8 +6,12 @@
 package co.edu.uniandes.csw.documentos.ejb;
 
 import co.edu.uniandes.csw.documentos.entities.AreaDeConocimientoEntity;
+import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
+import co.edu.uniandes.csw.documentos.entities.FotocopiaEntity;
+import co.edu.uniandes.csw.documentos.entities.LibroEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.AreaDeConocimientoPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,13 +25,28 @@ import javax.inject.Inject;
 @Stateless
 public class AreaDeConocimientoLogic{
     
+    /**
+     * Logger de consola para recopilar información
+     */
     private static final Logger LOGGER = Logger.getLogger(AreaDeConocimientoLogic.class.getName());
 
+    /**
+     * Persistencia del Area De Conocimiento
+     */
     @Inject
     private AreaDeConocimientoPersistence persistence;
 
-    //@Inject
-    //private DocumentoLogic DocumentoLogic;
+    /**
+     * Logica de una Fotocopia perteneciente al Area de Conocimiento
+     */
+    @Inject
+    private FotocopiaLogic fotocopiaLogic;
+    
+    /**
+     * Logica de un Libro perteneciente al Area de Conocimiento
+     */
+    @Inject
+    private LibroLogic libroLogic;
 
     /**
      * Se encarga de crear un Area De Conocimiento en la base de datos.
@@ -44,15 +63,16 @@ public class AreaDeConocimientoLogic{
             LOGGER.log(Level.INFO, "El Area de Conocimiento con el id {0} ya existe" , entity.getId());
             throw new BusinessLogicException("El Area de Conocimiento con el id " + entity.getId() + " ya existe");
         }
-        else if (!(entity.getTipo().matches("([A-Z]|[a-z]|[0-9]|\\s)+")| entity.getTipo().contains(" "))){
+        else if (!(entity.getTipo().matches("([A-Z]|[a-z]|[0-9]|ñ|\\s)+")|| entity.getTipo().contains(" "))){
             LOGGER.log(Level.INFO, "El nombre del area de conocimiento no puede contener caracteres especiales");
             throw new BusinessLogicException("El nombre del area de conocimiento no puede contener caracteres especiales");
         }
-        
-        return persistence.create(entity);
-        }
+
+        addDocumentos(entity);
+        return persistence.update(entity);
+    }
     
-         /**
+    /**
      * Obtiene la lista de los registros de Area De Conocimiento.
      *
      * @return Colección de objetos de AutorEntity.
@@ -62,7 +82,7 @@ public class AreaDeConocimientoLogic{
         return persistence.findAll();
     }
     
-     /**
+    /**
      * Obtiene los datos de una instancia de un Area de Conocimiento a partir de su ID.
      *
      * @param id Identificador de la instancia a consultar
@@ -88,11 +108,12 @@ public class AreaDeConocimientoLogic{
             LOGGER.log(Level.INFO, "El Area de Conocimiento con el id {0} no existe" , entity.getId());
             throw new BusinessLogicException("El Area de Conocimiento con el id " + entity.getId() + " no existe");
         }
-        else if (!(entity.getTipo().matches("([A-Z]|[a-z]|[0-9]|\\s)+")| entity.getTipo().contains(" "))){
+        else if (!(entity.getTipo().matches("([A-Z]|[a-z]|ñ|[0-9]|\\s)+")|| entity.getTipo().contains(" "))){
             LOGGER.log(Level.INFO, "El nombre del area de conocimiento no puede contener caracteres especiales");
             throw new BusinessLogicException("El nombre del area de conocimiento no puede contener caracteres especiales");
         }
         
+        addDocumentos(entity);
         return persistence.update(entity);
     }
 
@@ -114,4 +135,38 @@ public class AreaDeConocimientoLogic{
         persistence.delete(id);
     }
 
+    /**
+     * Valida la información para agregar unos documentos al Area de Conocimiento
+     * @param entity Area de conocimiento a agregar los documentos
+     * @throws BusinessLogicException Excepción cuando se incumple una regla de negocio.
+     */
+    private void addDocumentos(AreaDeConocimientoEntity entity) throws BusinessLogicException{
+        ArrayList<DocumentoEntity> documentos = new ArrayList<>();
+        if (!entity.getDocumentos().isEmpty()){
+            
+            for (DocumentoEntity documentoEntity: entity.getDocumentos()){
+                try{
+                    if (LibroEntity.class.equals(documentoEntity.getClass())){
+                        LibroEntity libro = libroLogic.getLibro(documentoEntity.getId());
+                        if (libro != null)
+                            libroLogic.updateLibro(libro.getId(), libro);
+                        else
+                            libroLogic.createLibro((LibroEntity) documentoEntity); 
+                    }
+                    else{
+                        FotocopiaEntity fotocopia = fotocopiaLogic.getFotocopia(documentoEntity.getId());
+                        if (fotocopia != null)
+                            fotocopiaLogic.updateFotocopia(fotocopia.getId(), fotocopia);
+                        else
+                            fotocopiaLogic.createFotocopia((FotocopiaEntity) documentoEntity); 
+                    }    
+                }    
+                catch(BusinessLogicException e){
+                    throw new BusinessLogicException(e.getMessage());  
+                }
+                documentos.add(documentoEntity);
+            }
+            entity.setDocumentos(documentos);
+        }
+    }
 }
