@@ -62,7 +62,7 @@ public class CompraDetailedDTO extends CompraDTO
       public CompraEntity toEntity()
     {
        CompraEntity rta= super.toEntity();
-       if(documentos!=null)
+       if(documentos!=null&& metodoDePago!=null)
        {
            
            List<DocumentoEntity> lista= new ArrayList<>();
@@ -72,6 +72,7 @@ public class CompraDetailedDTO extends CompraDTO
            
        }
        rta.setDocumentos(lista);
+       rta.setMetodoDePago(metodoDePago.toEntity());
        }
        return rta;
     }
@@ -86,7 +87,7 @@ public class CompraDetailedDTO extends CompraDTO
             {
                 documentos.add(new DocumentoDTO(documento));
             }
-            
+            metodoDePago = new MetodoDePagoDTO(compra.getMetodoDePago());
         }
     }
 }

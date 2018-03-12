@@ -99,7 +99,7 @@ public class PayPalResources {
      * @return todas las cuentas paypal que tiene el usuario.
      */
     @GET
-    public List<PayPalDetailDTO> getPayPal(@PathParam("usuarioId") Long Uid)
+    public List<PayPalDetailDTO> getPayPal(@PathParam("usuarioId") Long Uid) throws BusinessLogicException
     {
         UsuarioEntity entity = uLogic.getUsuario(Uid);
         if(entity != null)
@@ -136,7 +136,7 @@ public class PayPalResources {
      */
     @GET
     @Path("{id: \\d+}")
-    public PayPalDetailDTO getPayPal(@PathParam("usuarioId") Long Uid, @PathParam("id") Long id)
+    public PayPalDetailDTO getPayPal(@PathParam("usuarioId") Long Uid, @PathParam("id") Long id) throws BusinessLogicException
     {
         UsuarioEntity Uentity = uLogic.getUsuario(Uid);
         if(Uentity != null)

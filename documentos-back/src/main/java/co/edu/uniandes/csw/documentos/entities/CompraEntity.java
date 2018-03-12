@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -50,6 +51,28 @@ public class CompraEntity implements Serializable
     @OneToMany
     @PodamExclude
     private List<DocumentoEntity> documentos;
+    /**
+     * representa el metodo de pago usado para realizar un pagoa
+     */
+    @OneToOne
+    @PodamExclude
+    private MetodoDePagoEntity metodoDePago;
+    /**
+     *
+     * @return metodo de pago para una compra
+     */
+    public MetodoDePagoEntity getMetodoDePago() {
+        return metodoDePago;
+    }
+    /**
+     *
+     * @param metodoDePago nuevo metodo de pago
+     */
+    public void setMetodoDePago(MetodoDePagoEntity metodoDePago) {
+        this.metodoDePago = metodoDePago;
+    }
+    
+    
     /**
      *
      * @return lista de documentos que hacen parte de una compra
