@@ -1,0 +1,228 @@
+{
+	"info": {
+		"name": "Pruebas Autores",
+		"_postman_id": "7b3a86d1-7380-4b91-969d-5047ef9bcfae",
+		"description": "Pruebas del recurso Autor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAll Autores",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "939ddebe-29c2-4073-8311-ef3383cc5d30",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n    \t\"id\": 10001\r\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/autores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"autores"
+					]
+				},
+				"description": "Encuentra todos los autores"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Autor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2d52ea51-cc2d-4274-91ec-d26102a35e53",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n    \t\"id\": 10001\r\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/autores/10002",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"autores",
+						"10002"
+					]
+				},
+				"description": "Encuentra solo un autor con un id dado"
+			},
+			"response": []
+		},
+		{
+			"name": "Post Autor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "02943d23-2076-436c-9fea-6b76555a8389",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": \"10006\",\r\n    \"nombre\": \"Autor6\",\r\n    \"documentos\": [ ]\r\n}\r\n    "
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/autores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"autores"
+					]
+				},
+				"description": "Crea un nuevo Autor"
+			},
+			"response": []
+		},
+		{
+			"name": "Put Autor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "02943d23-2076-436c-9fea-6b76555a8389",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": \"10002\",\r\n    \"nombre\": \"Autor Nuevo\",\r\n    \"documentos\": [ ]\r\n}\r\n    "
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/autores/10002",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"autores",
+						"10002"
+					]
+				},
+				"description": "Modifica un Autor"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Autor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "755d405e-c4e2-4fed-95e3-35d482345448",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/autores/10005",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"autores",
+						"10005"
+					]
+				},
+				"description": "Elimina un Autor"
+			},
+			"response": []
+		}
+	]
+}

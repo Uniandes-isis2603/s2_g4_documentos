@@ -32,4 +32,18 @@ public class PayPalDetailDTO extends PayPalDTO {
         
         return entity;
     }
+
+    /**
+     * @return the uEntity
+     */
+    public UsuarioDTO getuEntity() {
+        return uEntity;
+    }
+
+    /**
+     * @param uEntity the uEntity to set
+     */
+    public void setuEntity(UsuarioDTO uEntity) {
+        this.uEntity = uEntity;
+    }
 }

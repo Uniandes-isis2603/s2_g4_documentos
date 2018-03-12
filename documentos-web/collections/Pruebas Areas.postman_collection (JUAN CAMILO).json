@@ -1,0 +1,212 @@
+{
+	"info": {
+		"name": "Pruebas Areas",
+		"_postman_id": "14ae010a-08de-c326-6ec5-799c72bfb011",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAll Areas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9f4d64f-72e7-4f2e-bdd5-185bebcbb500",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/areas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"areas"
+					]
+				},
+				"description": "Retorna todas las areas"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Areas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9f4d64f-72e7-4f2e-bdd5-185bebcbb500",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/areas/10004",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"areas",
+						"10004"
+					]
+				},
+				"description": "Retorna una areas"
+			},
+			"response": []
+		},
+		{
+			"name": "PostAreas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9f4d64f-72e7-4f2e-bdd5-185bebcbb500",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 10006,\n    \"tipo\": \"Area 6\",\n    \"documentos\": [   ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/areas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"areas"
+					]
+				},
+				"description": "Crea una area"
+			},
+			"response": []
+		},
+		{
+			"name": "Put Areas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9f4d64f-72e7-4f2e-bdd5-185bebcbb500",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 10003,\n    \"tipo\": \"Area Nueva\",\n    \"documentos\": [   ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/areas/10003",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"areas",
+						"10003"
+					]
+				},
+				"description": "Modifica una area"
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteAreas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bd9f3df9-dd54-47b5-900e-4d56d0943b52",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/areas/10003",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"areas",
+						"10003"
+					]
+				},
+				"description": "Elimina una area"
+			},
+			"response": []
+		}
+	]
+}
