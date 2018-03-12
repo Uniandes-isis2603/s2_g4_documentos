@@ -17,6 +17,9 @@ delete from AutorEntity;
 delete from EditorialEntity;
 delete from PayPalEntity;
 delete from TarjetaDeCreditoEntity;
+delete from ReservaEntity;
+delete from DeseadoEntity;
+
 
 -- Ernesto
 insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (100,'LibroEntity','amor en los tiempos del colera','abc.jph','una novela',3.2,100.2);
@@ -93,10 +96,25 @@ insert into ComentarioEntity(id,comentario,fecha) values (14,'que profesor tan m
 insert into CursoEntity(id,codigo,departamento,nombre) values (11,'FISI1018','Fisica','Fisica1');
 insert into CursoEntity(id,codigo,departamento,nombre) values (12,'MATE1214','Matematicas','Calculo integral');
 
--- Gregorio
-insert into UsuarioEntity (id, contraseña, nombre, nombreUsuario) values (70001, 'Gregorio', 'gregorioospina', 'contrasena123');
-insert into UsuarioEntity (id, nombre, nombreUsuario, contraseña) values (70002, 'Nicolas', 'n.sotelo', 'nacionalTuPapa');
-insert into UsuarioEntity (id, nombre, nombreUsuario, contraseña) values (70003, 'JuanCamilo', 'ElCapoDeExcel123', 'contrasema124');
+-- Federico
+
+insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (45,'gregorio ospina','tuTranqui123',20,'g.ospina@uniandes.edu.co',1);
+insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (46,'nicolas sotelo','nikitaArrieta',20,'n.sotelo@uniandes.edu.co',1);
+insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (47,'juan camilo','dobleConSis',20,'j.jaramillo@gmail.edu.co',1);
+insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (48,'ernesto v','thePullRequester',20,'e.viera@uniandes.edu.co',1);
+
+
+-- Federico
+insert into ReservaEntity(id, fecha, costo) values (545, '2013-10-28 14:59:59',54000);
+insert into ReservaEntity(id, fecha, costo) values (546,'2018-02-15 05:27:20',20000);
+insert into ReservaEntity(id, fecha, costo) values (547,'2017-10-28 12:45:05',60000);
+insert into ReservaEntity(id, fecha, costo) values (548,'2012-04-05 22:20:13',10000);
+
+-- Federico
+insert into DeseadoEntity(id, nombre, cantidad) values (2000, 'mi lista',4.0);
+insert into DeseadoEntity(id, nombre, cantidad) values (2001, 'mis documentos',6.0);
+insert into DeseadoEntity(id, nombre, cantidad) values (2002, 'mis desesos',10.0);
+insert into DeseadoEntity(id, nombre, cantidad) values (2003, 'libros pref',5.0);
 
 -- Gregorio
 insert into PayPalEntity (id, usuario, correoElectronico) values (65000, 'gregorio','gregorio@ospina');
@@ -121,17 +139,17 @@ insert into EditorialEntity(id,nombre) values (12,'UNAM');
 --------------------------------------------------------------------------
 
 -- Gregorio
-insert into UsuarioEntity_PayPalEntity (UsuarioEntity_ID, PayPal_ID) values (70001, 65000);
-insert into UsuarioEntity_PayPalEntity (UsuarioEntity_ID, PayPal_ID) values (70001, 65001);
-insert into UsuarioEntity_PayPalEntity (UsuarioEntity_ID, PayPal_ID) values (70002, 65002);
-insert into UsuarioEntity_PayPalEntity (UsuarioEntity_ID, PayPal_ID) values (70003, 65003);
+insert into UsuarioEntity_PayPalEntity (UsuarioEntity_ID, PayPal_ID) values (45, 65000);
+insert into UsuarioEntity_PayPalEntity (UsuarioEntity_ID, PayPal_ID) values (45, 65001);
+insert into UsuarioEntity_PayPalEntity (UsuarioEntity_ID, PayPal_ID) values (46, 65002);
+insert into UsuarioEntity_PayPalEntity (UsuarioEntity_ID, PayPal_ID) values (47, 65003);
 
 -- Gregorio
-insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (70001, 7501);
-insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (70001, 7502);
-insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (70001, 7503);
-insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (70002, 7500);
-insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (70002, 7504);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (45, 7501);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (46, 7502);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (47, 7503);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (45, 7500);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (45, 7504);
 
 -- Ernesto
 insert into DocumentoEntity_AreaDeConocimientoEntity(documentos_id,areas_id) values (100,11);

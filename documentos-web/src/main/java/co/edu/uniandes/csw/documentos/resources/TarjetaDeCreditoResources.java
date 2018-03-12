@@ -37,7 +37,7 @@ import javax.ws.rs.WebApplicationException;
  * 
  * @author g.ospinaa
  */
-@Path("usuario/(usuarioId: \\d+)/metodosdepago/tarjetasdecredito")
+@Path("usuario/{usuarioId: \\d+}/metodosdepago/tarjetasdecredito")
 @Produces ("application/json")
 @Consumes("application/json")
 @RequestScoped
