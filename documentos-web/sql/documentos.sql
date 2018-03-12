@@ -5,6 +5,7 @@ delete from DocumentoEntity_CursoEntity;
 delete from DocumentoEntity_ImagenEntity;
 delete from UsuarioEntity_TarjetaDeCreditoEntity;
 delete from UsuarioEntity_PayPalEntity;
+delete from CursoEntity_DocumentoEntity;
 delete from UsuarioEntity;
 delete from LibroEntity;
 delete from FotocopiaEntity;
@@ -137,6 +138,11 @@ insert into EditorialEntity(id,nombre) values (12,'UNAM');
 -- nicolas
 insert into ComentarioEntity (id, comentario, fecha ) values (20000, 'Buen libro','2018-02-22 20:38:54.973');
 insert into ComentarioEntity (id, comentario, fecha ) values (20001, 'Mal Libro','2018-02-22 20:38:54.973');
+insert into ComentarioEntity(id,comentario,fecha) values (11000,'es malo','2015-10-28 14:12:59');
+
+--Nicolas
+insert into CursoEntity(id,codigo,departamento,nombre) values (3000,'Ma205','Matematicas','Matematica basica');
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (3500,'LibroEntidad','libro222','xyz.jpg','la',3.5,110.2);
 
 --------------------------------------------------------------------------
 ----------------------------- RELACIONES ---------------------------------
@@ -166,6 +172,9 @@ insert into DocumentoEntity_AreaDeConocimientoEntity(documentos_id,areas_id) val
 -- Ernesto
 insert into DocumentoEntity_CursoEntity(documentoentity_id,cursos_id) values (800,11);
 insert into DocumentoEntity_CursoEntity(documentoentity_id,cursos_id) values (200,12);
+
+-- Nicolas
+insert into CursoEntity_DocumentoEntity(cursoentity_id,bibliografiadelcurso_id) values (3000,3500);
 
 
 -- Ernesto
