@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -52,25 +53,48 @@ public class CompraEntity implements Serializable
     @PodamExclude
     private List<DocumentoEntity> documentos;
     /**
-     * representa el metodo de pago usado para realizar un pagoa
+     * representa el metodo de pago usado para realizar un pago con paypal
      */
     @OneToOne
+    @JoinColumn(name="METODODEPAGOPAYPAL_ID")
     @PodamExclude
-    private MetodoDePagoEntity metodoDePago;
+    private PayPalEntity metodoDePagoPayPal;
+    /**
+     * representa el metodo de pago usado para realizar un pago con tarjeta de credito
+     */
+    @OneToOne
+    @JoinColumn(name="METODODEPAGOTDC_ID")
+    @PodamExclude
+    private TarjetaDeCreditoEntity metodoDePagoTDC;
     /**
      *
-     * @return metodo de pago para una compra
+     * @return metodo de pago con paypal
      */
-    public MetodoDePagoEntity getMetodoDePago() {
-        return metodoDePago;
+    public PayPalEntity getMetodoDePagoPayPal() {
+        return metodoDePagoPayPal;
     }
     /**
      *
-     * @param metodoDePago nuevo metodo de pago
+     * @param metodoDePagoPayPal nuevo metodo de pago
      */
-    public void setMetodoDePago(MetodoDePagoEntity metodoDePago) {
-        this.metodoDePago = metodoDePago;
+    public void setMetodoDePagoPayPal(PayPalEntity metodoDePagoPayPal) {
+        this.metodoDePagoPayPal = metodoDePagoPayPal;
     }
+    /**
+     *
+     * @return metodo de pago con tarjeta de credito
+     */
+    public TarjetaDeCreditoEntity getMetodoDePagoTDC() {
+        return metodoDePagoTDC;
+    }
+    /**
+     *
+     * @param metodoDePagoTDC nuevo metodo de pago.
+     */
+    public void setMetodoDePagoTDC(TarjetaDeCreditoEntity metodoDePagoTDC) {
+        this.metodoDePagoTDC = metodoDePagoTDC;
+    }
+    
     
     
     /**
