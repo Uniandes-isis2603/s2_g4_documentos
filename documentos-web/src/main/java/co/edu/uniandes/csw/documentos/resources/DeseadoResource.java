@@ -8,7 +8,9 @@ package co.edu.uniandes.csw.documentos.resources;
 import co.edu.uniandes.csw.documentos.dtos.DeseadoDetailedDTO;
 import co.edu.uniandes.csw.documentos.dtos.DeseadoDetailedDTO;
 import co.edu.uniandes.csw.documentos.ejb.DeseadoLogic;
+import co.edu.uniandes.csw.documentos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.documentos.entities.DeseadoEntity;
+import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre> Clase que implemente el recurso "Deseado".
@@ -39,7 +42,7 @@ import javax.ws.rs.Produces;
  *
  * @author federico
  */
-@Path("usuarios/{id: \\d+}/deseados")
+@Path("usuarios/{usuarioId: \\d+}/deseados")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -47,6 +50,9 @@ public class DeseadoResource {
 
     @Inject
     DeseadoLogic DeseadoLogica;
+
+    @Inject
+    UsuarioLogic usuarioLogic;
 
     private List<DeseadoDetailedDTO> listDeseadoEntity2DetailDTO(List<DeseadoEntity> entityList) {
         List<DeseadoDetailedDTO> list = new ArrayList<>();
@@ -80,7 +86,15 @@ public class DeseadoResource {
      * generado.
      */
     @POST
-    public DeseadoDetailedDTO createDeseado(DeseadoDetailedDTO Deseado)throws BusinessLogicException {
+    public DeseadoDetailedDTO createDeseado(@PathParam("usuarioId") Long idUser, DeseadoDetailedDTO Deseado) throws BusinessLogicException {
+        try {
+            usuarioLogic.getUsuario(idUser);
+
+        } catch (BusinessLogicException ex) {
+            throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+
+        }
+
         return new DeseadoDetailedDTO(DeseadoLogica.createDeseado(Deseado.toEntity()));
     }
 
@@ -124,7 +138,14 @@ public class DeseadoResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public DeseadoDetailedDTO getDeseado(@PathParam("id") Long id) throws BusinessLogicException{
+    public DeseadoDetailedDTO getDeseado(@PathParam("usuarioId") Long idUser, @PathParam("id") Long id) throws BusinessLogicException {
+        try {
+            usuarioLogic.getUsuario(idUser);
+
+        } catch (BusinessLogicException ex) {
+            throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+
+        }
         return new DeseadoDetailedDTO(DeseadoLogica.getDeseado(id));
     }
 
@@ -149,7 +170,14 @@ public class DeseadoResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public DeseadoDetailedDTO updateDeseado(@PathParam("id") Long id, DeseadoDetailedDTO Deseado)throws BusinessLogicException {
+    public DeseadoDetailedDTO updateDeseado(@PathParam("usuarioId") Long idUser, @PathParam("id") Long id, DeseadoDetailedDTO Deseado) throws BusinessLogicException {
+        try {
+            usuarioLogic.getUsuario(idUser);
+
+        } catch (BusinessLogicException ex) {
+            throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+
+        }
         Deseado.setId(id);
         return new DeseadoDetailedDTO(DeseadoLogica.updateDeseado(Deseado.toEntity()));
     }
@@ -171,7 +199,14 @@ public class DeseadoResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteDeseado(@PathParam("id") Long id )throws BusinessLogicException {
+    public void deleteDeseado(@PathParam("usuarioId") Long idUser, @PathParam("id") Long id) throws BusinessLogicException {
+        try {
+            usuarioLogic.getUsuario(idUser);
+
+        } catch (BusinessLogicException ex) {
+            throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+
+        }
         DeseadoLogica.deleteDeseado(id);
     }
 

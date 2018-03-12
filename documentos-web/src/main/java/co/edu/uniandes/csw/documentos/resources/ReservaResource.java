@@ -6,12 +6,15 @@
 package co.edu.uniandes.csw.documentos.resources;
 
 import co.edu.uniandes.csw.documentos.dtos.ReservaDetailedDTO;
-import co.edu.uniandes.csw.documentos.dtos.ReservaDetailedDTO;
 import co.edu.uniandes.csw.documentos.ejb.ReservaLogic;
+import co.edu.uniandes.csw.documentos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.documentos.entities.ReservaEntity;
+import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -22,6 +25,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre> Clase que implemente el recurso "Reserva".
@@ -39,7 +43,7 @@ import javax.ws.rs.Produces;
  *
  * @author federico
  */
-@Path("usuarios/{id: \\d+}/reservas")
+@Path("usuarios/{usuarioId: \\d+}/reservas")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -47,6 +51,9 @@ public class ReservaResource {
 
     @Inject
     ReservaLogic reservaLogica;
+
+    @Inject
+    UsuarioLogic usuarioLogic;
 
     private List<ReservaDetailedDTO> listReservaEntity2DetailDTO(List<ReservaEntity> entityList) {
         List<ReservaDetailedDTO> list = new ArrayList<>();
@@ -80,8 +87,18 @@ public class ReservaResource {
      * generado.
      */
     @POST
-    public ReservaDetailedDTO createReserva(ReservaDetailedDTO reserva) throws BusinessLogicException {
+    public ReservaDetailedDTO createReserva(@PathParam("usuarioId") Long idUser, ReservaDetailedDTO reserva) throws BusinessLogicException {
+
+        try {
+             usuarioLogic.getUsuario(idUser);
+
+        } catch (BusinessLogicException ex) {
+            throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+
+        }
+
         return new ReservaDetailedDTO(reservaLogica.createReserva(reserva.toEntity()));
+
     }
 
     /**
@@ -124,7 +141,15 @@ public class ReservaResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public ReservaDetailedDTO getReserva(@PathParam("id") Long id) {
+    public ReservaDetailedDTO getReserva(@PathParam("usuarioId") Long idUser, @PathParam("id") Long id) {
+        try {
+           usuarioLogic.getUsuario(idUser);
+
+        } catch (BusinessLogicException ex) {
+            throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+
+        }
+
         return new ReservaDetailedDTO(reservaLogica.getReserva(id));
     }
 
@@ -149,9 +174,17 @@ public class ReservaResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public ReservaDetailedDTO updateReserva(@PathParam("id") Long id, ReservaDetailedDTO reserva) throws BusinessLogicException {
+    public ReservaDetailedDTO updateReserva(@PathParam("usuarioId") Long idUser, @PathParam("id") Long id, ReservaDetailedDTO reserva) throws BusinessLogicException {
+        try {
+             usuarioLogic.getUsuario(idUser);
+
+        } catch (BusinessLogicException ex) {
+            throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+
+        }
         reserva.setId(id);
         return new ReservaDetailedDTO(reservaLogica.updateReserva(reserva.toEntity()));
+
     }
 
     /**
@@ -171,8 +204,16 @@ public class ReservaResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteReserva(@PathParam("id") Long id ) throws BusinessLogicException {
+    public void deleteReserva(@PathParam("usarioId") Long idUser, @PathParam("id") Long id) throws BusinessLogicException {
+        try {
+             usuarioLogic.getUsuario(idUser);
+
+        } catch (BusinessLogicException ex) {
+            throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+        }
+
         reservaLogica.deleteReserva(id);
+
     }
 
 }

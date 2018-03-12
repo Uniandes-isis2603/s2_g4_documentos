@@ -36,7 +36,6 @@ public class ReservaLogic {
      */
     public ReservaEntity createReserva(ReservaEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de crear una Reserva ");
-        Date date = new Date();
         ReservaEntity buscado = persistence.find(entity.getId());
         if (buscado != null) {
             LOGGER.log(Level.INFO, "La Reserva con el id {0} ya existe ", entity.getId());
