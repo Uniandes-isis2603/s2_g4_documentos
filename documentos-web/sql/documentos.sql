@@ -105,11 +105,11 @@ insert into PayPalEntity (id, usuario, correoElectronico) values (65002,'jeronim
 insert into PayPalEntity (id, usuario, correoElectronico) values (65003,'juan','juan@ospina');
 
 -- Gregorio
-insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (75000, 'Visa','4234567890123456', 'gregorio', 123);
-insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (75001, 'MasterCard','5134567890123456', 'andres', 124);
-insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (75003, 'Visa','4234567870123456', 'jeronimo', 125);
-insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (75002, 'Visa','4234567880123456', 'raquel', 130);
-insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (75004, 'MasterCard','5134567890153456','jaime', 198);
+insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7500, 'Visa','4234567890123456', 'gregorio', 123);
+insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7501, 'MasterCard','5134567890123456', 'andres', 124);
+insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7503, 'Visa','4234567870123456', 'jeronimo', 125);
+insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7502, 'Visa','4234567880123456', 'raquel', 130);
+insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7504, 'MasterCard','5134567890153456','jaime', 198);
 
 -- Ernesto
 insert into EditorialEntity(id,nombre) values (11,'Vintage espaniol');
@@ -127,11 +127,11 @@ insert into UsuarioEntity_PayPalEntity (UsuarioEntity_ID, PayPal_ID) values (700
 insert into UsuarioEntity_PayPalEntity (UsuarioEntity_ID, PayPal_ID) values (70003, 65003);
 
 -- Gregorio
---insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (70001, 7501);
---insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (70001, 7502);
---insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (70001, 7503);
---insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (70002, 7500);
---insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (70002, 7504);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (70001, 7501);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (70001, 7502);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (70001, 7503);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (70002, 7500);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (70002, 7504);
 
 -- Ernesto
 insert into DocumentoEntity_AreaDeConocimientoEntity(documentos_id,areas_id) values (100,11);
