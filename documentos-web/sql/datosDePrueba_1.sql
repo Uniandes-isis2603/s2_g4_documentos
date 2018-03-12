@@ -27,12 +27,3 @@ insert into DeseadoEntity(id, nombre, cantidad) values (2001, 'mis documentos',6
 insert into DeseadoEntity(id, nombre, cantidad) values (2002, 'mis desesos',10.0);
 insert into DeseadoEntity(id, nombre, cantidad) values (2003, 'libros pref',5.0);
 
-insert into UsuarioEntity_ReservaEntity (UsuarioEntity_ID, Reserva_ID) values (123, 224);
-insert into UsuarioEntity_ReservaEntity (UsuarioEntity_ID, Reserva_ID) values (124, 225);
-insert into UsuarioEntity_ReservaEntity (UsuarioEntity_ID, Reserva_ID) values (125, 226);
-insert into UsuarioEntity_ReservaEntity (UsuarioEntity_ID, Reserva_ID) values (126, 227);
-
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (523, 264);
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (524, 265);
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (525, 266);
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (526, 267);

@@ -41,11 +41,25 @@ public class UsuarioLogic {
             LOGGER.log(Level.INFO, "El Usuario con el id {0} ya existe ", entity.getId());
             throw new BusinessLogicException("El Usuario con el id ya existe");
 
-        } else if (entity.getNombre() == null || entity.getUserName() == null || null == entity.getId() || 0 == entity.getEdad() || entity.getCorreo() == null) {
+        } else if (entity.getNombre() == null ) {
             LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
-            throw new BusinessLogicException("El usuario tiene atributos nulos");
+            throw new BusinessLogicException("El usuario tiene ael nombre nulo");
+        
+                    
+        } else if (entity.getUserName() == null) {
+            LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
+            throw new BusinessLogicException("El usuario tiene el nombre de usuario nulo");
+        } else if (null == entity.getId()) {
+            LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
+            throw new BusinessLogicException("El usuario tiene el id nulo");
+        } else if (0 == entity.getEdad()) {
+            LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
+            throw new BusinessLogicException("El usuario tiene la edad igual a cero");
+        } else if (entity.getCorreo() == null) {
 
-        } else if (!entity.getNombre().matches("([A-Z]|[a-z]|\\s)+")) {
+            LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
+            throw new BusinessLogicException("El usuario tiene el correo nulo");
+        }else if (!entity.getNombre().matches("([A-Z]|[a-z]|\\s)+")) {
             LOGGER.log(Level.INFO, "El nombre del Usuario no puede contener caracteres especiales");
             throw new BusinessLogicException("El nombre del Usuario no puede contener caracteres especiales");
 
