@@ -13,7 +13,7 @@ import co.edu.uniandes.csw.documentos.entities.PayPalEntity;
  */
 public class PayPalDetailDTO extends PayPalDTO {
     
-    private UsuarioDTO usuario;
+    private UsuarioDTO uEntity;
     
     public PayPalDetailDTO()
     {

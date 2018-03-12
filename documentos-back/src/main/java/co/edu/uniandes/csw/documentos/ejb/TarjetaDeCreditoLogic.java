@@ -29,6 +29,8 @@ public class TarjetaDeCreditoLogic
     @Inject
     private TarjetaDeCreditoPersistence persistence;
     
+    
+    
      /**
      * Se encarga de crear una TarjetaDeCredito
      * 
