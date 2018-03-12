@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.documentos.ejb;
 import co.edu.uniandes.csw.documentos.entities.PayPalEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.PayPalPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +28,7 @@ public class PayPalLogic {
     private PayPalPersistence persistence;
     
     
+   
     /**
      * Obtiene la lista de las cuentas PayPal
      * 
@@ -37,6 +39,30 @@ public class PayPalLogic {
         LOGGER.log(Level.INFO,"Inicia proceso de consultar cuentas PayPal");
         return persistence.findAll();
     }
+    
+    public List<PayPalEntity> getPPByUser(Long id)
+    {
+        LOGGER.log(Level.INFO,"Inicia proceso de consultar cuentas PayPal");
+        return persistence.findUser(id);
+    }
+     /**
+     * Obtiene la lista de las cuentas PayPal
+     * 
+     * @return Coleccion de objetos PayPalEntity
+     */
+//    public List<PayPalEntity> getAllPayPal(Long id)
+//    {
+//        LOGGER.log(Level.INFO,"Inicia proceso de consultar cuentas PayPal");
+//        ArrayList<PayPalEntity> listaFinal = new ArrayList<>();
+//        ArrayList<PayPalEntity> listaParcial = new ArrayList<>(persistence.findAll());
+//        for (int i = 0; i < listaParcial.size(); i++) {
+//            if (listaParcial.get(i).getUEntity().getId() == (id))
+//            {
+//                listaFinal.add(listaParcial.get(i));
+//            }
+//        }
+//        return listaFinal;
+//    }
     
     /**
      * Obtiene los datos de una instancia de PayPal a partir de su ID.
