@@ -19,6 +19,7 @@ delete from PayPalEntity;
 delete from TarjetaDeCreditoEntity;
 delete from ReservaEntity;
 delete from DeseadoEntity;
+delete from ComentarioEntity;
 
 
 -- Ernesto
@@ -133,6 +134,9 @@ insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnL
 insert into EditorialEntity(id,nombre) values (11,'Vintage espaniol');
 insert into EditorialEntity(id,nombre) values (12,'UNAM');
 
+-- nicolas
+insert into ComentarioEntity (id, comentario, fecha ) values (20000, 'Buen libro','2018-02-22 20:38:54.973');
+insert into ComentarioEntity (id, comentario, fecha ) values (20001, 'Mal Libro','2018-02-22 20:38:54.973');
 
 --------------------------------------------------------------------------
 ----------------------------- RELACIONES ---------------------------------

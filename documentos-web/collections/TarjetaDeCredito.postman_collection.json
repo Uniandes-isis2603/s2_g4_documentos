@@ -1,0 +1,137 @@
+{
+	"id": "da28fe44-36c8-355c-387d-26a4df3af147",
+	"name": "TarjetaDeCredito",
+	"description": "",
+	"order": [
+		"43f4f76f-dd37-8330-545e-45d1fca362e4",
+		"75b4e925-ace1-768a-da2a-84c7cdabe7d6",
+		"4d6e2b5f-e59c-e000-a73b-faa0a6154fc8"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1520824917847,
+	"owner": 0,
+	"public": false,
+	"events": [],
+	"variables": [],
+	"auth": null,
+	"requests": [
+		{
+			"id": "43f4f76f-dd37-8330-545e-45d1fca362e4",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/documentos-web/api/usuario/45/metodosdepago/tarjetasdecredito",
+			"queryParams": [
+				{
+					"key": "fields",
+					"value": "devices",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"events": [],
+			"auth": null,
+			"method": "GET",
+			"collectionId": "da28fe44-36c8-355c-387d-26a4df3af147",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Busca todas las TarjetasDeCredito",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1520825041546,
+			"version": 2,
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": "{\n    \"type\": \"tarjetaDeCreditoDetailDTO\",\n    \"id\": 7500,\n    \"nombreEnLaTarjeta\": \"juan sebastian\",\n    \"nroDeLaTarjeta\": \"4234567890123456\",\n    \"numeroDeSeguridad\": 244,\n    \"tipoDeTarjeta\": \"Visa\"\n}"
+		},
+		{
+			"id": "4d6e2b5f-e59c-e000-a73b-faa0a6154fc8",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/documentos-web/api/usuario/45/metodosdepago/tarjetasdecredito",
+			"queryParams": [
+				{
+					"key": "fields",
+					"value": "devices",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"events": [],
+			"auth": null,
+			"method": "POST",
+			"collectionId": "da28fe44-36c8-355c-387d-26a4df3af147",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Crea una nueva TarjetaDeCredito",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1520825144880,
+			"version": 2,
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": "{\n    \"type\": \"tarjetaDeCreditoDetailDTO\",\n    \"id\": 6430,\n    \"nombreEnLaTarjeta\": \"Nuevo usuario\",\n    \"nroDeLaTarjeta\": \"4234567123423456\",\n    \"numeroDeSeguridad\": 244,\n    \"tipoDeTarjeta\": \"Visa\"\n}"
+		},
+		{
+			"id": "75b4e925-ace1-768a-da2a-84c7cdabe7d6",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/documentos-web/api/usuario/45/metodosdepago/tarjetasdecredito/7500",
+			"queryParams": [
+				{
+					"key": "fields",
+					"value": "devices",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"events": [],
+			"auth": null,
+			"method": "GET",
+			"collectionId": "da28fe44-36c8-355c-387d-26a4df3af147",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Busca una las TarjetasDeCredito",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1520825065314,
+			"version": 2,
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": "{\n    \"type\": \"tarjetaDeCreditoDetailDTO\",\n    \"id\": 7500,\n    \"nombreEnLaTarjeta\": \"juan sebastian\",\n    \"nroDeLaTarjeta\": \"4234567890123456\",\n    \"numeroDeSeguridad\": 244,\n    \"tipoDeTarjeta\": \"Visa\"\n}"
+		}
+	]
+}

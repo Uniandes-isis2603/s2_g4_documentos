@@ -132,7 +132,7 @@ public class TarjetaDeCreditoResources {
     public TarjetaDeCreditoDetailDTO getTDC(@PathParam("usuarioId") Long Uid, @PathParam("id") Long id) throws BusinessLogicException
     {
         UsuarioEntity Uentity = uLogic.getUsuario(Uid);
-        if(Uentity != null)
+        if(Uentity == null)
         {
                 throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe", 404);
         }
