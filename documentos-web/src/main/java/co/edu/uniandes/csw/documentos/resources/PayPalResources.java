@@ -14,6 +14,7 @@ import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.mappers.BusinessLogicExceptionMapper;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Objects;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -94,17 +95,32 @@ public class PayPalResources {
      * <code style="color: #c7254e; background-color: #f9f2f4;">
      * 404 Not Found El usuario no tiene tarjetas.
      * </code> 
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 500 No se pudo.
+     * </code> 
      * </pre>
      * 
      * @return todas las cuentas paypal que tiene el usuario.
      */
     @GET
-    public List<PayPalDetailDTO> getPayPal(@PathParam("usuarioId") Long Uid)
+    public List<PayPalDetailDTO> getPayPal(@PathParam("usuarioId") Long Uid) throws BusinessLogicException
     {
         UsuarioEntity entity = uLogic.getUsuario(Uid);
         if(entity != null)
         {
-                return listaPP(PPLogic.getPayPal());
+                ArrayList<PayPalEntity> listap = new ArrayList<> ((PPLogic.getPayPal()));
+                ArrayList<PayPalEntity> lista2 = new ArrayList<> ();
+               
+                for (int i = 0; i < listap.size(); i++) {
+                    if (Objects.equals(listap.get(0).getUEntity().getId(), Uid))
+                    {
+                        System.out.println(listap.get(i).getUEntity().getId());
+                        lista2.add(listap.get(i));
+                    }
+                
+            }
+               return listaPP(lista2); 
+                
         }
         throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
     }
@@ -136,7 +152,7 @@ public class PayPalResources {
      */
     @GET
     @Path("{id: \\d+}")
-    public PayPalDetailDTO getPayPal(@PathParam("usuarioId") Long Uid, @PathParam("id") Long id)
+    public PayPalDetailDTO getPayPal(@PathParam("usuarioId") Long Uid, @PathParam("id") Long id) throws BusinessLogicException
     {
         UsuarioEntity Uentity = uLogic.getUsuario(Uid);
         if(Uentity != null)
