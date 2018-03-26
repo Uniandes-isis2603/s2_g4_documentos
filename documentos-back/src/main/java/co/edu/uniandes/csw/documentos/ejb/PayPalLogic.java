@@ -45,24 +45,7 @@ public class PayPalLogic {
         LOGGER.log(Level.INFO,"Inicia proceso de consultar cuentas PayPal");
         return persistence.findUser(id);
     }
-     /**
-     * Obtiene la lista de las cuentas PayPal
-     * 
-     * @return Coleccion de objetos PayPalEntity
-     */
-//    public List<PayPalEntity> getAllPayPal(Long id)
-//    {
-//        LOGGER.log(Level.INFO,"Inicia proceso de consultar cuentas PayPal");
-//        ArrayList<PayPalEntity> listaFinal = new ArrayList<>();
-//        ArrayList<PayPalEntity> listaParcial = new ArrayList<>(persistence.findAll());
-//        for (int i = 0; i < listaParcial.size(); i++) {
-//            if (listaParcial.get(i).getUEntity().getId() == (id))
-//            {
-//                listaFinal.add(listaParcial.get(i));
-//            }
-//        }
-//        return listaFinal;
-//    }
+
     
     /**
      * Obtiene los datos de una instancia de PayPal a partir de su ID.
