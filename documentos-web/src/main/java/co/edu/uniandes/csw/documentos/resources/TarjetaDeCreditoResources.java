@@ -5,11 +5,15 @@
  */
 package co.edu.uniandes.csw.documentos.resources;
 import co.edu.uniandes.csw.documentos.dtos.*;
+import co.edu.uniandes.csw.documentos.ejb.*;
+import co.edu.uniandes.csw.documentos.entities.TarjetaDeCreditoEntity;
+import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.mappers.BusinessLogicExceptionMapper;
 import java.util.List;
 import java.util.ArrayList;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,6 +22,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre> Clase que implementa el recurso "TarjetaDeCredito"
@@ -32,13 +37,17 @@ import javax.ws.rs.Produces;
  * 
  * @author g.ospinaa
  */
-@Path("metodosdepago/tarjetasdecredito")
+@Path("usuario/{usuarioId: \\d+}/metodosdepago/tarjetasdecredito")
 @Produces ("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class TarjetaDeCreditoResources {
  
+    @Inject
+    TarjetaDeCreditoLogic TDCLogic;
     
+    @Inject
+    UsuarioLogic uLogic;
     /**
      * <h1> POST /api/metdodosdepago/tarjetasdecredito : crear una nueva TarjetaDeCredito. </h1>
      * <pre> Cuerpo de peticion : JSON {TarjetaDeCreditoDetailDTO}
@@ -58,9 +67,15 @@ public class TarjetaDeCreditoResources {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper}
      */
     @POST
-    public TarjetaDeCreditoDetailDTO createTDC(TarjetaDeCreditoDetailDTO TDC) throws BusinessLogicException
+    public TarjetaDeCreditoDetailDTO createTDC(@PathParam("usuarioId") Long Uid, TarjetaDeCreditoDetailDTO TDC) throws BusinessLogicException
     {
+        UsuarioEntity entity = uLogic.getUsuario(Uid);
+        if(entity != null)
+        {
         return TDC;
+        }
+        
+        throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
     }
     
      /**
@@ -78,11 +93,25 @@ public class TarjetaDeCreditoResources {
      * @return todas las TarjetasDeCredito que tiene el usuario.
      */
     @GET
-    public List<TarjetaDeCreditoDetailDTO> getTDC()
+    public List<TarjetaDeCreditoDetailDTO> getTDC(@PathParam("usuarioId") Long Uid) throws BusinessLogicException
     {
-        return new ArrayList<>();
+        UsuarioEntity entity = uLogic.getUsuario(Uid);
+        if(entity != null)
+        {
+          return listaPP(TDCLogic.getTarjetaDeCredito());  
+        }
+        throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
     }
     
+    private List<TarjetaDeCreditoDetailDTO> listaPP(List<TarjetaDeCreditoEntity> entityList)
+    {
+        List<TarjetaDeCreditoDetailDTO> list = new ArrayList<>();
+        for(TarjetaDeCreditoEntity entity : entityList)
+        {
+            list.add(new TarjetaDeCreditoDetailDTO(entity));
+        }
+        return list;
+    }
     /**
      * <h1> GET /api/metdodosdepago/tarjetasdecredito/{id} : encuentra una tarjeta del usuario, la cual esta identificada por un id </h1>
      * 
@@ -100,9 +129,20 @@ public class TarjetaDeCreditoResources {
      */
     @GET
     @Path("{id: \\d+}")
-    public TarjetaDeCreditoDetailDTO getTDC(@PathParam("id") Long id)
+    public TarjetaDeCreditoDetailDTO getTDC(@PathParam("usuarioId") Long Uid, @PathParam("id") Long id) throws BusinessLogicException
     {
-      return null;
+        UsuarioEntity Uentity = uLogic.getUsuario(Uid);
+        if(Uentity == null)
+        {
+                throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe", 404);
+        }
+      TarjetaDeCreditoEntity entity = TDCLogic.getTarjetaDeCredito(id);
+      if(entity == null)
+      {
+          throw new WebApplicationException("el recurso no existe", 404);
+         
+      }
+      return new TarjetaDeCreditoDetailDTO(entity);
     }
     
      /**
@@ -128,9 +168,22 @@ public class TarjetaDeCreditoResources {
      */
     @PUT
     @Path("{id: \\d+}")
-    public TarjetaDeCreditoDetailDTO updateTDC (@PathParam("fid)") Long id, TarjetaDeCreditoDetailDTO tdc) throws BusinessLogicException
+    public TarjetaDeCreditoDetailDTO updateTarjetaDeCredito(@PathParam("usuarioId") Long Uid, @PathParam("id)") Long id, TarjetaDeCreditoDetailDTO tdc) throws BusinessLogicException
     {
-        return tdc;
+        UsuarioEntity Uentity = uLogic.getUsuario(Uid);
+        if(Uentity != null)
+        {
+                throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+        }
+        TarjetaDeCreditoEntity entity = tdc.toEntity();
+        entity.setId(id);
+        TarjetaDeCreditoEntity oldEntity = TDCLogic.getTarjetaDeCredito(id);
+        if(oldEntity == null )
+        {
+            throw new WebApplicationException("La cuenta paypal no existe");
+        }
+        return new TarjetaDeCreditoDetailDTO(TDCLogic.updateEntity(entity));
+        
     }
     
     /**
@@ -149,8 +202,20 @@ public class TarjetaDeCreditoResources {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteTDC (@PathParam("id") Long id)
+   public void deleteTarjetaDeCredito (@PathParam("usuarioId") Long Uid, @PathParam("id") Long id) throws BusinessLogicException
     {
-        // Void
+        UsuarioEntity Uentity = uLogic.getUsuario(Uid);
+        if(Uentity != null)
+        {
+                throw new WebApplicationException("el usuario al que le quiere modificar el recurso no existe");
+        }
+         TarjetaDeCreditoEntity entity = TDCLogic.getTarjetaDeCredito(id);
+        if (entity == null) {
+            throw new WebApplicationException("La cuenta paypal no existe", 404);
+        }
+        
+        TDCLogic.deleteTarjetaDeCredito(id);
+       
+       
     }
 }

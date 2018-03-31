@@ -1,0 +1,228 @@
+{
+	"info": {
+		"name": "Pruebas Imagenes",
+		"_postman_id": "af8db3ac-453f-f149-b5ac-e1b7eec232ba",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAll Imagenes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "939ddebe-29c2-4073-8311-ef3383cc5d30",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n    \t\"id\": 10001\r\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/imagenes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"imagenes"
+					]
+				},
+				"description": "Encuentra todas las imagenes"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Imagenes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "939ddebe-29c2-4073-8311-ef3383cc5d30",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n    \t\"id\": 10001\r\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/imagenes/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"imagenes",
+						"10001"
+					]
+				},
+				"description": "Encuentra una Imagen"
+			},
+			"response": []
+		},
+		{
+			"name": "PostImagenes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "939ddebe-29c2-4073-8311-ef3383cc5d30",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 10005,\n    \"nombre\": \"Imagen\",\n    \"img\": \"imagen.jpg\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/imagenes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"imagenes"
+					]
+				},
+				"description": "Crea una Imagen"
+			},
+			"response": []
+		},
+		{
+			"name": "Put Imagenes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "939ddebe-29c2-4073-8311-ef3383cc5d30",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 10002,\n    \"nombre\": \"ImagenNueva\",\n    \"img\": \"imagenNueva.jpg\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/imagenes/10002",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"imagenes",
+						"10002"
+					]
+				},
+				"description": "Modifica una Imagen"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Imagenes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b88f7615-64a9-4065-b129-3b753ea158b8",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/imagenes/10002",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"imagenes",
+						"10002"
+					]
+				},
+				"description": "Elimina una Imagen"
+			},
+			"response": []
+		}
+	]
+}
