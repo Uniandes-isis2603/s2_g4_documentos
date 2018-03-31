@@ -1,13 +1,25 @@
 {
 	"info": {
 		"name": "Editoriales",
-		"_postman_id": "45a6de3c-db2f-2418-a36d-5069a1a8608b",
+		"_postman_id": "d4fa6c10-f23b-2cac-e735-b0c8c3cef518",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Crear una editarioal exitosamente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "95038e5a-4e08-4975-9c76-8c65db695f75",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -18,7 +30,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\n        \"nombre\": \"Torre de Amor\"\n    \n}"
+					"raw": "{\n        \"nombre\": \"Torre awsome\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/documentos-web/api/editoriales",
@@ -32,8 +44,7 @@
 						"api",
 						"editoriales"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -43,7 +54,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8510f463-e512-40bc-83c4-6483fee1f073",
+						"id": "f706c98c-52ef-40a5-85cf-a239fd87fe62",
 						"type": "text/javascript",
 						"exec": [
 							"tests[\"Status code is 412\"] = responseCode.code === 412;"
@@ -61,7 +72,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\n        \"nombre\": \"Torre de Amor\"\n    \n}"
+					"raw": "{\n        \"nombre\": \"Torre de Amor\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/documentos-web/api/editoriales",
@@ -75,42 +86,38 @@
 						"api",
 						"editoriales"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "Obtener las editoriales del sistema",
+			"name": "Actualizar la informacion de una editorial de forma exitosa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2de91687-bd33-4d4a-81d9-0469449c394d",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
 			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:8080/documentos-web/api/editoriales",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"documentos-web",
-						"api",
-						"editoriales"
-					]
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"la editorial nueva\"\n}"
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Buscar una editorial de forma exitosa",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/documentos-web/api/editoriales/22000",
+					"raw": "http://localhost:8080/documentos-web/api/editoriales/11",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -120,10 +127,123 @@
 						"documentos-web",
 						"api",
 						"editoriales",
-						"22000"
+						"11"
 					]
 				},
 				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar informacion de una editorial de manera no exitosa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7898e366-8449-4d47-88eb-31a1a1d77e9f",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/editoriales/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"editoriales",
+						"11"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener las editoriales del sistema",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6acb8407-bc38-4c80-a4c3-e4ce938cbe66",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/editoriales",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"editoriales"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar una editorial de forma exitosa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fa35b7d8-f5a8-4a8b-8ac8-383293522fec",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/editoriales/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"editoriales",
+						"11"
+					]
+				}
 			},
 			"response": []
 		},
@@ -158,8 +278,7 @@
 						"editoriales",
 						"50000"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -182,7 +301,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/documentos-web/api/editoriales/22000",
+					"raw": "http://localhost:8080/documentos-web/api/editoriales/11",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -192,10 +311,9 @@
 						"documentos-web",
 						"api",
 						"editoriales",
-						"22000"
+						"11"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -216,7 +334,10 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8080/documentos-web/api/editoriales/50000",
 					"protocol": "http",
@@ -230,8 +351,7 @@
 						"editoriales",
 						"50000"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		}

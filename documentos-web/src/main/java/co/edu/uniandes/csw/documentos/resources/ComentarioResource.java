@@ -148,8 +148,8 @@ private ComentarioLogic  logica;
      */
     @PUT
     @Path("{id: \\d+}")
-    public ComentarioDTO updateComentario (@PathParam("id)") Long id, ComentarioDTO Comentario)throws BusinessLogicException 
-    {
+    public ComentarioDTO updateComentario (@PathParam("id") Long id, ComentarioDTO Comentario)throws BusinessLogicException 
+    { System.out.println("Info"+ id +"Comentario.info"+Comentario.getComentario());
          Comentario.setId(id);
         return new ComentarioDTO(logica.updateComentario(id, Comentario.toEntity()));
     }
