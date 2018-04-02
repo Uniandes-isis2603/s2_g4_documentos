@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package co.edu.uniandes.csw.documentos.ejb;
 
 import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
@@ -41,12 +37,7 @@ public class UsuarioLogic {
             LOGGER.log(Level.INFO, "El Usuario con el id {0} ya existe ", entity.getId());
             throw new BusinessLogicException("El Usuario con el id ya existe");
 
-        } else if (entity.getNombre() == null ) {
-            LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
-            throw new BusinessLogicException("El usuario tiene ael nombre nulo");
-        
-                    
-        } else if (entity.getUserName() == null) {
+        } else if (entity.getNombreUsuario() == null) {
             LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
             throw new BusinessLogicException("El usuario tiene el nombre de usuario nulo");
         } else if (null == entity.getId()) {
@@ -63,11 +54,12 @@ public class UsuarioLogic {
             LOGGER.log(Level.INFO, "El nombre del Usuario no puede contener caracteres especiales");
             throw new BusinessLogicException("El nombre del Usuario no puede contener caracteres especiales");
 
-        } else if (entity.getUserName().length() < 7 || entity.getUserName().length() > 15) {
+        } else if (entity.getNombreUsuario().length() < 7 || entity.getNombreUsuario().length() > 15) {
             LOGGER.log(Level.INFO, "El nombre del Usuario no puede tener menos de 7 caracteres o mas de 15");
             throw new BusinessLogicException("El nombre del Usuario no puede tener menos de 7 caracteres o mas de 15");
 
-        } else if (entity.getEdad() < 17) {
+        }
+        else if (entity.getEdad() < 17) {
             LOGGER.log(Level.INFO, "La edad del Usuario no puede ser menor a 17");
             throw new BusinessLogicException("La edad del Usuario no puede ser menor a 17");
 
@@ -79,6 +71,12 @@ public class UsuarioLogic {
             LOGGER.log(Level.INFO, "el correo no es valido");
             throw new BusinessLogicException("el correo no es valido");
 
+        } 
+        else if (entity.getNombre() == null ) {
+            LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
+            throw new BusinessLogicException("El usuario tiene ael nombre nulo");
+        
+                    
         } else {
             return persistence.create(entity);
         }
@@ -131,7 +129,7 @@ public class UsuarioLogic {
         List<UsuarioEntity> users = getUsuarios();
         UsuarioEntity us = null;
         for (UsuarioEntity usuario : users) {
-            if (usuario.getUserName().equals(nombre)) {
+         if(usuario.getNombreUsuario().equals(nombre)) {
                 us = usuario;
                 break;
             }
@@ -159,7 +157,7 @@ public class UsuarioLogic {
             LOGGER.log(Level.INFO, "El Usuario con el id {0} no existe ", entity.getId());
             throw new BusinessLogicException("El Usuario con el id noexiste");
 
-        } else if (entity.getNombre() == null || entity.getUserName() == null || null == entity.getId() || 0 == entity.getEdad() || entity.getCorreo() == null) {
+        } else if (entity.getNombre()==null|| entity.getNombreUsuario() == null || null == entity.getId() || 0 == entity.getEdad() || entity.getCorreo() == null) {
             LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
             throw new BusinessLogicException("El usuario tiene atributos nulos");
 
@@ -167,7 +165,7 @@ public class UsuarioLogic {
             LOGGER.log(Level.INFO, "El nombre del Usuario no puede contener caracteres especiales");
             throw new BusinessLogicException("El nombre del Usuario no puede contener caracteres especiales");
 
-        } else if (entity.getUserName().length() < 7 || entity.getUserName().length() > 15) {
+        } else if (entity.getNombreUsuario().length() < 7 || entity.getNombreUsuario().length() > 15) {
             LOGGER.log(Level.INFO, "El nombre del Usuario no puede tener menos de 7 caracteres o mas de 15");
             throw new BusinessLogicException("El nombre del Usuario no puede tener menos de 7 caracteres o mas de 15");
 

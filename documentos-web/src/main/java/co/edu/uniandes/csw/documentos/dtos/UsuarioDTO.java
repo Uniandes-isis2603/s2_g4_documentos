@@ -38,14 +38,9 @@ import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
 public class UsuarioDTO {
     
     private long id;
-    
     private String nombre;
-    
     private String nombreUsuario;
-    
-    
     private String correo;
-    
     private int genero;
     private int edad;
     
@@ -60,7 +55,7 @@ public class UsuarioDTO {
         if (usuario != null) {
             this.id = usuario.getId();
             this.nombre = usuario.getNombre();
-            this.nombreUsuario = usuario.getUserName();
+            this.nombreUsuario = usuario.getNombreUsuario();
             this.correo = usuario.getCorreo();
             this.genero = usuario.getGenero();
             this.edad = usuario.getEdad();
@@ -84,6 +79,7 @@ public class UsuarioDTO {
      
         return user;
     }
+    
     
     /**
      * constructor por defecto
@@ -127,7 +123,7 @@ public class UsuarioDTO {
      */
      public void setId(Long pId)
      {
-         id=pId;
+         this.id=pId;
      }
      
      
@@ -137,7 +133,7 @@ public class UsuarioDTO {
      */
       public void setNombre(String pNombre)
       {
-          nombre= pNombre;
+          this.nombre= pNombre;
          
      }
       
@@ -147,7 +143,7 @@ public class UsuarioDTO {
      */
        public void setNombreUsuario(String pNombre)
      {
-         nombreUsuario= pNombre;
+         this.nombreUsuario= pNombre;
      }
        
 

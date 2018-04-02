@@ -22,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  * <pre> Clase que implemente el recurso "Usuario".
@@ -38,14 +39,14 @@ import javax.ws.rs.Produces;
  * </pre>
  * @author federico
  */
-@Path("usuarios")
-@Produces("application/json")
-@Consumes("application/json")
+@Path("/usuarios")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 @RequestScoped
 public class UsuarioResource {
     
     @Inject
-    UsuarioLogic logic;
+    private UsuarioLogic logic;
     
      private List<UsuarioDetailedDTO> listUsuarioEntity2DetailDTO(List<UsuarioEntity> entityList) {
         List<UsuarioDetailedDTO> list = new ArrayList<>();
@@ -71,12 +72,14 @@ public class UsuarioResource {
      * 412 Precodition Failed: Ya existe el usuario.
      * </code>
      * </pre>
-     * @param Usuario {@link UsuarioDetailedDTO} - El Usuario que se desea guardar.
+     * @param usuario {@link UsuarioDetailedDTO} - El Usuario que se desea guardar.
      * @return JSON {@link UsuarioDetailedDTO} - El Usuario guardado con el id generado.
+     * @throws co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException
      */
     @POST
-    public UsuarioDetailedDTO createUsuario(UsuarioDetailedDTO Usuario) throws BusinessLogicException {
-        return new UsuarioDetailedDTO(logic.createUsuario(Usuario.toEntity()));
+    public UsuarioDetailedDTO createUsuario(UsuarioDetailedDTO usuario) throws BusinessLogicException {
+      
+        return new UsuarioDetailedDTO(logic.createUsuario(usuario.toEntity()));
     }
     
     /**

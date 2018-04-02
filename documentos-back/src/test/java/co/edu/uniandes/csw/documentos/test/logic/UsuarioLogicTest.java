@@ -155,7 +155,7 @@ public class UsuarioLogicTest {
                 entity.setGenero(1);
             } else if (!entity.getCorreo().contains("@")) {
                 entity.setCorreo("f.marroquin10@uniandes.edu.co");
-            }else if(entity.getUserName().length() < 7 || entity.getUserName().length() > 15)
+            }else if(entity.getNombreUsuario().length() < 7 || entity.getNombreUsuario().length() > 15)
             {
                 entity.setNombreUsuario("el ferchis12");
             }
@@ -255,7 +255,7 @@ public class UsuarioLogicTest {
         Assert.assertEquals(result.getNombre(), entity.getNombre());
         Assert.assertEquals(result.getEdad(), entity.getEdad());
         Assert.assertEquals(result.getGenero(), entity.getGenero());
-        Assert.assertEquals(result.getUserName(), entity.getUserName());
+        Assert.assertEquals(result.getNombreUsuario(), entity.getNombreUsuario());
         Assert.assertEquals(result.getCorreo(), entity.getCorreo());
  
     }
@@ -304,7 +304,7 @@ public class UsuarioLogicTest {
     {
         UsuarioEntity entity = null;
         try {
-             entity= UsuarioLogic.getUsuarioByName(data.get(0).getUserName());
+             entity= UsuarioLogic.getUsuarioByName(data.get(0).getNombreUsuario());
         } catch (BusinessLogicException ex) {
             Logger.getLogger(UsuarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -331,7 +331,7 @@ public class UsuarioLogicTest {
         Assert.assertEquals(entity.getEdad(), resultEntity.getEdad());
         Assert.assertEquals(entity.getCorreo(), resultEntity.getCorreo());
         Assert.assertEquals(entity.getGenero(), resultEntity.getGenero());
-        Assert.assertEquals(entity.getUserName(), resultEntity.getUserName());
+        Assert.assertEquals(entity.getNombreUsuario(), resultEntity.getNombreUsuario());
     }
 
     /**
@@ -409,7 +409,7 @@ public class UsuarioLogicTest {
         Assert.assertEquals(user.getEdad(), entity.getEdad());
         Assert.assertEquals(user.getCorreo(), entity.getCorreo());
         Assert.assertEquals(user.getGenero(), entity.getGenero());
-        Assert.assertEquals(user.getUserName(), entity.getUserName());
+        Assert.assertEquals(user.getNombreUsuario(), entity.getNombreUsuario());
 
     }
 
