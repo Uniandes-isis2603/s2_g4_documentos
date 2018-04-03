@@ -40,7 +40,7 @@ public class CompraEntity implements Serializable
     /**
      * representa la fecha en la cual se realizo la compra
      */
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     /**
      * Representa el tipo de compra
