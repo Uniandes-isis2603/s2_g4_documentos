@@ -37,7 +37,7 @@ public class LibroDetailDTO extends DocumentoDetailDTO {
             
             if(libroE.getEditorial() != null)
             {
-               // this.editorial = new EditorialDTO(libroE.getEditorial());
+               this.editorial = new EditorialDTO(libroE.getEditorial());
             } else {
                 libroE.setEditorial(null);
             }
@@ -65,7 +65,7 @@ public class LibroDetailDTO extends DocumentoDetailDTO {
         libroE.setDescripcion(super.toEntity().getDescripcion());
         libroE.setFechaPublicacion(this.fechaPublicacion);
         if(this.getEditorial() != null) {
-          //  libroE.setEditorial(this.getEditorial().toEntity());
+          libroE.setEditorial(this.getEditorial().toEntity());
         }
         
         return libroE;
@@ -76,7 +76,14 @@ public class LibroDetailDTO extends DocumentoDetailDTO {
      */
     private EditorialDTO editorial;
     
+    /**
+     * isbn del libro.
+     */
     private String ISBN;
+    
+    /**
+     * fecha de publicacion del libro.
+     */
     private Date fechaPublicacion;
     
 

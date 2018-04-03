@@ -14,6 +14,7 @@ import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.mappers.BusinessLogicExceptionMapper;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Objects;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -77,7 +78,8 @@ public class PayPalResources {
         UsuarioEntity entity = uLogic.getUsuario(Uid);
         if(entity != null)
         {
-        return payPal;
+        PayPalEntity p = PPLogic.createPayPal(payPal.toEntity());
+        return new PayPalDetailDTO(p);
         }
         
         throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
@@ -94,6 +96,9 @@ public class PayPalResources {
      * <code style="color: #c7254e; background-color: #f9f2f4;">
      * 404 Not Found El usuario no tiene tarjetas.
      * </code> 
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 500 No se pudo.
+     * </code> 
      * </pre>
      * 
      * @return todas las cuentas paypal que tiene el usuario.
@@ -104,7 +109,7 @@ public class PayPalResources {
         UsuarioEntity entity = uLogic.getUsuario(Uid);
         if(entity != null)
         {
-                return listaPP(PPLogic.getPayPal());
+          return listaPP(PPLogic.getPayPal());  
         }
         throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
     }
@@ -119,7 +124,8 @@ public class PayPalResources {
         return list;
     }
     
-   /**
+    
+    /**
      * <h1> GET /api/metdodosdepago/paypal/{id} : encuentra una cuenta Paypal del usuario, la cual esta identificada por un id </h1>
      * 
      * <pre> Encuentra una cuenta Paypal identificada por un ID unico recibido en la URL y la devuelve.
@@ -139,7 +145,7 @@ public class PayPalResources {
     public PayPalDetailDTO getPayPal(@PathParam("usuarioId") Long Uid, @PathParam("id") Long id) throws BusinessLogicException
     {
         UsuarioEntity Uentity = uLogic.getUsuario(Uid);
-        if(Uentity != null)
+        if(Uentity == null)
         {
                 throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe", 404);
         }
@@ -150,47 +156,6 @@ public class PayPalResources {
          
       }
       return new PayPalDetailDTO(entity);
-    }
-    
-     /**
-     * <h1> PUT /api/metdodosdepago/paypal/{id} : actualiza una cuenta Paypal </h1>
-     * <pre> cuerpo de peticion : JSON.
-     * 
-     * Actuliza la cuenta Paypal identificada con el identificador, con la
-     * informacion en el cuerpo de peticion.
-     * 
-     * Codigos de respuesta:
-     * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Actualiza la cuenta Paypal con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code> 
-     * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found. No existe una cuenta Paypal con el id dado.
-     * </code> 
-     * 
-     * </pre>
-     * @param id IDentificador de la cuenta Paypal que se desea actualizar representado
-     * como una cadena de digitos.
-     * @param paypal {@link PayPalDetailDTO} - La cuenta Paypal que se desea actualizar.
-     * @return JSON - La cuenta Paypal guardada
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper}.
-     */
-    @PUT
-    @Path("{id: \\d+}")
-    public PayPalDetailDTO updatePayPal(@PathParam("usuarioId") Long Uid, @PathParam("id)") Long id, PayPalDetailDTO paypal) throws BusinessLogicException
-    {
-        UsuarioEntity Uentity = uLogic.getUsuario(Uid);
-        if(Uentity != null)
-        {
-                throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
-        }
-        PayPalEntity entity = paypal.toEntity();
-        entity.setId(id);
-        PayPalEntity oldEntity = PPLogic.getPayPal(id);
-        if(oldEntity == null )
-        {
-            throw new WebApplicationException("La cuenta paypal no existe");
-        }
-        return new PayPalDetailDTO(PPLogic.updatePayPal(entity));
-        
     }
     
      /**
@@ -212,7 +177,7 @@ public class PayPalResources {
     public void deletePayPal (@PathParam("usuarioId") Long Uid, @PathParam("id") Long id) throws BusinessLogicException
     {
         UsuarioEntity Uentity = uLogic.getUsuario(Uid);
-        if(Uentity != null)
+        if(Uentity == null)
         {
                 throw new WebApplicationException("el usuario al que le quiere modificar el recurso no existe");
         }
@@ -225,4 +190,50 @@ public class PayPalResources {
        
        
     }
+
+    
+     /**
+     * <h1> PUT /api/metdodosdepago/paypal/{id} : actualiza una cuenta Paypal </h1>
+     * <pre> cuerpo de peticion : JSON.
+     * 
+     * Actuliza la cuenta Paypal identificada con el identificador, con la
+     * informacion en el cuerpo de peticion.
+     * 
+     * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Actualiza la cuenta Paypal con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code> 
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found. No existe una cuenta Paypal con el id dado.
+     * </code> 
+     * 
+     * </pre>
+     * @param Uid
+     * @param id IDentificador de la cuenta Paypal que se desea actualizar representado
+     * como una cadena de digitos.
+     * @param paypal {@link PayPalDetailDTO} - La cuenta Paypal que se desea actualizar.
+     * @return JSON - La cuenta Paypal guardada
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper}.
+     */
+    @PUT
+    @Path("{id: \\d+}")
+    public PayPalDetailDTO updatePayPal(@PathParam("usuarioId") Long Uid, @PathParam("id") Long id, PayPalDetailDTO paypal) throws BusinessLogicException
+    {
+        UsuarioEntity Uentity = uLogic.getUsuario(Uid);
+        if(Uentity == null)
+        {
+                throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+        }
+        PayPalEntity entity = paypal.toEntity();
+        entity.setId(id);
+        PayPalEntity oldEntity = PPLogic.getPayPal(id);
+        if(oldEntity == null )
+        {
+            throw new WebApplicationException("La cuenta paypal no existe");
+        }
+        return new PayPalDetailDTO(PPLogic.updatePayPal(entity));
+        
+    }
+    
+    
+    
 }

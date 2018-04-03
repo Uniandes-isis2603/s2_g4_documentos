@@ -13,7 +13,7 @@ import co.edu.uniandes.csw.documentos.entities.PayPalEntity;
  */
 public class PayPalDetailDTO extends PayPalDTO {
     
-    private UsuarioDTO usuario;
+    private UsuarioDTO uEntity;
     
     public PayPalDetailDTO()
     {
@@ -31,5 +31,19 @@ public class PayPalDetailDTO extends PayPalDTO {
         PayPalEntity entity = super.toEntity();
         
         return entity;
+    }
+
+    /**
+     * @return the uEntity
+     */
+    public UsuarioDTO getuEntity() {
+        return uEntity;
+    }
+
+    /**
+     * @param uEntity the uEntity to set
+     */
+    public void setuEntity(UsuarioDTO uEntity) {
+        this.uEntity = uEntity;
     }
 }

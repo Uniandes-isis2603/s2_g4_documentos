@@ -102,13 +102,17 @@ public class LibroResource {
      * 404 Not Found No existe un libro con el id dado.
      * </code>
      * </pre>
+     * @throws BusinessLogicException si el libro buscado no existe.
      * @param id Id del libro que se esta buscando. Debe ser una cadena de digitos.
      * @return JSON {@link LibroDetailDTO} - El libro buscado.
      */
     @GET
     @Path("{id: \\d+}")
-    public LibroDetailDTO getLibro(@PathParam("id") Long id) {
+    public LibroDetailDTO getLibro(@PathParam("id") Long id) throws BusinessLogicException {
         LibroEntity entity = libroLogic.getLibro(id);
+        if(entity == null){
+            throw new BusinessLogicException("El libro con el id dado no existe.");
+        }
         return new LibroDetailDTO(entity);
     }
     
@@ -125,13 +129,17 @@ public class LibroResource {
      * 404 Not Found No existe un libro con el nombre dado.
      * </code>
      * </pre>
+     * @throws BusinessLogicException si no existen libros con el nombre.
      * @param nombre nombe del libro que se quiere buscar. Debe ser letras y/o digitos.
      * @return JSON {@link LibroDetailDTO} - El libro con el nombre buscado.
      */
     @GET
     @Path("{nombre}")
-    public List<LibroDetailDTO> getLibroByName(@PathParam("nombre") String nombre) {
+    public List<LibroDetailDTO> getLibroByName(@PathParam("nombre") String nombre) throws BusinessLogicException {
         List<LibroEntity> nombres = libroLogic.getLibrosByName(nombre);
+        if(nombres.isEmpty()){
+            throw new BusinessLogicException("El libro con el nombre dado no existe.");
+        }
         return listLibroEntity2DetailDTO(nombres);
     }
     
@@ -156,6 +164,9 @@ public class LibroResource {
     @PUT
     @Path("{id: \\d+}")
     public LibroDetailDTO updateLibro(@PathParam("id") Long id, LibroDetailDTO libro) throws BusinessLogicException{
+       if(libroLogic.getLibro(id) == null) {
+           throw new BusinessLogicException("El libro con el id dado no existe");
+       }
        libro.setId(id);
        return new LibroDetailDTO(libroLogic.updateLibro(id, libro.toEntity()));
     }
@@ -172,12 +183,15 @@ public class LibroResource {
      * 404 Not Found. No existe un libro con el id dado.
      * </code>
      * </pre>
-     * 
+     * @throws BusinessLogicException si el libro con el id dado no existe.
      * @param id Id del libro que se desea eliminar.
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteLibro(@PathParam("id") Long id){
+    public void deleteLibro(@PathParam("id") Long id) throws BusinessLogicException{
+        if(libroLogic.getLibro(id) == null) {
+            throw new BusinessLogicException("El libro con el id dado no existe.");
+        }
         libroLogic.deleteLibro(id);
     }
     

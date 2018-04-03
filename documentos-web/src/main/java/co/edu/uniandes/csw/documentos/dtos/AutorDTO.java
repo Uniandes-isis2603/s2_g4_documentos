@@ -55,8 +55,6 @@ public class AutorDTO {
 
     private Long id;
     private String nombre;
-    
-    private List<DocumentoDTO> documentos;
 
     /**
      * Constructor por defecto

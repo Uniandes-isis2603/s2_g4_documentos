@@ -27,6 +27,13 @@ public class MetodoDePagoDTO {
         
         return entity;
     }
+    public MetodoDePagoDTO(MetodoDePagoEntity entidad)
+    {
+        if (entidad!=null)
+        {
+            this.id= entidad.getId();
+        }
+    }
 
     /**
      * @return the id

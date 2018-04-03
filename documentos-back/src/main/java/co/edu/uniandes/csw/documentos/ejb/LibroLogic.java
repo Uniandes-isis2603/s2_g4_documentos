@@ -23,8 +23,14 @@ import javax.inject.Inject;
 @Stateless
 public class LibroLogic {
     
+    /**
+     * Logger que se va  a utilizar para loguear las operaciones.
+     */
     private static final Logger LOGGER = Logger.getLogger(LibroLogic.class.getName());
     
+    /**
+     * Se inyecta la dependencia de persistencia que se va a utilizar para las operaciones.
+     */
     @Inject
     private LibroPersistence persistence;
     
@@ -48,10 +54,6 @@ public class LibroLogic {
     public LibroEntity getLibro(Long id){
         LOGGER.log(Level.INFO,"Inicia proceso de consultar libro con id={0}",id);
         LibroEntity libro = persistence.find(id);
-        if(libro == null){
-            LOGGER.log(Level.SEVERE, "El libro con el id={0} no existe",id);
-            
-        }
         LOGGER.log(Level.INFO,"Termina proceso de consultar libro con id={0}",id);
         return libro;
     }

@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "PruebasLibro",
-		"_postman_id": "067c0e32-cfec-0a06-978f-b2a625ba8ef2",
+		"_postman_id": "0b088cd9-317e-30bb-7a96-336510f743d9",
 		"description": "Estas son las pruebas iniciales del proyecto para el recurso Libro",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -32,7 +32,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \"calificacionPromedio\": 3.2,\n        \"caratula\": \"abc.jph\",\n        \"descripcion\": \"una novela\",\n        \"nombre\": \"amor en los tiempos del colera\",\n        \"precio\": 100.2,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"ISBN\": \"978-0307387264\",\n        \"fechaPublicacion\": \"2012-09-20T00:00:00-05:00\"\n    }"
+					"raw": "{\n        \"calificacionPromedio\": 3.2,\n        \"caratula\": \"abc.jph\",\n        \"descripcion\": \"una novela\",\n        \"nombre\": \"Ojos de Fuego\",\n        \"precio\": 100.2,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"ISBN\": \"978-0307387264\",\n        \"fechaPublicacion\": \"2012-09-20T00:00:00-05:00\"\n    }"
 				},
 				"description": "Crea un libro de manera exitosa"
 			},
@@ -226,7 +226,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/documentos-web/api/libros/Ojos de fuego",
+				"url": "http://localhost:8080/documentos-web/api/libros/Ojos de Fuego",
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -238,7 +238,7 @@
 			"response": []
 		},
 		{
-			"name": "Modificar libro con fecha incorrecta.",
+			"name": "Obtener libro con nombre que no existe.",
 			"event": [
 				{
 					"listen": "test",
@@ -251,7 +251,57 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/documentos-web/api/libros/100",
+				"url": "http://localhost:8080/documentos-web/api/libros/nombre",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Intenta obtener un libro con nombre, pero no existe."
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener libro con id que no existe.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/libros/1000",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Intenta obtener un libro con id, pero no existe."
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar libro con id que no existe.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/libros/1000",
 				"method": "PUT",
 				"header": [
 					{
@@ -262,9 +312,9 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \"calificacionPromedio\": 3.2,\n        \"caratula\": \"abc.jph\",\n        \"descripcion\": \"Libro\",\n        \"nombre\": \"amor\",\n        \"precio\": 100.2,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"ISBN\": \"978-0307387264\",\n        \"fechaPublicacion\": \"2021-09-20T00:00:00-05:00\"\n    }"
+					"raw": "{\n        \"calificacionPromedio\": 3.2,\n        \"caratula\": \"abc.jph\",\n        \"descripcion\": \"Libro\",\n        \"nombre\": \"amor\",\n        \"precio\": 100.2,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"ISBN\": \"978-0307387264\",\n        \"fechaPublicacion\": \"1992-09-20T00:00:00-05:00\"\n    }"
 				},
-				"description": "Se intenta modificar libro con fecha incorrecta pero falla."
+				"description": "Intenta modificar libro con id, pero no existe."
 			},
 			"response": []
 		},
@@ -296,6 +346,37 @@
 					"raw": "{\n        \"calificacionPromedio\": 3.2,\n        \"caratula\": \"abc.jph\",\n        \"descripcion\": \"Libro\",\n        \"nombre\": \"amor\",\n        \"precio\": 100.2,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"ISBN\": \"978-0307387264\",\n        \"fechaPublicacion\": \"1992-09-20T00:00:00-05:00\"\n    }"
 				},
 				"description": "Se modifica el libro"
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar libro con fecha incorrecta.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/libros/100",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"calificacionPromedio\": 3.2,\n        \"caratula\": \"abc.jph\",\n        \"descripcion\": \"Libro\",\n        \"nombre\": \"amor\",\n        \"precio\": 100.2,\n        \"areas\": [],\n        \"autores\": [],\n        \"comentarios\": [],\n        \"cursos\": [],\n        \"imagenes\": [],\n        \"ISBN\": \"978-0307387264\",\n        \"fechaPublicacion\": \"2021-09-20T00:00:00-05:00\"\n    }"
+				},
+				"description": "Se intenta modificar libro con fecha incorrecta pero falla."
 			},
 			"response": []
 		},
@@ -393,6 +474,37 @@
 			"response": []
 		},
 		{
+			"name": "Eliminar libro con id que no existe.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/documentos-web/api/libros/1000",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Elimina libro por id, pero el libro no existe."
+			},
+			"response": []
+		},
+		{
 			"name": "Se elimina un Libro",
 			"event": [
 				{
@@ -406,9 +518,15 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/documentos-web/api/libros/400",
+				"url": "http://localhost:8080/documentos-web/api/libros/700",
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": ""

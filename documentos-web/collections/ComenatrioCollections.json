@@ -1,0 +1,401 @@
+{
+	"info": {
+		"name": "ComenatrioCollections",
+		"_postman_id": "aa481b3b-43d9-e146-8f06-7de124c27cfd",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todos los comentarios del sistema",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ff7bb94b-9194-41b2-8729-0cbc3589e544",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"comentario\": \"El libro es muy bueno e informativo\",\n        \"fecha\":\"2018-02-22T20:38:54.973-05:00\"\n        \n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/comentarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"comentarios"
+					]
+				},
+				"description": "Post valido de un comentario"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un comentario especifico del sistema",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4fe1a96d-78a9-46f7-9b53-441ab5eb3cf1",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"comentario\": \"El libro es muy bueno e informativo\",\n        \"fecha\":\"2018-02-22T20:38:54.973-05:00\"\n        \n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/comentarios/20000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"comentarios",
+						"20000"
+					]
+				},
+				"description": "Obtener un comentario especifico"
+			},
+			"response": []
+		},
+		{
+			"name": "Get fallido al intentar obtener un comentario que no existe en el sistema",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9b7952c0-4c14-4618-bf94-62bcdfb5ed62",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/comentarios/2000000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"comentarios",
+						"2000000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizacion fallida de un comentario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cd849808-e2e0-4788-b25b-b41f5a38d792",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"comentario\": \"\",\n    \"fecha\": \"2018-02-22T20:38:54.973-05:00\"\n\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/comentarios/20000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"comentarios",
+						"20000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un comentario de manera exitosa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0a2a5092-463d-4477-a788-9db1e6ba1d1a",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"comentario\": \"El libro es lo mejor\",\n    \"fecha\": \"2018-02-22T20:38:54.973-05:00\",\n    \"id\":1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/comentarios/20000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"comentarios",
+						"20000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post fallido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "be1556e5-79e4-4902-938a-5cd2ee2d0e8e",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t \"comentario\": \"\",\n    \"fecha\": \"2018-02-22T20:38:54.973-05:00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/comentarios/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"comentarios",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un documento en el sistema de manera exitosa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4408f576-7b5f-4887-9027-e037e524c5b5",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"comentario\": \"El libro es muy interesante\",\n    \"fecha\": \"2018-02-22T20:38:54.973-05:00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/comentarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"comentarios"
+					]
+				},
+				"description": "Post para crear un comentario"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un comentario del sistema deforma exitosa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c944765a-4b61-4acb-846a-1dbb402fd990",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/comentarios/20001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"comentarios",
+						"20001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete fallido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "46611f6c-b909-4e79-93a4-1fc2e5c611f3",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/comentarios/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"comentarios",
+						"8"
+					]
+				},
+				"description": "Borrar un comentario del sistema"
+			},
+			"response": []
+		}
+	]
+}

@@ -34,6 +34,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class LibroLogicTest {
     
+    /**
+     * Deployment
+     * @return deployment.
+     */
     @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
@@ -100,8 +104,14 @@ public class LibroLogicTest {
         em.createQuery("delete from LibroEntity").executeUpdate();
     }
     
+    /**
+     * Lista de libros que se van a usar.
+     */
     private List<LibroEntity> data = new ArrayList<>();
     
+    /**
+     * Lista de libros que se van a usar para las pruebas.
+     */
     private List<LibroEntity> dataPrueba =new ArrayList<>();
     
     /**
@@ -372,5 +382,49 @@ public class LibroLogicTest {
         libroLogic.deleteLibro(entity.getId());
         LibroEntity deleted = em.find(LibroEntity.class, entity.getId());
         Assert.assertNull(deleted);
+    }
+    
+    //------------------------------------
+    //Tests de metodos de validacion
+    //------------------------------------
+    
+    /**
+     * Prueba que verifica que el metodo de validacion de completitud es correcto.
+     */
+    @Test
+    public void validarCompletitudTest() {
+        LibroEntity correcto = dataPrueba.get(4);
+        Assert.assertTrue(libroLogic.validarCompletitud(correcto));
+        LibroEntity incorrecto = dataPrueba.get(0);
+        Assert.assertFalse(libroLogic.validarCompletitud(incorrecto));
+    }
+    
+    /**
+     * Prueba que verifica que el validador de fechas funciona correctamente.
+     */
+    @Test
+    public void validarFechaTest() {
+        LibroEntity correcto = dataPrueba.get(4);
+        Assert.assertTrue(libroLogic.validarFecha(correcto.getFechaPublicacion()));
+        LibroEntity incorrecto = dataPrueba.get(3);
+        Assert.assertFalse(libroLogic.validarFecha(incorrecto.getFechaPublicacion()));
+    }
+    
+    /**
+     * Pruena que verifica que el validador de fechas funciona correctamente.
+     */
+    @Test
+    public void validarIsbnTest(){
+        String correcto =  "978-0307387264";
+        String nulo = null;
+        String tamanioIncorrecto = "978-030738726";
+        String noNumeros = "978-030738726a";
+        String incorrecto = "978-0307387263";
+        
+        Assert.assertTrue(libroLogic.validarIsbn13(correcto));
+        Assert.assertFalse(libroLogic.validarIsbn13(nulo));
+        Assert.assertFalse(libroLogic.validarIsbn13(tamanioIncorrecto));
+        Assert.assertFalse(libroLogic.validarIsbn13(noNumeros));
+        Assert.assertFalse(libroLogic.validarIsbn13(incorrecto));
     }
 }

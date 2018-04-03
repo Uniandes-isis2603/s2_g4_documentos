@@ -1,0 +1,223 @@
+{
+	"info": {
+		"name": "TarjetaDeCredito",
+		"_postman_id": "da28fe44-36c8-355c-387d-26a4df3af147",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Busca todas las TarjetasDeCredito",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"tarjetaDeCreditoDetailDTO\",\n    \"id\": 7500,\n    \"nombreEnLaTarjeta\": \"juan sebastian\",\n    \"nroDeLaTarjeta\": \"4234567890123456\",\n    \"numeroDeSeguridad\": 244,\n    \"tipoDeTarjeta\": \"Visa\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/usuario/45/metodosdepago/tarjetasdecredito",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"usuario",
+						"45",
+						"metodosdepago",
+						"tarjetasdecredito"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Busca una las TarjetasDeCredito",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"tarjetaDeCreditoDetailDTO\",\n    \"id\": 7500,\n    \"nombreEnLaTarjeta\": \"juan sebastian\",\n    \"nroDeLaTarjeta\": \"4234567890123456\",\n    \"numeroDeSeguridad\": 244,\n    \"tipoDeTarjeta\": \"Visa\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/usuario/45/metodosdepago/tarjetasdecredito/7500",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"usuario",
+						"45",
+						"metodosdepago",
+						"tarjetasdecredito",
+						"7500"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST de TarjetaDeCredito",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombreEnLaTarjeta\": \"NUEVO\",\n    \"nroDeLaTarjeta\": \"4234569999123456\",\n    \"numeroDeSeguridad\": 123,\n    \"tipoDeTarjeta\": \"Visa\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/usuario/45/metodosdepago/tarjetasdecredito",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"usuario",
+						"45",
+						"metodosdepago",
+						"tarjetasdecredito"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT de TarjetaDeCredito con id 3",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombreEnLaTarjeta\": \"CAMBIOS\",\n    \"nroDeLaTarjeta\": \"4234569999123456\",\n    \"numeroDeSeguridad\": 123,\n    \"tipoDeTarjeta\": \"Visa\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/usuario/45/metodosdepago/tarjetasdecredito/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"usuario",
+						"45",
+						"metodosdepago",
+						"tarjetasdecredito",
+						"3"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE de TarjetaDeCredito con id 2",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/usuario/45/metodosdepago/tarjetasdecredito/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"usuario",
+						"45",
+						"metodosdepago",
+						"tarjetasdecredito",
+						"2"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

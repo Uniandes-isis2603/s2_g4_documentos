@@ -6,7 +6,9 @@
 package co.edu.uniandes.csw.documentos.persistence;
 
 import co.edu.uniandes.csw.documentos.entities.PayPalEntity;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -22,6 +24,8 @@ import javax.persistence.TypedQuery;
 public class PayPalPersistence {
     
     private static final Logger LOGGER = Logger.getLogger(PayPalPersistence.class.getName());
+    
+    UsuarioPersistence up;
 
     @PersistenceContext(unitName = "DocumentosPU")
     protected EntityManager em;
@@ -66,7 +70,20 @@ public class PayPalPersistence {
         LOGGER.log(Level.INFO, "Consultando todas las cuentas PayPal del usuario");
         TypedQuery query = em.createQuery("Select u from PayPalEntity u", PayPalEntity.class);
         return query.getResultList();
-    }        
+    }     
+    
+    public List<PayPalEntity> findUser(Long id)
+    {
+        ArrayList<PayPalEntity> lista1 = new ArrayList<>(findAll());
+        ArrayList<PayPalEntity> lista2 = new ArrayList<>();
+        for (int i = 0; i < lista1.size(); i++) {
+            if(Objects.equals(lista1.get(i).getUEntity().getId(), id))
+            {
+                lista2.add(lista1.get(i));
+            }
+        }
+        return lista2;
+    }
     
     public PayPalEntity find(Long Id)
     {

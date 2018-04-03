@@ -6,8 +6,12 @@
 package co.edu.uniandes.csw.documentos.ejb;
 
 import co.edu.uniandes.csw.documentos.entities.AutorEntity;
+import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
+import co.edu.uniandes.csw.documentos.entities.FotocopiaEntity;
+import co.edu.uniandes.csw.documentos.entities.LibroEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.AutorPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,13 +25,28 @@ import javax.inject.Inject;
 @Stateless
 public class AutorLogic {
     
-    private static final Logger LOGGER = Logger.getLogger(AutorLogic.class.getName());
+    /**
+     * Logger de consola para recopilar información
+     */
+    private static final Logger LOGGER = Logger.getLogger(AreaDeConocimientoLogic.class.getName());
 
+    /**
+     * Persistencia del Autor
+     */
     @Inject
     private AutorPersistence persistence;
 
-    //@Inject
-    //private DocumentoLogic DocumentoLogic;
+    /**
+     * Logica de una Fotocopia perteneciente al Autor
+     */
+    @Inject
+    private FotocopiaLogic fotocopiaLogic;
+    
+    /**
+     * Logica de un Libro perteneciente al Autor
+     */
+    @Inject
+    private LibroLogic libroLogic;
     
     /**
      * Se encarga de crear un Autor en la base de datos.
@@ -44,11 +63,11 @@ public class AutorLogic {
             LOGGER.log(Level.INFO, "El autor con el id {0} ya existe", entity.getId());
             throw new BusinessLogicException("El autor con el id " + entity.getId() + " ya existe");
         }
-        else if (!(entity.getNombre().matches("([A-Z]|[a-z]|[0-9]|\\s)+")| entity.getNombre().contains(" "))){
+        else if (!(entity.getNombre().matches("([A-Z]|[a-z]|[ñ]|[0-9]|\\s)+")|| entity.getNombre().contains(" "))){
             LOGGER.log(Level.INFO, "El nombre del autor no puede contener caracteres especiales");
             throw new BusinessLogicException("El nombre del autor no puede contener caracteres especiales");
         }
-
+        addDocumentos(entity);
         return persistence.create(entity);
 
     }
@@ -89,10 +108,11 @@ public class AutorLogic {
             LOGGER.log(Level.INFO, "El autor con el id {0} no existe", entity.getId());
             throw new BusinessLogicException("El autor con el id " + entity.getId() + " no existe");
         }
-        else if (!(entity.getNombre().matches("([A-Z]|[a-z]|[0-9]|\\s)+")| entity.getNombre().contains(" "))){
+        else if (!(entity.getNombre().matches("([A-Z]|[a-z]|[ñ]|[0-9]|\\s)+")| entity.getNombre().contains(" "))){
             LOGGER.log(Level.INFO, "El nombre del autor no puede contener caracteres especiales");
             throw new BusinessLogicException("El nombre del autor no puede contener caracteres especiales");
         }
+        addDocumentos(entity);
         return persistence.update(entity);
     }
 
@@ -112,6 +132,41 @@ public class AutorLogic {
         }
 
         persistence.delete(id);
+    }
+    
+        /**
+     * Valida la información para agregar unos Documentos al Autor
+     * @param entity Autor el cual se le van a agregar los documentos
+     * @throws BusinessLogicException Excepción cuando se incumple una regla de negocio.
+     */
+    private void addDocumentos(AutorEntity entity) throws BusinessLogicException{
+        ArrayList<DocumentoEntity> documentos = new ArrayList<>();
+        if (!entity.getDocumentos().isEmpty()){
+            
+            for (DocumentoEntity documentoEntity: entity.getDocumentos()){
+                try{
+                    if (LibroEntity.class.equals(documentoEntity.getClass())){
+                        LibroEntity libro = libroLogic.getLibro(documentoEntity.getId());
+                        if (libro != null)
+                            libroLogic.updateLibro(libro.getId(), libro);
+                        else
+                            libroLogic.createLibro((LibroEntity) documentoEntity); 
+                    }
+                    else{
+                        FotocopiaEntity fotocopia = fotocopiaLogic.getFotocopia(documentoEntity.getId());
+                        if (fotocopia != null)
+                            fotocopiaLogic.updateFotocopia(fotocopia.getId(), fotocopia);
+                        else
+                            fotocopiaLogic.createFotocopia((FotocopiaEntity) documentoEntity); 
+                    }    
+                }    
+                catch(BusinessLogicException e){
+                    throw new BusinessLogicException(e.getMessage());  
+                }
+                documentos.add(documentoEntity);
+            }
+            entity.setDocumentos(documentos);
+        }
     }
 
 }

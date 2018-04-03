@@ -59,7 +59,7 @@ import javax.ws.rs.Produces;
  * @author Camilojaravila  
  * @version 2.0
  */
-@Path("documentos/{documentoId: \\d+}/imagenes")
+@Path("imagenes")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -96,7 +96,6 @@ public class ImagenResource {
      * @return JSON {@link ImagenDTO}  - La imagen guardada con el atributo id autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la imagen.
      */
-    @Path("documentos/{documentoId: \\d+}")
     @POST
     public ImagenDTO createImagen(ImagenDTO imagen) throws BusinessLogicException {
         return new ImagenDTO(imagenLogic.createImagen(imagen.toEntity()));
@@ -114,7 +113,6 @@ public class ImagenResource {
      * @return JSONArray {@link ImagenDTO} - Las imagenes encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    @Path("{documentoId: \\d+}/imagenes")
     public List<ImagenDTO> getImagenes() {
         return listEntity2DTO(imagenLogic.getImagenes());
     }
@@ -136,7 +134,7 @@ public class ImagenResource {
      * @return JSON {@link ImagenDTO} - La imagen buscada
      */
     @GET
-    @Path("documentos/{documentoId: \\d+}/imagenes/{id: \\d+}")
+    @Path("{id: \\d+}")
     public ImagenDTO getImagen(@PathParam("id") Long id) {
         return new ImagenDTO(imagenLogic.getImagen(id));
     }
@@ -160,7 +158,7 @@ public class ImagenResource {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la imagen porque ya existe una con ese nombre.
      */
     @PUT
-    @Path("documentos/{documentoId: \\d+}/imagenes/{id: \\d+}")
+    @Path("{id: \\d+}")
     public ImagenDTO updateImagen(@PathParam("id") Long id, ImagenDTO imagen) throws BusinessLogicException {
         ImagenEntity entity = imagen.toEntity();
         entity.setId(id);
@@ -183,7 +181,7 @@ public class ImagenResource {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no encontrar la imagen.
      */
     @DELETE
-    @Path("documentos/{documentoId: \\d+}/imagenes/{id: \\d+}")
+    @Path("{id: \\d+}")
      public void deleteImagen(@PathParam("id") Long id) throws BusinessLogicException{
         // Void
         imagenLogic.deleteImagen(id);

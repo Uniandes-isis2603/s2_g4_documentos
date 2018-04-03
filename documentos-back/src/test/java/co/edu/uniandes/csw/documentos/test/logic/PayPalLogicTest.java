@@ -150,7 +150,7 @@ public class PayPalLogicTest {
    
     }
     
-    @Test
+     @Test
     public void getPayPal()
     {
         List<PayPalEntity> list = PPLogic.getPayPal();

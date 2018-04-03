@@ -21,8 +21,14 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class LibroPersistence {
     
+    /**
+     * Logger que se va a utilizar para loguear las operaciones.
+     */
     private static final Logger LOGGER = Logger.getLogger(LibroPersistence.class.getName());
     
+    /**
+     * Contexto de persistencia en el que se hacen todas las operaciones.
+     */
     @PersistenceContext(unitName = "DocumentosPU")
     protected EntityManager em;
     
@@ -74,7 +80,7 @@ public class LibroPersistence {
     }
     
     /**
-     * 
+     * Metodo para actualizar un libro.
      * @param entity entidad que va a remplazar.
      * @return la entidad actualizada.
      */
@@ -84,8 +90,8 @@ public class LibroPersistence {
     }
     
     /**
-     * 
-     * @param entity entidad que se va a elimnar.
+     * Metodo para eliminar un libro
+     * @param id id de la entidad que se va a elimnar.
      */
     public void delete(Long id) {
         LOGGER.info("Eliminando un libro");

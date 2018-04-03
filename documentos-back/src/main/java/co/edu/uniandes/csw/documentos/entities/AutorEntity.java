@@ -73,14 +73,20 @@ public class AutorEntity implements Serializable{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
+    /**
+     * Retorna una nueva lista de Documentos al Autor
+     * @return documentos La lista de documentos asociada al area de Conocimiento
+     */
     public List<DocumentoEntity> getDocumentos() {
         return documentos;
     }
-
+    /**
+     * Coloca una nueva lista de Documentos al Autor
+     * @param documentos La nueva lista de documentos asociada al autor
+     */
     public void setDocumentos(List<DocumentoEntity> documentos) {
         this.documentos = documentos;
     }
- 
-    
+     
 }
