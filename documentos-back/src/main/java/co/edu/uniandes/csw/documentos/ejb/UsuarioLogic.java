@@ -145,14 +145,15 @@ public class UsuarioLogic {
     /**
      * Actualiza la información de una instancia de Usuario.
      *
+     * @param id
      * @param entity Instancia de UsuarioEntity con los nuevos datos.
      * @return Instancia de AuthorEntity con los datos actualizados.
      * @throws co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException
      */
-    public UsuarioEntity updateUsuario(UsuarioEntity entity) throws BusinessLogicException {
+    public UsuarioEntity updateUsuario(Long id, UsuarioEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar un Usuario ");
 
-        UsuarioEntity buscado = persistence.find(entity.getId());
+        UsuarioEntity buscado = persistence.find(id);
         if (buscado == null) {
             LOGGER.log(Level.INFO, "El Usuario con el id {0} no existe ", entity.getId());
             throw new BusinessLogicException("El Usuario con el id noexiste");
@@ -182,7 +183,7 @@ public class UsuarioLogic {
             throw new BusinessLogicException("el correo no es valido");
 
         } else {
-            return persistence.create(entity);
+            return persistence.update(entity);
         }
     }
 
@@ -190,18 +191,13 @@ public class UsuarioLogic {
      * Elimina una instancia de Usuario de la base de datos.
      *
      * @param id Identificador de la instancia a eliminar.
+     * @throws co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException
      */
     public void deleteUsuario(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un Usuario ");
 
-        UsuarioEntity buscado = persistence.find(id);
-        if (buscado == null) {
-            LOGGER.log(Level.INFO, "El Usuario con el id {0} no existe ", id);
-            throw new BusinessLogicException("El Usuario con el id dado no existe ");
-
-        } else {
             persistence.delete(id);
-        }
+        
     }
 
 }

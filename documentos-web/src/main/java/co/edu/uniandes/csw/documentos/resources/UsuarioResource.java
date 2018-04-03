@@ -139,7 +139,7 @@ public class UsuarioResource {
      * @return JSON {@link UsuarioDetailedDTO} - El Usuario con el nombre buscado.
      */
     @GET
-    @Path("{nombre: [a-zA-Z][a-zA-Z_0-9]}")
+    @Path("{nombre}")
     public UsuarioDetailedDTO getUsuarioByName(@PathParam("nombre") String nombre) throws BusinessLogicException {
         return new UsuarioDetailedDTO(logic.getUsuarioByName(nombre));
     }
@@ -158,18 +158,22 @@ public class UsuarioResource {
      * </code>
      * </pre>
      * @param id Id del Usuario que se desea actualizar.
-     * @param Usuario {@link UsuarioDetailedDTO} El Usuario que se desea guardar.
+     * @param usuario {@link UsuarioDetailedDTO} El Usuario que se desea guardar.
      * @return Usuario {@link UsuarioDetailedDTO} El Usuario guardado.
      */
     @PUT
     @Path("{id: \\d+}")
-    public UsuarioDetailedDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailedDTO Usuario) throws BusinessLogicException {
-        Usuario.setId(id);
-        return  new UsuarioDetailedDTO(logic.updateUsuario(Usuario.toEntity()));
+    public UsuarioDetailedDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailedDTO usuario) throws BusinessLogicException {
+        usuario.setId(id);
+        UsuarioEntity entity = logic.getUsuario(id);
+        if (entity == null) {
+            throw new BusinessLogicException("El recurso /usuarios/" + id + " no existe.");
+        }
+        return new UsuarioDetailedDTO(logic.updateUsuario(id, usuario.toEntity()));
     }
     
     /**
-     * <h1> DELETE /api/Usuarios/{id} : Eliminar Usuario por id. </h1>
+     * <h1> DELETE /api/usuarios/{id} : Eliminar Usuario por id. </h1>
      * 
      * <pre> Elimina el Usuario con el id asociado en la URL.
      * 
@@ -182,10 +186,16 @@ public class UsuarioResource {
      * </pre>
      * 
      * @param id Id del Usuario que se desea eliminar.
+     * @throws co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException
      */
     @DELETE
     @Path("{id: \\d+}")
     public void deleteUsuario(@PathParam("id") Long id) throws BusinessLogicException{
+        System.out.println(id);
+        UsuarioEntity entity = logic.getUsuario(id);
+        if (entity == null) {
+            throw new BusinessLogicException("El recurso /usuarios/" + id + " no existe.");
+        }
         logic.deleteUsuario(id);
     }
     

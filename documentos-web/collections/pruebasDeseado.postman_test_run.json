@@ -1,0 +1,322 @@
+{
+	"id": "4725d9e9-12cf-4c7c-8b6a-1127df95b86f",
+	"name": "pruebasDeseado",
+	"allTests": [],
+	"timestamp": "2018-04-03T05:39:24.260Z",
+	"collection_id": "454acccf-50e0-4419-b39e-da91adbaf2f7",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "0",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "454acccf-50e0-4419-b39e-da91adbaf2f7",
+		"name": "pruebasDeseado",
+		"description": null,
+		"auth": null,
+		"events": null,
+		"variables": null,
+		"order": [
+			"2b5ac21e-465e-492c-bff3-b4c5f172257c",
+			"728c9c9e-7951-47f1-8948-3d29bac7d3f6",
+			"9ce6934d-2a77-4d0d-8d14-0ff2168bac25",
+			"0ceacf8e-01a5-4998-8e33-ae0bc2df22c6",
+			"61d8912e-2232-4d65-9a7a-f3e55e57e009"
+		],
+		"folders_order": [],
+		"owner": "0",
+		"permissions": {},
+		"favorite": false,
+		"shared": false,
+		"type": "collection",
+		"depth": 0
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"name": "GET deseado ",
+			"id": "2b5ac21e-465e-492c-bff3-b4c5f172257c",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/0/deseados",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Status code is 200",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"47"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": "47",
+			"totalRequestTime": "47",
+			"iterationResults": {}
+		},
+		{
+			"name": "GET deseado por id",
+			"id": "728c9c9e-7951-47f1-8948-3d29bac7d3f6",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/0/deseados/2000",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Status code is 200",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"11"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": "11",
+			"totalRequestTime": "11",
+			"iterationResults": {}
+		},
+		{
+			"name": "POST se creo un deseado",
+			"id": "9ce6934d-2a77-4d0d-8d14-0ff2168bac25",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/0/deseados",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Status code is 200",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"15"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": "15",
+			"totalRequestTime": "15",
+			"iterationResults": {}
+		},
+		{
+			"name": "PUT actualiza un deseado",
+			"id": "0ceacf8e-01a5-4998-8e33-ae0bc2df22c6",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/0/deseados/2000",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Status code is 200",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"14"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": "14",
+			"totalRequestTime": "14",
+			"iterationResults": {}
+		},
+		{
+			"name": "Delete deseado de un usuario",
+			"id": "61d8912e-2232-4d65-9a7a-f3e55e57e009",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/0/deseados/2002",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content",
+				"detail": {
+					"name": "No Content",
+					"detail": "The server successfully processed the request, but is not returning any content."
+				}
+			},
+			"tests": {
+				"name": "Status code is 200",
+				"status": "fail"
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"13"
+			],
+			"allTests": [
+				{
+					"Status code is 200": false
+				}
+			],
+			"time": "13",
+			"totalRequestTime": "13",
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 4,
+	"totalFail": 1,
+	"totalTime": 100,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "GET deseado ",
+			"id": "2b5ac21e-465e-492c-bff3-b4c5f172257c",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/0/deseados",
+			"time": "2018-04-03T05:39:24.260Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "GET deseado por id",
+			"id": "728c9c9e-7951-47f1-8948-3d29bac7d3f6",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/0/deseados/2000",
+			"time": "2018-04-03T05:39:24.260Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "POST se creo un deseado",
+			"id": "9ce6934d-2a77-4d0d-8d14-0ff2168bac25",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/0/deseados",
+			"time": "2018-04-03T05:39:24.260Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "PUT actualiza un deseado",
+			"id": "0ceacf8e-01a5-4998-8e33-ae0bc2df22c6",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/0/deseados/2000",
+			"time": "2018-04-03T05:39:24.260Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Delete deseado de un usuario",
+			"id": "61d8912e-2232-4d65-9a7a-f3e55e57e009",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/0/deseados/2002",
+			"time": "2018-04-03T05:39:24.260Z",
+			"responseCode": {
+				"code": 204,
+				"name": "No Content",
+				"detail": {
+					"name": "No Content",
+					"detail": "The server successfully processed the request, but is not returning any content."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		}
+	],
+	"synced": false
+}

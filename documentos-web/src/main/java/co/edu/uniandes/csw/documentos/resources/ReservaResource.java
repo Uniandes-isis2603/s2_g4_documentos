@@ -81,6 +81,7 @@ public class ReservaResource {
      * </code>
      * </pre>
      *
+     * @param idUser
      * @param reserva {@link ReservaDetailedDTO} - la reserva que se desea
      * guardar.
      * @return JSON {@link ReservaDetailedDTO} - la reserva guardado con el id
