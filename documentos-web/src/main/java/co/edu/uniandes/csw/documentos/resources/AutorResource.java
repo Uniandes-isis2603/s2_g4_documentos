@@ -42,6 +42,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "autores".
@@ -108,8 +109,9 @@ public class AutorResource {
      */
     @POST
     public AutorDetailDTO createAutor(AutorDetailDTO autor) throws BusinessLogicException {
-        
-        return new AutorDetailDTO(autorLogic.createAutor(autor.toEntity()));
+        AutorEntity entity = autor.toEntity();
+        AutorEntity nuevo = autorLogic.createAutor(entity);
+        return new AutorDetailDTO(nuevo);
     }
 
     /**
@@ -147,7 +149,11 @@ public class AutorResource {
     @GET
     @Path("{id: \\d+}")
     public AutorDetailDTO getAutor(@PathParam("id") Long id) {
-        return new AutorDetailDTO(autorLogic.getAutor(id));
+        AutorEntity entity = autorLogic.getAutor(id);
+        if (entity == null){
+            throw new WebApplicationException("El Autor no existe", 404);
+        }
+        return new AutorDetailDTO(entity);
     }
     
     /**
@@ -171,9 +177,13 @@ public class AutorResource {
     @PUT
     @Path("{id: \\d+}")
     public AutorDetailDTO updateAutor(@PathParam("id") Long id, AutorDetailDTO autor) throws BusinessLogicException {
-        AutorEntity entity = autor.toEntity();
-        entity.setId(id);
-        return new AutorDetailDTO(autorLogic.updateAutor(entity));
+        autor.setId(id);
+        AutorEntity entity = autorLogic.getAutor(id);
+        if (entity == null){
+            throw new WebApplicationException("El Autor con el id "+ id + " no existe", 404);
+        }
+        
+        return new AutorDetailDTO(autorLogic.updateAutor(autor.toEntity()));
     }
     
     /**
@@ -195,6 +205,11 @@ public class AutorResource {
     @Path("{id: \\d+}")
      public void deleteAutor(@PathParam("id") Long id) throws BusinessLogicException {
         // Void
+        AutorEntity entity = autorLogic.getAutor(id);
+        if (entity == null){
+            throw new WebApplicationException("El Autor con el id "+ id + " no existe", 404);
+        }
+        
         autorLogic.deleteAutor(id);
     }
 }

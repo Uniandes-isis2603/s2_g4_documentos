@@ -42,6 +42,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "areas".
@@ -103,11 +104,13 @@ public class AreaDeConocimientoResource {
      * </pre>
      * @param area {@link AreaDeConocimientoDetailDTO} - El area que se desea guardar.
      * @return JSON {@link AreaDeConocimientoDetailDTO}  - El area guardado con el atributo id autogenerado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el area.
+    * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al incumplir una regla de negocio
      */
     @POST
     public AreaDeConocimientoDetailDTO createAreaDeConocimiento(AreaDeConocimientoDetailDTO area) throws BusinessLogicException {
-        return new AreaDeConocimientoDetailDTO(areaLogic.createArea(area.toEntity()));
+        AreaDeConocimientoEntity entity = area.toEntity();
+        AreaDeConocimientoEntity nuevo = areaLogic.createArea(entity);
+        return new AreaDeConocimientoDetailDTO(nuevo);
     }
 
     /**
@@ -145,8 +148,11 @@ public class AreaDeConocimientoResource {
     @GET
     @Path("{id: \\d+}")
     public AreaDeConocimientoDetailDTO getArea(@PathParam("id") Long id) {
-        
-        return new AreaDeConocimientoDetailDTO(areaLogic.getArea(id));
+        AreaDeConocimientoEntity entity = areaLogic.getArea(id);
+        if (entity == null){
+            throw new WebApplicationException("El area de Conocimiento no existe", 404);
+        }
+        return new AreaDeConocimientoDetailDTO(entity);
     }
     
     /**
@@ -170,9 +176,13 @@ public class AreaDeConocimientoResource {
     @PUT
     @Path("{id: \\d+}")
     public AreaDeConocimientoDetailDTO updateArea(@PathParam("id") Long id, AreaDeConocimientoDetailDTO area) throws BusinessLogicException {
-        AreaDeConocimientoEntity entity = area.toEntity();
-        entity.setId(id);
-        return new AreaDeConocimientoDetailDTO(areaLogic.updateArea(entity));
+        area.setId(id);
+        AreaDeConocimientoEntity entity = areaLogic.getArea(id);
+        if (entity == null){
+            throw new WebApplicationException("El area de conocimiento con el id "+ id + " no existe", 404);
+        }
+        
+        return new AreaDeConocimientoDetailDTO(areaLogic.updateArea(area.toEntity()));
     }
     
     /**
@@ -194,6 +204,11 @@ public class AreaDeConocimientoResource {
     @Path("{id: \\d+}")
      public void deleteArea(@PathParam("id") Long id) throws BusinessLogicException {
         // Void
+        AreaDeConocimientoEntity entity = areaLogic.getArea(id);
+        if (entity == null){
+            throw new WebApplicationException("El area de conocimiento con el id "+ id + " no existe", 404);
+        }
+        
         areaLogic.deleteArea(id);
     }
 }
