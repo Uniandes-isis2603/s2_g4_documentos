@@ -21,6 +21,7 @@ delete from TarjetaDeCreditoEntity;
 delete from ReservaEntity;
 delete from DeseadoEntity;
 delete from ComentarioEntity;
+delete from CompraEntity;
 
 
 -- Ernesto
@@ -142,7 +143,9 @@ insert into ComentarioEntity(id,comentario,fecha) values (11000,'es malo','2015-
 
 --Nicolas
 insert into CursoEntity(id,codigo,departamento,nombre) values (3000,'Ma205','Matematicas','Matematica basica');
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (3500,'LibroEntidad','libro222','xyz.jpg','la',3.5,110.2);
+
+INSERT INTO COMPRAENTITY (id,COSTO, FECHA, TIPODECOMPRA, METODODEPAGOPAYPAL_ID, METODODEPAGOTDC_ID) 
+	VALUES (10000,300, '2018-02-22', 'efectivo', NULL, 7500);
 
 --------------------------------------------------------------------------
 ----------------------------- RELACIONES ---------------------------------
@@ -174,7 +177,7 @@ insert into DocumentoEntity_CursoEntity(documentoentity_id,cursos_id) values (80
 insert into DocumentoEntity_CursoEntity(documentoentity_id,cursos_id) values (200,12);
 
 -- Nicolas
-insert into CursoEntity_DocumentoEntity(cursoentity_id,bibliografiadelcurso_id) values (3000,3500);
+insert into CursoEntity_DocumentoEntity(cursoentity_id,bibliografiadelcurso_id) values (3000,300);
 
 
 -- Ernesto

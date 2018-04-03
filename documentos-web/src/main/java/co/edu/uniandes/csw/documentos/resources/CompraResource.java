@@ -73,8 +73,11 @@ private CompraLogic logica;
     public CompraDetailedDTO createCompra(CompraDetailedDTO Compra ) throws BusinessLogicException 
     {
          CompraEntity editorialEntity = Compra.toEntity();
-      
+        System.out.println(Compra.getMetodoDePagoTDC().getNombreEnLaTarjeta()+"-"+ Compra.getMetodoDePagoTDC().getId() );
+              
+         
        CompraEntity nuevoEditorial = logica.createCompra(editorialEntity);
+       
        
        return new CompraDetailedDTO(nuevoEditorial);
         
@@ -148,7 +151,7 @@ private CompraLogic logica;
      */
     @PUT
     @Path("{id: \\d+}")
-    public CompraDetailedDTO updateCompra (@PathParam("id)") Long id, CompraDetailedDTO Compra) throws BusinessLogicException 
+    public CompraDetailedDTO updateCompra (@PathParam("id") Long id, CompraDetailedDTO Compra) throws BusinessLogicException 
     {
         Compra.setId(id);
         return new CompraDetailedDTO(logica.updateCompra(id, Compra.toEntity()));
