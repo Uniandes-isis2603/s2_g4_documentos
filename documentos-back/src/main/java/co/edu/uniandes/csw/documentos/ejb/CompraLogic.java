@@ -43,18 +43,16 @@ public class CompraLogic {
     {
         throw new BusinessLogicException("Ya existe la compra con ese id");
     }
-    if (entity.getCosto()==0)
+    if (entity.getCosto()==0 ||entity.getCosto()==null )
     {
-        throw new BusinessLogicException("El costo de la compra no puede ser 0");
+        throw new BusinessLogicException("El costo de la compra no puede ser 0 ni vacio");
     }
     if(entity.getFecha().after(fecha))
     {
         throw new BusinessLogicException("La fecha no es valida. fecha = " + entity.getFecha());
     }
-    if( entity.getMetodoDePagoPayPal()==null&& entity.getMetodoDePagoTDC()==null)
-    {
-        throw new BusinessLogicException("Tiene que establecerse un metodo de pago");
-    }
+   
+   
     return persistencia.create(entity);
     }
      /**

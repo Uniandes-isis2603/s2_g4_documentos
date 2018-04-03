@@ -1,11 +1,185 @@
 {
 	"info": {
 		"name": "Compras",
-		"_postman_id": "6802ed40-5834-5622-cff5-a9c77da7cc47",
+		"_postman_id": "e9651c5a-443f-96a3-14a9-430be1f73379",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "crear una compra en el sistema fallo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7ea63680-536b-4992-9a5b-b75e627dffe7",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"costo\": \"\",\n        \"fecha\": \"2018-02-22T20:38:54.973-05:00\",\n        \"tipoDecompra\": \"efectivo\",\n        \"documentos\":[],\n        \"metodoDePagoTDC\":\n        {\n        \"id\":7500,\n        \"tipoDeTarjeta\": \"Visa\",\n      \"nroDeTarjeta\": \"433467500798\",\n      \"nombreEnLaTarjeta\": \"Nicolas Sotelo\",\n       \"numeroDeSeguridad\": 243\n        }\n        \n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/compras",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"compras"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "crear compras de manera efectiva",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b75486a2-16c0-415a-8214-848700a987b9",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"costo\": 3000,\n        \"fecha\": \"2018-02-22T20:38:54.973-05:00\",\n        \"tipoDecompra\": \"efectivo\",\n        \"documentos\":[],\n        \"metodoDePagoTDC\":\n        {\n        \"id\":7500,\n        \"tipoDeTarjeta\": \"Visa\",\n      \"nroDeTarjeta\": \"433467500798\",\n      \"nombreEnLaTarjeta\": \"Nicolas Sotelo\",\n       \"numeroDeSeguridad\": 243\n        }\n        \n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/compras/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"compras",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put exitoso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fb527723-2247-4620-8778-1b1af6e5631f",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"costo\": 98,\n        \"fecha\": \"2018-02-22T20:38:54.973-05:00\",\n        \"tipoDecompra\": \"efectivo\",\n        \"documentos\":[],\n        \"metodoDePagoTDC\":\n        {\n        \"id\":7500,\n        \"tipoDeTarjeta\": \"Visa\",\n      \"nroDeTarjeta\": \"433467500798\",\n      \"nombreEnLaTarjeta\": \"gregorio\",\n       \"numeroDeSeguridad\": 243\n        }\n        \n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/compras/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"compras",
+						"10000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Put fallido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "370a7bf7-7c59-44a3-bcec-f28d8fb6073f",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"costo\":0,\n        \"fecha\": \"2018-02-22T20:38:54.973-05:00\",\n        \"tipoDecompra\": \"efectivo\",\n        \"documentos\":[],\n        \"metodoDePagoTDC\":\n        {\n        \"id\":7500,\n        \"tipoDeTarjeta\": \"Visa\",\n      \"nroDeTarjeta\": \"433467500798\",\n      \"nombreEnLaTarjeta\": \"Nicolas Sotelo\",\n       \"numeroDeSeguridad\": 243\n        }\n        \n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/compras/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"compras",
+						"10000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
 		{
 			"name": "Obtener todas las compras del sistema",
 			"event": [
@@ -37,8 +211,7 @@
 						"api",
 						"compras"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -74,8 +247,7 @@
 						"compras",
 						"10000"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -97,7 +269,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8080/documentos-web/api/compras/10005",
 					"protocol": "http",
@@ -111,8 +286,7 @@
 						"compras",
 						"10005"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -134,7 +308,10 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8080/documentos-web/api/compras/10005",
 					"protocol": "http",
@@ -148,13 +325,24 @@
 						"compras",
 						"10005"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Borrar una compra exitos del sistema",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "668e608d-2757-464e-9db4-f22d31849966",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -172,52 +360,7 @@
 						"compras",
 						"10000"
 					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "crear compras de manera efectiva",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "b75486a2-16c0-415a-8214-848700a987b9",
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
-						]
-					}
 				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": " {\n        \"costo\": 3000,\n        \"fecha\": \"2018-02-22T20:38:54.973-05:00\",\n        \"tipoDecompra\": \"efectivo\",\n        \"documentos\": []\n    }"
-				},
-				"url": {
-					"raw": "http://localhost:8080/documentos-web/api/compras/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"documentos-web",
-						"api",
-						"compras",
-						""
-					]
-				},
-				"description": ""
 			},
 			"response": []
 		}
