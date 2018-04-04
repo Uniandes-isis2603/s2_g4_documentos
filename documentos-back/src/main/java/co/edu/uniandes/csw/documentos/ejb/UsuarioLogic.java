@@ -1,4 +1,3 @@
-
 package co.edu.uniandes.csw.documentos.ejb;
 
 import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
@@ -50,7 +49,7 @@ public class UsuarioLogic {
 
             LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
             throw new BusinessLogicException("El usuario tiene el correo nulo");
-        }else if (!entity.getNombre().matches("([A-Z]|[a-z]|\\s)+")) {
+        } else if (!entity.getNombre().matches("([A-Z]|[a-z]|\\s)+")) {
             LOGGER.log(Level.INFO, "El nombre del Usuario no puede contener caracteres especiales");
             throw new BusinessLogicException("El nombre del Usuario no puede contener caracteres especiales");
 
@@ -58,8 +57,7 @@ public class UsuarioLogic {
             LOGGER.log(Level.INFO, "El nombre del Usuario no puede tener menos de 7 caracteres o mas de 15");
             throw new BusinessLogicException("El nombre del Usuario no puede tener menos de 7 caracteres o mas de 15");
 
-        }
-        else if (entity.getEdad() < 17) {
+        } else if (entity.getEdad() < 17) {
             LOGGER.log(Level.INFO, "La edad del Usuario no puede ser menor a 17");
             throw new BusinessLogicException("La edad del Usuario no puede ser menor a 17");
 
@@ -71,12 +69,10 @@ public class UsuarioLogic {
             LOGGER.log(Level.INFO, "el correo no es valido");
             throw new BusinessLogicException("el correo no es valido");
 
-        } 
-        else if (entity.getNombre() == null ) {
+        } else if (entity.getNombre() == null) {
             LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
             throw new BusinessLogicException("El usuario tiene ael nombre nulo");
-        
-                    
+
         } else {
             return persistence.create(entity);
         }
@@ -104,10 +100,14 @@ public class UsuarioLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar un Usuario con id = {0}", id);
         if (id == null) {
             LOGGER.log(Level.INFO, "el id no puede ser nulo");
-             throw new BusinessLogicException("el id no puede ser nulo");
-
+            throw new BusinessLogicException("el id no puede ser nulo");
 
         }
+        UsuarioEntity usuario = persistence.find(id);
+        if (usuario == null) {
+            throw new BusinessLogicException("el usuario no existe");
+        }
+
         return persistence.find(id);
 
     }
@@ -129,16 +129,16 @@ public class UsuarioLogic {
         List<UsuarioEntity> users = getUsuarios();
         UsuarioEntity us = null;
         for (UsuarioEntity usuario : users) {
-         if(usuario.getNombreUsuario().equals(nombre)) {
+            if (usuario.getNombreUsuario().equals(nombre)) {
                 us = usuario;
                 break;
             }
         }
-        if (us==null) {
+        if (us == null) {
             LOGGER.log(Level.INFO, "no se encontro usuario con el nombre dado");
             throw new BusinessLogicException("no se encontro usuario con el nombre dado");
         }
-        
+
         return us;
     }
 
@@ -158,7 +158,7 @@ public class UsuarioLogic {
             LOGGER.log(Level.INFO, "El Usuario con el id {0} no existe ", entity.getId());
             throw new BusinessLogicException("El Usuario con el id noexiste");
 
-        } else if (entity.getNombre()==null|| entity.getNombreUsuario() == null || null == entity.getId() || 0 == entity.getEdad() || entity.getCorreo() == null) {
+        } else if (entity.getNombre() == null || entity.getNombreUsuario() == null || null == entity.getId() || 0 == entity.getEdad() || entity.getCorreo() == null) {
             LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
             throw new BusinessLogicException("El usuario tiene atributos nulos");
 
@@ -196,8 +196,20 @@ public class UsuarioLogic {
     public void deleteUsuario(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un Usuario ");
 
+           if (id == null) {
+            throw new BusinessLogicException("el usuario con el id dado no existe " + id);
+        }
+
+        UsuarioEntity buscado = persistence.find(id);
+        if (buscado == null) {
+            LOGGER.log(Level.INFO, "el usuario con el id {0} no existe ", id);
+            throw new BusinessLogicException("el usuario con el id dado no existe " + id);
+
+        } else {
             persistence.delete(id);
-        
+        }
+        persistence.delete(id);
+
     }
 
 }

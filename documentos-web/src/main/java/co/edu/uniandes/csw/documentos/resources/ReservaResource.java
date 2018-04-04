@@ -94,7 +94,7 @@ public class ReservaResource {
              usuarioLogic.getUsuario(idUser);
 
         } catch (BusinessLogicException ex) {
-            throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+            throw new BusinessLogicException("el usuario al que le quiere agregar el recurso no existe");
 
         }
 
@@ -142,12 +142,12 @@ public class ReservaResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public ReservaDetailedDTO getReserva(@PathParam("usuarioId") Long idUser, @PathParam("id") Long id) {
+    public ReservaDetailedDTO getReserva(@PathParam("usuarioId") Long idUser, @PathParam("id") Long id)throws BusinessLogicException {
         try {
            usuarioLogic.getUsuario(idUser);
 
         } catch (BusinessLogicException ex) {
-            throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+            throw new BusinessLogicException("el usuario al que le quiere agregar el recurso no existe");
 
         }
 
@@ -180,7 +180,7 @@ public class ReservaResource {
              usuarioLogic.getUsuario(idUser);
 
         } catch (BusinessLogicException ex) {
-            throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+            throw new BusinessLogicException("el usuario al que le quiere agregar el recurso no existe");
 
         }
         reserva.setId(id);
@@ -201,18 +201,19 @@ public class ReservaResource {
      * </code>
      * </pre>
      *
+     * @param idUser
      * @param id Id de la reserva que se desea eliminar.
+     * @throws co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteReserva(@PathParam("usarioId") Long idUser, @PathParam("id") Long id) throws BusinessLogicException {
+    public void deleteReserva(@PathParam("usuarioId") Long idUser, @PathParam("id") Long id) throws BusinessLogicException {
         try {
              usuarioLogic.getUsuario(idUser);
 
         } catch (BusinessLogicException ex) {
-            throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+                        throw new BusinessLogicException("el usuario no existe");
         }
-
         reservaLogica.deleteReserva(id);
 
     }

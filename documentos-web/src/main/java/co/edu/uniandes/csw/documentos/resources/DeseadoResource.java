@@ -91,7 +91,7 @@ public class DeseadoResource {
             usuarioLogic.getUsuario(idUser);
 
         } catch (BusinessLogicException ex) {
-            throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+            throw new BusinessLogicException("el usuario al que le quiere agregar el recurso no existe");
 
         }
 
@@ -143,7 +143,7 @@ public class DeseadoResource {
             usuarioLogic.getUsuario(idUser);
 
         } catch (BusinessLogicException ex) {
-            throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+            throw new BusinessLogicException("el usuario al que le quiere agregar el recurso no existe");
 
         }
         return new DeseadoDetailedDTO(DeseadoLogica.getDeseado(id));
@@ -204,7 +204,7 @@ public class DeseadoResource {
             usuarioLogic.getUsuario(idUser);
 
         } catch (BusinessLogicException ex) {
-            throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
+            throw new BusinessLogicException("el usuario al que le quiere agregar el recurso no existe");
 
         }
         DeseadoLogica.deleteDeseado(id);

@@ -1,8 +1,8 @@
 {
-	"id": "3333d2db-ca89-4532-8193-6b3356f39119",
+	"id": "e206b673-c2f5-43f9-8c35-6147b413762d",
 	"name": "pruebasUsuario",
 	"allTests": [],
-	"timestamp": "2018-04-03T05:27:14.632Z",
+	"timestamp": "2018-04-03T23:19:06.574Z",
 	"collection_id": "df3b9805-0d48-4e28-aa54-4d90f9ef4979",
 	"folder_id": 0,
 	"target_type": "collection",
@@ -22,14 +22,18 @@
 			"ae206377-31bf-4faa-a8ee-9c2e1da1a6d7",
 			"b02ac0e8-6c1f-45f7-a6d2-d7c5ad17a0e2",
 			"5b0790ce-b9f1-498b-8259-04ab46a07b74",
+			"595e7f58-4784-4250-a18a-74cba013c0d6",
 			"49c40f23-936f-472b-9972-ea77b1a8183b",
+			"91aca08a-bfe0-4260-b57f-b876ad01e3ac",
 			"758c8264-2e95-43be-90bc-60cc3e8d30a7",
-			"ec3b9e2d-79b3-4b57-a22f-15ea94a6b929"
+			"f1460697-59a2-40db-aab8-fc48bb610965",
+			"ec3b9e2d-79b3-4b57-a22f-15ea94a6b929",
+			"bc3080a0-234b-4bbe-85db-f854326c710b"
 		],
 		"folders_order": [],
 		"owner": "0",
 		"permissions": {},
-		"favorite": false,
+		"favorite": true,
 		"shared": false,
 		"type": "collection",
 		"depth": 0
@@ -62,15 +66,15 @@
 				}
 			},
 			"times": [
-				"73"
+				"76"
 			],
 			"allTests": [
 				{
 					"Status code is 200": true
 				}
 			],
-			"time": "73",
-			"totalRequestTime": "73",
+			"time": "76",
+			"totalRequestTime": "76",
 			"iterationResults": {}
 		},
 		{
@@ -97,15 +101,15 @@
 				}
 			},
 			"times": [
-				"24"
+				"18"
 			],
 			"allTests": [
 				{
 					"Status code is 200": true
 				}
 			],
-			"time": "24",
-			"totalRequestTime": "24",
+			"time": "18",
+			"totalRequestTime": "18",
 			"iterationResults": {}
 		},
 		{
@@ -122,13 +126,13 @@
 				}
 			},
 			"tests": {
-				"name": "Status code is 400",
-				"status": "fail"
+				"name": "Status code is 412",
+				"status": "pass"
 			},
 			"testPassFailCounts": {
-				"Status code is 400": {
-					"pass": 0,
-					"fail": 1
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
 				}
 			},
 			"times": [
@@ -136,7 +140,7 @@
 			],
 			"allTests": [
 				{
-					"Status code is 400": false
+					"Status code is 412": true
 				}
 			],
 			"time": "8",
@@ -167,15 +171,50 @@
 				}
 			},
 			"times": [
-				"10"
+				"12"
 			],
 			"allTests": [
 				{
 					"Status code is 200": true
 				}
 			],
-			"time": "10",
-			"totalRequestTime": "10",
+			"time": "12",
+			"totalRequestTime": "12",
+			"iterationResults": {}
+		},
+		{
+			"name": "GET de un usuario con un id que no existe",
+			"id": "595e7f58-4784-4250-a18a-74cba013c0d6",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/5456",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"tests": {
+				"name": "Status code is 412",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"12"
+			],
+			"allTests": [
+				{
+					"Status code is 412": true
+				}
+			],
+			"time": "12",
+			"totalRequestTime": "12",
 			"iterationResults": {}
 		},
 		{
@@ -202,21 +241,56 @@
 				}
 			},
 			"times": [
-				"19"
+				"18"
 			],
 			"allTests": [
 				{
 					"Status code is 200": true
 				}
 			],
-			"time": "19",
-			"totalRequestTime": "19",
+			"time": "18",
+			"totalRequestTime": "18",
+			"iterationResults": {}
+		},
+		{
+			"name": "PUT update de un usuario que no existe",
+			"id": "91aca08a-bfe0-4260-b57f-b876ad01e3ac",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/5456",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"tests": {
+				"name": "Status code is 412",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"13"
+			],
+			"allTests": [
+				{
+					"Status code is 412": true
+				}
+			],
+			"time": "13",
+			"totalRequestTime": "13",
 			"iterationResults": {}
 		},
 		{
 			"name": "GET de un usuario por su nikename",
 			"id": "758c8264-2e95-43be-90bc-60cc3e8d30a7",
-			"url": "http://localhost:41973/documentos-web/api/usuarios/fede7marroquin",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/batmanAaa1",
 			"totalTime": 0,
 			"responseCode": {
 				"code": 200,
@@ -237,21 +311,56 @@
 				}
 			},
 			"times": [
-				"24"
+				"16"
 			],
 			"allTests": [
 				{
 					"Status code is 200": true
 				}
 			],
-			"time": "24",
-			"totalRequestTime": "24",
+			"time": "16",
+			"totalRequestTime": "16",
+			"iterationResults": {}
+		},
+		{
+			"name": "GET de un usuario porun nombre incorrecto",
+			"id": "f1460697-59a2-40db-aab8-fc48bb610965",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/elFerras",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"tests": {
+				"name": "Status code is 412",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"9"
+			],
+			"allTests": [
+				{
+					"Status code is 412": true
+				}
+			],
+			"time": "9",
+			"totalRequestTime": "9",
 			"iterationResults": {}
 		},
 		{
 			"name": "DELETE de un usuario",
 			"id": "ec3b9e2d-79b3-4b57-a22f-15ea94a6b929",
-			"url": "http://localhost:41973/documentos-web/api/usuarios/60",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/48",
 			"totalTime": 0,
 			"responseCode": {
 				"code": 204,
@@ -262,38 +371,73 @@
 				}
 			},
 			"tests": {
-				"name": "Status code is 200",
-				"status": "fail"
+				"name": "Status code is 204",
+				"status": "pass"
 			},
 			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 0,
-					"fail": 1
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
 				}
 			},
 			"times": [
-				"25"
+				"19"
 			],
 			"allTests": [
 				{
-					"Status code is 200": false
+					"Status code is 204": true
 				}
 			],
-			"time": "25",
-			"totalRequestTime": "25",
+			"time": "19",
+			"totalRequestTime": "19",
+			"iterationResults": {}
+		},
+		{
+			"name": "DELETE de un usuario que no existe",
+			"id": "bc3080a0-234b-4bbe-85db-f854326c710b",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/5456",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"tests": {
+				"name": "Status code is 412",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"10"
+			],
+			"allTests": [
+				{
+					"Status code is 412": true
+				}
+			],
+			"time": "10",
+			"totalRequestTime": "10",
 			"iterationResults": {}
 		}
 	],
-	"totalPass": 5,
-	"totalFail": 2,
-	"totalTime": 183,
+	"totalPass": 11,
+	"totalFail": 0,
+	"totalTime": 211,
 	"lifecycle": "done",
 	"requests": [
 		{
 			"name": "Get de todos los usuarios ",
 			"id": "9227a200-afac-4e0f-9a50-a7a5450814fc",
 			"url": "http://localhost:41973/documentos-web/api/usuarios",
-			"time": "2018-04-03T05:27:14.632Z",
+			"time": "2018-04-03T23:19:06.574Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -313,7 +457,7 @@
 			"name": "POST de un usuario exitoso",
 			"id": "ae206377-31bf-4faa-a8ee-9c2e1da1a6d7",
 			"url": "http://localhost:41973/documentos-web/api/usuarios",
-			"time": "2018-04-03T05:27:14.632Z",
+			"time": "2018-04-03T23:19:06.574Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -333,7 +477,7 @@
 			"name": "POST de un usuario no exitoso",
 			"id": "b02ac0e8-6c1f-45f7-a6d2-d7c5ad17a0e2",
 			"url": "http://localhost:41973/documentos-web/api/usuarios",
-			"time": "2018-04-03T05:27:14.632Z",
+			"time": "2018-04-03T23:19:06.574Z",
 			"responseCode": {
 				"code": 412,
 				"name": "Precondition Failed",
@@ -343,9 +487,9 @@
 				}
 			},
 			"testPassFailCounts": {
-				"Status code is 400": {
-					"pass": 0,
-					"fail": 1
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
 				}
 			}
 		},
@@ -353,7 +497,7 @@
 			"name": "Get a un usuario especifico por id",
 			"id": "5b0790ce-b9f1-498b-8259-04ab46a07b74",
 			"url": "http://localhost:41973/documentos-web/api/usuarios/49",
-			"time": "2018-04-03T05:27:14.632Z",
+			"time": "2018-04-03T23:19:06.574Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -364,6 +508,26 @@
 			},
 			"testPassFailCounts": {
 				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "GET de un usuario con un id que no existe",
+			"id": "595e7f58-4784-4250-a18a-74cba013c0d6",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/5456",
+			"time": "2018-04-03T23:19:06.574Z",
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
 					"pass": 1,
 					"fail": 0
 				}
@@ -373,7 +537,7 @@
 			"name": "PUT se actualizo un usuario con éxito",
 			"id": "49c40f23-936f-472b-9972-ea77b1a8183b",
 			"url": "http://localhost:41973/documentos-web/api/usuarios/45",
-			"time": "2018-04-03T05:27:14.632Z",
+			"time": "2018-04-03T23:19:06.574Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -384,6 +548,26 @@
 			},
 			"testPassFailCounts": {
 				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "PUT update de un usuario que no existe",
+			"id": "91aca08a-bfe0-4260-b57f-b876ad01e3ac",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/5456",
+			"time": "2018-04-03T23:19:06.574Z",
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
 					"pass": 1,
 					"fail": 0
 				}
@@ -392,8 +576,8 @@
 		{
 			"name": "GET de un usuario por su nikename",
 			"id": "758c8264-2e95-43be-90bc-60cc3e8d30a7",
-			"url": "http://localhost:41973/documentos-web/api/usuarios/fede7marroquin",
-			"time": "2018-04-03T05:27:14.632Z",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/batmanAaa1",
+			"time": "2018-04-03T23:19:06.574Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -410,10 +594,30 @@
 			}
 		},
 		{
+			"name": "GET de un usuario porun nombre incorrecto",
+			"id": "f1460697-59a2-40db-aab8-fc48bb610965",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/elFerras",
+			"time": "2018-04-03T23:19:06.574Z",
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
 			"name": "DELETE de un usuario",
 			"id": "ec3b9e2d-79b3-4b57-a22f-15ea94a6b929",
-			"url": "http://localhost:41973/documentos-web/api/usuarios/60",
-			"time": "2018-04-03T05:27:14.632Z",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/48",
+			"time": "2018-04-03T23:19:06.574Z",
 			"responseCode": {
 				"code": 204,
 				"name": "No Content",
@@ -423,9 +627,29 @@
 				}
 			},
 			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 0,
-					"fail": 1
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "DELETE de un usuario que no existe",
+			"id": "bc3080a0-234b-4bbe-85db-f854326c710b",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/5456",
+			"time": "2018-04-03T23:19:06.574Z",
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
 				}
 			}
 		}
