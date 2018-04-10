@@ -8,9 +8,6 @@ package co.edu.uniandes.csw.documentos.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.*;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -19,15 +16,14 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author f.marroquin10
  */
 @Entity
-public class UsuarioEntity implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String nombre;
-    private String nombreUsuario;
-    private int edad;
+public class UsuarioEntity  implements Serializable {
+  
+   @Id
+   private Long id;
+   private String nombre;
+   private String nombreUsuario;
    private String correo;
+   private int edad;
    private int genero;
 
     /**
@@ -92,7 +88,7 @@ public class UsuarioEntity implements Serializable {
      *
      * @return nombre de usuario del usuario.
      */
-    public String getUserName() {
+    public String getNombreUsuario() {
         return nombreUsuario;
     }
 

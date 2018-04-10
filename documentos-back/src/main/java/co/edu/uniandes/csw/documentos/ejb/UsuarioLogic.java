@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.csw.documentos.ejb;
 
 import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
@@ -41,15 +36,24 @@ public class UsuarioLogic {
             LOGGER.log(Level.INFO, "El Usuario con el id {0} ya existe ", entity.getId());
             throw new BusinessLogicException("El Usuario con el id ya existe");
 
-        } else if (entity.getNombre() == null || entity.getUserName() == null || null == entity.getId() || 0 == entity.getEdad() || entity.getCorreo() == null) {
+        } else if (entity.getNombreUsuario() == null) {
             LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
-            throw new BusinessLogicException("El usuario tiene atributos nulos");
+            throw new BusinessLogicException("El usuario tiene el nombre de usuario nulo");
+        } else if (null == entity.getId()) {
+            LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
+            throw new BusinessLogicException("El usuario tiene el id nulo");
+        } else if (0 == entity.getEdad()) {
+            LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
+            throw new BusinessLogicException("El usuario tiene la edad igual a cero");
+        } else if (entity.getCorreo() == null) {
 
+            LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
+            throw new BusinessLogicException("El usuario tiene el correo nulo");
         } else if (!entity.getNombre().matches("([A-Z]|[a-z]|\\s)+")) {
             LOGGER.log(Level.INFO, "El nombre del Usuario no puede contener caracteres especiales");
             throw new BusinessLogicException("El nombre del Usuario no puede contener caracteres especiales");
 
-        } else if (entity.getUserName().length() < 7 || entity.getUserName().length() > 15) {
+        } else if (entity.getNombreUsuario().length() < 7 || entity.getNombreUsuario().length() > 15) {
             LOGGER.log(Level.INFO, "El nombre del Usuario no puede tener menos de 7 caracteres o mas de 15");
             throw new BusinessLogicException("El nombre del Usuario no puede tener menos de 7 caracteres o mas de 15");
 
@@ -64,6 +68,10 @@ public class UsuarioLogic {
         } else if (!entity.getCorreo().contains("@")) {
             LOGGER.log(Level.INFO, "el correo no es valido");
             throw new BusinessLogicException("el correo no es valido");
+
+        } else if (entity.getNombre() == null) {
+            LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
+            throw new BusinessLogicException("El usuario tiene ael nombre nulo");
 
         } else {
             return persistence.create(entity);
@@ -92,10 +100,14 @@ public class UsuarioLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar un Usuario con id = {0}", id);
         if (id == null) {
             LOGGER.log(Level.INFO, "el id no puede ser nulo");
-             throw new BusinessLogicException("el id no puede ser nulo");
-
+            throw new BusinessLogicException("el id no puede ser nulo");
 
         }
+        UsuarioEntity usuario = persistence.find(id);
+        if (usuario == null) {
+            throw new BusinessLogicException("el usuario no existe");
+        }
+
         return persistence.find(id);
 
     }
@@ -117,35 +129,36 @@ public class UsuarioLogic {
         List<UsuarioEntity> users = getUsuarios();
         UsuarioEntity us = null;
         for (UsuarioEntity usuario : users) {
-            if (usuario.getUserName().equals(nombre)) {
+            if (usuario.getNombreUsuario().equals(nombre)) {
                 us = usuario;
                 break;
             }
         }
-        if (us==null) {
+        if (us == null) {
             LOGGER.log(Level.INFO, "no se encontro usuario con el nombre dado");
             throw new BusinessLogicException("no se encontro usuario con el nombre dado");
         }
-        
+
         return us;
     }
 
     /**
      * Actualiza la información de una instancia de Usuario.
      *
+     * @param id
      * @param entity Instancia de UsuarioEntity con los nuevos datos.
      * @return Instancia de AuthorEntity con los datos actualizados.
      * @throws co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException
      */
-    public UsuarioEntity updateUsuario(UsuarioEntity entity) throws BusinessLogicException {
+    public UsuarioEntity updateUsuario(Long id, UsuarioEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar un Usuario ");
 
-        UsuarioEntity buscado = persistence.find(entity.getId());
+        UsuarioEntity buscado = persistence.find(id);
         if (buscado == null) {
             LOGGER.log(Level.INFO, "El Usuario con el id {0} no existe ", entity.getId());
             throw new BusinessLogicException("El Usuario con el id noexiste");
 
-        } else if (entity.getNombre() == null || entity.getUserName() == null || null == entity.getId() || 0 == entity.getEdad() || entity.getCorreo() == null) {
+        } else if (entity.getNombre() == null || entity.getNombreUsuario() == null || null == entity.getId() || 0 == entity.getEdad() || entity.getCorreo() == null) {
             LOGGER.log(Level.INFO, "El usuario tiene atributos nulos");
             throw new BusinessLogicException("El usuario tiene atributos nulos");
 
@@ -153,7 +166,7 @@ public class UsuarioLogic {
             LOGGER.log(Level.INFO, "El nombre del Usuario no puede contener caracteres especiales");
             throw new BusinessLogicException("El nombre del Usuario no puede contener caracteres especiales");
 
-        } else if (entity.getUserName().length() < 7 || entity.getUserName().length() > 15) {
+        } else if (entity.getNombreUsuario().length() < 7 || entity.getNombreUsuario().length() > 15) {
             LOGGER.log(Level.INFO, "El nombre del Usuario no puede tener menos de 7 caracteres o mas de 15");
             throw new BusinessLogicException("El nombre del Usuario no puede tener menos de 7 caracteres o mas de 15");
 
@@ -170,7 +183,7 @@ public class UsuarioLogic {
             throw new BusinessLogicException("el correo no es valido");
 
         } else {
-            return persistence.create(entity);
+            return persistence.update(entity);
         }
     }
 
@@ -178,18 +191,25 @@ public class UsuarioLogic {
      * Elimina una instancia de Usuario de la base de datos.
      *
      * @param id Identificador de la instancia a eliminar.
+     * @throws co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException
      */
     public void deleteUsuario(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un Usuario ");
 
+           if (id == null) {
+            throw new BusinessLogicException("el usuario con el id dado no existe " + id);
+        }
+
         UsuarioEntity buscado = persistence.find(id);
         if (buscado == null) {
-            LOGGER.log(Level.INFO, "El Usuario con el id {0} no existe ", id);
-            throw new BusinessLogicException("El Usuario con el id dado no existe ");
+            LOGGER.log(Level.INFO, "el usuario con el id {0} no existe ", id);
+            throw new BusinessLogicException("el usuario con el id dado no existe " + id);
 
         } else {
             persistence.delete(id);
         }
+        persistence.delete(id);
+
     }
 
 }

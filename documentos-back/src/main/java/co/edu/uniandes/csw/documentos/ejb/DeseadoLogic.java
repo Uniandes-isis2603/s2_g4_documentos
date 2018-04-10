@@ -73,9 +73,18 @@ public class DeseadoLogic {
      * @return Instancia de DeseadoEntity con los datos de la Deseado
      * consultada.
      */
-    public DeseadoEntity getDeseado(Long id) {
+    public DeseadoEntity getDeseado(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar una Deseado con id = {0}", id);
-        return persistence.find(id);
+          if (id == null) {
+            LOGGER.log(Level.INFO, "el id no puede ser nulo");
+            throw new BusinessLogicException("el id no puede ser nulo");
+
+        }
+        DeseadoEntity deseado = persistence.find(id);
+        if (deseado == null) {
+            throw new BusinessLogicException("el usuario no existe");
+        }
+        return deseado;
     }
 
     /**

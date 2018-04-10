@@ -105,7 +105,9 @@ insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (45
 insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (46,'nicolas sotelo','nikitaArrieta',20,'n.sotelo@uniandes.edu.co',1);
 insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (47,'juan camilo','dobleConSis',20,'j.jaramillo@gmail.edu.co',1);
 insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (48,'ernesto v','thePullRequester',20,'e.viera@uniandes.edu.co',1);
-
+insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (49,'mario ruiz','asdawqweasd',30,'mario@uniandes.edu.co',1);
+insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (50,'cesar','yonoloetiendos',32,'cesar@uniandes.edu.co',1);
+insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (51,'laura pardo','nerd123',20,'l.pardo@uniandes.edu.co',0);
 
 -- Federico
 insert into ReservaEntity(id, fecha, costo) values (545, '2013-10-28 14:59:59',54000);
@@ -214,6 +216,7 @@ insert into DocumentoEntity_AutorEntity (Documentos_id, Autores_id) values (600,
 insert into DocumentoEntity_AutorEntity (Documentos_id, Autores_id) values (500,10004);
 insert into DocumentoEntity_AutorEntity (Documentos_id, Autores_id) values (100,10002);
 insert into DocumentoEntity_AutorEntity (Documentos_id, Autores_id) values (200,10003);
+
 
 
 
