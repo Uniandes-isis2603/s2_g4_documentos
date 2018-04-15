@@ -1,0 +1,15 @@
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div ng-repeat="libro in librosRecords">
+                <div class="col-sm-4">
+                    <div class = "thumbnail">
+                        <img ng-src="{{libro.caratula}}" alt="text" >
+                        <div class ="caption"><center>{{libro.precio}}</center></div>
+                    </div>
+                    <center><p class="h3">{{libro.nombre}}</p></center>
+                </div>
+            </div>
+        </div> 
+    </div>
+</body>
