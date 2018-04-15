@@ -1,0 +1,24 @@
+
+<div class="container-fluid">
+    <div class="panel panel-heading" style="background-color: #ECECEC">
+        <img  src="http://aerospace.wpengine.netdna-cdn.com/wp-content/uploads/2012/02/iStock_000023976561_FullAerospaceBooksBanner.jpg" alt ="banner" style="width:100%" >
+    </div>
+    <div class="panel panel-body" style="background-color: #FCFCFC">
+        <div ng-repeat="libro in librosRecords" >
+            <div class="col-md-3" style="margin-bottom: 50px">
+                <div class = "w3-card" style="width:65%">
+                    <img class="center-cropped" ng-src="{{libro.caratula}}" alt="text" style="width:100%">
+                    <div class ="w3-container"><center><h2>${{libro.precio}}</h2></center>
+                        <center><h4 class="limitar">{{libro.nombre}}</h4></center>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">    
+        <h1 class="finalLibros">Ya no hay mas libros publicados</h1>
+        <center><hr></center>
+    </div>
+</div>
+
