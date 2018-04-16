@@ -9,7 +9,7 @@
     </parent>
     <artifactId>documentos-back</artifactId>
     <packaging>jar</packaging>
-    <name>documentos-back</name>
+    <name>main_back</name>
     <dependencies>
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
