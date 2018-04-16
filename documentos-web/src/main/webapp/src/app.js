@@ -5,8 +5,8 @@
        
         // Internal modules dependencies       
         'citiesModule',
-        'libroModule'
-        
+        'libroModule',
+        'autorModule'
 
     ]);
     // Resuelve problemas de las promesas
