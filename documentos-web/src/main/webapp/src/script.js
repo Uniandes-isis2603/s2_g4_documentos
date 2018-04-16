@@ -32,5 +32,3 @@ $(document).ready(function(){
         $(".Intro").remove();
         });
     });
-
-$("#input-id").rating();
