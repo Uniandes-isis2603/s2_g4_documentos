@@ -80,7 +80,9 @@ hr {
 .limitar {
     white-space: nowrap; 
     overflow: hidden;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
+    font-family: 'Roboto', sans-serif;
+
     
     padding: 1px 1px 1px 1px;
     border-radius: 10px;
@@ -89,8 +91,8 @@ hr {
     margin: 5px 1% 5px 1%;
     float: left;
     position: relative;
-    transition: height 0.5s;
-    -webkit-transition: height 0.5s;
+    transition: height 0.1s;
+    -webkit-transition: height 0.1s;
     text-align: center;
     overflow: hidden;
     

@@ -30,6 +30,8 @@ insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpr
 insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (700,'LibroEntity','Cien Años de Soledad','https://imagessl9.casadellibro.com/a/l/t1/39/9788420471839.jpg','novela de Gabriel',2.3,24000);
 insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (800,'FotocopiaEntity', 'Fisica','https://http2.mlstatic.com/fisica-universitaria-sears-zemansky-solucionario-13a-edicion-D_NQ_NP_614007-MCO26189892253_102017-F.jpg','fotocopias de fisica',3.3,50000);
 insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (900,'LibroEntity','Como Agua Para Chocolate','https://cloud10.todocoleccion.online/libros-clasicos-segunda-mano/tc/2017/04/30/00/85176408.jpg','novela',5,120000);
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (1000,'LibroEntity','Bajo la misma estrella','https://images-na.ssl-images-amazon.com/images/I/817tHNcyAgL.jpg','novela',3.4,12000);
+
 
 -- Juan Camilo
 insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (300,'LibroEntity','Mantenimiento de computadores para ingenieros de sistemas idiotas','http://facultades.unicauca.edu.co/editorial/sites/default/files/imagenesPortada/mantenimiento_de_computadores.jpg','una novela',3.2,200000);
@@ -45,6 +47,8 @@ insert into LibroEntity (id,fechapublicacion,isbn) values (500,'12/26/2012','978
 insert into LibroEntity (id,fechapublicacion,isbn) values (100,'09/20/2012','978-0307387264');
 insert into LibroEntity (id,fechapublicacion,isbn) values (700,'02/20/1995','978-0307474728');
 insert into LibroEntity (id,fechapublicacion,isbn) values (900,'02/25/1996','978-8466329088');
+insert into LibroEntity (id,fechapublicacion,isbn) values (1000,'02/25/2013','978-0142424179');
+
 
 -- Juan Camilo
 insert into FotocopiaEntity(id,capitulo,nropaginas,profesor) values(400,'del 3 al 20',14,'Profe 2');
