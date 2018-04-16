@@ -6,7 +6,7 @@
     <artifactId>s2_g4_documentos</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
-    <name>main_documentos</name>
+    <name>s2_g4_documentos</name>
  
     <modules>
         <module>documentos-back</module>

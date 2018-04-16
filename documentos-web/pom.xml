@@ -11,7 +11,7 @@
     <artifactId>documentos-web</artifactId>
     <packaging>war</packaging>
 
-    <name>main_web</name>
+    <name>documentos-web</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
