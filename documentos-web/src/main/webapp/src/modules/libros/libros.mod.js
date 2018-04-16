@@ -17,6 +17,8 @@
  * |                    |                        | libros.html         |
  * | librosList         | /list                  | listview:           |
  * |                    |                        | libros.list.html    |
+ * | libroDetail        | /{libroId:int}/detail  | detailView:         |
+ * |                    |                        |libros.detail.html   |
  * |--------------------|------------------------|---------------------|
  * ```
  */
@@ -43,6 +45,19 @@
                 views: {
                     'listView':{
                         templateUrl: basePath + 'libros.list.html'
+                    }
+                }
+            }).state('libroDetail', {
+                url:'/{libroId:int}/detail',
+                parent: 'libros',
+                param: {
+                    libroId: null
+                },
+                views: {
+                    'detailView':{
+                        templateUrl: basePath + 'libros.detail.html',
+                        controller: 'libroDetailCtrl',
+                        controllerAs:'ctrl'
                     }
                 }
             });
