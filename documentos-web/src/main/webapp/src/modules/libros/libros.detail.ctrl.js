@@ -26,10 +26,10 @@
                  * @description 
                  * Esta función utiliza el protocolo Http para obtener el recurso
                  * donde se encuentra el libro por ID en formato JSON.
-                 * @param {String} URL Dirección donde se encuentra el recurso
                  * de los libros o API donde se puede consultar. 
+                 * @param {json} response 
                  */
-                $http.get(libroContext + '/' + $state.params.libroId).then()(function(response){
+                $http.get(libroContext + '/' + $state.params.libroId).then(function(response){
                     $scope.currentLibro =response.data;
                 });
             }

@@ -1,16 +1,36 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel-heading">
+            
+        </div>
+    <div class="panel-body">
+        <div class="col-md-1">
+            
+        </div>
+        <div class="col-md-3">
+            <img ng-src="{{currentLibro.caratula}}" alt="libro" style="width: 100%">
+        </div>
+        <div class="col-md-5">
+            <h2 style="font-family: 'Roboto', sans-serif">{{currentLibro.nombre}}</h2>
+            <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" ng-value="{{currentLibro.calificacion}}">
+            <h2 class=w3-text-green style="font-family: 'Roboto', sans-serif; font-size: 50px">${{currentLibro.precio}}</h2>
+            <h3 style="font-family: 'Roboto', sans-serif">Escrito por:</h3>
+            <h3 style="font-family: 'Roboto', sans-serif">Descripción:</h3>
+            <h4 style="font-family: 'Roboto', sans-serif">{{currentLibro.descripcion}}</h4>
+            <h3 style="font-family: 'Roboto', sans-serif">Publicado por:</h3>
+            <h3 style="font-family: 'Roboto', sans-serif">el {{currentLibro.fechaPublicacion}}</h3>
+            <h3 style="font-family: 'Roboto', sans-serif">ISBN: {{currentLibro.ISBN}}</h3>
+        </div>
+        <div class="col-md-3">
+            <h2>Aqui esta lo relacionado a los pagos</h2>
+        </div>
+    </div>
+        <div class="panel-body">
+            <h3 style="font-family: 'Roboto', sans-serif">Perteneciente a:  areas de conocimiento</h3>
+            <h3 style="font-family: 'Roboto', sans-serif">Ha sido util en estos cursos:</h3>
+        </div>
+        <div class="panel-footer">
+            <h2 style="font-family: 'Roboto', sans-serif" class="w3-text-black">Comentarios:</h1>
+        </div>
+    </div>
+</div>
