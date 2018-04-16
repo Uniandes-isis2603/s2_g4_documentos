@@ -6,10 +6,10 @@
     <div class="panel panel-body" style="background-color: #FCFCFC">
         <div ng-repeat="libro in librosRecords" >
             <div class="col-md-3" style="margin-bottom: 50px">
-                <div class = "w3-card" style="width:65%">
+                <div class = "w3-card w3-hover-shadow" style="width:65%">
                     <img class="center-cropped" ng-src="{{libro.caratula}}" alt="text" style="width:100%">
-                    <div class ="w3-container"><center><h2>${{libro.precio}}</h2></center>
-                        <center><h4 class="limitar">{{libro.nombre}}</h4></center>
+                    <div class ="w3-container w3-center"><h2>${{libro.precio}}</h2>
+                        <h4 class="limitar">{{libro.nombre}}</h4>
                     </div>
 
                 </div>

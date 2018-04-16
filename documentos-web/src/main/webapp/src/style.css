@@ -43,13 +43,15 @@ color:whitesmoke;
         background-image:url(http://www.readbreatherelax.com/wp-content/uploads/2013/07/book-the-end-hd-wallpaper.jpg);
         background-attachment: fixed;
         background-position: center;
-        height: 100vh;
-	width: 188vh;
+        height: auto;
+	width: 100%;
 	text-align: center;
-	padding-top:20%; 
+	padding-top:10%; 
+        padding-bottom: 10%;
         font-size: 6.2vw;
        
 }
+
 
 .center-cropped {
   width: 400px;
