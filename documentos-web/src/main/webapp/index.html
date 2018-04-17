@@ -39,6 +39,20 @@
         <div class="container-fluid col-md-12">
             <h3>Documentos</h3>
             <!--<div ui-view="mainView"></div>-->
+         
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="nav nav-tabs">
+                        <li><a ui-sref="usuariosList">Usuarios</a></li>
+                        <li><a ui-sref="reservasList">Reservas</a></li>
+                        <li><a ui-sref="deseadosList">Deseados </a></li>
+
+                    </ul>                   
+                </div>
+            </div>               
+            <div ui-view="mainView">
+            </div> 
+        </div>
         </div>
     </body>
 </html>

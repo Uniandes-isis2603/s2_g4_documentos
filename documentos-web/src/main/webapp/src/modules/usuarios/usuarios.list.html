@@ -1,16 +1,21 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>id</th>    
+            <th>nombre</th>    
+            <th>correo</th>  
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="usuario in usuariosRecords">
+            <td id="{{$index}}-id"><a ui-sref="usuarioDetail({usuarioId: usuario.id})">{{usuario.id}}</a></td>
+            <td id="{{$index}}-nombre">{{usuario.nombre}}</td>
+            <td id="{{$index}}-correo">{{usuario.correo}}</td>
+         
+        </tr>
+    </tbody>
+</table>
+
+
