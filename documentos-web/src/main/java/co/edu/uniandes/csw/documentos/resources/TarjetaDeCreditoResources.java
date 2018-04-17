@@ -72,7 +72,8 @@ public class TarjetaDeCreditoResources {
         UsuarioEntity entity = uLogic.getUsuario(Uid);
         if(entity != null)
         {
-        return TDC;
+        TarjetaDeCreditoEntity e = TDCLogic.createTarjetaDeCredito(TDC.toEntity());
+        return new TarjetaDeCreditoDetailDTO(e);
         }
         
         throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
@@ -168,10 +169,10 @@ public class TarjetaDeCreditoResources {
      */
     @PUT
     @Path("{id: \\d+}")
-    public TarjetaDeCreditoDetailDTO updateTarjetaDeCredito(@PathParam("usuarioId") Long Uid, @PathParam("id)") Long id, TarjetaDeCreditoDetailDTO tdc) throws BusinessLogicException
+    public TarjetaDeCreditoDetailDTO updateTarjetaDeCredito(@PathParam("usuarioId") Long Uid, @PathParam("id") Long id, TarjetaDeCreditoDetailDTO tdc) throws BusinessLogicException
     {
         UsuarioEntity Uentity = uLogic.getUsuario(Uid);
-        if(Uentity != null)
+        if(Uentity == null)
         {
                 throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
         }
@@ -185,6 +186,8 @@ public class TarjetaDeCreditoResources {
         return new TarjetaDeCreditoDetailDTO(TDCLogic.updateEntity(entity));
         
     }
+    
+    
     
     /**
      * <h1> DELETE /api/metdodosdepago/tarjetasdecredito/{id} : elimina una TDC </h1>
@@ -205,7 +208,7 @@ public class TarjetaDeCreditoResources {
    public void deleteTarjetaDeCredito (@PathParam("usuarioId") Long Uid, @PathParam("id") Long id) throws BusinessLogicException
     {
         UsuarioEntity Uentity = uLogic.getUsuario(Uid);
-        if(Uentity != null)
+        if(Uentity == null)
         {
                 throw new WebApplicationException("el usuario al que le quiere modificar el recurso no existe");
         }
@@ -218,4 +221,5 @@ public class TarjetaDeCreditoResources {
        
        
     }
+   
 }

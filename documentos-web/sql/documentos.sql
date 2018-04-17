@@ -25,16 +25,19 @@ delete from CompraEntity;
 
 
 -- Ernesto
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (100,'LibroEntity','amor en los tiempos del colera','abc.jph','una novela',3.2,100.2);
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (200,'FotocopiaEntity','calculo diferencial','calculo.jpg','libro de matematicas',3.4,200.2);
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (700,'LibroEntity','Cien anios de soledad','imagen.png','novela de Gabriel',2.3,24);
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (800,'FotocopiaEntity', 'Fisica','fisica.png','fotocopias de fisica',3.3,50);
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (100,'LibroEntity','El Amor en los Tiempos del Cólera','https://imagessl1.casadellibro.com/a/l/t0/51/9788497592451.jpg','una novela',3.2,25000);
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (200,'FotocopiaEntity','Calculo diferencial','https://imagessl1.casadellibro.com/a/l/t0/71/9788499690971.jpg','libro de matematicas',3.4,32000);
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (700,'LibroEntity','Cien Años de Soledad','https://imagessl9.casadellibro.com/a/l/t1/39/9788420471839.jpg','novela de Gabriel',2.3,24000);
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (800,'FotocopiaEntity', 'Fisica','https://http2.mlstatic.com/fisica-universitaria-sears-zemansky-solucionario-13a-edicion-D_NQ_NP_614007-MCO26189892253_102017-F.jpg','fotocopias de fisica',3.3,50000);
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (900,'LibroEntity','Como Agua Para Chocolate','https://cloud10.todocoleccion.online/libros-clasicos-segunda-mano/tc/2017/04/30/00/85176408.jpg','novela',5,120000);
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (1000,'LibroEntity','Bajo la misma estrella','https://images-na.ssl-images-amazon.com/images/I/817tHNcyAgL.jpg','novela',3.4,12000);
+
 
 -- Juan Camilo
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (300,'LibroEntity','libro2','abc.jpg','una novela',3.2,110.2);
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (400,'FotocopiaEntity','fotocopia2','calculo.jpg','libro de fisica',3.4,250.2);
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (500,'LibroEntity','libro3','abc.jpg','una novela',3.2,130.2);
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (600,'FotocopiaEntity','fotocopia3','calculo.jpg','libro de quimica',3.4,254.2);
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (300,'LibroEntity','Mantenimiento de computadores para ingenieros de sistemas idiotas','http://facultades.unicauca.edu.co/editorial/sites/default/files/imagenesPortada/mantenimiento_de_computadores.jpg','una novela',3.2,200000);
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (400,'FotocopiaEntity','fotocopia2','https://i.pinimg.com/originals/4a/cd/be/4acdbed94f131b5d95f76eb47293d8c1.jpg','libro de fisica',3.4,250400);
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (500,'LibroEntity','Harry Poter y la piedra filosofal','https://4.bp.blogspot.com/-Pm4fx2oIF0I/WMIz7CR6qZI/AAAAAAAAAr4/W7hF85KQYV0AA6O_NHhi6J5_ov_Z6k_TgCLcB/s1600/hp1.jpg','una novela',3.2,12000);
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (600,'FotocopiaEntity','fotocopia3','https://www.virginmegastore.ae/medias/sys_master/root/h4e/h76/8818752389150/A-Game-of-Thrones-Book-1-of-A-Song-of-Ice-and-Fire-81498-Detail.jpg','libro de quimica',3.4,254250);
 
 -- Juan Camilo
 insert into LibroEntity (id,fechapublicacion,isbn) values (300,'10/20/2012','978-0307387264');
@@ -43,6 +46,9 @@ insert into LibroEntity (id,fechapublicacion,isbn) values (500,'12/26/2012','978
 -- Ernesto
 insert into LibroEntity (id,fechapublicacion,isbn) values (100,'09/20/2012','978-0307387264');
 insert into LibroEntity (id,fechapublicacion,isbn) values (700,'02/20/1995','978-0307474728');
+insert into LibroEntity (id,fechapublicacion,isbn) values (900,'02/25/1996','978-8466329088');
+insert into LibroEntity (id,fechapublicacion,isbn) values (1000,'02/25/2013','978-0142424179');
+
 
 -- Juan Camilo
 insert into FotocopiaEntity(id,capitulo,nropaginas,profesor) values(400,'del 3 al 20',14,'Profe 2');
@@ -105,7 +111,9 @@ insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (45
 insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (46,'nicolas sotelo','nikitaArrieta',20,'n.sotelo@uniandes.edu.co',1);
 insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (47,'juan camilo','dobleConSis',20,'j.jaramillo@gmail.edu.co',1);
 insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (48,'ernesto v','thePullRequester',20,'e.viera@uniandes.edu.co',1);
-
+insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (49,'mario ruiz','asdawqweasd',30,'mario@uniandes.edu.co',1);
+insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (50,'cesar','yonoloetiendos',32,'cesar@uniandes.edu.co',1);
+insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (51,'laura pardo','nerd123',20,'l.pardo@uniandes.edu.co',0);
 
 -- Federico
 insert into ReservaEntity(id, fecha, costo) values (545, '2013-10-28 14:59:59',54000);
@@ -214,6 +222,7 @@ insert into DocumentoEntity_AutorEntity (Documentos_id, Autores_id) values (600,
 insert into DocumentoEntity_AutorEntity (Documentos_id, Autores_id) values (500,10004);
 insert into DocumentoEntity_AutorEntity (Documentos_id, Autores_id) values (100,10002);
 insert into DocumentoEntity_AutorEntity (Documentos_id, Autores_id) values (200,10003);
+
 
 
 

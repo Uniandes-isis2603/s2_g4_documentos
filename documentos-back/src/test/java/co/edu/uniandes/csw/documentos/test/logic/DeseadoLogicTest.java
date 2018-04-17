@@ -217,7 +217,12 @@ public class DeseadoLogicTest {
     public void getDeseadoTest1() {
 
         Long id = new Long("1");
-        DeseadoEntity resultEntity = DeseadoLogic.getDeseado(id);
+        DeseadoEntity resultEntity=null;
+        try {
+            resultEntity = DeseadoLogic.getDeseado(id);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNull(resultEntity);
 
     }
@@ -230,7 +235,12 @@ public class DeseadoLogicTest {
     @Test
     public void getDeseadoTest2() {
         DeseadoEntity entity = data.get(0);
-        DeseadoEntity resultEntity = DeseadoLogic.getDeseado(entity.getId());
+        DeseadoEntity resultEntity=null;
+        try {
+            resultEntity = DeseadoLogic.getDeseado(entity.getId());
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNotNull(resultEntity);
 
         Assert.assertEquals(resultEntity.getId(), entity.getId());
@@ -257,7 +267,12 @@ public class DeseadoLogicTest {
         } catch (BusinessLogicException ex) {
             Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        DeseadoEntity tf = DeseadoLogic.getDeseado(result.getId());
+        DeseadoEntity tf= null;
+        try {
+            tf = DeseadoLogic.getDeseado(result.getId());
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNull(tf);
 
     }
@@ -279,7 +294,12 @@ public class DeseadoLogicTest {
         } catch (BusinessLogicException ex) {
             Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        DeseadoEntity encontrar = DeseadoLogic.getDeseado(pojoEntity.getId());
+        DeseadoEntity encontrar=null;
+        try {
+            encontrar = DeseadoLogic.getDeseado(pojoEntity.getId());
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNotEquals(encontrar.getNombre(), pojoEntity.getNombre());
 
         pojoEntity.setId(data.get(0).getId());
@@ -289,7 +309,11 @@ public class DeseadoLogicTest {
         } catch (BusinessLogicException ex) {
             Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        encontrar = DeseadoLogic.getDeseado(pojoEntity.getId());
+        try {
+            encontrar = DeseadoLogic.getDeseado(pojoEntity.getId());
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNotEquals(encontrar.getNombre(), pojoEntity.getNombre());
         pojoEntity.setId(data.get(0).getId());
         pojoEntity.setCantidad(-232134);
@@ -298,7 +322,11 @@ public class DeseadoLogicTest {
         } catch (BusinessLogicException ex) {
             Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        encontrar = DeseadoLogic.getDeseado(pojoEntity.getId());
+        try {
+            encontrar = DeseadoLogic.getDeseado(pojoEntity.getId());
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(DeseadoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNotEquals(encontrar.getCantidad(), pojoEntity.getCantidad());
 
     }

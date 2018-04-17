@@ -136,7 +136,7 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
      * constructor por defecto
      */
     public UsuarioDetailedDTO() {
-
+           super();
     }
 
     /**

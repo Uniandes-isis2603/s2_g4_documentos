@@ -40,9 +40,9 @@ public class ReservaDTO {
     public ReservaEntity toEntity() {
 
         ReservaEntity reserva = new ReservaEntity();
-        reserva.setId(this.id);
-        reserva.setCosto(this.costo);
-        reserva.setFecha(this.fecha);
+        reserva.setId(this.getId());
+        reserva.setCosto(this.getCosto());
+        reserva.setFecha(this.getFecha());
        
      
         return reserva;
@@ -59,7 +59,7 @@ public class ReservaDTO {
      /**
      * @return  el id de la reserva
      */
-    public long getid()
+    public long getId()
     {
         return id;
     }

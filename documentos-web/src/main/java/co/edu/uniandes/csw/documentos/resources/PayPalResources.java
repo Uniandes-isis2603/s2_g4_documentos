@@ -159,6 +159,40 @@ public class PayPalResources {
     }
     
      /**
+     * <h1> DELETE /api/metdodosdepago/paypal/{id} : elimina una PP </h1>
+     * <pre> Borra la cuenta Paypal identificado con un id unico
+     * pasado por parametro.
+     * 
+     * Códigos de respuesta:<br>
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Elimina la PP correspondiente al id dado.</code>
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found. No existe una PP con el id dado.
+     * </code>
+     * </pre>
+     * @param id Identificador unico de la PP que se desea borrar.
+     */
+    @DELETE
+    @Path("{id: \\d+}")
+    public void deletePayPal (@PathParam("usuarioId") Long Uid, @PathParam("id") Long id) throws BusinessLogicException
+    {
+        UsuarioEntity Uentity = uLogic.getUsuario(Uid);
+        if(Uentity == null)
+        {
+                throw new WebApplicationException("el usuario al que le quiere modificar el recurso no existe");
+        }
+         PayPalEntity entity = PPLogic.getPayPal(id);
+        if (entity == null) {
+            throw new WebApplicationException("La cuenta paypal no existe", 404);
+        }
+        
+        PPLogic.deletePayPal(id);
+       
+       
+    }
+
+    
+     /**
      * <h1> PUT /api/metdodosdepago/paypal/{id} : actualiza una cuenta Paypal </h1>
      * <pre> cuerpo de peticion : JSON.
      * 
@@ -200,37 +234,6 @@ public class PayPalResources {
         
     }
     
-     /**
-     * <h1> DELETE /api/metdodosdepago/paypal/{id} : elimina una PP </h1>
-     * <pre> Borra la cuenta Paypal identificado con un id unico
-     * pasado por parametro.
-     * 
-     * Códigos de respuesta:<br>
-     * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Elimina la PP correspondiente al id dado.</code>
-     * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found. No existe una PP con el id dado.
-     * </code>
-     * </pre>
-     * @param id Identificador unico de la PP que se desea borrar.
-     */
-    @DELETE
-    @Path("{id: \\d+}")
-    public void deletePayPal (@PathParam("usuarioId") Long Uid, @PathParam("id") Long id) throws BusinessLogicException
-    {
-        UsuarioEntity Uentity = uLogic.getUsuario(Uid);
-        if(Uentity == null)
-        {
-                throw new WebApplicationException("el usuario al que le quiere modificar el recurso no existe");
-        }
-         PayPalEntity entity = PPLogic.getPayPal(id);
-        if (entity == null) {
-            throw new WebApplicationException("La cuenta paypal no existe", 404);
-        }
-        
-        PPLogic.deletePayPal(id);
-       
-       
-    }
+    
     
 }

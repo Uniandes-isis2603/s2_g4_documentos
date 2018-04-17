@@ -1,0 +1,546 @@
+{
+	"id": "94c087b9-f9fa-45a6-b550-73a128771305",
+	"name": "pruebasReserva",
+	"allTests": [],
+	"timestamp": "2018-04-04T00:15:40.034Z",
+	"collection_id": "b0e1486a-dbe7-43db-b394-10e06ed0cae1",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "0",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "b0e1486a-dbe7-43db-b394-10e06ed0cae1",
+		"name": "pruebasReserva",
+		"description": "pruebas de el recurso reserva",
+		"auth": null,
+		"events": null,
+		"variables": [],
+		"order": [
+			"d8455c0d-9460-4bd0-8567-9dc1ff8509f3",
+			"0c26204b-982f-47e9-9881-6e40ce68ebf8",
+			"a1782040-cebb-4669-834f-5b1290365c64",
+			"0b947454-5c43-4184-920d-c897c18c29ac",
+			"3516847a-3a59-4a23-948e-4fe7ec42bcdd",
+			"6d70df2c-2f59-43ee-8a1c-bccd17e2d243",
+			"d8f38a54-5257-45e3-9ef0-2d728ab7c78c",
+			"b750dab8-9343-4de7-8f91-6c57e46712df",
+			"3c3f6724-bc04-46cd-8e88-163022953435"
+		],
+		"folders_order": [],
+		"owner": "0",
+		"permissions": {},
+		"favorite": false,
+		"shared": false,
+		"type": "collection",
+		"depth": 0
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"name": "GET se consultaron todas las reservas",
+			"id": "d8455c0d-9460-4bd0-8567-9dc1ff8509f3",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/reservas",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Status code is 200",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"71"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": "71",
+			"totalRequestTime": "71",
+			"iterationResults": {}
+		},
+		{
+			"name": "GET se consulto una reserva por su id",
+			"id": "0c26204b-982f-47e9-9881-6e40ce68ebf8",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/reservas/545",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Status code is 200",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"14"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": "14",
+			"totalRequestTime": "14",
+			"iterationResults": {}
+		},
+		{
+			"name": "GET de una reserva que no existe",
+			"id": "a1782040-cebb-4669-834f-5b1290365c64",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/47/reservas/2435345",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"tests": {
+				"name": "Status code is 412",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"15"
+			],
+			"allTests": [
+				{
+					"Status code is 412": true
+				}
+			],
+			"time": "15",
+			"totalRequestTime": "15",
+			"iterationResults": {}
+		},
+		{
+			"name": "POST se creo una reserva ",
+			"id": "0b947454-5c43-4184-920d-c897c18c29ac",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/reservas",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Status code is 200",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"17"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": "17",
+			"totalRequestTime": "17",
+			"iterationResults": {}
+		},
+		{
+			"name": "POST  de una reserva ya creada",
+			"id": "3516847a-3a59-4a23-948e-4fe7ec42bcdd",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/47/reservas",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"tests": {
+				"name": "Status code is 412",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"15"
+			],
+			"allTests": [
+				{
+					"Status code is 412": true
+				}
+			],
+			"time": "15",
+			"totalRequestTime": "15",
+			"iterationResults": {}
+		},
+		{
+			"name": "PUT  se actualizo la reserva con el id dado",
+			"id": "6d70df2c-2f59-43ee-8a1c-bccd17e2d243",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/reservas/547",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Status code is 200",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"15"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": "15",
+			"totalRequestTime": "15",
+			"iterationResults": {}
+		},
+		{
+			"name": "PUT update de una reserva que no existe",
+			"id": "d8f38a54-5257-45e3-9ef0-2d728ab7c78c",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/47/reservas/34525",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"tests": {
+				"name": "Status code is 412",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"12"
+			],
+			"allTests": [
+				{
+					"Status code is 412": true
+				}
+			],
+			"time": "12",
+			"totalRequestTime": "12",
+			"iterationResults": {}
+		},
+		{
+			"name": "DELETE  se elminó una reserva",
+			"id": "b750dab8-9343-4de7-8f91-6c57e46712df",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/47/reservas/545",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content",
+				"detail": {
+					"name": "No Content",
+					"detail": "The server successfully processed the request, but is not returning any content."
+				}
+			},
+			"tests": {
+				"name": "Status code is 204",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"18"
+			],
+			"allTests": [
+				{
+					"Status code is 204": true
+				}
+			],
+			"time": "18",
+			"totalRequestTime": "18",
+			"iterationResults": {}
+		},
+		{
+			"name": "DELETE se intenta eliminar una reserva que no existe",
+			"id": "3c3f6724-bc04-46cd-8e88-163022953435",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/47/reservas/34525",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"tests": {
+				"name": "Status code is 412",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"13"
+			],
+			"allTests": [
+				{
+					"Status code is 412": true
+				}
+			],
+			"time": "13",
+			"totalRequestTime": "13",
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 9,
+	"totalFail": 0,
+	"totalTime": 190,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "GET se consultaron todas las reservas",
+			"id": "d8455c0d-9460-4bd0-8567-9dc1ff8509f3",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/reservas",
+			"time": "2018-04-04T00:15:40.034Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "GET se consulto una reserva por su id",
+			"id": "0c26204b-982f-47e9-9881-6e40ce68ebf8",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/reservas/545",
+			"time": "2018-04-04T00:15:40.034Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "GET de una reserva que no existe",
+			"id": "a1782040-cebb-4669-834f-5b1290365c64",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/47/reservas/2435345",
+			"time": "2018-04-04T00:15:40.034Z",
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "POST se creo una reserva ",
+			"id": "0b947454-5c43-4184-920d-c897c18c29ac",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/reservas",
+			"time": "2018-04-04T00:15:40.034Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "POST  de una reserva ya creada",
+			"id": "3516847a-3a59-4a23-948e-4fe7ec42bcdd",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/47/reservas",
+			"time": "2018-04-04T00:15:40.034Z",
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "PUT  se actualizo la reserva con el id dado",
+			"id": "6d70df2c-2f59-43ee-8a1c-bccd17e2d243",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/reservas/547",
+			"time": "2018-04-04T00:15:40.034Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "PUT update de una reserva que no existe",
+			"id": "d8f38a54-5257-45e3-9ef0-2d728ab7c78c",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/47/reservas/34525",
+			"time": "2018-04-04T00:15:40.034Z",
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "DELETE  se elminó una reserva",
+			"id": "b750dab8-9343-4de7-8f91-6c57e46712df",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/47/reservas/545",
+			"time": "2018-04-04T00:15:40.034Z",
+			"responseCode": {
+				"code": 204,
+				"name": "No Content",
+				"detail": {
+					"name": "No Content",
+					"detail": "The server successfully processed the request, but is not returning any content."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "DELETE se intenta eliminar una reserva que no existe",
+			"id": "3c3f6724-bc04-46cd-8e88-163022953435",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/47/reservas/34525",
+			"time": "2018-04-04T00:15:40.034Z",
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		}
+	],
+	"synced": false
+}

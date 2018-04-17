@@ -42,6 +42,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "imagenes".
@@ -98,7 +99,9 @@ public class ImagenResource {
      */
     @POST
     public ImagenDTO createImagen(ImagenDTO imagen) throws BusinessLogicException {
-        return new ImagenDTO(imagenLogic.createImagen(imagen.toEntity()));
+        ImagenEntity entity = imagen.toEntity();
+        ImagenEntity nuevo = imagenLogic.createImagen(entity);
+        return new ImagenDTO(nuevo);
     }
 
     /**
@@ -136,7 +139,11 @@ public class ImagenResource {
     @GET
     @Path("{id: \\d+}")
     public ImagenDTO getImagen(@PathParam("id") Long id) {
-        return new ImagenDTO(imagenLogic.getImagen(id));
+        ImagenEntity entity = imagenLogic.getImagen(id);
+        if (entity == null){
+            throw new WebApplicationException("La Imagen no existe", 404);
+        }
+        return new ImagenDTO(entity);
     }
     
     /**
@@ -160,9 +167,13 @@ public class ImagenResource {
     @PUT
     @Path("{id: \\d+}")
     public ImagenDTO updateImagen(@PathParam("id") Long id, ImagenDTO imagen) throws BusinessLogicException {
-        ImagenEntity entity = imagen.toEntity();
-        entity.setId(id);
-        return new ImagenDTO(imagenLogic.updateImagen(entity));
+        imagen.setId(id);
+        ImagenEntity entity = imagenLogic.getImagen(id);
+        if (entity == null){
+            throw new WebApplicationException("La Imagen con el id "+ id + " no existe", 404);
+        }
+        
+        return new ImagenDTO(imagenLogic.updateImagen(imagen.toEntity()));
     }
     
     /**
@@ -184,6 +195,11 @@ public class ImagenResource {
     @Path("{id: \\d+}")
      public void deleteImagen(@PathParam("id") Long id) throws BusinessLogicException{
         // Void
+        ImagenEntity entity = imagenLogic.getImagen(id);
+        if (entity == null){
+            throw new WebApplicationException("La Imagen con el id "+ id + " no existe", 404);
+        }
+        
         imagenLogic.deleteImagen(id);
     }
 }

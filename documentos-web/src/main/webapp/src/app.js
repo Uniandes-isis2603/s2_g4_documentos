@@ -5,6 +5,7 @@
        
         // Internal modules dependencies       
         'citiesModule',
+        'libroModule'
         
 
     ]);

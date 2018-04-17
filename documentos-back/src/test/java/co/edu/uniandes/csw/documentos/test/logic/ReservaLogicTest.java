@@ -133,13 +133,12 @@ public class ReservaLogicTest {
         entity.setCosto(1234);
         entity.setFecha(new Date());
         entity.setId(a.longValue());
-        
+
         //reserva valida
         ReservaEntity entity2 = new ReservaEntity();
         entity2.setCosto(6456);
         entity2.setFecha(new Date());
         entity2.setId(b.longValue());
-
 
         //reserva costo invalido
         ReservaEntity entity3 = new ReservaEntity();
@@ -173,7 +172,7 @@ public class ReservaLogicTest {
     public void createReservaTestInvalido() throws ParseException {
 
         ReservaEntity newEntity = data.get(0);
-        ReservaEntity result=null;
+        ReservaEntity result = null;
         try {
             result = ReservaLogic.createReserva(newEntity);
         } catch (BusinessLogicException ex) {
@@ -191,7 +190,6 @@ public class ReservaLogicTest {
         }
         Assert.assertNull(result);
 
-       
         ReservaEntity reserva2 = data2.get(2);
         try {
             result = ReservaLogic.createReserva(reserva2);
@@ -199,7 +197,7 @@ public class ReservaLogicTest {
             Logger.getLogger(ReservaLogicTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         Assert.assertNull(result);
-        
+
         ReservaEntity reserva3 = data2.get(3);
         try {
             result = ReservaLogic.createReserva(reserva3);
@@ -219,14 +217,14 @@ public class ReservaLogicTest {
     public void createReservaTestValido() {
 
         ReservaEntity newEntity = data2.get(0);
-        ReservaEntity result=null;
+        ReservaEntity result = null;
         try {
             result = ReservaLogic.createReserva(newEntity);
         } catch (BusinessLogicException ex) {
             Logger.getLogger(ReservaLogicTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         Assert.assertNotNull(result);
-        result=null;
+        result = null;
         //ya hay una entidad con el mismo id
         ReservaEntity newEntity2 = data.get(0);
         newEntity2.setCosto(12323);
@@ -302,7 +300,12 @@ public class ReservaLogicTest {
         } catch (BusinessLogicException ex) {
             Logger.getLogger(ReservaLogicTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ReservaEntity resultEntity = ReservaLogic.getReserva(pojoEntity.getId());
+        ReservaEntity resultEntity = null;
+        try {
+            resultEntity = ReservaLogic.getReserva(pojoEntity.getId());
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(ReservaLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNull(resultEntity);
 
     }
@@ -315,23 +318,42 @@ public class ReservaLogicTest {
     @Test
     public void getReservaTestValido() {
         ReservaEntity entity = data.get(0);
-        ReservaEntity resultEntity = ReservaLogic.getReserva(entity.getId());
+        ReservaEntity resultEntity = null;
+        try {
+            resultEntity = ReservaLogic.getReserva(entity.getId());
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(ReservaLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(resultEntity.getId(), entity.getId());
-        Assert.assertEquals(resultEntity.getFecha(), entity.getFecha());
-        
+        Assert.assertEquals(resultEntity.getFecha().getDate(), entity.getFecha().getDate());
+        Assert.assertEquals(resultEntity.getFecha().getMonth(), entity.getFecha().getMonth());
+        Assert.assertEquals(resultEntity.getFecha().getYear(), entity.getFecha().getYear());
+
         ReservaEntity entity2 = data.get(1);
-        ReservaEntity resultEntity2 = ReservaLogic.getReserva(entity2.getId());
+        ReservaEntity resultEntity2 = null;
+        try {
+            resultEntity2 = ReservaLogic.getReserva(entity2.getId());
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(ReservaLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNotNull(resultEntity2);
         Assert.assertEquals(resultEntity2.getId(), entity2.getId());
-        Assert.assertEquals(resultEntity2.getFecha(), entity2.getFecha());
-        
+        Assert.assertEquals(resultEntity2.getFecha().getDate(), entity2.getFecha().getDate());
+        Assert.assertEquals(resultEntity2.getFecha().getMonth(), entity2.getFecha().getMonth());
+        Assert.assertEquals(resultEntity2.getFecha().getYear(), entity2.getFecha().getYear());
         ReservaEntity entity3 = data.get(2);
-        ReservaEntity resultEntity3 = ReservaLogic.getReserva(entity3.getId());
+        ReservaEntity resultEntity3 = null;
+        try {
+            resultEntity3 = ReservaLogic.getReserva(entity3.getId());
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(ReservaLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNotNull(resultEntity3);
         Assert.assertEquals(resultEntity3.getId(), entity3.getId());
-        Assert.assertEquals(resultEntity3.getFecha(), entity3.getFecha());
-
+        Assert.assertEquals(resultEntity3.getFecha().getDate(), entity3.getFecha().getDate());
+        Assert.assertEquals(resultEntity3.getFecha().getMonth(), entity3.getFecha().getMonth());
+        Assert.assertEquals(resultEntity3.getFecha().getYear(), entity3.getFecha().getYear());
     }
 
     /**
@@ -369,7 +391,12 @@ public class ReservaLogicTest {
         } catch (BusinessLogicException ex) {
             Logger.getLogger(ReservaLogicTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ReservaEntity encontrar = ReservaLogic.getReserva(pojoEntity.getId());
+        ReservaEntity encontrar = null;
+        try {
+            encontrar = ReservaLogic.getReserva(pojoEntity.getId());
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(ReservaLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Assert.assertNull(encontrar);
 
         pojoEntity.setId(data.get(0).getId());

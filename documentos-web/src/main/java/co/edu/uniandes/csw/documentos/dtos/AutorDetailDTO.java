@@ -93,13 +93,13 @@ public class AutorDetailDTO extends AutorDTO {
     @Override
     public AutorEntity toEntity() {
         AutorEntity entity = super.toEntity();
-//        if (documentos != null) {
-//            List<DocumentoEntity> documentosEntity = new ArrayList<>();
-//            for (DocumentoDTO dtoDocumento : documentos) {
-//                documentosEntity.add(dtoDocumento.toEntity());
-//            }
-//            entity.setDocumento(documentossEntity);
-//        }
+        if (documentos != null) {
+            List<DocumentoEntity> documentosEntity = new ArrayList<>();
+            for (DocumentoDTO dtoDocumento : documentos) {
+                documentosEntity.add(dtoDocumento.toEntity());
+            }
+            entity.setDocumentos(documentosEntity);
+        }
 
         return entity;
     }    
