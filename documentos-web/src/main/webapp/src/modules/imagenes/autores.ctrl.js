@@ -1,7 +1,7 @@
 (function (ng){
     var mod = ng.module("autorModule");
     mod.constant("autorContext","api/autores");
-    mod.controller('autoresCtrl', ['$scope','$http', 'autorContext', '$state', 
+    mod.controller('autoresCtrl', ['$scope','$http', 'autorContext', '$state',
         /**
          * @ngdoc controller
          * @name autor.controller:autorCtrl
