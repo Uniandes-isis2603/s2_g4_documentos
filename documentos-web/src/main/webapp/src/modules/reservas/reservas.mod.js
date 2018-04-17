@@ -1,6 +1,8 @@
 
 (function(ng) {
-    var mod = ng.module("reservaModule", ['ui.router']);
+    var mod = ng.module("reservaModule", ['usuarioModule','ui.router']);
+        mod.constant("usuariosContext", "api/usuarios");
+
     mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider,$urlRouterProvider){
             var basePath = 'src/modules/reservas/';
             $urlRouterProvider.otherwise("/reservasList");

@@ -30,7 +30,7 @@
                  * @param {json} response 
                  */
                 $http.get(reservaContext + '/' + $state.params.reservaId).then(function(response){
-                    $scope.currentreserva =response.data;
+                    $scope.currentReserva =response.data;
                 });
             }
         }

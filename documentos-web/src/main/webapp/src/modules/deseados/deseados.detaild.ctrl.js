@@ -30,7 +30,7 @@
                  * @param {json} response 
                  */
                 $http.get(deseadoContext + '/' + $state.params.deseadoId).then(function(response){
-                    $scope.currentdeseado =response.data;
+                    $scope.currentDeseado =response.data;
                 });
             }
         }

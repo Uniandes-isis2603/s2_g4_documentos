@@ -1,5 +1,21 @@
 <div class="container-fluid" > 
-    <div id="info" >
+    
+    
+    <div style="float: left">
+        <ul class="danger" > 
+
+            <li><a ui-sref= "reservasList({usuarioId: currentUsuario.id})">Reservas</a></li>
+            <hr>
+            <li> <a ui-sref="deseadosList">lista de deseos</a></li>
+            <hr>
+            <li><a >Compras</a></li>
+            <hr>
+            <li> <a >Métodos de pago</a></li>
+            <hr>
+            <li><a>Otros</a></li>
+        </ul>
+        </div>
+    <div id="info" style="padding-left:  300px; " >
         <dl> 
             <dt>Nombre</dt>  <dd>{{currentUsuario.nombre}}</dd>
             <hr>
@@ -15,11 +31,15 @@
             <dt>Genero</dt>
             <dd>{{currentUsuario.genero}}</dd>
             <hr>
-            <dt>correo</dt>
-            <dd>{{currentUsuario.correo}}</dd>
 
         </dl>
 
     </div>
-</div>
 
+    
+
+
+
+    
+
+</div>
