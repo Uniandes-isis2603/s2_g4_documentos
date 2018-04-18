@@ -1,0 +1,50 @@
+    
+
+
+<div style="padding-top:150px" class ="container">
+    <div class="panel-group" id="accordion">
+        <div ng-repeat="curso in cursos">
+            
+            <div class="panel panel-default">
+                
+                <div class="panel-heading">
+                    
+                    <h4 class="panel-title">
+                        
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}">
+                            
+                            {{curso.nombre}}        
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse{{$index}}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <strong>Id:</strong>{{curso.id}}
+                        <br>
+                        <strong>Codigo:</strong>{{curso.codigo}}
+                        <br>
+                        <strong>Nombre:</strong>{{curso.nombre}}
+                        <br>
+                         <strong>Departamento:</strong>{{curso.departamento}}
+                        <br>
+                        <strong>Libros del curso:</strong>
+                        <hr>
+                        <div ng-repeat="libro in curso.bibliografiaDelCurso" >
+                            <div class="col-md-3" style="margin-bottom: 100px;">
+                                <div class = "w3-card w3-hover-shadow" style="width:90%">
+                                    <img class="center-cropped" ng-src="{{libro.caratula}}" alt="text" style="width:100%">
+                                    <div class ="w3-container w3-center w3-light-gray caja">
+                                        <button class="w3-button" ui-sref="libroDetail({libroId: libro.id})" style="font-size: 18px; padding-top: 10%"><span><i class="fas fa-eye" style="font-size: 10px; "></i></span> Ver Más</button>
+                                        <h2 style="font-family: 'Roboto', sans-serif; font-size: 30px; padding-bottom: 10%"><strong>${{libro.precio}}</strong></h2>
+                                        <h2 class="limitar"><small>{{libro.nombre}}</small></h2>                   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

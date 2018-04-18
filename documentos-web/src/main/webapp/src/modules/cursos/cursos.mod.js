@@ -1,17 +1,17 @@
 (function (ng) {
-var mod = ng.module("editorialesModule", ['ui.router']);
+var mod = ng.module("cursosModule", ['ui.router']);
  
     mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/Editoriales/';
+            var basePath = 'src/modules/cursos/';
             $urlRouterProvider.otherwise("/");
 
-            $stateProvider.state('editoriales', {
-                url: '/editoriales',
+            $stateProvider.state('cursos', {
+                url: '/cursos',
                 views: {
                     'mainView': {
-                        controller: 'editorialesCtrl',
+                        controller: 'cursosCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'editoriales-list.html'
+                        templateUrl: basePath + 'cursos-list.html'
                     }
                 }
           

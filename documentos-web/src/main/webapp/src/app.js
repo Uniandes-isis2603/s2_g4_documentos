@@ -6,10 +6,8 @@
         // Internal modules dependencies       
         'citiesModule',
         'libroModule',
-        'editorialesModule'
-        
-        
-
+        'editorialesModule',
+        'cursosModule'
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
