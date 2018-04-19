@@ -41,7 +41,8 @@ import javax.ws.rs.Produces;
  * </pre>
  *
  * @author n.sotelo
- */@Path("comentarios")
+ */
+@Path("libros/{id: \\d+}/comentarios")
 @Produces ("application/json")
 @Consumes("application/json")
 @RequestScoped
