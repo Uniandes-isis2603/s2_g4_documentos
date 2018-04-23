@@ -45,8 +45,7 @@ public class ReservaEntity implements Serializable {
 
     private Long id;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    @PodamStrategyValue(DateStrategy.class)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
     
     private double costo;

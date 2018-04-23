@@ -22,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  * <pre> Clase que implemente el recurso "Usuario".
@@ -38,14 +39,14 @@ import javax.ws.rs.Produces;
  * </pre>
  * @author federico
  */
-@Path("usuarios")
-@Produces("application/json")
-@Consumes("application/json")
+@Path("/usuarios")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 @RequestScoped
 public class UsuarioResource {
     
     @Inject
-    UsuarioLogic logic;
+    private UsuarioLogic logic;
     
      private List<UsuarioDetailedDTO> listUsuarioEntity2DetailDTO(List<UsuarioEntity> entityList) {
         List<UsuarioDetailedDTO> list = new ArrayList<>();
@@ -71,12 +72,14 @@ public class UsuarioResource {
      * 412 Precodition Failed: Ya existe el usuario.
      * </code>
      * </pre>
-     * @param Usuario {@link UsuarioDetailedDTO} - El Usuario que se desea guardar.
+     * @param usuario {@link UsuarioDetailedDTO} - El Usuario que se desea guardar.
      * @return JSON {@link UsuarioDetailedDTO} - El Usuario guardado con el id generado.
+     * @throws co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException
      */
     @POST
-    public UsuarioDetailedDTO createUsuario(UsuarioDetailedDTO Usuario) throws BusinessLogicException {
-        return new UsuarioDetailedDTO(logic.createUsuario(Usuario.toEntity()));
+    public UsuarioDetailedDTO createUsuario(UsuarioDetailedDTO usuario) throws BusinessLogicException {
+      
+        return new UsuarioDetailedDTO(logic.createUsuario(usuario.toEntity()));
     }
     
     /**
@@ -136,7 +139,7 @@ public class UsuarioResource {
      * @return JSON {@link UsuarioDetailedDTO} - El Usuario con el nombre buscado.
      */
     @GET
-    @Path("{nombre: [a-zA-Z][a-zA-Z_0-9]}")
+    @Path("{nombre}")
     public UsuarioDetailedDTO getUsuarioByName(@PathParam("nombre") String nombre) throws BusinessLogicException {
         return new UsuarioDetailedDTO(logic.getUsuarioByName(nombre));
     }
@@ -155,18 +158,22 @@ public class UsuarioResource {
      * </code>
      * </pre>
      * @param id Id del Usuario que se desea actualizar.
-     * @param Usuario {@link UsuarioDetailedDTO} El Usuario que se desea guardar.
+     * @param usuario {@link UsuarioDetailedDTO} El Usuario que se desea guardar.
      * @return Usuario {@link UsuarioDetailedDTO} El Usuario guardado.
      */
     @PUT
     @Path("{id: \\d+}")
-    public UsuarioDetailedDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailedDTO Usuario) throws BusinessLogicException {
-        Usuario.setId(id);
-        return  new UsuarioDetailedDTO(logic.updateUsuario(Usuario.toEntity()));
+    public UsuarioDetailedDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailedDTO usuario) throws BusinessLogicException {
+        usuario.setId(id);
+        UsuarioEntity entity = logic.getUsuario(id);
+        if (entity == null) {
+            throw new BusinessLogicException("El recurso /usuarios/" + id + " no existe.");
+        }
+        return new UsuarioDetailedDTO(logic.updateUsuario(id, usuario.toEntity()));
     }
     
     /**
-     * <h1> DELETE /api/Usuarios/{id} : Eliminar Usuario por id. </h1>
+     * <h1> DELETE /api/usuarios/{id} : Eliminar Usuario por id. </h1>
      * 
      * <pre> Elimina el Usuario con el id asociado en la URL.
      * 
@@ -179,10 +186,16 @@ public class UsuarioResource {
      * </pre>
      * 
      * @param id Id del Usuario que se desea eliminar.
+     * @throws co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException
      */
     @DELETE
     @Path("{id: \\d+}")
     public void deleteUsuario(@PathParam("id") Long id) throws BusinessLogicException{
+        System.out.println(id);
+        UsuarioEntity entity = logic.getUsuario(id);
+        if (entity == null) {
+            throw new BusinessLogicException("El recurso /usuarios/" + id + " no existe.");
+        }
         logic.deleteUsuario(id);
     }
     

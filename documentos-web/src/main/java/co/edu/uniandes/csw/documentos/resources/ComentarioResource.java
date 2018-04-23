@@ -41,7 +41,8 @@ import javax.ws.rs.Produces;
  * </pre>
  *
  * @author n.sotelo
- */@Path("comentarios")
+ */
+@Path("libros/{id: \\d+}/comentarios")
 @Produces ("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -148,8 +149,8 @@ private ComentarioLogic  logica;
      */
     @PUT
     @Path("{id: \\d+}")
-    public ComentarioDTO updateComentario (@PathParam("id)") Long id, ComentarioDTO Comentario)throws BusinessLogicException 
-    {
+    public ComentarioDTO updateComentario (@PathParam("id") Long id, ComentarioDTO Comentario)throws BusinessLogicException 
+    { System.out.println("Info"+ id +"Comentario.info"+Comentario.getComentario());
          Comentario.setId(id);
         return new ComentarioDTO(logica.updateComentario(id, Comentario.toEntity()));
     }

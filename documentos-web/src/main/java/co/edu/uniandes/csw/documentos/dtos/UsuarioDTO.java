@@ -38,14 +38,9 @@ import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
 public class UsuarioDTO {
     
     private long id;
-    
     private String nombre;
-    
     private String nombreUsuario;
-    
-    
     private String correo;
-    
     private int genero;
     private int edad;
     
@@ -60,7 +55,7 @@ public class UsuarioDTO {
         if (usuario != null) {
             this.id = usuario.getId();
             this.nombre = usuario.getNombre();
-            this.nombreUsuario = usuario.getUserName();
+            this.nombreUsuario = usuario.getNombreUsuario();
             this.correo = usuario.getCorreo();
             this.genero = usuario.getGenero();
             this.edad = usuario.getEdad();
@@ -75,15 +70,16 @@ public class UsuarioDTO {
     public UsuarioEntity toEntity() {
 
         UsuarioEntity user = new UsuarioEntity();
-        user.setId(this.id);
-        user.setNombre(this.nombre);
-        user.setNombreUsuario(this.nombreUsuario);
-        user.setCorreo(this.correo);
-        user.setEdad(this.edad);
-        user.setGenero(this.genero);
+        user.setId(this.getId());
+        user.setNombre(this.getNombre());
+        user.setNombreUsuario(this.getNombreUsuario());
+        user.setCorreo(this.getCorreo());
+        user.setEdad(this.getEdad());
+        user.setGenero(this.getGenero());
      
         return user;
     }
+    
     
     /**
      * constructor por defecto
@@ -92,64 +88,48 @@ public class UsuarioDTO {
     {
         
     }
-    
-   
-     /**
-     * @return  el id del usuario
+
+    /**
+     * @return the id
      */
-    public long getId()
-    {
+    public long getId() {
         return id;
     }
-    
-     /**
-     * @return  el nombre del usuario
-     */
-    public String getnombre()
-    {
-        return nombre;
-    } 
-    
-     /**
-     * @return  el nombre del usuario dentro de la plataforma
-     */
-     public String getnombreUsuario()
-    {
-        return nombreUsuario;
-    } 
-     
- 
-     
-     
-     /**
-     * 
-     * @param pId nuevo id
-     */
-     public void setId(Long pId)
-     {
-         id=pId;
-     }
-     
-     
-     /**
-     * 
-     * @param pNombre nuevo nombre
-     */
-      public void setNombre(String pNombre)
-      {
-          nombre= pNombre;
-         
-     }
-      
+
     /**
-     * 
-     * @param pNombre nuevo nombre
+     * @param id the id to set
      */
-       public void setNombreUsuario(String pNombre)
-     {
-         nombreUsuario= pNombre;
-     }
-       
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the nombreUsuario
+     */
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    /**
+     * @param nombreUsuario the nombreUsuario to set
+     */
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
 
     /**
      * @return the correo
@@ -192,6 +172,26 @@ public class UsuarioDTO {
     public void setEdad(int edad) {
         this.edad = edad;
     }
+    
+   
+
+     
+ 
+     
+  
+     
+   
+      
+   
+       
+
+  
+
+  
+
+ 
+
+
         
         
        

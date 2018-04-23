@@ -1,118 +1,181 @@
 {
-	"id": "d221504d-e400-6ca5-e679-62d24c6c31a5",
-	"name": "PayPal",
-	"description": "",
-	"order": [
-		"c8550eda-5f5f-9b1a-ff4a-539ca3eab030",
-		"c1001057-3f5e-df75-e86c-2a432aeb400b",
-		"e8ff4039-197f-1f45-93b4-b8625b96bb19"
-	],
-	"folders": [],
-	"folders_order": [],
-	"timestamp": 1520810369020,
-	"owner": 0,
-	"public": false,
-	"events": [],
-	"variables": [],
-	"auth": null,
-	"requests": [
+	"info": {
+		"name": "PayPal",
+		"_postman_id": "d221504d-e400-6ca5-e679-62d24c6c31a5",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
 		{
-			"id": "c1001057-3f5e-df75-e86c-2a432aeb400b",
-			"headers": "",
-			"headerData": [],
-			"url": "http://localhost:8080/documentos-web/api/usuario/45/metodosdepago/tarjetasdecredito/7501",
-			"queryParams": [],
-			"events": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"version": 2,
-			"auth": null,
-			"time": 1520824631274,
-			"name": "Busca un PayPal especifico del cliente",
-			"description": "",
-			"collectionId": "d221504d-e400-6ca5-e679-62d24c6c31a5",
-			"responses": [],
-			"currentHelper": null,
-			"helperAttributes": null
+			"name": "PUT del paypal con id 65000, exitoso",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correoElectronico\": \"prueba@vacaciones.com\",\n    \"usuario\": \"vacaciones\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/usuario/45/metodosdepago/paypal/65000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"usuario",
+						"45",
+						"metodosdepago",
+						"paypal",
+						"65000"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
 		},
 		{
-			"id": "c8550eda-5f5f-9b1a-ff4a-539ca3eab030",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/documentos-web/api/usuario/45/metodosdepago/paypal",
-			"queryParams": [
-				{
-					"key": "fields",
-					"value": "devices",
-					"equals": true,
-					"description": "",
-					"enabled": false
-				}
-			],
-			"events": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "GET",
-			"data": [],
-			"dataMode": "raw",
-			"version": 2,
-			"auth": null,
-			"time": 1520824626807,
-			"name": "Busca todos los PayPals de usuario 70001 EXITOSAMENTE",
-			"description": "",
-			"collectionId": "d221504d-e400-6ca5-e679-62d24c6c31a5",
-			"responses": [],
-			"currentHelper": null,
-			"helperAttributes": null,
-			"rawModeData": "{\n        \"type\": \"payPalDetailDTO\",\n        \"correoElectronico\": \"prueba1@prueba\",\n        \"id\": 33400,\n        \"usuario\": \"guillermo\"\n    }"
+			"name": "POST de un nuevo PayPAl, exitoso",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correoElectronico\": \"nueva@Paypal\",\n    \"usuario\": \"nPaypal\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/usuario/45/metodosdepago/paypal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"usuario",
+						"45",
+						"metodosdepago",
+						"paypal"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
 		},
 		{
-			"id": "e8ff4039-197f-1f45-93b4-b8625b96bb19",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/documentos-web/api/usuario/45/metodosdepago/paypal",
-			"queryParams": [
-				{
-					"key": "fields",
-					"value": "devices",
-					"equals": true,
-					"description": "",
-					"enabled": false
-				}
-			],
-			"events": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "POST",
-			"data": [],
-			"dataMode": "raw",
-			"version": 2,
-			"auth": null,
-			"time": 1520824635855,
-			"name": "Crea un nuevo paypalEXITOSAMENTE",
-			"description": "",
-			"collectionId": "d221504d-e400-6ca5-e679-62d24c6c31a5",
-			"responses": [],
-			"currentHelper": null,
-			"helperAttributes": null,
-			"rawModeData": "{\n        \"type\": \"payPalDetailDTO\",\n        \"correoElectronico\": \"jholamuoodo@spina\",\n        \"id\": 33040,\n        \"usuario\": \"grego\"\n    }"
+			"name": "GET individual del PayPal de id 2",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correoElectronico\": \"nueva@Paypal\",\n    \"usuario\": \"nPaypal\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/usuario/45/metodosdepago/paypal/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"usuario",
+						"45",
+						"metodosdepago",
+						"paypal",
+						"2"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE del PayPal de id 2",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correoElectronico\": \"nueva@Paypal\",\n    \"usuario\": \"nPaypal\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos-web/api/usuario/45/metodosdepago/paypal/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos-web",
+						"api",
+						"usuario",
+						"45",
+						"metodosdepago",
+						"paypal",
+						"2"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }

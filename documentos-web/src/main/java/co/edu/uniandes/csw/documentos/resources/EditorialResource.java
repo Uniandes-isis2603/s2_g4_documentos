@@ -146,7 +146,7 @@ public class EditorialResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public EditorialDetailedDTO updateEditorial (@PathParam("fid)") Long id, EditorialDetailedDTO editorial) throws BusinessLogicException 
+    public EditorialDetailedDTO updateEditorial (@PathParam("id") Long id, EditorialDetailedDTO editorial) throws BusinessLogicException 
     {
          editorial.setId(id);
         return new EditorialDetailedDTO(logica.updateEditorial(id, editorial.toEntity()));

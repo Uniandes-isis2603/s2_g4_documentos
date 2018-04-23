@@ -1,0 +1,546 @@
+{
+	"id": "cae4f9aa-81fe-4caf-a485-c345e26c8fbe",
+	"name": "pruebasDeseado",
+	"allTests": [],
+	"timestamp": "2018-04-04T01:07:37.128Z",
+	"collection_id": "454acccf-50e0-4419-b39e-da91adbaf2f7",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "0",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "454acccf-50e0-4419-b39e-da91adbaf2f7",
+		"name": "pruebasDeseado",
+		"description": null,
+		"auth": null,
+		"events": null,
+		"variables": null,
+		"order": [
+			"2b5ac21e-465e-492c-bff3-b4c5f172257c",
+			"728c9c9e-7951-47f1-8948-3d29bac7d3f6",
+			"4d46635a-5436-4aea-88e0-d3b00ba5c327",
+			"9ce6934d-2a77-4d0d-8d14-0ff2168bac25",
+			"6c72af21-0ff9-49f9-b99d-050c6def4a4c",
+			"0ceacf8e-01a5-4998-8e33-ae0bc2df22c6",
+			"0dbed6a0-8f1e-4770-ae90-f3689397a027",
+			"e67360e3-fe0d-45db-8374-0903b57888df",
+			"eb574fe3-869e-467f-8667-c36f4d9f6940"
+		],
+		"folders_order": [],
+		"owner": "0",
+		"permissions": {},
+		"favorite": false,
+		"shared": false,
+		"type": "collection",
+		"depth": 0
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"name": "GET deseado ",
+			"id": "2b5ac21e-465e-492c-bff3-b4c5f172257c",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/reservas",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Status code is 200",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"69"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": "69",
+			"totalRequestTime": "69",
+			"iterationResults": {}
+		},
+		{
+			"name": "GET deseado por id",
+			"id": "728c9c9e-7951-47f1-8948-3d29bac7d3f6",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/deseados/2001",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Status code is 200",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"12"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": "12",
+			"totalRequestTime": "12",
+			"iterationResults": {}
+		},
+		{
+			"name": "GET de deseos que no existe",
+			"id": "4d46635a-5436-4aea-88e0-d3b00ba5c327",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/deseados/1234123",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"tests": {
+				"name": "Status code is 412",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"13"
+			],
+			"allTests": [
+				{
+					"Status code is 412": true
+				}
+			],
+			"time": "13",
+			"totalRequestTime": "13",
+			"iterationResults": {}
+		},
+		{
+			"name": "POST se creo un deseado",
+			"id": "9ce6934d-2a77-4d0d-8d14-0ff2168bac25",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/deseados",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Status code is 200",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"38"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": "38",
+			"totalRequestTime": "38",
+			"iterationResults": {}
+		},
+		{
+			"name": "POST se intenta crear un deseado ya existente",
+			"id": "6c72af21-0ff9-49f9-b99d-050c6def4a4c",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/deseados",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"tests": {
+				"name": "Status code is 412",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"46"
+			],
+			"allTests": [
+				{
+					"Status code is 412": true
+				}
+			],
+			"time": "46",
+			"totalRequestTime": "46",
+			"iterationResults": {}
+		},
+		{
+			"name": "PUT actualiza un deseado",
+			"id": "0ceacf8e-01a5-4998-8e33-ae0bc2df22c6",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/deseados/2001",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Status code is 200",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"35"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": "35",
+			"totalRequestTime": "35",
+			"iterationResults": {}
+		},
+		{
+			"name": "PUT update de un deseado que no existe",
+			"id": "0dbed6a0-8f1e-4770-ae90-f3689397a027",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/deseados/2345",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"tests": {
+				"name": "Status code is 412",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"21"
+			],
+			"allTests": [
+				{
+					"Status code is 412": true
+				}
+			],
+			"time": "21",
+			"totalRequestTime": "21",
+			"iterationResults": {}
+		},
+		{
+			"name": "DELETE  de un deseado que no existe",
+			"id": "e67360e3-fe0d-45db-8374-0903b57888df",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/deseados/2345",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"tests": {
+				"name": "Status code is 412",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"18"
+			],
+			"allTests": [
+				{
+					"Status code is 412": true
+				}
+			],
+			"time": "18",
+			"totalRequestTime": "18",
+			"iterationResults": {}
+		},
+		{
+			"name": "DELETE deseados de un usuario",
+			"id": "eb574fe3-869e-467f-8667-c36f4d9f6940",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/deseados/2000",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content",
+				"detail": {
+					"name": "No Content",
+					"detail": "The server successfully processed the request, but is not returning any content."
+				}
+			},
+			"tests": {
+				"name": "Status code is 204",
+				"status": "pass"
+			},
+			"testPassFailCounts": {
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"15"
+			],
+			"allTests": [
+				{
+					"Status code is 204": true
+				}
+			],
+			"time": "15",
+			"totalRequestTime": "15",
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 9,
+	"totalFail": 0,
+	"totalTime": 267,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "GET deseado ",
+			"id": "2b5ac21e-465e-492c-bff3-b4c5f172257c",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/reservas",
+			"time": "2018-04-04T01:07:37.128Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "GET deseado por id",
+			"id": "728c9c9e-7951-47f1-8948-3d29bac7d3f6",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/deseados/2001",
+			"time": "2018-04-04T01:07:37.128Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "GET de deseos que no existe",
+			"id": "4d46635a-5436-4aea-88e0-d3b00ba5c327",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/deseados/1234123",
+			"time": "2018-04-04T01:07:37.128Z",
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "POST se creo un deseado",
+			"id": "9ce6934d-2a77-4d0d-8d14-0ff2168bac25",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/deseados",
+			"time": "2018-04-04T01:07:37.128Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "POST se intenta crear un deseado ya existente",
+			"id": "6c72af21-0ff9-49f9-b99d-050c6def4a4c",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/deseados",
+			"time": "2018-04-04T01:07:37.128Z",
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "PUT actualiza un deseado",
+			"id": "0ceacf8e-01a5-4998-8e33-ae0bc2df22c6",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/deseados/2001",
+			"time": "2018-04-04T01:07:37.128Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "PUT update de un deseado que no existe",
+			"id": "0dbed6a0-8f1e-4770-ae90-f3689397a027",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/deseados/2345",
+			"time": "2018-04-04T01:07:37.128Z",
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "DELETE  de un deseado que no existe",
+			"id": "e67360e3-fe0d-45db-8374-0903b57888df",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/deseados/2345",
+			"time": "2018-04-04T01:07:37.128Z",
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "DELETE deseados de un usuario",
+			"id": "eb574fe3-869e-467f-8667-c36f4d9f6940",
+			"url": "http://localhost:41973/documentos-web/api/usuarios/45/deseados/2000",
+			"time": "2018-04-04T01:07:37.128Z",
+			"responseCode": {
+				"code": 204,
+				"name": "No Content",
+				"detail": {
+					"name": "No Content",
+					"detail": "The server successfully processed the request, but is not returning any content."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		}
+	],
+	"synced": false
+}
