@@ -1,0 +1,52 @@
+<div class="container-fluid" > 
+    <div class="listaUsers" style="background-color: #080808">
+
+        <div class="otherListaUsers" style="background-color: #FCFCFC" >
+            <nav class="menuNavreserva">
+                <ul class="menuUlreserva" > 
+
+                    <li id="menuUser"> 
+                        <a id ="linkUser" ui-sref="reservaDetail({reservaId: reserva.id})" >Perfil</a></li>
+
+                    <li id="menuUser"> 
+                        <a id ="linkUser" ui-sref= "reservasList({reservaId: currentreserva.id})" >Reservas</a></li>
+
+                    <li id="menuUser"> 
+                        <a id ="linkUser" ui-sref="deseadosList">lista de deseos</a></li>
+
+                    <li id="menuUser">
+                        <a id ="linkUser" >Compras</a></li>
+
+                    <li id="menuUser">
+                        <a id ="linkUser" >Métodos de pago</a></li>
+
+                    <li id="menuUser">
+                        <a id ="linkUser">Otros</a></li>
+                </ul>
+
+            </nav>
+        </div>
+    </div>
+
+
+
+    <div  class="presentacion" style="margin-left:25%;padding:1px 16px;height:1000px;" >
+
+        <div class="infoUser"  >
+            <dl> 
+                <dt>i</dt>  <dd>{{currentReserva.nombre}}</dd>
+                <hr>
+                <dt>identificador</dt>
+                <dd>{{currentreserva.id}}</dd>
+                <hr>
+                <dt>costo</dt>
+                <dd>{{currentReserva.costo}}</dd>
+                <hr>
+                <dt>fecha</dt>
+                <dd>{{currentReserva.fecha}}</dd>
+                <hr>
+                <button>Actualizar información </button>  
+                <button ui-sref="reservasList">volver a la lista de reservas</button>
+
+
+            </dl>

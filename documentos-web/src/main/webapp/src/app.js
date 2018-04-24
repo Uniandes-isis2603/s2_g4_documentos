@@ -5,7 +5,8 @@
        
         // Internal modules dependencies       
         'citiesModule',
-        'libroModule'
+        'libroModule',
+        'usuarioModule'
         
 
     ]);
