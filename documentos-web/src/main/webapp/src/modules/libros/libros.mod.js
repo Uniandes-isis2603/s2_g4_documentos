@@ -19,7 +19,9 @@
  * |                    |                        | libros.list.html    |
  * | libroDetail        | /{libroId:int}/detail  | detailView:         |
  * |                    |                        | libros.detail.html  |
- * | librosCreate       | /create                | detailView:(/new)   |
+ * | librosCreate       | /create                | detailView:(/create)|
+ * |                    |                        | /libros.new.html    |
+ * | librosUpdate       | /update/{libroId:int}  | detailView:(/create)|
  * |                    |                        | /libros.new.html    |
  * |--------------------|------------------------|---------------------|
  * ```
@@ -69,6 +71,18 @@
                     'detailView':{
                         templateUrl: basePath + '/create/libros.new.html',
                         controller: 'libroCreateCtrl'
+                    }
+                }
+            }).state('librosUpdate',{
+                url:'/update/{libroId:int}',
+                parent:'libros',
+                param:{
+                    libroId : null
+                },
+                views:{
+                    'detailView':{
+                        templateUrl: basePath + '/create/libros.new.html',
+                        controller: 'libroUpdateCtrl'
                     }
                 }
             });

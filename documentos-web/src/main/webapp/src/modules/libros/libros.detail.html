@@ -30,6 +30,14 @@
             </div>
         </div>
         <div class="panel-body">
+            <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <button class="w3-btn w3-border w3-blue" ui-sref="librosUpdate({libroId: currentLibro.id})"><span><i class="fa fa-wrench" style="font-size: 20px"></i></span> Editar</button>
+                            <button class="w3-btn w3-border w3-red" ><span><i class="fa fa-eraser" style="font-size: 20px"></i></span> Eliminar</button>
+                        </div>
+                </div> 
+        </div>
+        <div class="panel-body">
             <h3 style="font-family: 'Roboto', sans-serif">Perteneciente a: <a ng-repeat="area in currentLibro.areas">{{area.tipo}}, </a></h3>
             <h3 style="font-family: 'Roboto', sans-serif">Ha sido util en estos cursos:<a ng-repeat="curso in currentLibro.cursos">{{curso.nombre}}, </a></h3>
         </div>
