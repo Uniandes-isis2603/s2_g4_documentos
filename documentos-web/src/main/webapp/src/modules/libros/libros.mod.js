@@ -18,7 +18,9 @@
  * | librosList         | /list                  | listview:           |
  * |                    |                        | libros.list.html    |
  * | libroDetail        | /{libroId:int}/detail  | detailView:         |
- * |                    |                        |libros.detail.html   |
+ * |                    |                        | libros.detail.html  |
+ * | librosCreate       | /create                | detailView:(/new)   |
+ * |                    |                        | /libros.new.html    |
  * |--------------------|------------------------|---------------------|
  * ```
  */
@@ -58,6 +60,15 @@
                         templateUrl: basePath + 'libros.detail.html',
                         controller: 'libroDetailCtrl',
                         controllerAs:'ctrl'
+                    }
+                }
+            }).state('librosCreate',{
+                url:'/create',
+                parent:'libros',
+                views:{
+                    'detailView':{
+                        templateUrl: basePath + '/create/libros.new.html',
+                        controller: 'libroCreateCtrl'
                     }
                 }
             });

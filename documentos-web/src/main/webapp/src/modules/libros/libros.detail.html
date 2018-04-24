@@ -15,16 +15,18 @@
                 <img ng-src="{{currentLibro.caratula}}" alt="libro" style="width: 100%">
             </div>
             <div class="col-md-5">
-                <h2 style="font-family: 'Roboto', sans-serif">{{currentLibro.nombre}}</h2>
+                <h2 style="font-family: 'Roboto', sans-serif; font-size: 55px">{{currentLibro.nombre}}</h2>
                 <h2 class=w3-text-green style="font-family: 'Roboto', sans-serif; font-size: 50px">${{currentLibro.precio}}</h2>
-                <h3 style="font-family: 'Roboto', sans-serif">Escrito por: <a ng-repeat="autor in currentLibro.autores">{{autor.nombre}}, </a></h3> 
+                <h3 style="font-family: 'Roboto', sans-serif">Escrito por: <a ng-repeat="autor in currentLibro.autores">{{autor.nombre}}</a></h3> 
                 <h3 style="font-family: 'Roboto', sans-serif">Descripción:</h3>
                 <h4 style="font-family: 'Roboto', sans-serif">{{currentLibro.descripcion}}</h4>
-                <h3 style="font-family: 'Roboto', sans-serif">Fecha de publicación: {{currentLibro.fechaPublicacion}}</h3>
+                <h3 style="font-family: 'Roboto', sans-serif">Fecha de publicación: {{currentLibro.fechaPublicacion |date:format :timezone}}</h3>
+                <h3 style="font-family: 'Roboto', sans-serif">Publicado por:</h3>
+                <h3 style="font-family: 'Roboto', sans-serif"><a> {{currentLibro.editorial.nombre}}</a></h3>
                 <h3 style="font-family: 'Roboto', sans-serif">ISBN: {{currentLibro.ISBN}}</h3>
             </div>
             <div class="col-md-3">
-                <h2>Aqui esta lo relacionado a los pagos</h2>
+                <h2></h2>
             </div>
         </div>
         <div class="panel-body">
@@ -38,12 +40,7 @@
                     <h4>
                         {{comentario.comentario}}
                     </h4>
-                </div>
-                <div class="panel-footer">
-                    <h5>
-                        {{comentario.fecha}}
-                    </h5>
-                </div>
+                </div> 
             </div>
         </div>
     </div>
