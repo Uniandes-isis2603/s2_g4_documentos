@@ -1,7 +1,7 @@
 (function(ng){
     var mod= ng.module("reservaModule");
     mod.constant("reservaContext","api/reservas");
-    mod.controller('reservaDetailCtrl', ['$scope', '$http','reservaContext', '$state',
+    mod.controller('reservaDetailCtrl', ['$scope', '$http','usuariosContext', 'reservaContext', '$state',
         /**
          * @ngdoc controller
          * @name reservas.controller:reservaDetailCtrl
@@ -17,7 +17,7 @@
          * @param {Object} $state  Dependencia inyectada en la que se recibe el
          * estado actual de la navecación definida en el módulo.   
          */
-        function($scope,$http, reservaContext,$state) {
+        function($scope,$http,usuariosContext, reservaContext,$state) {
             if(($state.params.reservaId !== undefined) && ($state.params.reservaId !==null)){
                 /**
                  * @ngdoc function
@@ -29,7 +29,7 @@
                  * de los reservas o API donde se puede consultar. 
                  * @param {json} response 
                  */
-                $http.get(reservaContext + '/' + $state.params.reservaId).then(function(response){
+                $http.get(usuariosContext +'/'+ $state.params.usuarioId + '/' + reservasContext + '/' + $state.params.reservaId).then(function(response){
                     $scope.currentReserva =response.data;
                 });
             }

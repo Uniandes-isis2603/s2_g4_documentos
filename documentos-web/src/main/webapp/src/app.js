@@ -6,7 +6,9 @@
         // Internal modules dependencies       
         'citiesModule',
         'libroModule',
-        'usuarioModule'
+        'usuarioModule',
+        'reservaModule',
+        'fotocopiaModule'
         
 
     ]);

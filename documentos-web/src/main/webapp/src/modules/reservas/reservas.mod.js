@@ -34,21 +34,12 @@
             $stateProvider.state('reservas', {
                 url: '/reservas',
                 abstract: true,
-                parent: 'usuarios',
+                parent: 'usuarioDetail',
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'reservas.html',
-                        controller: 'reservaCtrl',
+                        controller: 'reservasCtrl',
                         controllerAs: 'ctrl'
-                    }
-                }
-            }).state('reservaCreate', {
-                url: '/create',
-                parent: 'reservas',
-                views: {
-                    'detailView': {
-                        templateUrl: basePath + '/new/reservas.new.html',
-                        controller: 'reservasNewCtrl'
                     }
                 }
             }).state('reservasList', {
