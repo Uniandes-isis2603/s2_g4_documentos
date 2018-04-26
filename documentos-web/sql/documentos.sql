@@ -153,7 +153,7 @@ insert into ComentarioEntity(id,comentario,fecha) values (11000,'es malo','2015-
 insert into CursoEntity(id,codigo,departamento,nombre) values (3000,'Ma205','Matematicas','Matematica basica');
 
 INSERT INTO COMPRAENTITY (id,COSTO, FECHA, TIPODECOMPRA, METODODEPAGOPAYPAL_ID, METODODEPAGOTDC_ID) 
-	VALUES (10000,300, '2018-02-22', 'efectivo', NULL, 7500);
+	VALUES (10000,300, '2018-02-22 20:38:54.973', 'efectivo', NULL, 7500);
 
 --------------------------------------------------------------------------
 ----------------------------- RELACIONES ---------------------------------

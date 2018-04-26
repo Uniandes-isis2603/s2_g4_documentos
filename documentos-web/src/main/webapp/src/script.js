@@ -27,7 +27,7 @@ $(document).ready(function(){
  * Metodo para que se vea la pagina de libros.
  */
 $(document).ready(function(){
-    $("#libros").click(function(){
+    $(".navBusqueda").click(function(){
         $("#navego").show();
         $(".Intro").remove();
         });

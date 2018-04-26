@@ -1,38 +1,95 @@
 <div  id="CursoDiv2" class="container-fluid"   >    
     
-        <div class="container" style="padding-top:50px " > 
-            <h1 style="letter-spacing:5px ">Editoriales:</h1>
+    <div class="container" style="padding-top:50px " > 
+        <h1 style="letter-spacing:5px ">Editoriales</h1>
             
-        </div>
-  
+    </div>
+        
 </div>
-
-
-<div style="padding-top:150px" class ="container">
-    <div class="panel-group" id="accordion">
-        <div ng-repeat="editorial in editoriales">
-            
-            <div class="panel panel-default">
-                
-                <div class="panel-heading">
+    
+<div class ="row"> 
+    <div class="col-sm-1">
+        
+    </div>
+    <div class="col-sm-7"> 
+        <div style="padding-top:50px; " ng-app="editorialesModule">
+            <div class="panel-group" id="accordion" ng-controller="editorialesCtrl">
+                <div ng-repeat="editorial in editoriales">
                     
-                    <h4 class="panel-title">
+                    <div class="panel panel-default" style="margin-bottom:20px; ">
                         
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}">
+                        <div class="panel-heading" style="background-color: white;"  >
                             
-                            {{editorial.nombre}}        
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapse{{$index}}" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <strong>Id:</strong>{{editorial.id}}
-                        <br>
-                        <strong>Nombre:</strong>{{editorial.nombre}}
-                        <br>
-                        <strong>Cantidad De Libros:</strong>{{editorial.libros}}  
-                        <br>
+                            <h4 class="panel-title " style="color:#2c3e50 " >
+                                
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}">
+                                    
+                                    {{editorial.nombre}}        
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse{{$index}}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-3"> 
+                                <strong>Id:</strong>
+                                
+                                <br>
+                                <strong>Nombre:</strong>
+                                <br>
+                                <strong>Libros:</strong> 
+                                <br>
+                                </div>
+                                    <div class="col-sm-3">
+                                        {{editorial.id}}
+                                        <br>
+                                        {{editorial.nombre}}
+                                        <br>
+                                        {{editorial.libros}} 
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+    <div class="col-sm-3 thumbnail " style="margin-top:50px;">
+        <div class="container ">
+            <div class="col-md-5">
+                <div class="form-area">  
+                    <form role="form">
+                        <br>
+                        <h3>Controles</h3>
+                        <br>
+                        <h4 style="margin-left:12px; ">Crear</h4>
+                      
+                        <div class="form-group col-sm-9">
+                            <input type="text" class="form-control"  name="Nombre" placeholder="Nombre" required ng-model="data.nombre">
+                        </div>     
+                        <button type="button" id="crear" name="create" class="btn btn-primary loginbutton pull-right" style="margin-right: 125px "  ng-click="create()" ng-disabled="data.nombre === undefined"> <i class="fas fa-plus-circle"></i> Crear Editorial</button>
+                         
+                    </form>
+                    <br>
+                    
+                    
+                    <form role="form"  style="margin-top: 50px;">
+                        
+                        <h4 style="margin-left:12px; ">Actualizar</h4>
+                          <div class="form-group col-sm-9" >
+                            <input type="number"  style="margin-right:50px;" class="form-control " name="Nombre" placeholder="Id" required ng-model="data.id">
+                        </div> 
+                        
+                        <div class="form-group col-sm-9">
+                            <input type="text" class="form-control"  name="Nombre" placeholder="Nombre" required ng-model="data.nombre">
+                        </div> 
+                        <button type="button" id="actualizar" name="update" class="actuabbuton btn  pull-right" 
+                                         ng-click="update_editorial(data.id)" style="margin-right: 125px ; color:white">
+                                     <i class="fas fa-edit"></i> Actualizar Editorial</button>
+                    </form>
                 </div>
             </div>
         </div>
