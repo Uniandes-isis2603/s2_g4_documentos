@@ -4,8 +4,12 @@
         'ui.router',
        
         // Internal modules dependencies       
-        'citiesModule',
-        'libroModule'
+        'usuarioModule',
+        'libroModule',
+        'editorialesModule',
+       'autorModule',
+       'areaModule',
+       'fotocopiaModule'
         
 
     ]);
