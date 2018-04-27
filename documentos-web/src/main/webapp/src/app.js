@@ -4,12 +4,11 @@
         'ui.router',
        
         // Internal modules dependencies       
-        'usuarioModule',
         'libroModule',
-        'editorialesModule',
-       'autorModule',
-       'areaModule',
-       'fotocopiaModule'
+        'paypalModule',
+        'tarjetadecreditoModule'        
+        
+       
         
 
     ]);
