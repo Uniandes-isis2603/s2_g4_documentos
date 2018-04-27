@@ -7,8 +7,7 @@
         'citiesModule',
         'libroModule',
         'usuarioModule',
-        'reservaModule',
-        'fotocopiaModule'
+        'reservaModule'
         
 
     ]);

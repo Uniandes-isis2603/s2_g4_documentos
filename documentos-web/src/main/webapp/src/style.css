@@ -122,7 +122,7 @@ hr {
 }
 
 
-#menuUser{
+.menuUser{
     width:200px;
     height: 50px;
     border-bottom: 1px solid #000066EC ;
@@ -132,7 +132,7 @@ hr {
 
 }
 
-#linkUser{
+.linkUser{
     position: absolute;
     float: right;
     color: white;
@@ -145,7 +145,7 @@ hr {
 }
 
 
-#menuUser a:hover {
+.menuUser a:hover {
     background-color: white;
     width:200px;
     height: 50px;

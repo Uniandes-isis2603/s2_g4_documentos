@@ -1,10 +1,10 @@
 <div class="container-fluid">
 
     <h1>hola que hace</h1>
-    <div ng-repeat="reserva in reservasRecords">
-        <ul class="nav ">
+    <div ng-repeat="reserva in reservasRecords ">
+        <ul class="nav  ">
 
-            <li>{{reserva.id}}</li> 
+            <li><a ui-sref="reservaDetail({reservaId: reserva.id})">  {{reserva.id}}  </a></li> 
             <li>{{reserva.costo}}</li> 
             <li>{{reserva.fecha}}</li> 
 

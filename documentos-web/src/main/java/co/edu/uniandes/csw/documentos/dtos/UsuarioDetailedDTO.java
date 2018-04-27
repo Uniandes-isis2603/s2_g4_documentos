@@ -63,7 +63,7 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
         if (entity.getReservas() != null) {
             reservas = new ArrayList<>();
             for (ReservaEntity entityReserva : entity.getReservas()) {
-                // reservas.add(new ReservaDTO(entityReserva));
+               reservas.add(new ReservaDTO(entityReserva));
             }
         }
         //if (entity.getMetodosDePago() != null) {

@@ -122,6 +122,13 @@ insert into ReservaEntity(id, fecha, costo) values (545, '2013-10-28 14:59:59',5
 insert into ReservaEntity(id, fecha, costo) values (546,'2018-02-15 05:27:20',20000);
 insert into ReservaEntity(id, fecha, costo) values (547,'2017-10-28 12:45:05',60000);
 insert into ReservaEntity(id, fecha, costo) values (548,'2012-04-05 22:20:13',10000);
+insert into ReservaEntity(id, fecha, costo) values (549,'2012-04-05 22:20:13',10000);
+insert into ReservaEntity(id, fecha, costo) values (550,'2012-04-05 22:20:13',10000);
+insert into ReservaEntity(id, fecha, costo) values (551,'2012-04-05 22:20:13',10000);
+insert into ReservaEntity(id, fecha, costo) values (552,'2012-04-05 22:20:13',10000);
+insert into ReservaEntity(id, fecha, costo) values (553,'2012-04-05 22:20:13',10000);
+insert into ReservaEntity(id, fecha, costo) values (554,'2012-04-05 22:20:13',10000);
+
 
 -- Federico
 insert into DeseadoEntity(id, nombre, cantidad) values (2000, 'mi lista',4.0);
@@ -172,6 +179,10 @@ insert into UsuarioEntity_ReservaEntity (UsuarioEntity_ID, Reservas_ID) values (
 insert into UsuarioEntity_ReservaEntity (UsuarioEntity_ID, Reservas_ID) values (45, 546);
 insert into UsuarioEntity_ReservaEntity (UsuarioEntity_ID, Reservas_ID) values (46, 547);
 insert into UsuarioEntity_ReservaEntity (UsuarioEntity_ID, Reservas_ID) values (47, 548);
+insert into UsuarioEntity_ReservaEntity (UsuarioEntity_ID, Reservas_ID) values (45, 549);
+insert into UsuarioEntity_ReservaEntity (UsuarioEntity_ID, Reservas_ID) values (45, 550);
+insert into UsuarioEntity_ReservaEntity (UsuarioEntity_ID, Reservas_ID) values (45, 551);
+
 
 -- Gregorio
 insert into UsuarioEntity_PayPalEntity (UsuarioEntity_ID, PayPal_ID) values (45, 65000);

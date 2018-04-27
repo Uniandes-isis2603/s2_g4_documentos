@@ -5,23 +5,23 @@
             <nav class="menuNavUsuario">
                 <ul class="menuUlUsuario" > 
 
-                    <li id="menuUser"> 
-                        <a id ="linkUser" ui-sref="usuarioDetail({usuarioId: usuario.id})" >Perfil</a></li>
+                    <li class="menuUser"> 
+                        <a class ="linkUser" ui-sref="usuarioDetail({usuarioId: currentUsuario.id})" >Perfil</a></li>
 
-                    <li id="menuUser"> 
-                        <a id ="nuevo" ui-sref="reservasList" >Reservas</a></li>
+                    <li class="menuUser"> 
+                        <a class ="linkUser" ui-sref="reservasList({usuarioId: currentUsuario.id})" >Reservas</a></li>
 
-                    <li id="menuUser"> 
-                        <a id ="mas" ui-sref="librosList">lista de deseos</a></li>
+                    <li class="menuUser"> 
+                        <a class ="linkUser" ui-sref="librosList">lista de deseos</a></li>
 
-                    <li id="menuUser">
-                        <a id ="ese" ui-sref="librosList">Compras</a></li>
+                    <li class="menuUser">
+                        <a class ="linkUser" ui-sref="librosList">Compras</a></li>
 
-                    <li id="menuUser">
-                        <a id ="linkUser" >Métodos de pago</a></li>
+                    <li class="menuUser">
+                        <a class ="linkUser" >Métodos de pago</a></li>
 
-                    <li id="menuUser">
-                        <a id ="linkUser">Otros</a></li>
+                    <li class="menuUser">
+                        <a class ="linkUser">Otros</a></li>
                 </ul>
 
             </nav>
