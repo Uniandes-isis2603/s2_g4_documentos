@@ -2,7 +2,7 @@
     var mod = ng.module("paypalModule",['ui.router']);
     mod.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,$urlRouterProvider){
             var basePath = 'src/modules/paypal/';
-            $urlRouterProvider.otherwise('/paypalList');
+            $urlRouterProvider.otherwise('/paypal');
             
            $stateProvider.state('paypal',{
                url:'/paypal',
@@ -37,6 +37,37 @@
                     }
                 }
 
+            }).state('paypalCreate', {
+                url: '/create',
+               // parent: 'paypal',
+                views: {
+                    'mainView': {
+                        templateUrl: basePath + '/new/paypal.new.html',
+                        controller: 'paypalNewCtrl'
+                    }
+                }
+                ,
+                data: {
+                    requireLogin: true,
+                    roles: ['admin']
+                }
+            }).state('paypalUpdate', {
+                url: '/update/{paypalId:int}',
+                parent: 'paypal',
+                param: {
+                    editorialId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/paypal.new.html',
+                        controller: 'paypalUpdateCtrl'
+                    }
+                }
+                ,
+                data: {
+                    requireLogin: true,
+                    roles: ['admin']
+                }
             });
     }]);
 })(window.angular);

@@ -10,7 +10,7 @@
 
             $scope.createPaypal = function () {
                 $http.post(paypalContext, $scope.data).then(function (response) {
-                    $state.go('paypalList', {paypalId: response.data.id}, {reload: true});
+                    $state.reload();
                 });
             };
         }
