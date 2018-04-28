@@ -15,7 +15,7 @@
              $scope.data.caratula = libro.caratula;
              $scope.data.ISBN = libro.ISBN;
              $scope.data.precio = libro.precio;
-             
+             console.log(response.data);
          });
          
          

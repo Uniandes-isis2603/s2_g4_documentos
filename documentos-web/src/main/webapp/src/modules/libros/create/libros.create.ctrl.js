@@ -25,10 +25,48 @@
         
         $scope.data ={};
         
-        $scope.createLibro = function (){
+         
+        
+        $scope.createLibro = function (){   
             $http.post(LibroContext,$scope.data).then(function(response){
                 $state.go('librosList',{libroId:response.data.id},{reload:true});
             });
         };
+        
+        $http.get("api/autores").then(function (responseAutores){
+                $scope.autoresRecords = responseAutores.data;
+            });
+        
+        $scope.obtenerAutor = function () {
+            
+            var id = $scope.data.id;
+            
+            if(typeof $scope.data.autores === "undefined")
+            {
+               var autores = []; 
+            } else
+            {
+                var autores = $scope.data.autores;
+            }
+            
+            
+            
+            $http.get("api/autores/" + id).then(function (responseAutor){
+                console.log(responseAutor.data.nombre);
+                
+                var autor = {id:responseAutor.data.id, nombre:responseAutor.data.nombre};
+                
+                console.log(autor);
+                console.log(autores);
+                
+                autores.push(autor);
+                
+                $scope.data.autores = autores;
+               
+               console.log($scope.data);
+            });
+        };
+            
+        
     }]);
 })(window.angular);

@@ -3,7 +3,10 @@
         <img  src="http://aerospace.wpengine.netdna-cdn.com/wp-content/uploads/2012/02/iStock_000023976561_FullAerospaceBooksBanner.jpg" alt ="banner" style="width:100%" >
     </div>
     <div class='panel panel-body'>
-        <div class='col-md-3'>
+        <div class="col-md-1">
+
+        </div>
+        <div class='col-md-4'>
             <form name='libro'>
                 <div class="form-group">
                     <label for="Nombre">Nombre:</label>
@@ -22,20 +25,37 @@
                     <input type="number" class="form-control" placeholder="EJ: 20000" id="precio" required ng-model="data.precio">
                 </div>
                 <div class="form-group">
-                     <label for="ISBN">ISBN:</label>
+                    <label for="ISBN">ISBN:</label>
                     <input type="text" class="form-control" placeholder="EJ: 978-0307474728" id="isbn" required ng-model="data.ISBN">
                 </div>
                 <div class="form-group">
-                     <label for="Fecha">Fecha de publicación:</label>
+                    <label for="Fecha">Fecha de publicación:</label>
                     <input type="date" class="form-control"  id="fecha" required ng-model="data.fechaPublicacion">
                 </div>
+                <div class="form-group">
+                    <label for="Asociar Autor">Seleccionar Autor (es):</label>
+                    <select ng-click="obtenerAutor()" ng-model="data.id" ng-options="autor.id as autor.nombre  for autor in autoresRecords"  multiple class="form-control" id="Asociar Autor" >
+                        
+                    </select>
+                </div>
                 <div class="form-group row">
-                        <div class="form-group col-sm-12">
-                            <input  ng-click="createLibro()" value="Save" class="w3-btn w3-green"/>
-                            <button class="w3-btn w3-red" ui-sref="librosList">Cancel</button>
-                        </div>
+                    <div class="form-group col-sm-12">
+                        <input  ng-click="createLibro()" value="Save" class="w3-btn w3-green"/>
+                        <button class="w3-btn w3-red" ui-sref="librosList">Cancel</button>
+                    </div>
                 </div> 
             </form>
+        </div>
+        <div class="col-md-1">    
+        </div>
+        <div class="col-md-4">
+            <form>
+
+            </form>
+
+        </div>
+        <div class="col-md-1">
+
         </div>
     </div>
 </div>
