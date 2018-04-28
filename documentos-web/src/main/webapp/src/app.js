@@ -4,11 +4,7 @@
         'ui.router',
        
         // Internal modules dependencies       
-        'usuarioModule',
-        'libroModule',
-        'editorialesModule',
-       'autorModule',
-       'areaModule',
+        'libroModule'
        'fotocopiaModule'
         
 
