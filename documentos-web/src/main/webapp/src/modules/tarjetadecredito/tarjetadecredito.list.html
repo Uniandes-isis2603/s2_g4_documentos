@@ -9,13 +9,13 @@
     <div class="col-sm-6">
       <div class="row" style="color:white;background-color:rgb(0,255,255,0.2)" ><p> Nombre en la tarjeta : {{tarjetadecredito.nombreEnLaTarjeta}}</p></div>
       <div class="row" style="color:white;background-color:rgb(0,0,0,0.2)" ><p> Tipo de tarjeta de credito : {{tarjetadecredito.tipoDeTarjeta}}</p></div>
-    <div class="row" style="color:white;background-color:rgb(0,140,255,0.2)" ><p> Numero de tarjeta de credito : {{tarjetadecredito.nroDeTarjeta}}</p></div>
+    <div class="row" style="color:white;background-color:rgb(0,140,255,0.2)" ><p> Numero de tarjeta de credito : {{tarjetadecredito.numeroDeTarjeta}}</p></div>
     </div>
         <div class="col-sm-4">
           <br>
-          <button type="button" class="btn btn-danger btn-md" ui-sref="tarejtadecreditoUpdate">Delete</button>
+          <button type="button" class="btn btn-warning btn-md" ui-sref="tarjetadecreditoDetail({tarjetadecreditoId: tarjetadecredito.id})">View</button>
           
-                <button type="button" class="btn btn-warning btn-md">Review</button>
+                <button type="button" class="btn btn-danger btn-md">delete</button>
                 </div>
             <br><br><br>
             </div>  

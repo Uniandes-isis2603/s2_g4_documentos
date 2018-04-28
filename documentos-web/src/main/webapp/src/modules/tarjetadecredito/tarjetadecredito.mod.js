@@ -23,13 +23,11 @@
                     }
                 }
             }).state('tarjetadecreditoDetail', {
-                url: '/{tarjetadecreditoId:Long}/detail',
+                url: '/{tarjetadecreditoId:int}/detail',
                 parent: 'tarjetadecredito',
-                param: {tarjetadecreditotId: null},
+                param: {
+                    tarjetadecreditoId: null},
                 views: {
-                    'listView': {
-                        templateUrl: basePath + 'tarjetadecredito.list.html'
-                    },
                     'detailView': {
                         templateUrl: basePath + 'tarjetadecredito.detail.html',
                         controller: 'tarjetadecreditotDetailCtrl',

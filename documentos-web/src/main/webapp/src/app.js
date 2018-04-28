@@ -5,6 +5,9 @@
        
         // Internal modules dependencies       
         'libroModule',
+        'comprasModule',
+        'paypalModule',
+        'tarjetadecreditoModule'
 
         
        

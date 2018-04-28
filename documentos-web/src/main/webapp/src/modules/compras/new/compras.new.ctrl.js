@@ -7,11 +7,14 @@
             $rootScope.edit = false;
 
             $scope.data = {};
+            $scope.cosas = null;
 
             $scope.createCompras = function () {
                 $http.post(comprasContext, $scope.data).then(function (response) {
-                    $state.go('comprasList', {comprasId: response.data.id}, {reload: true});
+                    $state.reload();
                 });
+                
+                console.log($scope.data);
             };
             
             $http.get("api/usuario/45/metodosdepago/tarjetasdecredito").then(function(TDCresponse)
@@ -47,7 +50,7 @@
                 s = checkTime(s);
                
                 
-                return s +":" +m;
+                return s +":" +m+ ":"+ "00";
               }
 
               function fecha(){
@@ -70,7 +73,10 @@
 
             
             $scope.fechaTiempo = function() {
+                $scope.data.fecha = fecha() + " " + startTime();
+                $scope.data.costo = 15000;
                 return fecha() + " " + startTime();
+                
             };
         }
     ]);
