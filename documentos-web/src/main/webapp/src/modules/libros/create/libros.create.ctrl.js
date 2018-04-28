@@ -36,10 +36,14 @@
         $http.get("api/autores").then(function (responseAutores){
                 $scope.autoresRecords = responseAutores.data;
             });
-        
-        $scope.obtenerAutor = function () {
             
-            var id = $scope.data.id;
+        $http.get("api/areas").then(function (responseAreas){
+                $scope.areasRecords = responseAreas.data;
+            });
+        
+        $scope.asociarAutor = function (id) {
+            
+          
             
             if(typeof $scope.data.autores === "undefined")
             {
@@ -52,18 +56,40 @@
             
             
             $http.get("api/autores/" + id).then(function (responseAutor){
-                console.log(responseAutor.data.nombre);
                 
                 var autor = {id:responseAutor.data.id, nombre:responseAutor.data.nombre};
-                
-                console.log(autor);
-                console.log(autores);
-                
+               
                 autores.push(autor);
                 
                 $scope.data.autores = autores;
                
-               console.log($scope.data);
+            });
+        };
+        
+        $scope.asociarArea = function (id) {
+            
+          
+            
+            if(typeof $scope.data.areas === "undefined")
+            {
+               var areas = []; 
+            } else
+            {
+                var areas = $scope.data.areas;
+            }
+            
+            
+            
+            $http.get("api/areas/" + id).then(function (responseArea){
+                
+                
+                var area = {id:responseArea.data.id, nombre:responseArea.data.tipo};
+                
+                
+                areas.push(area);
+                
+                $scope.data.areas = areas;
+               
             });
         };
             
