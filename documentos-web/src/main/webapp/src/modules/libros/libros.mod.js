@@ -30,7 +30,7 @@
     var mod = ng.module("libroModule", ['ui.router']);
     mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider,$urlRouterProvider){
             var basePath = 'src/modules/libros/';
-            $urlRouterProvider.otherwise("/librosList");
+            $urlRouterProvider.otherwise("/x");
             
             
             $stateProvider.state('libros', {

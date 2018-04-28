@@ -10,7 +10,6 @@
  
     <modules>
         <module>documentos-back</module>
-        <module>documentos-web</module>
     </modules>
     <repositories>
         <repository>
