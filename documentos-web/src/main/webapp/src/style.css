@@ -27,6 +27,13 @@
     background-color:grey;
     color:whitesmoke;  
 }
+
+#MPGrupo{
+    background-color:rgb(255,230,255);
+}
+#colorEscoger{
+    color: black;
+}
 #busqueda:target{     
     background-color:grey;
     color:whitesmoke;  

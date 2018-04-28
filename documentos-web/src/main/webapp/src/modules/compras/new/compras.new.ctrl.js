@@ -14,34 +14,17 @@
                 });
             };
             
-            
-            $scope.TDC2 = function() {
-                
-                $http.get(tarjetadecreditoContext).then(function(response)
+            $http.get("api/usuario/45/metodosdepago/tarjetasdecredito").then(function(TDCresponse)
                 {
-                    $scope.TDC = response.data;
-                }
-            )};
-
-            $scope.PPC2 = function() {
-                
-                $http.get(paypalContext).then(function(response)
+                    $scope.TDC = TDCresponse.data;
+                });
+            $http.get("api/usuario/45/metodosdepago/paypal").then(function(response)
                 {
+                    
                     $scope.PPC = response.data;
-                }
-               )};
-   
-            function darMP(usuario)
-            {
-                var gaitan = [];
-                $scope.PPC2;
-                $scope.TDC2;
-                for(paypal in PPC)
-                {
-                    if paypal. = usuario;
-                }
-            }
-            
+                });
+           
+
             function checkTime(i) {
                 if (i < 10) {
                   i = "0" + i;
