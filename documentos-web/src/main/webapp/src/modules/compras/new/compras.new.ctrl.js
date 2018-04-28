@@ -23,6 +23,11 @@
                     
                     $scope.PPC = response.data;
                 });
+                
+            $http.get("api/libros").then(function(response)
+            {
+                $scope.Libros = response.data;
+            });
            
 
             function checkTime(i) {
