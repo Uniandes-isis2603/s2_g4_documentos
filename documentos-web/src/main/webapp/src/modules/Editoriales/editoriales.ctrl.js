@@ -73,7 +73,8 @@
             {
                 
                     $scope.data.libros.push({id:libro.id});
-                    console.log($scope.data.libros);
+                    
+                    
                     for (var i = 0; i < $scope.libros.length; i++) 
                     {
                         if($scope.libros[i].id===libro.id)
