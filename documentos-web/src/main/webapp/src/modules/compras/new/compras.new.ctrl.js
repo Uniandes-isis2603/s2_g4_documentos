@@ -1,9 +1,9 @@
 (function (ng) {
     var mod = ng.module("comprasModule");
     mod.constant("comprasContext", "api/compras");
-    mod.controller('comprasNewCtrl', ['$scope', '$http', 'comprasContext', '$state', '$rootScope',
+    mod.controller('comprasNewCtrl', ['$scope', '$http', 'comprasContext','tarjetadecreditoContext', 'paypalContext' ,'$state', '$rootScope',
 
-                function ($scope, $http, comprasContext, $state, $rootScope) {
+               function ($scope, $http, comprasContext, $state, tarjetadecreditoContext, paypalContext, $rootScope) {
             $rootScope.edit = false;
 
             $scope.data = {};
@@ -14,6 +14,33 @@
                 });
             };
             
+            
+            $scope.TDC2 = function() {
+                
+                $http.get(tarjetadecreditoContext).then(function(response)
+                {
+                    $scope.TDC = response.data;
+                }
+            )};
+
+            $scope.PPC2 = function() {
+                
+                $http.get(paypalContext).then(function(response)
+                {
+                    $scope.PPC = response.data;
+                }
+               )};
+   
+            function darMP(usuario)
+            {
+                var gaitan = [];
+                $scope.PPC2;
+                $scope.TDC2;
+                for(paypal in PPC)
+                {
+                    if paypal. = usuario;
+                }
+            }
             
             function checkTime(i) {
                 if (i < 10) {
@@ -32,7 +59,7 @@
                 s = checkTime(s);
                
                 
-                return h +":" +m+ ":" + s;
+                return s +":" +m;
               }
 
               function fecha(){
@@ -55,7 +82,6 @@
 
             
             $scope.fechaTiempo = function() {
-                console.log(startTime());
                 return fecha() + " " + startTime();
             };
         }

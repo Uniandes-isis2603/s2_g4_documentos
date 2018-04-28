@@ -128,10 +128,10 @@ insert into DeseadoEntity(id, nombre, cantidad) values (2002, 'mis desesos',10.0
 insert into DeseadoEntity(id, nombre, cantidad) values (2003, 'libros pref',5.0);
 
 -- Gregorio
-insert into PayPalEntity (id, usuario, correoElectronico) values (65000, 'gregorio','gregorio@ospina');
-insert into PayPalEntity (id, usuario, correoElectronico) values (65001,'andres','andres@ospina');
-insert into PayPalEntity (id, usuario, correoElectronico) values (65002,'jeronimpo','jeronimo@ospina');
-insert into PayPalEntity (id, usuario, correoElectronico) values (65003,'juan','juan@ospina');
+insert into PayPalEntity (id, usuario, correoElectronico, idusuario) values (65000, 'gregorio','gregorio@ospina', 45);
+insert into PayPalEntity (id, usuario, correoElectronico, idusuario) values (65001,'andres','andres@ospina', 45);
+insert into PayPalEntity (id, usuario, correoElectronico, idusuario) values (65002,'jeronimpo','jeronimo@ospina', 46);
+insert into PayPalEntity (id, usuario, correoElectronico, idusuario) values (65003,'juan','juan@ospina', 47);
 
 -- Gregorio
 insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7500, 'Visa','4234567890123456', 'gregorio', 123);

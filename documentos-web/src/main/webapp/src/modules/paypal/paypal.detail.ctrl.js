@@ -1,6 +1,6 @@
 (function (ng) {
     var mod = ng.module("paypalModule");
-    mod.constant("paypalContext", "api/api/usuario/{usuarioId: long}/metodosdepago/paypal");
+    mod.constant("paypalContext", "api/api/usuario/45/metodosdepago/paypal");
     mod.controller('paypalDetailCtrl', ['$scope', '$http', 'paypalContext', '$state', '$filter',
         function ($scope, $http, paypalContext, $state, $filter) {
 
