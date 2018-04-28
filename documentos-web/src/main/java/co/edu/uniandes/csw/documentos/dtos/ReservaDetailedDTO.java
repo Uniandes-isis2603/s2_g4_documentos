@@ -25,6 +25,7 @@ public class ReservaDetailedDTO extends ReservaDTO{
     private List<DocumentoDTO> documento;
     
     
+    private UsuarioDTO usuario;
     /**
      * constructor por defecto
      */
@@ -65,6 +66,10 @@ public class ReservaDetailedDTO extends ReservaDTO{
             }
            Reserva.setDocumentos(DocumentoEntity);
         }
+        if(usuario!=null)
+        {
+            Reserva.setUsuario(usuario.toEntity());
+        }
 
  
         return Reserva;
@@ -73,13 +78,41 @@ public class ReservaDetailedDTO extends ReservaDTO{
      * @return the documento
      */
     public List<DocumentoDTO> getDocumentos() {
-        return documento;
+        return getDocumento();
     }
 
     /**
      * @param documento the documento to set
      */
     public void setDocumentos(List<DocumentoDTO> documento) {
+        this.setDocumento(documento);
+    }
+
+    /**
+     * @return the documento
+     */
+    public List<DocumentoDTO> getDocumento() {
+        return documento;
+    }
+
+    /**
+     * @param documento the documento to set
+     */
+    public void setDocumento(List<DocumentoDTO> documento) {
         this.documento = documento;
+    }
+
+    /**
+     * @return the usuario
+     */
+    public UsuarioDTO getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(UsuarioDTO usuario) {
+        this.usuario = usuario;
     }
 }

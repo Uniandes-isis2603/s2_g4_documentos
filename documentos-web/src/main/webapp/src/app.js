@@ -4,8 +4,10 @@
         'ui.router',
        
         // Internal modules dependencies       
+
         'libroModule',
        'fotocopiaModule'
+
         
 
     ]);
