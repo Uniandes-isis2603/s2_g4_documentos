@@ -44,11 +44,14 @@ insert into LibroEntity (id,fechapublicacion,isbn) values (300,'10/20/2012','978
 insert into LibroEntity (id,fechapublicacion,isbn) values (500,'12/26/2012','978-0307387264');
 
 -- Ernesto
-insert into LibroEntity (id,fechapublicacion,isbn) values (100,'09/20/2012','978-0307387264');
-insert into LibroEntity (id,fechapublicacion,isbn) values (700,'02/20/1995','978-0307474728');
-insert into LibroEntity (id,fechapublicacion,isbn) values (900,'02/25/1996','978-8466329088');
-insert into LibroEntity (id,fechapublicacion,isbn) values (1000,'02/25/2013','978-0142424179');
+insert into EditorialEntity(id,nombre) values (11,'Vintage espaniol');
+insert into EditorialEntity(id,nombre) values (12,'UNAM');
 
+-- Ernesto
+insert into LibroEntity (id,fechapublicacion,isbn,editorial_id) values (100,'09/20/2012','978-0307387264',11);
+insert into LibroEntity (id,fechapublicacion,isbn,editorial_id) values (700,'02/20/1995','978-0307474728',11);
+insert into LibroEntity (id,fechapublicacion,isbn,editorial_id) values (900,'02/25/1996','978-8466329088',12);
+insert into LibroEntity (id,fechapublicacion,isbn,editorial_id) values (1000,'02/25/2013','978-0142424179',12);
 
 -- Juan Camilo
 insert into FotocopiaEntity(id,capitulo,nropaginas,profesor) values(400,'del 3 al 20',14,'Profe 2');
@@ -94,6 +97,8 @@ insert into AreaDeConocimientoEntity(id,tipo) values (11,'Romanticismo');
 insert into AreaDeConocimientoEntity(id,tipo) values (12,'Literatura');
 insert into AreaDeConocimientoEntity(id,tipo) values (13,'Fisica');
 insert into AreaDeConocimientoEntity(id,tipo) values (14,'Matematicas');
+
+
 
 -- Ernesto
 insert into ComentarioEntity(id,comentario,fecha) values (11,'es malo','2015-10-28 14:12:59');
