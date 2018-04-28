@@ -5,7 +5,7 @@
        
         // Internal modules dependencies       
         'libroModule',
-       'fotocopiasModule'
+       'fotocopiaModule'
         
 
     ]);
