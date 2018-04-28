@@ -47,10 +47,6 @@ public class CompraLogic {
     {
         throw new BusinessLogicException("El costo de la compra no puede ser 0 ni vacio");
     }
-    if(entity.getFecha().after(fecha))
-    {
-        throw new BusinessLogicException("La fecha no es valida. fecha = " + entity.getFecha());
-    }
    
    
     return persistencia.create(entity);
