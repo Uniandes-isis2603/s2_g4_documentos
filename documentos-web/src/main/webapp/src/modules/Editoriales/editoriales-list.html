@@ -35,20 +35,27 @@ a<div  id="CursoDiv2" class="container-fluid"   >
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-3"> 
-                                        <strong>Id:</strong>
+                                        <h4><strong>Id:</strong></h4>
                                             
-                                        <br>
-                                        <strong>Nombre:</strong>
-                                        <br>
-                                        <strong>Libros:</strong> 
+                                        
+                                       <h4> <strong>Nombre:</strong></h4>
+                                       
+                                        <h4><strong>Libros:</strong> </h4>
                                         <br>
                                     </div>
                                     <div class="col-sm-3">
-                                        {{editorial.id}}
-                                        <br>
-                                        {{editorial.nombre}}
-                                        <br>
-                                        {{editorial.libros}} 
+                                       <h4> {{editorial.id}}</h4>
+                                        
+                                       <h4> {{editorial.nombre}}</h4>
+                                        <div class="row">
+                                            <div class="col-sm-2"  ng-repeat="libroMagico in editorial.libros">
+                                                <div class="thumbnail " style="height: 210; width:150px" >
+                                                    <img src="{{libroMagico.caratula}}" alt="..." style=" width:150px; height:200" >
+                                                        
+                                                </div>
+                                            </div>
+                                        </div>
+                                            
                                     </div>
                                     <div class="col-sm-3">
                                         
@@ -59,6 +66,7 @@ a<div  id="CursoDiv2" class="container-fluid"   >
                                                 style="margin-right: 125px ; color:white" ng-click="darLibros()"><a  style="color: white" data-toggle="modal" href="#Modal{{$index}}">
                                                 <i class="fas fa-plus-circle" ></i> Añadir Libros
                                             </a></button>
+                                                
                                     </div>
                                         
                                     <div class="modal fade" id="Modal{{$index}}" role="dialog">
@@ -81,14 +89,14 @@ a<div  id="CursoDiv2" class="container-fluid"   >
                                                 </div>
                                             </div>
                                         </div>
-
+                                            
                                     </div>
                                 </div>
                                     
                             </div>
                         </div>
                     </div>
-                    
+                        
                 </div>
             </div>
             <br>
