@@ -1,22 +1,22 @@
 (function(ng) {
-    var mod = ng.module("reservaModule", ['usuarioModule','ui.router']);
+    var mod = ng.module("deseadoModule", ['usuarioModule','ui.router']);
         mod.constant("usuariosContext", "api/usuarios");
 
     mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider,$urlRouterProvider){
-            var basePath = 'src/modules/reservas/';
-            $urlRouterProvider.otherwise("/reservasList");
+            var basePath = 'src/modules/deseados/';
+            $urlRouterProvider.otherwise("/deseadosList");
                        
-            $stateProvider.state('reservas', {
-                url: '/{usuarioId: int}/reservas',
+            $stateProvider.state('deseados', {
+                url: '/{usuarioId: int}/deseados',
                 abstract: true,
                 parent:'usuarios',
                 param: {
                    usuarioId: null
                 },
                 views: {
-                    'reservas': {
-                        templateUrl: basePath + 'reservas.html',
-                        controller: 'reservasCtrl',
+                    'deseados': {
+                        templateUrl: basePath + 'deseados.html',
+                        controller: 'deseadosCtrl',
                         controllerAs: 'ctrl'
                     },
                     'menuView':{
@@ -27,28 +27,28 @@
                     }
                     
                 }
-            }).state('reservasList', {
+            }).state('deseadosList', {
                 url: '/list',
-                parent: 'reservas',
+                parent: 'deseados',
                 views: {
                     'detailView': {
-                        templateUrl: basePath + 'reservas.list.html',
-                        controller: 'reservasCtrl',
+                        templateUrl: basePath + 'deseados.list.html',
+                        controller: 'deseadosCtrl',
                         controllerAs: 'ctrl'
                     }
                  
                     
                 }
-            }).state('reservaDetail', {
-                url: '/{reservaId:int}/detail',
-                parent:'reservas',
+            }).state('deseadoDetail', {
+                url: '/{deseadoId:int}/detail',
+                parent:'deseados',
                 param:{
-                    reservaId: null
+                    deseadoId: null
                 },
                 views: {
                     'detailView':{
-                        templateUrl: basePath + 'reservas.detail.html',
-                        cotroller: 'reservaDetailCtrl',
+                        templateUrl: basePath + 'deseados.detail.html',
+                        cotroller: 'deseadoDetailCtrl',
                         controllerAs: 'ctrl'
                         
                     }

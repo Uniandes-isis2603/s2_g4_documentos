@@ -65,7 +65,13 @@
                         templateUrl: basePath + 'usuarios.detail.html',
                         controller: 'usuarioDetailCtrl',
                         controllerAs: 'ctrl'
+                    },
+                    'menuView': {
+                        templateUrl: basePath + 'menu.html',
+                        controller: 'usuarioDetailCtrl',
+                        controllerAs: 'ctrl'
                     }
+
                 }
             });
         }]);
