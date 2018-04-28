@@ -4,10 +4,10 @@
         'ui.router',
        
         // Internal modules dependencies       
-        'citiesModule',
+
         'libroModule',
-        'usuarioModule',
-        'reservaModule'
+       'fotocopiaModule'
+
         
 
     ]);
@@ -15,5 +15,8 @@
     app.config(['$qProvider', function ($qProvider) {
             $qProvider.errorOnUnhandledRejections(false);
         }]);
+        app.run( function ($rootScope) {
+            $rootScope.home=0;
+        });
 })(window.angular);
 
