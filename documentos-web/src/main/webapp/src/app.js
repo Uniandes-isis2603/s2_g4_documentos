@@ -10,8 +10,9 @@
        'usuarioModule',
        'reservaModule',
        'deseadoModule',
-       'autorModule',
-       'areaModule'
+       'paypalModule',
+       'tarjetadecreditoModule',
+       'comprasModule'
 
         
 
