@@ -37,6 +37,7 @@ public class PayPalDTO {
     private Long Id;
     private String correoElectronico;
     private String usuario;
+    private Long idusuario;
     
     public PayPalDTO()
     {
@@ -50,6 +51,7 @@ public class PayPalDTO {
             this.Id = entity.getId();
             this.correoElectronico = entity.getCorreoElectronico();
             this.usuario = entity.getUsuario();
+            this.idusuario = entity.getIdusuario();
         }
     }
     
@@ -59,6 +61,7 @@ public class PayPalDTO {
         entity.setId(this.Id);
         entity.setCorreoElectronico(this.correoElectronico);
         entity.setUsuario(this.usuario);
+        entity.setIdusuario(this.getIdusuario());
         
         return entity;
         }
@@ -103,6 +106,20 @@ public class PayPalDTO {
      */
     public void setId(Long Id) {
         this.Id = Id;
+    }
+
+    /**
+     * @return the idusuario
+     */
+    public Long getIdusuario() {
+        return idusuario;
+    }
+
+    /**
+     * @param idusuario the idusuario to set
+     */
+    public void setIdusuario(Long idusuario) {
+        this.idusuario = idusuario;
     }
     
 }

@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.documentos.resources;
 
 import co.edu.uniandes.csw.documentos.dtos.ReservaDetailedDTO;
+import co.edu.uniandes.csw.documentos.dtos.UsuarioDetailedDTO;
 import co.edu.uniandes.csw.documentos.ejb.ReservaLogic;
 import co.edu.uniandes.csw.documentos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.documentos.entities.ReservaEntity;
 import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.documentos.persistence.UsuarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -54,6 +56,9 @@ public class ReservaResource {
 
     @Inject
     UsuarioLogic usuarioLogic;
+    
+        @Inject
+    UsuarioPersistence usuarioP;
 
     private List<ReservaDetailedDTO> listReservaEntity2DetailDTO(List<ReservaEntity> entityList) {
         List<ReservaDetailedDTO> list = new ArrayList<>();
@@ -89,15 +94,17 @@ public class ReservaResource {
      */
     @POST
     public ReservaDetailedDTO createReserva(@PathParam("usuarioId") Long idUser, ReservaDetailedDTO reserva) throws BusinessLogicException {
-
+        UsuarioEntity usuario = null;
         try {
-             usuarioLogic.getUsuario(idUser);
+            usuario = usuarioLogic.getUsuario(idUser);
 
         } catch (BusinessLogicException ex) {
             throw new BusinessLogicException("el usuario al que le quiere agregar el recurso no existe");
 
         }
-
+        reserva.setUsuario(new UsuarioDetailedDTO(usuario));
+        usuario.getReservas().add(reserva.toEntity());
+        usuarioLogic.updateUsuario(usuario.getId(), usuario);
         return new ReservaDetailedDTO(reservaLogica.createReserva(reserva.toEntity()));
 
     }
@@ -116,9 +123,9 @@ public class ReservaResource {
      * en la aplicación de no haber ninguna retornar lista vacia.
      */
     @GET
-    public List<ReservaDetailedDTO> getReservas() {
+    public List<ReservaDetailedDTO> getReservas(@PathParam("usuarioId") Long idUser) throws BusinessLogicException {
         List<ReservaDetailedDTO> lista = new ArrayList<>();
-        lista = listReservaEntity2DetailDTO(reservaLogica.getReservas());
+        lista = listReservaEntity2DetailDTO(usuarioLogic.getUsuario(idUser).getReservas());
         return lista;
     }
 
@@ -142,9 +149,9 @@ public class ReservaResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public ReservaDetailedDTO getReserva(@PathParam("usuarioId") Long idUser, @PathParam("id") Long id)throws BusinessLogicException {
+    public ReservaDetailedDTO getReserva(@PathParam("usuarioId") Long idUser, @PathParam("id") Long id) throws BusinessLogicException {
         try {
-           usuarioLogic.getUsuario(idUser);
+            usuarioLogic.getUsuario(idUser);
 
         } catch (BusinessLogicException ex) {
             throw new BusinessLogicException("el usuario al que le quiere agregar el recurso no existe");
@@ -177,7 +184,7 @@ public class ReservaResource {
     @Path("{id: \\d+}")
     public ReservaDetailedDTO updateReserva(@PathParam("usuarioId") Long idUser, @PathParam("id") Long id, ReservaDetailedDTO reserva) throws BusinessLogicException {
         try {
-             usuarioLogic.getUsuario(idUser);
+            usuarioLogic.getUsuario(idUser);
 
         } catch (BusinessLogicException ex) {
             throw new BusinessLogicException("el usuario al que le quiere agregar el recurso no existe");
@@ -209,10 +216,10 @@ public class ReservaResource {
     @Path("{id: \\d+}")
     public void deleteReserva(@PathParam("usuarioId") Long idUser, @PathParam("id") Long id) throws BusinessLogicException {
         try {
-             usuarioLogic.getUsuario(idUser);
+            usuarioLogic.getUsuario(idUser);
 
         } catch (BusinessLogicException ex) {
-                        throw new BusinessLogicException("el usuario no existe");
+            throw new BusinessLogicException("el usuario no existe");
         }
         reservaLogica.deleteReserva(id);
 

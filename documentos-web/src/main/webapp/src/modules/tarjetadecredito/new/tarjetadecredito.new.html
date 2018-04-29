@@ -1,0 +1,82 @@
+<div id="modalTDC" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+       <div class="container-fluid">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label ng-if="!edit" id="createTarjetadecredito">Create new Tarjeta De Credito</label>
+                <label ng-if="edit" id="editTarjetadecredito">Edit Tarjeta de Credito</label></div>
+            <div class="panel-body">
+                <form name="tarjetadecredito">
+                    <div class="form-group">
+                        <label for="tipoDeTarjeta">Tipo de Tarjeta</label>
+                        <select class="form-control" id="tipoDeTarjeta" required ng-model="data.tipoDeTarjeta">
+                            <option>Visa</option>
+                            <option>MasterCard</option>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="nroDeLaTarjeta" class="col-sm-2">Numero de la tarjeta</label>
+                            <input id="nroDeLaTarjeta" required ng-model="data.nroDeLaTarjeta" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="numeroDeSeguridad" class="col-sm-2">Codigo de seguridad</label>
+                            <input id="nroDeSeguridad" required ng-model="data.numeroDeSeguridad" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="nombreEnLaTarjeta" class="col-sm-2">Nombre en la tarjeta</label>
+                            <input id="nombreEnLaTarjeta" required ng-model="data.nombreEnLaTarjeta" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <move-lists ng-if="edit" selected="selectedItems" available="availableItems"></move-lists>
+                    
+
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!tarjetadecredito.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Warning!</strong><p>All inputs are required*</p>
+                            </div> 
+                        </div> 
+                    </div>
+                     <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <input ng-show="tarjetadecredito.$valid" ng-click="createTarjetadecredito()" value="Save" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="tarjetadecreditoList">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="center-block well text-center" ng-if="isAuthenticated() && !hasPermissions()">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <h1 class="float-left display-3 mr-4">403 Forbidden</h1>
+                    <h4 >You do not have permission for this action.</h4>
+                    <p >Contact the administrator to obtain permission.</p>
+                </div>
+            </div>
+        </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

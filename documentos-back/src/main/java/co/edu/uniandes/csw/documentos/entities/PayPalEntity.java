@@ -25,6 +25,7 @@ public class PayPalEntity extends MetodoDePagoEntity implements Serializable{
     
     private String usuario;
     private String correoElectronico;
+    private Long idusuario;
     
     
     /**
@@ -33,6 +34,7 @@ public class PayPalEntity extends MetodoDePagoEntity implements Serializable{
     public String getUsuario() {
         return usuario;
     }
+    
 
     /**
      * @param usuario the usuario to set
@@ -69,6 +71,20 @@ public class PayPalEntity extends MetodoDePagoEntity implements Serializable{
      */
     public void setUEntity(UsuarioEntity UEntity) {
         this.UEntity = UEntity;
+    }
+
+    /**
+     * @return the idusuario
+     */
+    public Long getIdusuario() {
+        return idusuario;
+    }
+
+    /**
+     * @param idusuario the idusuario to set
+     */
+    public void setIdusuario(Long idusuario) {
+        this.idusuario = idusuario;
     }
     
 

@@ -33,6 +33,7 @@ public class ReservaEntity implements Serializable {
         return documentos;
     }
 
+    
     /**
      * @param documentos the documentos to set
      */
@@ -57,6 +58,9 @@ public class ReservaEntity implements Serializable {
     @OneToMany
     private List<DocumentoEntity> documentos;
 
+    @PodamExclude
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private  UsuarioEntity usuario;
     /**
      *
      * @return id de la reserva.
@@ -106,5 +110,24 @@ public class ReservaEntity implements Serializable {
         this.costo = pCosto;
 
     }
+
+    /**
+     * @return the usuario
+     */
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+   
 
 }

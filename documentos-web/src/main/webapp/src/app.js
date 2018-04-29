@@ -1,11 +1,14 @@
 (function (ng) {
     var app = angular.module('mainApp', [
         // External dependencies
-        'ui.router',
+       'ui.router',
        
         // Internal modules dependencies       
-        'libroModule',
-       'fotocopiaModule'
+       'libroModule',
+       'fotocopiaModule',
+       'usuarioModule',
+       'reservaModule',
+       'deseadoModule'
         
 
     ]);

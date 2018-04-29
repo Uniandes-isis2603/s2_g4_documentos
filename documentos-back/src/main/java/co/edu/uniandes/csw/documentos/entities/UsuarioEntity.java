@@ -16,28 +16,31 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author f.marroquin10
  */
 @Entity
-public class UsuarioEntity  implements Serializable {
-  
-   @Id
-   private Long id;
-   private String nombre;
-   private String nombreUsuario;
-   private String correo;
-   private int edad;
-   private int genero;
+public class UsuarioEntity implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    
+    private String nombre;
+    private String nombreUsuario;
+    private String correo;
+    private int edad;
+    private int genero;
 
     /**
      * reservas, relación de composición unidireccional
      */
     @PodamExclude
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<ReservaEntity> reservas;
 
     /**
      * reservas, relación de composición unidireccional
      */
     @PodamExclude
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CompraEntity> compras;
 
     /**
@@ -51,21 +54,21 @@ public class UsuarioEntity  implements Serializable {
      * paypal, relación de composición biidireccional
      */
     @PodamExclude
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PayPalEntity> paypal;
 
     /**
      * tarjetasCredito, relación de composición bidireccional
      */
     @PodamExclude
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TarjetaDeCreditoEntity> tarjetasCredito;
 
     /**
      * deseado, relación de composición unidireccional
      */
     @PodamExclude
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne( cascade = CascadeType.ALL, orphanRemoval = true)
     private DeseadoEntity deseado;
 
     /**
@@ -92,25 +95,22 @@ public class UsuarioEntity  implements Serializable {
         return nombreUsuario;
     }
 
-  
-
-     /**
+    /**
      *
      * @return edad del usuario
      */
-    public int getEdad()
-    {
+    public int getEdad() {
         return edad;
     }
-    
-     /**
+
+    /**
      *
      * @param pEdad nueva edad del usuario.
      */
-    public void setEdad(int pEdad)
-    {
-        this.edad=pEdad;
+    public void setEdad(int pEdad) {
+        this.edad = pEdad;
     }
+
     /**
      *
      * @param pId nuevo id del usuario.
@@ -135,8 +135,6 @@ public class UsuarioEntity  implements Serializable {
     public void setNombreUsuario(String pNombre) {
         this.nombreUsuario = pNombre;
     }
-
- 
 
     /**
      * @return the reservas
@@ -250,6 +248,4 @@ public class UsuarioEntity  implements Serializable {
         this.genero = genero;
     }
 
-    
-    
 }

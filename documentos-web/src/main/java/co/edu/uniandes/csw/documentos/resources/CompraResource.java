@@ -73,7 +73,7 @@ private CompraLogic logica;
     public CompraDetailedDTO createCompra(CompraDetailedDTO Compra ) throws BusinessLogicException 
     {
          CompraEntity editorialEntity = Compra.toEntity();
-        System.out.println(Compra.getMetodoDePagoTDC().getNombreEnLaTarjeta()+"-"+ Compra.getMetodoDePagoTDC().getId() );
+        System.out.println(Compra!=null );
               
          
        CompraEntity nuevoEditorial = logica.createCompra(editorialEntity);
