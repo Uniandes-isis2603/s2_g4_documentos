@@ -1,0 +1,43 @@
+
+          <div class="container-fluid">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label ng-if="!edit" id="createPaypal">Create new PayPal</label>
+                <label ng-if="edit" id="editPaypal">Edit PayPal</label></div>
+            <div class="panel-body">
+                <form name="paypal">
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="correoElectronico">Email address</label>
+                            <input type="email" required ng-model="data.correoElectronico" class="form-control" id="correoElectronico" placeholder="name@example.com"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="usuario" class="col-sm-12">Usuario:</label>
+                            <input id="usuario" required ng-model="data.usuario" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <move-lists ng-if="edit" selected="selectedItems" available="availableItems"></move-lists>
+
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12" ng-if="!paypal.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Warning!</strong><p>All inputs are required*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                 <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <input ng-show="paypal.$valid" ng-click="createPaypal()" value="Save" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="paypalList">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+

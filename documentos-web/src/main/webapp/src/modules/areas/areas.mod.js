@@ -81,7 +81,9 @@
                 }
             }).state('areaUpdate', {
                 url: '/update/{areaId:int}',
+
                 parent: 'areas',
+
                 param: {
                     autorId: null
                 },
