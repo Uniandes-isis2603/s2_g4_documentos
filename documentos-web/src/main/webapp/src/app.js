@@ -5,12 +5,13 @@
         'ui.router',
        
         // Internal modules dependencies       
-
-        'libroModule',
+       'libroModule',
        'fotocopiaModule',
        'usuarioModule',
        'reservaModule',
-       'deseadoModule'
+       'deseadoModule',
+       'autorModule',
+       'areaModule'
 
         
 

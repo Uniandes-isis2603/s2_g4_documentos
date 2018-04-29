@@ -146,10 +146,10 @@ insert into DeseadoEntity(id, nombre, cantidad) values (2006, ':3 ñom ñom',0);
 
 
 -- Gregorio
-insert into PayPalEntity (id, usuario, correoElectronico) values (65000, 'gregorio','gregorio@ospina');
-insert into PayPalEntity (id, usuario, correoElectronico) values (65001,'andres','andres@ospina');
-insert into PayPalEntity (id, usuario, correoElectronico) values (65002,'jeronimpo','jeronimo@ospina');
-insert into PayPalEntity (id, usuario, correoElectronico) values (65003,'juan','juan@ospina');
+insert into PayPalEntity (id, usuario, correoElectronico, idusuario) values (65000, 'gregorio','gregorio@ospina', 45);
+insert into PayPalEntity (id, usuario, correoElectronico, idusuario) values (65001,'andres','andres@ospina', 45);
+insert into PayPalEntity (id, usuario, correoElectronico, idusuario) values (65002,'jeronimpo','jeronimo@ospina', 46);
+insert into PayPalEntity (id, usuario, correoElectronico, idusuario) values (65003,'juan','juan@ospina', 47);
 
 -- Gregorio
 insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7500, 'Visa','4234567890123456', 'gregorio', 123);
@@ -171,7 +171,7 @@ insert into ComentarioEntity(id,comentario,fecha) values (11000,'es malo','2015-
 insert into CursoEntity(id,codigo,departamento,nombre) values (3000,'Ma205','Matematicas','Matematica basica');
 
 INSERT INTO COMPRAENTITY (id,COSTO, FECHA, TIPODECOMPRA, METODODEPAGOPAYPAL_ID, METODODEPAGOTDC_ID) 
-	VALUES (10000,300, '2018-02-22', 'efectivo', NULL, 7500);
+	VALUES (10000,300, '2018-02-22 12:00:00', 'efectivo', NULL, 7500);
 
 --------------------------------------------------------------------------
 ----------------------------- RELACIONES ---------------------------------
