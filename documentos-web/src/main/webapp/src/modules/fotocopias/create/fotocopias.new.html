@@ -1,13 +1,13 @@
 <div class="container-fluid">
     <div class="panel panel-heading" style="background-color: #ECECEC">
-        <img  src="http://aerospace.wpengine.netdna-cdn.com/wp-content/uploads/2012/02/iStock_000023976561_FullAerospaceBooksBanner.jpg" alt ="banner" style="width:100%" >
+        <img  src="http://conejovalleytutor.com/wp-content/uploads/2015/06/study-material-1.jpg" alt ="banner" style="width:100%; height: 50%" >
     </div>
     <div class='panel panel-body'>
         <div class="col-md-1">
 
         </div>
         <div class='col-md-4'>
-            <form name='libro'>
+            <form name='fotocopia'>
                 <div class="form-group">
                     <label for="Nombre">Nombre:</label>
                     <input type="text" class="form-control" placeholder="Nombre" id="nombre" required ng-model="data.nombre">
@@ -15,6 +15,10 @@
                 <div class="form-group">
                     <label for="Descripcion">Descripción:</label>
                     <textarea  rows="5" class="form-control" placeholder="Descripción" id="descripcion" required ng-model="data.descripcion"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="Profesor">Profesor que dejo la fotocopia:</label>
+                    <input  type ="text" class="form-control" placeholder="Nombre profesor" id="profesor"  ng-model="data.profesor">
                 </div>
                 <div class="form-group">
                     <label for="Caratula">Caratula:</label>
@@ -25,17 +29,17 @@
                     <input type="number" class="form-control" placeholder="EJ: 20000" id="precio" required ng-model="data.precio">
                 </div>
                 <div class="form-group">
-                    <label for="ISBN">ISBN:</label>
-                    <input type="text" class="form-control" placeholder="EJ: 978-0307474728" id="isbn" required ng-model="data.ISBN">
+                    <label for="Numerodecapitulos">Descripción capitulos:</label>
+                    <input type="text" class="form-control" placeholder="EJ: 1,2,3 del titulo 2" id="numeroCapitulos" required ng-model="data.capitulos">
                 </div>
                 <div class="form-group">
-                    <label for="Fecha">Fecha de publicación:</label>
-                    <input type="date" class="form-control"  id="fecha" required ng-model="data.fechaPublicacion">
+                    <label for="paginas">Cantidad de paginas:</label>
+                    <input type="number" class="form-control"  id="nroPaginas" required ng-model="data.nroPaginas">
                 </div>
                 <div class="form-group row">
                     <div class="form-group col-sm-12">
-                        <input  ng-click="createLibro()" value="Save" class="w3-btn w3-green"/>
-                        <button class="w3-btn w3-red" ui-sref="librosList">Cancel</button>
+                        <input  ng-click="createFotocopia()" value="Save" class="w3-btn w3-green"/>
+                        <button class="w3-btn w3-red" ui-sref="fotocopiasList">Cancel</button>
                     </div>
                 </div> 
             </form>
