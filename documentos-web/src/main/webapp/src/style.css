@@ -240,3 +240,96 @@ hr {
     height: 1000px;
     width: 500px;
 }
+
+.menuNavUsuario{
+    position: fixed;
+    width:300px;
+    height: 100%;
+    background-color: #2c3e50;
+}
+.menuUlUsuario{
+    margin-top:120px;
+    list-style: none;
+    display: block;
+}
+.menuUser{
+    width:200px;
+    height: 50px;
+    border-bottom: 1px solid #000066EC ;
+    overflow: hidden;
+    opacity: .5;
+}
+.linkUser{
+    position: absolute;
+    float: right;
+    color: white;
+    opacity: .9;
+    font-size: 1.2em;
+    padding-left: 10px;
+    padding-top: 10px;
+    text-decoration: none;
+}
+.menuUser a:hover {
+    background-color: white;
+    width:200px;
+    height: 50px;
+    color: black;
+    opacity: 40;
+    text-decoration: none;
+}
+.infoUser{
+    padding-top: 120px;
+    position: absolute;
+}
+#infoUsuario
+{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.tablaListaU{
+    width: 100%;
+    text-align: left;
+    background: white;
+    border-collapse: collapse;
+}
+.tablaListaU th,td{
+    padding: 30px;
+}
+.tablaListaU thead{
+    border-bottom: solid 12px;
+    border-bottom-color:  #8c8c8c;
+    color: white;
+    background-color:  #2c3e50;
+}
+.tablaListaU tr:hover td{
+    background-color: #8c8c8c;
+    color: white;
+}
+#botonFede {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+#botonFede:hover {
+    background-color: #255625; 
+    border-bottom-color: #255625;
+    color: white;
+}
+.listaReservas {
+  display:inline;  display:inline;
+     padding-left:3px;
+     padding-right:3px;
+     
+}
