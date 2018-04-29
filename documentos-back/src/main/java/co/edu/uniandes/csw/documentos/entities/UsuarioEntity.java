@@ -64,12 +64,7 @@ public class UsuarioEntity implements Serializable {
     @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TarjetaDeCreditoEntity> tarjetasCredito;
 
-    /**
-     * deseado, relación de composición unidireccional
-     */
-    @PodamExclude
-    @OneToMany( cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<DeseadoEntity> deseados;
+   
 
     /**
      *
@@ -206,19 +201,9 @@ public class UsuarioEntity implements Serializable {
         this.tarjetasCredito = tarjetasCredito;
     }
 
-    /**
-     * @return the deseado
-     */
-    public List<DeseadoEntity> getDeseados() {
-        return deseados;
-    }
+   
 
-    /**
-     * @param deseado the deseado to set
-     */
-    public void setDeseados(List<DeseadoEntity> deseado) {
-        this.deseados = deseado;
-    }
+
 
     /**
      * @return the correo

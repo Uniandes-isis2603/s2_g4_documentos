@@ -67,12 +67,7 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
             }
         }
         
-         if (entity.getDeseados() != null) {
-            deseados = new ArrayList<>();
-            for (DeseadoEntity entityDeseado : entity.getDeseados()) {
-                deseados.add(new DeseadoDTO(entityDeseado));
-            }
-        }
+        // }
         //if (entity.getMetodosDePago() != null) {
         //  MetodosDePago = new ArrayList<>();
         //for (AuthorEntity entityAuthor : entity.getMetodosDePago()) {
@@ -105,7 +100,7 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
             for (DeseadoDTO deseado : getDeseados()) {
                 deseadoEntity.add(deseado.toEntity());
             }
-            usuario.setDeseados(deseadoEntity);
+           // usuario.setDeseados(deseadoEntity);
         }
         if (getReservas() != null) {
             List<ReservaEntity> ReservasEntity = new ArrayList<>();
