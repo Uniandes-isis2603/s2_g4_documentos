@@ -1,0 +1,29 @@
+<div class="container-fluid">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <label ng-if="!edit" id="createArea">Crear Area</label>
+                <label ng-if="edit" id="editArea">Editar Area</label>
+            </div>
+            <div class="panel-body">
+                <form name="autor">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="areaTipo" class="col-sm-2">Tipo:</label>
+                            <input id="areaTipo" required ng-model="data.tipo" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <move-lists ng-if="edit" selected="selectedItems" available="availableItems"></move-lists>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <input ng-click="createArea()" value="Guardar" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="areasList">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+</div>
+
+

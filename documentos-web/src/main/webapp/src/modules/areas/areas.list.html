@@ -1,0 +1,51 @@
+
+<div class="container-fluid">
+    <div class="panel panel-heading" id ="imagenAutorPrincipal">
+   
+    </div>
+    <div class="botones">
+        <a id="{{$index}}-new" class="btn btn-default" ui-sref="areasCreate()">Agregar</span></a>
+    </div>
+    <div ng-repeat="area in areasRecords">
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}" >
+                        {{area.tipo}}
+                    </a>
+                </h4>
+                <div align="right">
+                    <a id="{{$index}}-new" class="btn btn-info" ui-sref="areaDetail({areaId: area.id})">Ver Mas</span></a>
+                </div>
+            </div>
+            <div id="collapse{{$index}}" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <h3>
+                    <strong>Tipo: </strong>{{area.tipo}}
+                    <br></h3>
+                    <strong>Documentos: </strong>
+                    <div class="panel panel-body" style="background-color: #FCFCFC">
+                        <div ng-repeat="fotocopia in area.documentos">
+                            <div class="col-md-3" style="margin-bottom: 100px;">
+                                <div class = "w3-card w3-hover-shadow" style="width:70%">
+                                    <img class="center-cropped" ng-src="{{fotocopia.caratula}}" alt="text" style="width:100%">
+                                    <div class ="w3-container w3-center w3-light-gray caja">
+                                        <h2 style="font-family: 'Roboto', sans-serif; font-size: 30px; padding-bottom: 10%"><strong>${{fotocopia.precio}}</strong></h2>
+                                        <h2 class="limitar"><small>{{fotocopia.nombre}}</small></h2>                   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel-footer">    
+    <div class="panel panel-heading" style="background-color: #ECECEC">
+        <h1 class="finalAutores">Ya no hay mas áreas publicadas</h1>
+    </div>
+</div>
