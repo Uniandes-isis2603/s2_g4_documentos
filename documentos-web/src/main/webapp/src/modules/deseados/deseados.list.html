@@ -1,0 +1,26 @@
+
+
+<div class="container-fluid" style="padding-left: 400px; margin-top: 100px; ">
+        <table class="tablaListaU">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Fecha</th>
+                    <th>Costo</th>
+                    <th>visualizar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="deseado in deseadosRecords">
+                    <td id="id">{{deseado.id}}</td>
+                    <td id="nombre">{{deseado.fecha}}</td>
+                    <td id="UserName">{{deseado.costo}}</td>
+                    <td><button id="botonFede" ui-sref="usuarioDetail({usuarioId: usuario.id})">ver</button> </td>
+                    <td><button id="botonFede" ui-sref="usuarioDetail({usuarioId: usuario.id})">Eliminar</button> </td>
+
+
+                </tr>
+            </tbody>
+
+        </table>
