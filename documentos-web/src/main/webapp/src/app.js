@@ -9,8 +9,7 @@
         'inicioModule',
         'citiesModule',
         'editorialesModule',
-        'cursosModule'
-
+        'cursosModule',
        'libroModule',
        'fotocopiaModule',
        'usuarioModule',
