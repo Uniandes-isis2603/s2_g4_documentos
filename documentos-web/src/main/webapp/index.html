@@ -1,4 +1,6 @@
+
 <html ng-app="mainApp">
+
    <head>
        
        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,6 +24,23 @@
        <!-- Cities -->
        <script src="src/modules/cities/cities.mod.js" type="text/javascript"></script>
        <script src="src/modules/cities/cities.ctrl.js" type="text/javascript"></script>
+       
+       
+       
+         <!-- usuarios -->
+        <script src="src/modules/usuarios/usuarios.mod.js" type="text/javascript"></script>
+        <script src="src/modules/usuarios/usuarios.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/usuarios/usuarios.detail.ctrl.js" type="text/javascript"></script>
+        
+         <!-- reservas -->
+        <script src="src/modules/reservas/reservas.mod.js" type="text/javascript"></script>
+        <script src="src/modules/reservas/reservas.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/reservas/reservas.detail.ctrl.js" type="text/javascript"></script>
+        
+         <!-- deseado -->
+        <script src="src/modules/deseados/deseados.mod.js" type="text/javascript"></script>
+        <script src="src/modules/deseados/deseados.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/deseados/deseados.detail.ctrl.js" type="text/javascript"></script>
            
        <!-- Libros -->
        <script src="src/modules/libros/libros.mod.js" type="text/javascript"></script>
@@ -39,7 +58,7 @@
 
       
        <!----Editoriales ---->
-       <script src="src/modules/Editoriales/editoriales.mod.js" type="text/javascript"></script>
+     <!--  <script src="src/modules/Editoriales/editoriales.mod.js" type="text/javascript"></script>
        <script src="src/modules/Editoriales/editoriales.ctrl.js" type="text/javascript"></script>
       
       <!--Autores-->
@@ -83,9 +102,10 @@
        <script src="src/modules/cursos/cursos.ctrl.js" type="text/javascript"></script>
            
            
+        -->
        <script src="src/app.js" type="text/javascript"></script>
        <script src="src/http-interceptor.factory.js" type="text/javascript"></script>
-           
+          
            
            
            
@@ -113,9 +133,13 @@
                             <li><a ui-sref="cursos" class="navBusqueda">Cursos</a></li>
                             <li><a ui-sref="autoresList" class="navBusqueda">Autores</a></li>
                             <li><a ui-sref="areasList" class="navBusqueda">Areas de Conocimiento</a></li>
+
+                         
                        </ul>
                            <ul class="nav  navbar-nav navbar-right">        
                                <li><a data-toggle="modal" href="#myModal">Sign in</a></li>
+                               <li><a ui-sref="usuarioCreate" class="navBusqueda">Register</a></li>
+
                                <li> <a href="#"><i class="fas fa-shopping-cart"></i> Shoping Cart</a> </li>
                            </ul>
                        </div>
@@ -180,6 +204,8 @@
        </div>
          
    </div>
+
 </div>
 </body>
 </html>
+

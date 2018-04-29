@@ -5,6 +5,8 @@ delete from DocumentoEntity_CursoEntity;
 delete from DocumentoEntity_ImagenEntity;
 delete from UsuarioEntity_TarjetaDeCreditoEntity;
 delete from UsuarioEntity_PayPalEntity;
+delete from UsuarioEntity_ReservaEntity;
+delete from UsuarioEntity_DeseadoEntity;
 delete from CursoEntity_DocumentoEntity;
 delete from UsuarioEntity;
 delete from LibroEntity;
@@ -112,25 +114,36 @@ insert into CursoEntity(id,codigo,departamento,nombre) values (12,'MATE1214','Ma
 
 -- Federico
 
-insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (45,'gregorio ospina','tuTranqui123',20,'g.ospina@uniandes.edu.co',1);
-insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (46,'nicolas sotelo','nikitaArrieta',20,'n.sotelo@uniandes.edu.co',1);
-insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (47,'juan camilo','dobleConSis',20,'j.jaramillo@gmail.edu.co',1);
+insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (45,'gregorio ospina','Grego777',20,'g.ospina@uniandes.edu.co',1);
+insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (46,'nicolas sotelo','nico',20,'n.sotelo@uniandes.edu.co',1);
+insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (47,'juan camilo','juanCa',20,'j.jaramillo@gmail.edu.co',1);
 insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (48,'ernesto v','thePullRequester',20,'e.viera@uniandes.edu.co',1);
-insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (49,'mario ruiz','asdawqweasd',30,'mario@uniandes.edu.co',1);
+insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (49,'ana duarte','thePrincesAna',30,'ana@uniandes.edu.co',0);
 insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (50,'cesar','yonoloetiendos',32,'cesar@uniandes.edu.co',1);
-insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (51,'laura pardo','nerd123',20,'l.pardo@uniandes.edu.co',0);
+insert into UsuarioEntity(id,nombre,nombreUsuario,edad,correo,genero) values (51,'Federico Marroquin','Faker',20,'f.marroquin10@uniandes.edu.co',1);
 
 -- Federico
 insert into ReservaEntity(id, fecha, costo) values (545, '2013-10-28 14:59:59',54000);
 insert into ReservaEntity(id, fecha, costo) values (546,'2018-02-15 05:27:20',20000);
 insert into ReservaEntity(id, fecha, costo) values (547,'2017-10-28 12:45:05',60000);
 insert into ReservaEntity(id, fecha, costo) values (548,'2012-04-05 22:20:13',10000);
+insert into ReservaEntity(id, fecha, costo) values (549,'2012-04-05 22:20:13',10000);
+insert into ReservaEntity(id, fecha, costo) values (550,'2012-04-05 22:20:13',10000);
+insert into ReservaEntity(id, fecha, costo) values (551,'2012-04-05 22:20:13',10000);
+insert into ReservaEntity(id, fecha, costo) values (552,'2012-04-05 22:20:13',10000);
+insert into ReservaEntity(id, fecha, costo) values (553,'2012-04-05 22:20:13',10000);
+insert into ReservaEntity(id, fecha, costo) values (554,'2012-04-05 22:20:13',10000);
+
 
 -- Federico
-insert into DeseadoEntity(id, nombre, cantidad) values (2000, 'mi lista',4.0);
-insert into DeseadoEntity(id, nombre, cantidad) values (2001, 'mis documentos',6.0);
-insert into DeseadoEntity(id, nombre, cantidad) values (2002, 'mis desesos',10.0);
-insert into DeseadoEntity(id, nombre, cantidad) values (2003, 'libros pref',5.0);
+insert into DeseadoEntity(id, nombre, cantidad) values (2000, 'mi lista',0);
+insert into DeseadoEntity(id, nombre, cantidad) values (2001, 'mis documentos',0);
+insert into DeseadoEntity(id, nombre, cantidad) values (2002, 'mis desesos',0);
+insert into DeseadoEntity(id, nombre, cantidad) values (2003, 'regalos para navidad',0);
+insert into DeseadoEntity(id, nombre, cantidad) values (2004, 'libritos',0);
+insert into DeseadoEntity(id, nombre, cantidad) values (2005, ' !los quiero',0);
+insert into DeseadoEntity(id, nombre, cantidad) values (2006, ':3 ñom ñom',0);
+
 
 -- Gregorio
 insert into PayPalEntity (id, usuario, correoElectronico, idusuario) values (65000, 'gregorio','gregorio@ospina', 45);
@@ -163,6 +176,26 @@ INSERT INTO COMPRAENTITY (id,COSTO, FECHA, TIPODECOMPRA, METODODEPAGOPAYPAL_ID, 
 --------------------------------------------------------------------------
 ----------------------------- RELACIONES ---------------------------------
 --------------------------------------------------------------------------
+
+-- Federico
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (45, 2000);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (45, 2001);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (46, 2002);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (48, 2003);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (49, 2004);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (50, 2005);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (51, 2006);
+
+
+-- Federico
+insert into UsuarioEntity_ReservaEntity (UsuarioEntity_ID, Reservas_ID) values (45, 545);
+insert into UsuarioEntity_ReservaEntity (UsuarioEntity_ID, Reservas_ID) values (45, 546);
+insert into UsuarioEntity_ReservaEntity (UsuarioEntity_ID, Reservas_ID) values (46, 547);
+insert into UsuarioEntity_ReservaEntity (UsuarioEntity_ID, Reservas_ID) values (47, 548);
+insert into UsuarioEntity_ReservaEntity (UsuarioEntity_ID, Reservas_ID) values (45, 549);
+insert into UsuarioEntity_ReservaEntity (UsuarioEntity_ID, Reservas_ID) values (45, 550);
+insert into UsuarioEntity_ReservaEntity (UsuarioEntity_ID, Reservas_ID) values (45, 551);
+
 
 -- Gregorio
 insert into UsuarioEntity_PayPalEntity (UsuarioEntity_ID, PayPal_ID) values (45, 65000);
