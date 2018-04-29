@@ -30,7 +30,7 @@
                 views: {
                     'detailView': {
                         templateUrl: basePath + 'tarjetadecredito.detail.html',
-                        controller: 'tarjetadecreditotDetailCtrl',
+                        controller: 'tarjetadecreditoDetailCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
