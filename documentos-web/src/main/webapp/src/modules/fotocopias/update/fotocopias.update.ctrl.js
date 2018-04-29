@@ -6,7 +6,7 @@
         
          $scope.data = {};
          
-         var idLibro = $state.params.fotocopiaId;
+         var idFotocopia = $state.params.fotocopiaId;
          
          $http.get(FotocopiaContext + '/' + idFotocopia).then(function(response){
              var fotocopia = response.data;
