@@ -32,6 +32,10 @@
       
        <!-- Fotocopias-->
        <script src="src/modules/fotocopias/fotocopias.mod.js" type="text/javascript"></script>
+       <script src="src/modules/fotocopias/fotocopias.ctrl.js" type="text/javascript"></script>
+       <script src="src/modules/fotocopias/fotocopias.detail.ctrl.js" type="text/javascript"></script>
+       <script src="src/modules/fotocopias/create/fotocopias.create.ctrl.js" type="text/javascript"></script>
+       <script src="src/modules/fotocopias/update/fotocopias.update.ctrl.js" type="text/javascript"></script>
 
       
        <!----Editoriales ---->
@@ -53,6 +57,26 @@
        <script src="src/modules/areas/new/areas.new.ctrl.js" type="text/javascript"></script>
        <script src="src/modules/areas/update/areas.update.ctrl.js" type="text/javascript"></script>
        <script src="src/modules/areas/delete/areas.delete.ctrl.js" type="text/javascript"></script>
+      
+      <!--Paypal-->
+       <script src="src/modules/paypal/paypal.mod.js" type="text/javascript"></script>
+       <script src="src/modules/paypal/paypal.ctrl.js" type="text/javascript"></script>
+       <script src="src/modules/paypal/new/paypal.new.ctrl.js" type="text/javascript"></script>
+       <script src="src/modules/paypal/new/paypal.update.ctrl.js" type="text/javascript"></script>
+
+       
+        <!--TarjetaDeCredito-->
+       <script src="src/modules/tarjetadecredito/tarjetadecredito.mod.js" type="text/javascript"></script>
+       <script src="src/modules/tarjetadecredito/tarjetadecredito.ctrl.js" type="text/javascript"></script>
+       <script src="src/modules/tarjetadecredito/new/tarjetadecredito.new.ctrl.js" type="text/javascript"></script>
+       <script src="src/modules/tarjetadecredito/new/tarjetadecredito.update.ctrl.js" type="text/javascript"></script>
+       
+       <!--Compra-->
+       <script src="src/modules/compras/compras.mod.js" type="text/javascript"></script>
+       <script src="src/modules/compras/compras.ctrl.js" type="text/javascript"></script>
+       <script src="src/modules/compras/new/compras.new.ctrl.js" type="text/javascript"></script>
+       <script src="src/modules/compras/new/compras.update.ctrl.js" type="text/javascript"></script>
+       
            
            
        <script src="src/modules/cursos/cursos.mod.js" type="text/javascript"></script>
@@ -84,6 +108,7 @@
                    <div class="collapse navbar-collapse" id="koofe">
                        <ul class="nav navbar-nav">
                            <li><a ui-sref="librosList" class="navBusqueda">Libros</a></li>
+                          <li><a ui-sref="fotocopiasList" class="navBusqueda">Fotocopias</a></li>
                             <li><a ui-sref="editoriales" class="navBusqueda">Editorial</a></li>
                             <li><a ui-sref="cursos" class="navBusqueda">Cursos</a></li>
                             <li><a ui-sref="autoresList" class="navBusqueda">Autores</a></li>
