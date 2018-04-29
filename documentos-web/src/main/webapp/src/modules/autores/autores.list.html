@@ -16,7 +16,9 @@
                         {{autor.nombre}}
                     </a>
                 </h4>
-                <button class="w3-button" ui-sref="autorDetail({autorId: autor.id})" style="font-size: 18px; padding-top: 10%"><span><i class="fas fa-eye" style="font-size: 24px; "></i></span> Ver Más</button>
+                <div align="right">
+                    <a id="{{$index}}-new" class="btn btn-info" ui-sref="autorDetail({autorId: autor.id})">Ver Mas</span></a>
+                </div>
             </div>
             <div id="collapse{{$index}}" class="panel-collapse collapse in">
                 <div class="panel-body">

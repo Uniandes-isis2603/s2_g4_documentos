@@ -33,7 +33,6 @@
             //Consulto el autor a editar.
             $http.get(autorContext + '/' + idAutor).then(function (response) {
                 var autor = response.data;
-                $scope.data.id = 100004;
                 $scope.data.nombre = autor.nombre;
                 $scope.getDocumentos(autor.documentos);
             });

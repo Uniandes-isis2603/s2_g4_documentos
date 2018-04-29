@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("areasModule");
+    var mod = ng.module("areaModule");
     mod.constant("areaContext", "api/areas");
     mod.controller('areaDeleteCtrl', ['$scope', '$http', 'areaContext', '$state',
         /**
@@ -18,7 +18,7 @@
          * estado actual de la navegación definida en el módulo.
          */
         function ($scope, $http, areaContext, $state) {
-            var idArea = $state.params.autorId;
+            var idArea = $state.params.areaId;
             /**
              * @ngdoc function
              * @name deleteArea

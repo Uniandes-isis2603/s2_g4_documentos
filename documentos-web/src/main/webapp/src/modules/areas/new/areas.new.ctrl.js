@@ -25,7 +25,7 @@
             $rootScope.edit = false;
 
             $scope.data = {};
-
+            $scope.data.id = 100;
             /**
              * @ngdoc function
              * @name createAutor

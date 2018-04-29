@@ -2,10 +2,10 @@
     var mod = ng.module("areaModule");
     mod.constant("areaContext","api/areas");
     mod.controller('areasCtrl', ['$scope','$http', 'areaContext', '$state', 
-        function($scope,$http,autorContext,$state) {
+        function($scope,$http,areaContext,$state) {
             
-            $http.get(autorContext).then(function(response){
-                $scope.autoresRecords = response.data;
+            $http.get(areaContext).then(function(response){
+                $scope.areasRecords = response.data;
             });
         }
     ]);

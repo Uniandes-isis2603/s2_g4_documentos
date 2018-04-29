@@ -52,7 +52,7 @@
                         });
                     }
                     //Autor created successfully
-                    $state.go('areaList', {autorId: response.data.id}, {reload: true});
+                    $state.go('areasList', {autorId: response.data.id}, {reload: true});
                 });
             };
         }

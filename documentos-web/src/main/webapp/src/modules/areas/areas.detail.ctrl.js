@@ -1,7 +1,7 @@
 (function (ng){
     var mod = ng.module("areaModule");
     mod.constant("areaContext","api/areas");
-    mod.controller('areasDetailCtrl', ['$scope','$http', 'areasContext', '$state', 
+    mod.controller('areasDetailCtrl', ['$scope','$http', 'areaContext', '$state', 
         function($scope,$http,areaContext,$state) {
             
             if(($state.params.areaId !== undefined) && ($state.params.areaId !==null)){

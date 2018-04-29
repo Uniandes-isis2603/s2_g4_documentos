@@ -91,7 +91,7 @@
                         controller: 'areaUpdateCtrl'
                     }
                 }
-            }).state('autorDelete', {
+            }).state('areaDelete', {
                 url: '/delete/{areaId:int}',
                 parent: 'areas',
                 param: {
