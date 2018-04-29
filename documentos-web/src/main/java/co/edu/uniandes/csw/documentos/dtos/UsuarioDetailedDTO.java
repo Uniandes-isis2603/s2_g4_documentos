@@ -23,7 +23,7 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
     /**
      * representa la lista de documentos deseados del usuario
      */
-    private DeseadoDTO deseado;
+    private List<DeseadoDTO> deseados;
 
     /**
      * cero a muchos
@@ -63,7 +63,14 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
         if (entity.getReservas() != null) {
             reservas = new ArrayList<>();
             for (ReservaEntity entityReserva : entity.getReservas()) {
-               reservas.add(new ReservaDTO(entityReserva));
+                reservas.add(new ReservaDTO(entityReserva));
+            }
+        }
+        
+         if (entity.getDeseados() != null) {
+            deseados = new ArrayList<>();
+            for (DeseadoEntity entityDeseado : entity.getDeseados()) {
+                deseados.add(new DeseadoDTO(entityDeseado));
             }
         }
         //if (entity.getMetodosDePago() != null) {
@@ -79,11 +86,8 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
                 // reservas.add(new ReservaDTO(entityReserva));
             }
         }
+
         
-        if(entity.getDeseado()!=null)
-        {
-            deseado= new DeseadoDTO( entity.getDeseado());
-        }
     }
 
     /**
@@ -93,11 +97,15 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
      */
     @Override
     public UsuarioEntity toEntity() {
-        
+
         UsuarioEntity usuario = super.toEntity();
-        
-        if (this.getDeseado() != null) {
-            usuario.setDeseado(this.getDeseado().toEntity());
+
+        if (getDeseados() != null) {
+            List<DeseadoEntity> deseadoEntity = new ArrayList<>();
+            for (DeseadoDTO deseado : getDeseados()) {
+                deseadoEntity.add(deseado.toEntity());
+            }
+            usuario.setDeseados(deseadoEntity);
         }
         if (getReservas() != null) {
             List<ReservaEntity> ReservasEntity = new ArrayList<>();
@@ -120,15 +128,14 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
             }
             usuario.setComentarios(ComentarioEntity);
         }
-        
-          //if (getMetodosDePago() != null) {
-           // List<ComentarioEntity> ComentarioEntity = new ArrayList<>();
-           // for (MetodoDePagoDTO metodo : getMetodosDePago()) {
-                //ComentarioEntity.add(comentario.toEntity());
-            //}
-           // usuario.setComentarios(ComentarioEntity);
-       // }
-        
+
+        //if (getMetodosDePago() != null) {
+        // List<ComentarioEntity> ComentarioEntity = new ArrayList<>();
+        // for (MetodoDePagoDTO metodo : getMetodosDePago()) {
+        //ComentarioEntity.add(comentario.toEntity());
+        //}
+        // usuario.setComentarios(ComentarioEntity);
+        // }
         return usuario;
     }
 
@@ -136,21 +143,21 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
      * constructor por defecto
      */
     public UsuarioDetailedDTO() {
-           super();
+        super();
     }
 
     /**
      * @return the deseado
      */
-    public DeseadoDTO getDeseado() {
-        return deseado;
+    public List<DeseadoDTO> getDeseados() {
+        return deseados;
     }
 
     /**
      * @param deseado the deseado to set
      */
-    public void setDeseado(DeseadoDTO deseado) {
-        this.deseado = deseado;
+    public void setDeseados(List<DeseadoDTO> deseado) {
+        this.deseados = deseado;
     }
 
     /**

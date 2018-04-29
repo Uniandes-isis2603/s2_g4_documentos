@@ -7,7 +7,10 @@
         // Internal modules dependencies       
 
         'libroModule',
-       'fotocopiaModule'
+       'fotocopiaModule',
+       'usuarioModule',
+       'reservaModule',
+       'deseadoModule'
 
         
 

@@ -33,14 +33,14 @@ public class UsuarioEntity implements Serializable {
      * reservas, relación de composición unidireccional
      */
     @PodamExclude
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany( cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<ReservaEntity> reservas;
 
     /**
      * reservas, relación de composición unidireccional
      */
     @PodamExclude
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CompraEntity> compras;
 
     /**
@@ -54,22 +54,22 @@ public class UsuarioEntity implements Serializable {
      * paypal, relación de composición biidireccional
      */
     @PodamExclude
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PayPalEntity> paypal;
 
     /**
      * tarjetasCredito, relación de composición bidireccional
      */
     @PodamExclude
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TarjetaDeCreditoEntity> tarjetasCredito;
 
     /**
      * deseado, relación de composición unidireccional
      */
     @PodamExclude
-    @OneToOne( cascade = CascadeType.ALL, orphanRemoval = true)
-    private DeseadoEntity deseado;
+    @OneToMany( cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<DeseadoEntity> deseados;
 
     /**
      *
@@ -209,15 +209,15 @@ public class UsuarioEntity implements Serializable {
     /**
      * @return the deseado
      */
-    public DeseadoEntity getDeseado() {
-        return deseado;
+    public List<DeseadoEntity> getDeseados() {
+        return deseados;
     }
 
     /**
      * @param deseado the deseado to set
      */
-    public void setDeseado(DeseadoEntity deseado) {
-        this.deseado = deseado;
+    public void setDeseados(List<DeseadoEntity> deseado) {
+        this.deseados = deseado;
     }
 
     /**
