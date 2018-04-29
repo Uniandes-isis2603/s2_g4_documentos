@@ -26,20 +26,7 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 @Entity
 public class ReservaEntity implements Serializable {
 
-    /**
-     * @return the documentos
-     */
-    public List<DocumentoEntity> getDocumentos() {
-        return documentos;
-    }
-
-    
-    /**
-     * @param documentos the documentos to set
-     */
-    public void setDocumentos(List<DocumentoEntity> documentos) {
-        this.documentos = documentos;
-    }
+  
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,9 +45,7 @@ public class ReservaEntity implements Serializable {
     @OneToMany
     private List<DocumentoEntity> documentos;
 
-    @PodamExclude
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private  UsuarioEntity usuario;
+ 
     /**
      *
      * @return id de la reserva.
@@ -111,23 +96,24 @@ public class ReservaEntity implements Serializable {
 
     }
 
-    /**
-     * @return the usuario
-     */
-    public UsuarioEntity getUsuario() {
-        return usuario;
-    }
 
-    /**
-     * @param usuario the usuario to set
-     */
-    public void setUsuario(UsuarioEntity usuario) {
-        this.usuario = usuario;
-    }
 
     /**
      * @param usuario the usuario to set
      */
    
+  /**
+     * @return the documentos
+     */
+    public List<DocumentoEntity> getDocumentos() {
+        return documentos;
+    }
 
+    
+    /**
+     * @param documentos the documentos to set
+     */
+    public void setDocumentos(List<DocumentoEntity> documentos) {
+        this.documentos = documentos;
+    }
 }

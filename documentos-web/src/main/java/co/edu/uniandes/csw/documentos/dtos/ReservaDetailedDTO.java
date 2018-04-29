@@ -66,10 +66,7 @@ public class ReservaDetailedDTO extends ReservaDTO{
             }
            Reserva.setDocumentos(DocumentoEntity);
         }
-        if(usuario!=null)
-        {
-            Reserva.setUsuario(usuario.toEntity());
-        }
+       
 
  
         return Reserva;
