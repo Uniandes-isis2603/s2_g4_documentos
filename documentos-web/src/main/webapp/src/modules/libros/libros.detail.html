@@ -5,9 +5,9 @@
         </div>
         <div class="panel-body">
             <div class="col-md-1">
-                <ul ng-repeat="imagen in currentLibro.imagenes">
-                    <li>
-                        <img ng-src="{{imagen.img}}" alt="imagen" style="height: 50%; width: 50%">
+                <ul class="list-group" ng-repeat="imagen in currentLibro.imagenes">
+                    <li  style="padding-right: 10%; padding-bottom: 10%; list-style-type: none;">
+                        <img ng-src="{{imagen.img}}" alt="imagen" style="position: relative; float: left; width:  100px; height: 100px; background-position: 50% 50%; background-repeat:   no-repeat;background-size:cover; padding-right: 10%; padding-bottom: 10%">
                     </li>
                 </ul>
             </div>
@@ -15,17 +15,27 @@
                 <img ng-src="{{currentLibro.caratula}}" alt="libro" style="width: 100%">
             </div>
             <div class="col-md-5">
-                <h2 style="font-family: 'Roboto', sans-serif">{{currentLibro.nombre}}</h2>
+                <h2 style="font-family: 'Roboto', sans-serif; font-size: 55px">{{currentLibro.nombre}}</h2>
                 <h2 class=w3-text-green style="font-family: 'Roboto', sans-serif; font-size: 50px">${{currentLibro.precio}}</h2>
-                <h3 style="font-family: 'Roboto', sans-serif">Escrito por: <a ng-repeat="autor in currentLibro.autores">{{autor.nombre}}, </a></h3> 
+                <h3 style="font-family: 'Roboto', sans-serif">Escrito por: <a ng-repeat="autor in currentLibro.autores">{{autor.nombre}},</a></h3> 
                 <h3 style="font-family: 'Roboto', sans-serif">Descripción:</h3>
                 <h4 style="font-family: 'Roboto', sans-serif">{{currentLibro.descripcion}}</h4>
-                <h3 style="font-family: 'Roboto', sans-serif">Fecha de publicación: {{currentLibro.fechaPublicacion}}</h3>
+                <h3 style="font-family: 'Roboto', sans-serif">Fecha de publicación: {{currentLibro.fechaPublicacion |date:format :timezone}}</h3>
+                <h3 style="font-family: 'Roboto', sans-serif">Publicado por:</h3>
+                <h3 style="font-family: 'Roboto', sans-serif"><a> {{currentLibro.editorial.nombre}}</a></h3>
                 <h3 style="font-family: 'Roboto', sans-serif">ISBN: {{currentLibro.ISBN}}</h3>
             </div>
             <div class="col-md-3">
-                <h2>Aqui esta lo relacionado a los pagos</h2>
+                <h2></h2>
             </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <button class="w3-btn w3-border w3-blue" ui-sref="librosUpdate({libroId: currentLibro.id})"><span><i class="fa fa-wrench" style="font-size: 20px"></i></span> Editar</button>
+                            <button class="w3-btn w3-border w3-red" ><span><i class="fa fa-eraser" style="font-size: 20px"></i></span> Eliminar</button>
+                        </div>
+                </div> 
         </div>
         <div class="panel-body">
             <h3 style="font-family: 'Roboto', sans-serif">Perteneciente a: <a ng-repeat="area in currentLibro.areas">{{area.tipo}}, </a></h3>
@@ -38,12 +48,7 @@
                     <h4>
                         {{comentario.comentario}}
                     </h4>
-                </div>
-                <div class="panel-footer">
-                    <h5>
-                        {{comentario.fecha}}
-                    </h5>
-                </div>
+                </div> 
             </div>
         </div>
     </div>
