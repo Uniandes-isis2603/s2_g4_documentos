@@ -31,7 +31,7 @@
                 url: '/list',
                 parent: 'reservas',
                 views: {
-                    'detailView': {
+                    'listView': {
                         templateUrl: basePath + 'reservas.list.html',
                         controller: 'reservasCtrl',
                         controllerAs: 'ctrl'

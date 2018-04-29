@@ -8,7 +8,7 @@
                     <th>Fecha</th>
                     <th>Costo</th>
                     <th>visualizar</th>
-                    <th>Eliminar</th>
+                    <th>Actualizar</th>
                 </tr>
             </thead>
             <tbody>
@@ -16,8 +16,8 @@
                     <td id="id">{{reserva.id}}</td>
                     <td id="nombre">{{reserva.fecha}}</td>
                     <td id="UserName">{{reserva.costo}}</td>
-                    <td><button id="botonFede" ui-sref="usuarioDetail({usuarioId: usuario.id})">ver</button> </td>
-                    <td><button id="botonFede" ui-sref="usuarioDetail({usuarioId: usuario.id})">Eliminar</button> </td>
+                    <td><button id="botonFede" ui-sref="reservaDetail({usuarioId: usuario.id})">ver</button> </td>
+                    <td><button id="botonFede" ui-sref="usuarioDetail({usuarioId: usuario.id})">actualizar</button> </td>
 
 
                 </tr>
