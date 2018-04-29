@@ -1,0 +1,23 @@
+<div class="container-fluid" >
+    <h3>
+        <strong>Nombre: </strong>{{currentAutor.nombre}}
+    <br></h3>
+        <strong>Documentos: </strong>
+        <div class="panel panel-body" style="background-color: #FCFCFC">
+            <div ng-repeat="fotocopia in currentAutor.documentos">
+                <div class="col-md-3" style="margin-bottom: 100px;">
+                    <div class = "w3-card w3-hover-shadow" style="width:70%">
+                        <img class="center-cropped" ng-src="{{fotocopia.caratula}}" alt="text" style="width:100%">
+                        <div class ="w3-container w3-center w3-light-gray caja">
+                            <h2 style="font-family: 'Roboto', sans-serif; font-size: 30px; padding-bottom: 10%"><strong>${{fotocopia.precio}}</strong></h2>
+                            <h2 class="limitar"><small>{{fotocopia.nombre}}</small></h2>                   
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </div>
+        <div>
+           <a id="{{$index}}-edit" class="btn btn-default" ui-sref="autorUpdate({autorId: currentAutor.id})">Editar</a>
+           <a id="{{$index}}-delete" class="btn btn-danger" ui-sref="autorDelete({autorId: currentAutor.id})">Eliminar</a>
+        </div>
+</div>
