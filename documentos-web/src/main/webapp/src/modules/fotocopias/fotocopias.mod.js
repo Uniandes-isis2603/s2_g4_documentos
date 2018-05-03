@@ -60,6 +60,27 @@
                         controllerAs:'ctrl'
                     }
                 }
+            }).state('fotocopiasCreate',{
+                url:'/create',
+                parent:'fotocopias',
+                views:{
+                    'detailView':{
+                        templateUrl: basePath + '/create/fotocopias.new.html',
+                        controller: 'fotocopiaCreateCtrl'
+                    }
+                }
+            }).state('fotocopiasUpdate',{
+                url:'/update/{fotocopiaId:int}',
+                parent:'fotocopias',
+                param:{
+                    fotocopiaId : null
+                },
+                views:{
+                    'detailView':{
+                        templateUrl: basePath + '/create/fotocopias.new.html',
+                        controller: 'fotocopiaUpdateCtrl'
+                    }
+                }
             });
     }]);
 })(window.angular);

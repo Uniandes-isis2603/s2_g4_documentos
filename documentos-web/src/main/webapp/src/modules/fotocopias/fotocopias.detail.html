@@ -1,0 +1,56 @@
+
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel-heading">
+
+        </div>
+        <div class="panel-body">
+            <div class="col-md-1">
+                <ul class="list-group" ng-repeat="imagen in currentFotocopia.imagenes">
+                    <li  style="padding-right: 10%; padding-bottom: 10%; list-style-type: none;">
+                        <img ng-src="{{imagen.img}}" alt="imagen" style="position: relative; float: left; width:  100px; height: 100px; background-position: 50% 50%; background-repeat:   no-repeat;background-size:cover; padding-right: 10%; padding-bottom: 10%">
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <img ng-src="{{currentFotocopia.caratula}}" alt="libro" style="width: 100%">
+            </div>
+            <div class="col-md-5">
+                <h2 style="font-family: 'Roboto', sans-serif; font-size: 55px">{{currentFotocopia.nombre}}</h2>
+                <h2 class=w3-text-green style="font-family: 'Roboto', sans-serif; font-size: 50px">${{currentFotocopia.precio}}</h2>
+                <h3 style="font-family: 'Roboto', sans-serif">Escrito por: <a ng-repeat="autor in currentFotocopia.autores">{{autor.nombre}},</a></h3> 
+                <h3 style="font-family: 'Roboto', sans-serif">Descripción:</h3>
+                <h4 style="font-family: 'Roboto', sans-serif">{{currentFotocopia.descripcion}}</h4>
+                <h3 style="font-family: 'Roboto', sans-serif">Numero de paginas: {{currentFotocopia.nroPaginas}}</h3>
+                <h3 style="font-family: 'Roboto', sans-serif">Capitulos en la fotocopia: {{currentFotocopia.capitulos}}</h3>
+                <h3 style="font-family: 'Roboto', sans-serif">Profesor: {{currentFotocopia.profesor}}</h3>
+            </div>
+            <div class="col-md-3">
+                <h2></h2>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <button class="w3-btn w3-border w3-blue" ui-sref="fotocopiasUpdate({fotocopiaId: currentFotocopia.id})"><span><i class="fa fa-wrench" style="font-size: 20px"></i></span> Editar</button>
+                            <button class="w3-btn w3-border w3-red" ><span><i class="fa fa-eraser" style="font-size: 20px"></i></span> Eliminar</button>
+                        </div>
+                </div> 
+        </div>
+        <div class="panel-body">
+            <h3 style="font-family: 'Roboto', sans-serif">Perteneciente a: <a ng-repeat="area in currentFotocopia.areas">{{area.tipo}}, </a></h3>
+            <h3 style="font-family: 'Roboto', sans-serif">Ha sido util en estos cursos:<a ng-repeat="curso in currentFotocopia.cursos">{{curso.nombre}}, </a></h3>
+        </div>
+        <div class="panel-footer">
+            <h2 style="font-family: 'Roboto', sans-serif" class="w3-text-black">Comentarios:</h1>
+            <div class="panel-group" ng-repeat="comentario in currentFotocopias.comentarios">
+                <div class="panel-body" >
+                    <h4>
+                        {{comentario.comentario}}
+                    </h4>
+                </div> 
+            </div>
+        </div>
+    </div>
+
+</div>

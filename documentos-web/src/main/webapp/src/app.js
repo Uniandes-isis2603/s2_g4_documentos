@@ -1,27 +1,39 @@
 
 (function (ng) {
     var app = angular.module('mainApp', [
-        // External dependencies
+      
         'ui.router',
        
         // Internal modules dependencies       
+
+        'inicioModule',
+        'citiesModule',
+        'editorialesModule',
+        'cursosModule',
        'libroModule',
        'fotocopiaModule',
        'usuarioModule',
        'reservaModule',
        'deseadoModule',
        'autorModule',
-       'areaModule'
+       'areaModule',
+       'paypalModule',
+       'tarjetadecreditoModule',
+       'comprasModule'
 
         
+
 
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
             $qProvider.errorOnUnhandledRejections(false);
         }]);
-        app.run( function ($rootScope) {
+
+     app.run( function ($rootScope) {
             $rootScope.home=0;
         });
+    
+
 })(window.angular);
 
