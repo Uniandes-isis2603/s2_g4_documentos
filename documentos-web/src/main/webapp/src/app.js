@@ -6,7 +6,6 @@
        
         // Internal modules dependencies       
 
-        'inicioModule',
         'citiesModule',
         'editorialesModule',
         'cursosModule',
@@ -19,7 +18,8 @@
        'areaModule',
        'paypalModule',
        'tarjetadecreditoModule',
-       'comprasModule'
+       'comprasModule',
+       'inicioModule',
 
         
 
@@ -31,9 +31,13 @@
         }]);
 
      app.run( function ($rootScope) {
-            $rootScope.home=0;
+            $rootScope.algo = function() {
+                
+            };
+            
+            
         });
     
-
+ 
 })(window.angular);
 
