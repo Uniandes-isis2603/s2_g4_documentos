@@ -443,3 +443,84 @@ body{
     background-image: url(https://images.pexels.com/photos/977930/pexels-photo-977930.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
       
 }
+.btn-outline {
+    background-color: transparent;
+    color: inherit;
+    transition: all .5s;
+}
+
+.btn-primary.btn-outline {
+    color: #428bca;
+}
+
+.btn-success.btn-outline {
+    color: #5cb85c;
+}
+
+.btn-info.btn-outline {
+    color: #5bc0de;
+}
+
+.btn-warning.btn-outline {
+    color: #f0ad4e;
+}
+
+.btn-danger.btn-outline {
+    color: #d9534f;
+}
+
+.btn-primary.btn-outline:hover,
+.btn-success.btn-outline:hover,
+.btn-info.btn-outline:hover,
+.btn-warning.btn-outline:hover,
+.btn-danger.btn-outline:hover {
+    color: #fff;
+}
+
+.containerFoto{
+    position: relative;
+    width: 50%;
+}
+
+.imageLibro {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middleLibro {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.containerFoto:hover .imageLibro {
+  opacity: 0.3;
+}
+
+.containerFoto:hover .middleLibro {
+  opacity: 1;
+}
+
+.hoverDeLibroIcono{
+    
+    color:darkgray;
+    
+}
+
+.hoverDeLibroIcono:hover{
+    
+    border: none;
+    color: gray
+}
+
+
+     
