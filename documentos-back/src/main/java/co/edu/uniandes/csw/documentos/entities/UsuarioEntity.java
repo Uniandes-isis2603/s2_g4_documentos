@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.documentos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.*;
@@ -33,8 +34,16 @@ public class UsuarioEntity implements Serializable {
      * reservas, relación de composición unidireccional
      */
     @PodamExclude
-    @OneToMany( cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ReservaEntity> reservas;
+    
+    
+        /**
+     * reservas, relación de composición unidireccional
+     */
+    @PodamExclude
+    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
+    private ArrayList<DeseadoEntity> deseados;
 
     /**
      * reservas, relación de composición unidireccional
@@ -47,7 +56,7 @@ public class UsuarioEntity implements Serializable {
      * comentarios, relación unidireccional
      */
     @PodamExclude
-    @OneToMany
+    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ComentarioEntity> comentarios;
 
     /**
@@ -137,6 +146,12 @@ public class UsuarioEntity implements Serializable {
     public List<ReservaEntity> getReservas() {
         return reservas;
     }
+    
+    
+
+
+    
+
 
     /**
      * @param reservas the reservas to set
@@ -231,6 +246,20 @@ public class UsuarioEntity implements Serializable {
      */
     public void setGenero(int genero) {
         this.genero = genero;
+    }
+
+    /**
+     * @return the deseados
+     */
+    public List<DeseadoEntity> getDeseados() {
+        return deseados;
+    }
+
+    /**
+     * @param deseados the deseados to set
+     */
+    public void setDeseados(ArrayList<DeseadoEntity> deseados) {
+        this.deseados = deseados;
     }
 
 }

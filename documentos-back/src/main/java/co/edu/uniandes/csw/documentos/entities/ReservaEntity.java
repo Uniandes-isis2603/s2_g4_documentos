@@ -45,6 +45,9 @@ public class ReservaEntity implements Serializable {
     @OneToMany
     private List<DocumentoEntity> documentos;
 
+    @PodamExclude
+    @ManyToOne
+    private UsuarioEntity usuario;
  
     /**
      *
@@ -115,5 +118,19 @@ public class ReservaEntity implements Serializable {
      */
     public void setDocumentos(List<DocumentoEntity> documentos) {
         this.documentos = documentos;
+    }
+
+    /**
+     * @return the usuario
+     */
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
     }
 }

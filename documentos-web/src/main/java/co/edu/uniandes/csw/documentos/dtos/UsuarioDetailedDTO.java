@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.documentos.dtos;
 import co.edu.uniandes.csw.documentos.entities.ComentarioEntity;
 import co.edu.uniandes.csw.documentos.entities.CompraEntity;
 import co.edu.uniandes.csw.documentos.entities.DeseadoEntity;
+import co.edu.uniandes.csw.documentos.entities.PayPalEntity;
 import co.edu.uniandes.csw.documentos.entities.ReservaEntity;
 import co.edu.uniandes.csw.documentos.entities.TarjetaDeCreditoEntity;
 import co.edu.uniandes.csw.documentos.entities.UsuarioEntity;
@@ -40,10 +41,17 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
      */
     private List<MetodoDePagoDTO> metodosDePago;
 
+    private List<PayPalDTO> payPal;
+
+    private List<TarjetaDeCreditoDTO> tarjetaDeCredito;
+
     /**
      * cero a muchos
      */
     private List<ReservaDTO> reservas;
+    
+
+
 
     /**
      * Constructor para transformar un Entity a un DTO
@@ -55,7 +63,7 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
         if (entity.getComentarios() != null) {
             comentarios = new ArrayList();
             for (ComentarioEntity comentario : entity.getComentarios()) {
-                //comentarios.add(new ComentarioDTO(comentario));
+                comentarios.add(new ComentarioDTO(comentario));
             }
         } else {
             entity.setComentarios(null);
@@ -67,22 +75,37 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
             }
         }
         
-        // }
-        //if (entity.getMetodosDePago() != null) {
-        //  MetodosDePago = new ArrayList<>();
-        //for (AuthorEntity entityAuthor : entity.getMetodosDePago()) {
-        //  MetodosDePago.add(new AuthorDTO(entityAuthor));
-        //}
-        //}
+ 
 
         if (entity.getCompras() != null) {
             compras = new ArrayList<>();
             for (CompraEntity entityCompra : entity.getCompras()) {
-                // reservas.add(new ReservaDTO(entityReserva));
+                compras.add(new CompraDTO(entityCompra));
             }
         }
 
-        
+//        if (entity.getPaypal() != null) {
+//            payPal = new ArrayList<>();
+//            for(PayPalEntity entityPayPal : entity.getPaypal()) {
+//                payPal.add(new PayPalDTO(entityPayPal));
+//            }
+//        }
+        if (entity.getTarjetasCredito() != null) {
+            tarjetaDeCredito = new ArrayList<>();
+            for (TarjetaDeCreditoEntity entityTarjetaDeCredito : entity.getTarjetasCredito()) {
+                tarjetaDeCredito.add(new TarjetaDeCreditoDTO(entityTarjetaDeCredito));
+            }
+        }
+
+        if (entity.getDeseados() != null) {
+            deseados = new ArrayList<>();
+
+            for (DeseadoEntity entityDeseado : entity.getDeseados()) {
+
+                deseados.add(new DeseadoDTO(entityDeseado));
+
+            }
+       }
     }
 
     /**
@@ -96,11 +119,19 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
         UsuarioEntity usuario = super.toEntity();
 
         if (getDeseados() != null) {
-            List<DeseadoEntity> deseadoEntity = new ArrayList<>();
+            ArrayList<DeseadoEntity> deseadoEntity = new ArrayList<>();
             for (DeseadoDTO deseado : getDeseados()) {
                 deseadoEntity.add(deseado.toEntity());
             }
-           // usuario.setDeseados(deseadoEntity);
+            usuario.setDeseados(deseadoEntity);
+        }
+
+        if (getTarjetaDeCredito() != null) {
+            List<TarjetaDeCreditoEntity> tarjetaDeCreditoEntity = new ArrayList<>();
+            for (TarjetaDeCreditoDTO tarjetaDeCredito : getTarjetaDeCredito()) {
+                tarjetaDeCreditoEntity.add(tarjetaDeCredito.toEntity());
+            }
+            usuario.setTarjetasCredito(tarjetaDeCreditoEntity);
         }
         if (getReservas() != null) {
             List<ReservaEntity> ReservasEntity = new ArrayList<>();
@@ -112,14 +143,14 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
         if (getCompras() != null) {
             List<CompraEntity> comprasEntity = new ArrayList<>();
             for (CompraDTO compra : getCompras()) {
-                //comprasEntity.add(compra.toEntity());
+                comprasEntity.add(compra.toEntity());
             }
             usuario.setCompras(comprasEntity);
         }
         if (getComentarios() != null) {
             List<ComentarioEntity> ComentarioEntity = new ArrayList<>();
             for (ComentarioDTO comentario : getComentarios()) {
-                //ComentarioEntity.add(comentario.toEntity());
+                ComentarioEntity.add(comentario.toEntity());
             }
             usuario.setComentarios(ComentarioEntity);
         }
@@ -209,6 +240,34 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
      */
     public void setReservas(List<ReservaDTO> reservas) {
         this.reservas = reservas;
+    }
+
+    /**
+     * @return the payPal
+     */
+    public List<PayPalDTO> getPayPal() {
+        return payPal;
+    }
+
+    /**
+     * @param payPal the payPal to set
+     */
+    public void setPayPal(List<PayPalDTO> payPal) {
+        this.payPal = payPal;
+    }
+
+    /**
+     * @return the tarjetaDeCredito
+     */
+    public List<TarjetaDeCreditoDTO> getTarjetaDeCredito() {
+        return tarjetaDeCredito;
+    }
+
+    /**
+     * @param tarjetaDeCredito the tarjetaDeCredito to set
+     */
+    public void setTarjetaDeCredito(List<TarjetaDeCreditoDTO> tarjetaDeCredito) {
+        this.tarjetaDeCredito = tarjetaDeCredito;
     }
 
 }

@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.documentos.dtos;
 
 import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
 import co.edu.uniandes.csw.documentos.entities.DeseadoEntity;
-import co.edu.uniandes.csw.documentos.entities.ReservaEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,53 +14,53 @@ import java.util.List;
  *
  * @author f.marroquin10
  */
-public class DeseadoDetailedDTO extends DeseadoDTO{
-    
+public class DeseadoDetailedDTO extends DeseadoDTO {
+
     /**
      * cero a muchos
      */
     private List<DocumentoDTO> documentos;
+
+    private UsuarioDTO usuario;
+
     /**
      * constructor por defecto
      */
-    public DeseadoDetailedDTO()
-    {
-        
+    public DeseadoDetailedDTO() {
+
     }
-    
-          /**
+
+    /**
      * Constructor para transformar un Entity a un DTO
      *
      * @param entity La entidad de la cual se construye el DTO
      */
     public DeseadoDetailedDTO(DeseadoEntity entity) {
         super(entity);
-        if(entity.getDocumentos()!=null)
-        {
-           //this.documento= new DocumentoDTO( entity.getDocumentos());
-            
+        if (entity.getDocumentos() != null) {
+            //this.documento= new DocumentoDTO( entity.getDocumentos());
+
         }
     }
-    
-       /**
+
+    /**
      * Transformar el DTO a una entidad
      *
      * @return La entidad que representa el libro.
      */
     @Override
     public DeseadoEntity toEntity() {
-        
+
         DeseadoEntity deseado = super.toEntity();
-        
+
         if (getDocumentos() != null) {
             List<DocumentoEntity> DocumentoEntity = new ArrayList<>();
             for (DocumentoDTO documento : getDocumentos()) {
                 //DocumentoEntity.add(documento.toEntity());
             }
-           deseado.setDocumentos(DocumentoEntity);
+            deseado.setDocumentos(DocumentoEntity);
         }
 
- 
         return deseado;
     }
 
@@ -77,5 +76,19 @@ public class DeseadoDetailedDTO extends DeseadoDTO{
      */
     public void setDocumentos(List<DocumentoDTO> documentos) {
         this.documentos = documentos;
+    }
+
+    /**
+     * @return the usuario
+     */
+    public UsuarioDTO getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(UsuarioDTO usuario) {
+        this.usuario = usuario;
     }
 }

@@ -1,27 +1,28 @@
 
 (function (ng) {
     var app = angular.module('mainApp', [
-      
+
         'ui.router',
-       
+
         // Internal modules dependencies       
 
-        'inicioModule',
         'citiesModule',
         'editorialesModule',
         'cursosModule',
-       'libroModule',
-       'fotocopiaModule',
-       'usuarioModule',
-       'reservaModule',
-       'deseadoModule',
-       'autorModule',
-       'areaModule',
-       'paypalModule',
-       'tarjetadecreditoModule',
-       'comprasModule'
+        'libroModule',
+        'fotocopiaModule',
+        'usuarioModule',
+        'reservaModule',
+        'deseadoModule',
+        'autorModule',
+        'areaModule',
+        'paypalModule',
+        'tarjetadecreditoModule',
+        'comprasModule',
+        'inicioModule'
 
-        
+
+
 
 
     ]);
@@ -30,10 +31,10 @@
             $qProvider.errorOnUnhandledRejections(false);
         }]);
 
-     app.run( function ($rootScope) {
-            $rootScope.home=0;
-        });
-    
+    app.run(function ($rootScope) {
+        $rootScope.home = 0;
+    });
+
 
 })(window.angular);
 
