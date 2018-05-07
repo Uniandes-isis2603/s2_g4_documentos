@@ -445,12 +445,13 @@ body{
 }
 .btn-outline {
     background-color: transparent;
-    color: inherit;
-    transition: all .5s;
+    color: #007a66;
+    transition: all .2s;
+    border: 1px solid #007a66; 
 }
 
 .btn-primary.btn-outline {
-    color: #428bca;
+    color: #007a66;
 }
 
 .btn-success.btn-outline {
@@ -474,7 +475,8 @@ body{
 .btn-info.btn-outline:hover,
 .btn-warning.btn-outline:hover,
 .btn-danger.btn-outline:hover {
-    color: #fff;
+    color: whitesmoke;
+    background-color:#007a66;
 }
 
 .containerFoto{
@@ -523,4 +525,11 @@ body{
 }
 
 
-     
+div.b {
+    white-space: nowrap; 
+    width: 200px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    font-size:18px;
+    font-weight:100;
+}

@@ -32,6 +32,9 @@
                 $http.get(libroContext + '/' + $state.params.libroId).then(function(response){
                     $scope.currentLibro =response.data;
                 });
+                
+               $scope.hola=function(libro)
+               { console.log(libro)};
             }
         }
     ]);
