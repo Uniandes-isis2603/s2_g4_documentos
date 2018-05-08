@@ -2,7 +2,7 @@
 
     var mod = ng.module("editorialesModule");
 
-    mod.controller("editorialesCtrl", ['$scope','$rootScope' , '$state', '$stateParams', '$http','$timeout', 'citiesContext', function ($scope,$rootScope ,$state, $stateParams, $http, $timeout, context) {
+    mod.controller("editorialesCtrl", ['$scope','$rootScope' , '$state', '$stateParams', '$http', function ($scope,$rootScope ,$state, $http) {
             $rootScope.home=1;
             $scope.data = {};
             $scope.dataActuaBasico={};
@@ -23,7 +23,7 @@
             $scope.create= function()
             {
                
-                $http.post("http://localhost:8080/documentos-web/api/editoriales",$scope.data).then(function (response) 
+                $http.post("http://localhost:8080/documentos-web/api/editoriales",$scope.data).then(function () 
                 {
                     $scope.get();
                 });
@@ -31,7 +31,7 @@
             };
             $scope.update_editorial= function(id)
             {
-                $http.put("http://localhost:8080/documentos-web/api/editoriales/"+$scope.dataActuaBasico.id ,$scope.dataActuaBasico).then(function (response) 
+                $http.put("http://localhost:8080/documentos-web/api/editoriales/"+$scope.dataActuaBasico.id ,$scope.dataActuaBasico).then(function () 
                 {
                     $state.reload();
                 });
@@ -39,7 +39,7 @@
             };
             $scope.delete= function(id)
             {
-                $http.delete("http://localhost:8080/documentos-web/api/editoriales/"+id ).then(function (response) 
+                $http.delete("http://localhost:8080/documentos-web/api/editoriales/"+id ).then(function () 
                 {
                     $scope.get();
                 });
@@ -47,11 +47,11 @@
             };
             $scope.darLibros = function()
             {
-                console.log("holi");
+               
                 $http.get("http://localhost:8080/documentos-web/api/libros").then(function (response) 
                 {
                     $scope.libros = response.data;
-                    console.log($scope.libros)
+                   
                 });   
 
             };
@@ -61,7 +61,7 @@
                 $scope.data.id=editorial.id;
                 $scope.data.nombre=editorial.nombre;
                
-                $http.put("http://localhost:8080/documentos-web/api/editoriales/"+editorial.id ,$scope.data).then(function (response) 
+                $http.put("http://localhost:8080/documentos-web/api/editoriales/"+editorial.id ,$scope.data).then(function () 
                 {
                     $state.reload();
                 });

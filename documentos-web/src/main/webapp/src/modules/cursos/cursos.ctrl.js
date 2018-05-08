@@ -2,7 +2,7 @@
 
     var mod = ng.module("cursosModule");
 
-    mod.controller("cursosCtrl", ['$scope', '$rootScope','$state', '$stateParams', '$http', 'citiesContext', function ($scope, $rootScope,$state, $stateParams, $http, context) {
+    mod.controller("cursosCtrl", ['$scope', '$rootScope','$state', '$stateParams', '$http', function ($scope, $rootScope,$state, $http) {
             $rootScope.home=1;
             $scope.records = {};
             $scope.data = {};
@@ -24,7 +24,7 @@
               $scope.create= function()
             {
                
-                $http.post("http://localhost:8080/documentos-web/api/cursos",$scope.data).then(function (response) 
+                $http.post("http://localhost:8080/documentos-web/api/cursos",$scope.data).then(function () 
                 {
                     $scope.get();
                 });
@@ -40,7 +40,7 @@
             };
               $scope.delete= function(id)
             {
-                $http.delete("http://localhost:8080/documentos-web/api/cursos/"+id ).then(function (response) 
+                $http.delete("http://localhost:8080/documentos-web/api/cursos/"+id ).then(function () 
                 {
                     $scope.get();
                 });
@@ -65,9 +65,9 @@
                 $scope.data.codigo=curso.codigo;
                 
                 
-               console.log(curso); 
                
-                $http.put("http://localhost:8080/documentos-web/api/cursos/"+curso.id ,$scope.data).then(function (response) 
+               
+                $http.put("http://localhost:8080/documentos-web/api/cursos/"+curso.id ,$scope.data).then(function () 
                 {
                     $state.reload();
                 });

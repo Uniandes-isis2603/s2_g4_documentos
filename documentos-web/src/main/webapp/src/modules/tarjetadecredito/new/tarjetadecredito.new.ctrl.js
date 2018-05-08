@@ -17,8 +17,8 @@
                 };
                 
                 
-                console.log($scope.data);
-                $http.post(tarjetadecreditoContext, $scope.data).then(function (response) {
+               
+                $http.post(tarjetadecreditoContext, $scope.data).then(function () {
                     $state.reload();
                 });
             };
