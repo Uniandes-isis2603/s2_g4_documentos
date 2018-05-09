@@ -2,7 +2,7 @@
 
     var mod = ng.module("editorialesModule");
 
-    mod.controller("editorialesCtrl", ['$scope','$rootScope' , '$state', '$stateParams', '$http', function ($scope,$rootScope ,$state, $http) {
+    mod.controller("editorialesCtrl", ['$scope','$rootScope' , '$state', '$http', function ($scope,$rootScope ,$state, $http) {
             $rootScope.home=1;
             $scope.data = {};
             $scope.dataActuaBasico={};

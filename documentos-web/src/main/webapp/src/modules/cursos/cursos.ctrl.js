@@ -2,7 +2,7 @@
 
     var mod = ng.module("cursosModule");
 
-    mod.controller("cursosCtrl", ['$scope', '$rootScope','$state', '$stateParams', '$http', function ($scope, $rootScope,$state, $http) {
+    mod.controller("cursosCtrl", ['$scope', '$rootScope','$state', '$http', function ($scope, $rootScope,$state, $http) {
             $rootScope.home=1;
             $scope.records = {};
             $scope.data = {};
@@ -27,7 +27,12 @@
                 $http.post("http://localhost:8080/documentos-web/api/cursos",$scope.data).then(function () 
                 {
                     $scope.get();
+                   
                 });
+                
+             
+               
+        
             
             };
              $scope.update_cursos= function(id)

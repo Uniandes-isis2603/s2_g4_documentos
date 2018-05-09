@@ -41,70 +41,14 @@
             
             $stateProvider.state('areas', {
                 url: '/areas',
-                abstract: true,
                 views: {
                     'mainView': {
-                        templateUrl: basePath + 'areas.html',
+                        templateUrl: basePath + 'areas.list.html',
                         controller: 'areasCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('areasList', {
-                url: '/list',
-                parent: 'areas',
-                views: {
-                    'listView':{
-                        templateUrl: basePath + 'areas.list.html'
-                    }
-                }
-            }).state('areaDetail', {
-                url:'/detail/{areaId:int}',
-                parent: 'areas',
-                param: {
-                    autorId: null
-                },
-                views: {
-                    'detailView':{
-                        templateUrl: basePath + 'areas.detail.html',
-                        controller: 'areasDetailCtrl',
-                        controllerAs:'ctrl'
-                    }
-                }
-            }).state('areasCreate', {
-                url: '/create',
-                parent: 'areas',
-                views: {
-                    'detailView': {
-                        templateUrl: basePath + 'new/areas.new.html',
-                        controller: 'areaNewCtrl'
-                    }
-                }
-            }).state('areaUpdate', {
-                url: '/update/{areaId:int}',
-
-                parent: 'areas',
-
-                param: {
-                    autorId: null
-                },
-                views: {
-                    'detailView': {
-                        templateUrl: basePath + 'new/areas.new.html',
-                        controller: 'areaUpdateCtrl'
-                    }
-                }
-            }).state('areaDelete', {
-                url: '/delete/{areaId:int}',
-                parent: 'areas',
-                param: {
-                    autorId: null
-                },
-                views: {
-                    'detailView': {
-                        templateUrl: basePath + 'delete/areas.delete.html',
-                        controller: 'areaDeleteCtrl'
-                    }
-                }
+            
             });
         }]);
 })(window.angular);

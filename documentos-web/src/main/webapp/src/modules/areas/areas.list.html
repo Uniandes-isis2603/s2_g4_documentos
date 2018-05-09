@@ -6,49 +6,140 @@
     </div>
         
 </div>
-
-<div class="container-fluid">
-    <div class="panel panel-heading" id ="imagenAutorPrincipal">
-   
+<div class ="row"> 
+    <div class="col-sm-1">
+        
     </div>
-    <div class="botones">
-        <a id="{{$index}}-new" class="btn btn-default" ui-sref="areasCreate()">Agregar</span></a>
-    </div>
-    <div ng-repeat="area in areasRecords">
-
-        <div class="panel panel-default">
-
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}" >
-                        {{area.tipo}}
-                    </a>
-                </h4>
-                <div align="right">
-                    <a id="{{$index}}-new" class="btn btn-info" ui-sref="areaDetail({areaId: area.id})">Ver Mas</span></a>
-                </div>
-            </div>
-            <div id="collapse{{$index}}" class="panel-collapse collapse in">
-                <div class="panel-body">
-                    <h4>
-                    <strong>Tipo: </strong>{{area.tipo}}
-                    </h4>
-                      <h4><strong>Documentos: </strong>  </h4>
-                        <div ng-show="area.documentos.length===0">
-                                   <div class="alert alert-warning" role="alert"> El autor no tiene libros asociados</div>
-                                   
-                     </div>
-                        <div class="row">
-                            <div class="col-sm-2" ng-repeat="fotocopia in area.documentos">
-                   
-                               <div class="thumbnail " style="height: 210; width:150px" >
-                                                    <img src="{{fotocopia.caratula}}" alt="..." style=" width:150px; height:200" >
+    <div class="col-sm-7"> 
+        <div style="padding-top:50px; ">
+            <div class="panel-group" id="accordion">
+                <div ng-repeat="area in areas">
+                    
+                    <div class="panel panel-default" style="margin-bottom:20px; ">
+                        
+                        <div class="panel-heading" style="background-color: white;"   >
+                            
+                            <h4 class="panel-title " style="color:#2c3e50" >
+                                <a><i ng-click="delete(area.id)" style="color:lightgray" class=" canequita fas fa-trash pull-right"></i></a>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}">
+                                    
+                                    {{area.tipo}}   
+                                        
+                                </a>
+                                    
+                            </h4>
+                                
+                        </div>
+                        <div id="collapse{{$index}}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-3"> 
+                                        <h4><strong>Id:</strong></h4>
+                                            
+                                        
+                                       <h4> <strong>Nombre:</strong></h4>
+                                       
+                                        <h4><strong>Documentos:</strong> </h4>
+                                        <br>
+                                    </div>
+                                    <div class="col-sm-3">
+                                       <h4> {{area.id}}</h4>
+                                        
+                                       <h4> {{area.nombre}}</h4>
+                                        <div class="row">
+                                            <div class="col-sm-2"  ng-repeat="libroMagico in area.documentos">
+                                                <div class="thumbnail " style="height: 210; width:150px" >
+                                                    <img src="{{libroMagico.caratula}}" alt="..." style=" width:150px; height:200" >
                                                         
+                                                </div>
+                                            </div>
+                                        </div>
+                                            
+                                    </div>
+                                    <div class="col-sm-3">
+                                        
+                                    </div>
+                                        
+                                    <div class="col-sm-3">
+                                        <button type="button" name="update" class=" btn loginbutton pull-right" 
+                                                style="margin-right: 125px ; color:white" ng-click="darLibros()"><a  style="color: white" data-toggle="modal" href="#Modal{{$index}}">
+                                                <i class="fas fa-plus-circle" ></i> Añadir Libros
+                                            </a></button>
+                                                
+                                    </div>
+                                        
+                                    <div class="modal fade" id="Modal{{$index}}" role="dialog">
+                                        <div class="modal-dialog modal-lg">
+                                            
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                                                    <h4 class="modal-title">Sign In</h4>
+                                                </div>
+                                                <div class="modal-body" >
+                                                    
+                                                    <ul  class="ul-list"ng-repeat="libro in libros">
+                                                        <li class="list-group-item"> {{libro.nombre}} <a ng-click="bibliografia(libro)" class="pull-right"><i class="fas fa-plus"></i></a>
+                                                    </ul>         
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn loginbutton " data-dismiss="modal" style="color:white" ng-click="actualizarLibros(editorial)"> Aceptar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            
+                                    </div>
                                 </div>
-                           
+                                    
                             </div>
                         </div>
-                    
+                    </div>
+                        
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+        
+        
+        
+    <div class="col-sm-3 thumbnail " style="margin-top:50px; width:400 ; margin-left:50px;height:450 ">
+        <div class="container ">
+            <div class="col-md-5">
+                <div class="form-area">  
+                    <form role="form">
+                        <br>
+                        <h3>Controles</h3>
+                        <br>
+                        <h4 style="margin-left:12px; ">Crear</h4>
+                           <div class="form-group col-sm-9" >
+                            <input type="number"  style="margin-right:50px;"  placeholder="Id" class="form-control " name="Nombre"  required ng-model="data.id">
+                        </div> 
+                            
+                        <div class="form-group col-sm-9">
+                            <input type="text" class="form-control"  placeholder="Tipo" required ng-model="data.tipo">
+                        </div>     
+                        <button type="button" id="crear" name="create"  class="btn actuabbuton pull-right" style="margin-right: 125px; color:white; "  ng-click="create()" ng-disabled="data.tipo === undefined"> <i class="fas fa-plus-circle"></i> Crear Area</button>
+                            
+                    </form>
+                    <br>
+                        
+                        
+                    <form role="form"  style="margin-top: 100px;">
+                        
+                        <h4 style="margin-left:12px; ">Actualizar</h4>
+                        <div class="form-group col-sm-9" >
+                            <input type="number"  style="margin-right:50px;"  placeholder="Id" class="form-control " name="Nombre"  required ng-model="dataActuaBasico.id">
+                        </div> 
+                            
+                        <div class="form-group col-sm-9">
+                            <input type="text" class="form-control"  placeholder="Tipo" required ng-model="dataActuaBasico.tipo">
+                        </div> 
+                        <button type="button" id="actualizar" name="update" class="loginbutton btn  pull-right" 
+                                ng-click="update_editorial(dataActuaBasico.id)" style="margin-right: 125px ; color:white" ng-disabled="(dataActuaBasico.nombre === undefined && dataActuaBasico.id === undefined) ">
+                            <i class="fas fa-edit"></i> Actualizar Area</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -4,15 +4,10 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.documentos.resources;
-
 import co.edu.uniandes.csw.documentos.dtos.ComentarioDTO;
-
 import co.edu.uniandes.csw.documentos.ejb.ComentarioLogic;
-
 import co.edu.uniandes.csw.documentos.entities.ComentarioEntity;
-
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
