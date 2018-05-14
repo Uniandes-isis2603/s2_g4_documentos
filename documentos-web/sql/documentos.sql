@@ -158,6 +158,12 @@ insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnL
 insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7502, 'Visa','4234567880123456', 'raquel', 130);
 insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7504, 'MasterCard','5134567890153456','jaime', 198);
 
+
+insert into FacturaEntity (id, fecha, costo, METODODEPAGOPAYPAL_ID, METODODEPAGOTDC_ID) values (1, '2018-02-22 20:38:54.973', 3000, NULL, 7500);
+insert into FacturaEntity (id, fecha, costo, METODODEPAGOPAYPAL_ID, METODODEPAGOTDC_ID) values (2, '2018-03-22 20:38:54.973', 6000, NULL, 7500);
+insert into FacturaEntity (id, fecha, costo, METODODEPAGOPAYPAL_ID, METODODEPAGOTDC_ID) values (3, '2018-04-22 20:38:54.973', 5000, NULL, 7500);
+insert into FacturaEntity (id, fecha, costo, METODODEPAGOPAYPAL_ID, METODODEPAGOTDC_ID) values (4, '2018-05-22 20:38:54.973', 4000, NULL, 7500);
+
 -- Ernesto
 insert into EditorialEntity(id,nombre) values (11,'Vintage espaniol');
 insert into EditorialEntity(id,nombre) values (12,'UNAM');
@@ -170,9 +176,7 @@ insert into ComentarioEntity(id,comentario,fecha) values (11000,'es malo','2015-
 --Nicolas
 insert into CursoEntity(id,codigo,departamento,nombre) values (3000,'Ma205','Matematicas','Matematica basica');
 
-INSERT INTO COMPRAENTITY (id,COSTO, FECHA, TIPODECOMPRA, METODODEPAGOPAYPAL_ID, METODODEPAGOTDC_ID) 
-
-	VALUES (10000,300, '2018-02-22 20:38:54.973', 'efectivo', NULL, 7500);
+INSERT INTO COMPRAENTITY (id,COSTO, FECHA, TIPODECOMPRA, METODODEPAGOPAYPAL_ID, METODODEPAGOTDC_ID) VALUES (10000,300, '2018-02-22 20:38:54.973', 'efectivo', NULL, 7500);
 
 
 --------------------------------------------------------------------------
