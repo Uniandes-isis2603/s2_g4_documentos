@@ -61,7 +61,7 @@ public class FacturaResource {
     }
     
     @GET
-    @PathParam("/{idFac: \\d+}")
+    @Path("{idFac: \\d+}")
     public FacturaDetailDTO getFactura(@PathParam("idFac") Long idFac) throws BusinessLogicException
     {
       return new  FacturaDetailDTO(logica.getFactura(idFac));
@@ -69,7 +69,7 @@ public class FacturaResource {
     
     
     @GET
-    @PathParam("/usuario/{id: \\d+}")
+    @Path("usuario/{id: \\d+}")
     public List<FacturaDetailDTO> getFacturasUsuario(@PathParam("id") Long id) throws BusinessLogicException
     {
        List<FacturaDetailDTO> lista=new ArrayList<>();

@@ -31,6 +31,10 @@ public class FacturaDetailDTO extends FacturaDTO{
     
     private Double costo;
     
+    public FacturaDetailDTO()
+    {
+        
+    }
     
     
     @Override
