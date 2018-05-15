@@ -212,7 +212,7 @@ public class AreaDeConocimientoLogicTest {
      *
      */
     @Test
-    public void getAutorTest1() {
+    public void getAreaTest1() {
         
         Long id = new Long("11111");
         AreaDeConocimientoEntity resultEntity = areaLogic.getArea(id);
@@ -356,6 +356,61 @@ public class AreaDeConocimientoLogicTest {
             //Debe llegar acá
         }
 
+    }
+    
+    
+    /**
+     * Test que prueba el retorno de las áreas de conocimiento de manera incorrecta
+     */
+    @Test
+    public void getAreabyTipo1(){
+        AreaDeConocimientoEntity entity = data.get(0);
+        try{
+            AreaDeConocimientoEntity resultEntity = areaLogic.getAreasByTipo("Prb4nd!!").get(0);
+            
+            //No deberia llegar aca
+            Assert.fail("No se generó el error esperado");
+        }
+      catch(BusinessLogicException e){
+          //Debe llegar acá
+      }  
+        
+    }
+    
+    /**
+     * Test que prueba el retorno de las áreas de conocimiento
+     */
+    @Test
+    public void getAreabyTipo2(){
+        AreaDeConocimientoEntity entity = data.get(0);
+        try{
+            AreaDeConocimientoEntity resultEntity = areaLogic.getAreasByTipo(entity.getTipo()).get(0);
+            Assert.assertNotNull(resultEntity);
+        
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getTipo(), resultEntity.getTipo());
+        }
+      catch(BusinessLogicException e){
+          Assert.fail(e.getMessage());
+      }  
+        
+    }
+    
+       /**
+     * Test que prueba el retorno de las áreas de conocimiento vacío
+     */
+    @Test
+    public void getAreabyTipo3(){
+        AreaDeConocimientoEntity entity = data.get(0);
+        try{
+            List<AreaDeConocimientoEntity> resultEntity = areaLogic.getAreasByTipo("Nada");
+            Assert.assertEquals(0,resultEntity.size());
+        
+        }
+      catch(BusinessLogicException e){
+          Assert.fail(e.getMessage());
+      }  
+        
     }
     
     /**

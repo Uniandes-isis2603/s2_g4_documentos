@@ -35,7 +35,6 @@ public class AreaDeConocimientoPersistence {
     public AreaDeConocimientoEntity create(AreaDeConocimientoEntity entity){
         LOGGER.info("Creando un area de conocimiento nueva");
         em.persist(entity);
-        LOGGER.info("Creando un area de conocimiento nueva");
         return entity;
     }
     
@@ -76,5 +75,17 @@ public class AreaDeConocimientoPersistence {
         LOGGER.log(Level.INFO, "Eliminando el area de conocimiento con id {0}", id);
         AreaDeConocimientoEntity entity = find(id);
         em.remove(entity);
+    }
+    
+    /**
+     * Metodo que encuentra las areas de conocimiento con un tipo dado
+     * @param tipo. Tipo de Area de conocimiento a buscar
+     * @return Lista con las areas encontradas con el tipo dado
+     */
+    public List<AreaDeConocimientoEntity> findByTipo(String tipo){
+        LOGGER.log(Level.INFO, "Consultando el area de conocimiento de tipo {0}", tipo);
+        TypedQuery query = em.createQuery("Select u From AreaDeConocimientoEntity u where u.tipo LIKE :tipo", AreaDeConocimientoEntity.class);
+        query = query.setParameter("tipo", tipo);
+        return query.getResultList();
     }
 }
