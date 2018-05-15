@@ -26,7 +26,11 @@
                 $http.post("http://localhost:8080/documentos-web/api/editoriales",$scope.data).then(function () 
                 {
                     $scope.get();
+                    
                 });
+                $scope.data = {};
+                $scope.sotelito.$setUntouched();
+                $scope.sotelito.$setPristine();
             
             };
             $scope.update_editorial= function(id)

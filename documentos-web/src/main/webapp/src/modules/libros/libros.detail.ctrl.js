@@ -14,7 +14,7 @@
     });
 
 
-    mod.controller('libroDetailCtrl', ['$scope', '$http', 'libroContext', '$state',
+    mod.controller('libroDetailCtrl', ['$scope', '$http', 'libroContext', '$state','$rootScope',
         
     
         
@@ -33,7 +33,7 @@
          * @param {Object} $state  Dependencia inyectada en la que se recibe el
          * estado actual de la navecación definida en el módulo.   
          */
-        function ($scope, $http, libroContext, $state) {
+        function ($scope, $http, libroContext, $state,$rootScope) {
                 $scope.comentarioContenido=" ";
         $scope.comentario={};
         $scope.data={};
@@ -52,25 +52,11 @@
                     $scope.currentLibro = response.data;
                 });
 
-                $scope.hola = function (libro)
+                $scope.agregar = function (libro)
                 {
-                 $scope.data.nombre = libro.nombre;
-                 $scope.data.descripcion = libro.descripcion;
-                 $scope.data.caratula = libro.caratula;
-                 $scope.data.ISBN = libro.ISBN;
-                 $scope.data.precio = libro.precio;
-
-                $scope.comentarioContenido.fecha="2015-10-28T14:12:59-05:00";
-
-               
-                $scope.data.comentarios= libro.comentarios.push($scope.comentario);
-
-            $http.put("http://localhost:8080/documentos-web/api/libros" + "/" + libro.id, $scope.data).then(function(response){
-                $state.go('librosList',{libroId: response.data.id},{reload:true});
-            });
-
-
-
+                    $rootScope.carrito.push(libro);
+                    
+                    
 };
             }
 
