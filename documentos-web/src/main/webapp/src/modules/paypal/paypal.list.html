@@ -1,0 +1,26 @@
+<div class="container-fluid" style="background-image: url(https://images.pexels.com/photos/862734/pexels-photo-862734.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)">
+<div class="container">
+    <div>
+        <a ui-sref="paypalCreate" class="btn-lg btn-success" role="button">Adicionar</a>
+    </div>
+    <div ng-repeat="paypal in paypalRecords">
+        <br><br>
+	<div class="row">
+		<div class="col-sm-2">
+			<i class="fab fa-cc-paypal" style="font-size:50px;color:white"></i>
+		</div>
+		<div class="col-sm-6">
+			<div class="row" style="color:white;background-color:rgb(0,255,255,0.2)" ><p> Usuario : {{paypal.usuario}}</p></div>
+			<div class="row" style="color:white;background-color:rgb(0,0,0,0.2)" ><p> Correo : {{paypal.correoElectronico}}</p></div>
+		</div>
+                <div class="col-sm-4">
+        	<br>
+        	<button type="button" class="btn btn-danger btn-md">Delete</button>
+                <button type="button" class="btn btn-warning btn-md" ui-sref="paypalDetail({paypalId: paypal.id})">View</button>
+          
+                </div>
+            <br><br><br>
+            </div>	
+        </div>
+    </div>
+</div>

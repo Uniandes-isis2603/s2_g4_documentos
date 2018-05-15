@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.CascadeType;
+
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -33,7 +33,7 @@ public class EditorialEntity implements Serializable{
      * Representa la lista de libros que pertenecen a una editorial.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "editorial",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany
     private List<LibroEntity> libros;
     /**
      *

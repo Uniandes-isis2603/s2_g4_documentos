@@ -1,0 +1,147 @@
+a<div  id="CursoDiv2" class="container-fluid"   >    
+    
+    <div class="container" style="padding-top:50px " > 
+        <h1 style="letter-spacing:5px ">Editoriales</h1>
+            
+    </div>
+        
+</div>
+    
+<div class ="row"> 
+    <div class="col-sm-1">
+        
+    </div>
+    <div class="col-sm-7"> 
+        <div style="padding-top:50px; " ng-app="editorialesModule">
+            <div class="panel-group" id="accordion">
+                <div ng-repeat="editorial in editoriales">
+                    
+                    <div class="panel panel-default" style="margin-bottom:20px; ">
+                        
+                        <div class="panel-heading" style="background-color: white;"   >
+                            
+                            <h4 class="panel-title " style="color:#2c3e50" >
+                                <a><i ng-click="delete(editorial.id)" style="color:lightgray" class=" canequita fas fa-trash pull-right"></i></a>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}">
+                                    
+                                    {{editorial.nombre}}   
+                                        
+                                </a>
+                                    
+                            </h4>
+                                
+                        </div>
+                        <div id="collapse{{$index}}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-3"> 
+                                        <h4><strong>Id:</strong></h4>
+                                            
+                                        
+                                       <h4> <strong>Nombre:</strong></h4>
+                                       
+                                        <h4><strong>Libros:</strong> </h4>
+                                        <br>
+                                    </div>
+                                    <div class="col-sm-3">
+                                       <h4> {{editorial.id}}</h4>
+                                        
+                                       <h4> {{editorial.nombre}}</h4>
+                                        <div class="row">
+                                            <div class="col-sm-2"  ng-repeat="libroMagico in editorial.libros">
+                                                <div class="thumbnail " style="height: 210; width:150px" >
+                                                    <img src="{{libroMagico.caratula}}" alt="..." style=" width:150px; height:200" >
+                                                        
+                                                </div>
+                                            </div>
+                                        </div>
+                                            
+                                    </div>
+                                    <div class="col-sm-3">
+                                        
+                                    </div>
+                                        
+                                    <div class="col-sm-3">
+                                        <button type="button" name="update" class=" btn loginbutton pull-right" 
+                                                style="margin-right: 125px ; color:white" ng-click="darLibros()"><a  style="color: white" data-toggle="modal" href="#Modal{{$index}}">
+                                                <i class="fas fa-plus-circle" ></i> Añadir Libros
+                                            </a></button>
+                                                
+                                    </div>
+                                        
+                                    <div class="modal fade" id="Modal{{$index}}" role="dialog">
+                                        <div class="modal-dialog modal-lg">
+                                            
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                                                    <h4 class="modal-title">Sign In</h4>
+                                                </div>
+                                                <div class="modal-body" >
+                                                    
+                                                    <ul  class="ul-list"ng-repeat="libro in libros">
+                                                        <li class="list-group-item"> {{libro.nombre}} <a ng-click="bibliografia(libro)" class="pull-right"><i class="fas fa-plus"></i></a>
+                                                    </ul>         
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn loginbutton " data-dismiss="modal" style="color:white" ng-click="actualizarLibros(editorial)"> Aceptar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            
+                                    </div>
+                                </div>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                        
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+        
+        
+        
+    <div class="col-sm-3 thumbnail " style="margin-top:50px; width:400 ; margin-left:50px;height:410 ">
+        <div class="container ">
+            <div class="col-md-5">
+                <div class="form-area">  
+                    <form role="form">
+                        <br>
+                        <h3>Controles</h3>
+                        <br>
+                        <h4 style="margin-left:12px; ">Crear</h4>
+                            
+                        <div class="form-group col-sm-9">
+                            <input type="text" class="form-control"  placeholder="Nombre" required ng-model="data.nombre">
+                        </div>     
+                        <button type="button" id="crear" name="create"  class="btn actuabbuton pull-right" style="margin-right: 125px; color:white; "  ng-click="create()" ng-disabled="data.nombre === undefined"> <i class="fas fa-plus-circle"></i> Crear Editorial</button>
+                            
+                    </form>
+                    <br>
+                        
+                        
+                    <form role="form"  style="margin-top: 50px;">
+                        
+                        <h4 style="margin-left:12px; ">Actualizar</h4>
+                        <div class="form-group col-sm-9" >
+                            <input type="number"  style="margin-right:50px;"  placeholder="Id" class="form-control " name="Nombre"  required ng-model="dataActuaBasico.id">
+                        </div> 
+                            
+                        <div class="form-group col-sm-9">
+                            <input type="text" class="form-control"  placeholder="Nombre" required ng-model="dataActuaBasico.nombre">
+                        </div> 
+                        <button type="button" id="actualizar" name="update" class="loginbutton btn  pull-right" 
+                                ng-click="update_editorial(dataActuaBasico.id)" style="margin-right: 125px ; color:white" ng-disabled="(dataActuaBasico.nombre === undefined && dataActuaBasico.id === undefined) ">
+                            <i class="fas fa-edit"></i> Actualizar Editorial</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    

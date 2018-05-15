@@ -28,7 +28,10 @@
 
             $scope.availableItems = [];
 
+
+            var idArea = $state.params.autorId;
             var idArea = $state.params.areaId;
+
 
             //Consulto el autor a editar.
             $http.get(areaContext + '/' + idArea).then(function (response) {
@@ -52,7 +55,10 @@
                         });
                     }
                     //Autor created successfully
-                    $state.go('areasList', {areaId: response.data.id}, {reload: true});
+
+                    $state.go('areasList', {autorId: response.data.id}, {reload: true});
+
+
                 });
             };
         }
