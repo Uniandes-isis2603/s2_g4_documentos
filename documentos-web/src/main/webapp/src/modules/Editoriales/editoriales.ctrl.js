@@ -28,7 +28,7 @@
                     $scope.get();
                     
                 });
-                $scope.data = {};
+                $scope.data={};
                 $scope.sotelito.$setUntouched();
                 $scope.sotelito.$setPristine();
             
