@@ -31,7 +31,8 @@
         }]);
 
      app.run( function ($rootScope) {
-            $rootScope.home=0;
+            $rootScope.documentosReservas=[];
+            
         });
     
 

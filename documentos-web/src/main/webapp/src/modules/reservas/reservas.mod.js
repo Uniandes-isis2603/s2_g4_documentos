@@ -54,6 +54,15 @@
                     }
                 }
                 
+            }).state('reservaCreate', {
+                url: '/create',
+                parent: 'reservas',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/reservas.new.html',
+                        controller: 'reservasNewCtrl',
+                    }
+                }
             });
     }]);
 })(window.angular);

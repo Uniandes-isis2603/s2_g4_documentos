@@ -1,6 +1,7 @@
 (function(ng){
     var mod= ng.module("reservaModule");
-    mod.constant("reservaContext","api/reservas");
+    mod.constant("reservaContext","reservas");
+    mod.constant("usuariosContext", "api/usuarios");
     mod.controller('reservaDetailCtrl', ['$scope', '$http','usuariosContext', 'reservaContext', '$state',
         /**
          * @ngdoc controller

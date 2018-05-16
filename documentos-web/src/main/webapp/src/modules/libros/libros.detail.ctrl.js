@@ -1,7 +1,7 @@
 (function(ng){
     var mod= ng.module("libroModule");
     mod.constant("libroContext","api/libros");
-    mod.controller('libroDetailCtrl', ['$scope', '$http','libroContext', '$state',
+    mod.controller('libroDetailCtrl', ['$scope', '$http','libroContext', '$state','$rootScope',
         /**
          * @ngdoc controller
          * @name libros.controller:libroDetailCtrl
@@ -17,7 +17,7 @@
          * @param {Object} $state  Dependencia inyectada en la que se recibe el
          * estado actual de la navecación definida en el módulo.   
          */
-        function($scope,$http, libroContext,$state) {
+        function($scope,$http, libroContext,$state,$rootScope) {
             if(($state.params.libroId !== undefined) && ($state.params.libroId !==null)){
                 /**
                  * @ngdoc function
@@ -32,6 +32,13 @@
                 $http.get(libroContext + '/' + $state.params.libroId).then(function(response){
                     $scope.currentLibro =response.data;
                 });
+                
+                 $scope.agregarLibro=function(libro)
+            {
+                console.log($rootScope.documentosReservas);
+                $rootScope.documentosReservas.push(libro);
+                console.log($rootScope.documentosReservas);
+            }
             }
         }
     ]);
