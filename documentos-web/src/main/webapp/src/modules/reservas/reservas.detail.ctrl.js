@@ -29,7 +29,7 @@
                  * de los reservas o API donde se puede consultar. 
                  * @param {json} response 
                  */
-                $http.get(usuariosContext +'/'+ $state.params.usuarioId + '/' + reservasContext + '/' + $state.params.reservaId).then(function(response){
+                $http.get(usuariosContext +'/'+ $state.params.usuarioId + '/' + reservaContext + '/' + $state.params.reservaId).then(function(response){
                     $scope.currentReserva =response.data;
                 });
             }

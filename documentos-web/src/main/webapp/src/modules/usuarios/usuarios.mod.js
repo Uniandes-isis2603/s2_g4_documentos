@@ -27,6 +27,7 @@
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/usuarios/';
             $urlRouterProvider.otherwise("/usuariosList");
+            
             $stateProvider.state('usuarios', {
                 url: '/usuarios',
                 abstract: true,
@@ -51,7 +52,7 @@
                 views: {
                     'detailView': {
                         templateUrl: basePath + '/new/usuarios.new.html',
-                        controller: 'usuariosNewCtrl'
+                        controller: 'usuariosNewCtrl',
                     }
                 }
             }).state('usuarioDetail', {
@@ -73,6 +74,19 @@
                     }
 
                 }
+            }).state('usuarioUpdate', {
+                url: '/update/{usuarioId:int}',
+                parent: 'usuarios',
+                param: {
+                    usuarioId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/update/usuarios.update.html',
+                        controller: 'usuariosUpdateCtrl'
+                    }
+                }
+               
             });
         }]);
 })(window.angular);

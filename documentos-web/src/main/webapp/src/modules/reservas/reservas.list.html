@@ -4,9 +4,11 @@
         <table class="tablaListaU">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Fecha</th>
-                    <th>Costo</th>
+                    <th>número de reserva</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                     <th>visualizar</th>
                     <th>Eliminar</th>
                 </tr>
@@ -14,9 +16,11 @@
             <tbody>
                 <tr ng-repeat="reserva in reservasRecords">
                     <td id="id">{{reserva.id}}</td>
-                    <td id="nombre">{{reserva.fecha}}</td>
-                    <td id="UserName">{{reserva.costo}}</td>
-                    <td><button id="botonFede" ui-sref="usuarioDetail({usuarioId: usuario.id})">ver</button> </td>
+                    <td id="nombre"></td>
+                    <td id="UserName"></td>
+                    <td id="UserName"></td>
+                    <td id="UserName"></td>
+                    <td><button id="botonFede" ui-sref="reservaDetail({reservaId: reserva.id})">ver</button> </td>
                     <td><button id="botonFede" ui-sref="usuarioDetail({usuarioId: usuario.id})">Eliminar</button> </td>
 
 

@@ -5,10 +5,7 @@
  */
 package co.edu.uniandes.csw.documentos.dtos;
 
-import co.edu.uniandes.csw.documentos.entities.ComentarioEntity;
-import co.edu.uniandes.csw.documentos.entities.CompraEntity;
 import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
-import co.edu.uniandes.csw.documentos.entities.ReservaEntity;
 import co.edu.uniandes.csw.documentos.entities.ReservaEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +19,7 @@ public class ReservaDetailedDTO extends ReservaDTO{
     /**
      * uno a maximo uno
      */
-    private List<DocumentoDTO> documento;
+    private List<DocumentoDTO> documentos;
     
     
     private UsuarioDTO usuario;
@@ -42,11 +39,14 @@ public class ReservaDetailedDTO extends ReservaDTO{
      */
     public ReservaDetailedDTO(ReservaEntity entity) {
         super(entity);
-        if(entity.getDocumentos()!=null)
-        {
-           //this.documento= new DocumentoDTO( entity.getDocumentos());
-            
-        }
+     
+            if (entity.getDocumentos() != null) {
+            documentos = new ArrayList<>();
+            for (DocumentoEntity entityDocumento : entity.getDocumentos()) {
+                 documentos.add(new DocumentoDTO(entityDocumento));
+            }
+        
+    }
     }
 
     /**
@@ -62,7 +62,7 @@ public class ReservaDetailedDTO extends ReservaDTO{
         if (getDocumentos() != null) {
             List<DocumentoEntity> DocumentoEntity = new ArrayList<>();
             for (DocumentoDTO documento : getDocumentos()) {
-                //DocumentoEntity.add(documento.toEntity());
+                DocumentoEntity.add(documento.toEntity());
             }
            Reserva.setDocumentos(DocumentoEntity);
         }
@@ -89,14 +89,14 @@ public class ReservaDetailedDTO extends ReservaDTO{
      * @return the documento
      */
     public List<DocumentoDTO> getDocumento() {
-        return documento;
+        return documentos;
     }
 
     /**
      * @param documento the documento to set
      */
     public void setDocumento(List<DocumentoDTO> documento) {
-        this.documento = documento;
+        this.documentos = documento;
     }
 
     /**

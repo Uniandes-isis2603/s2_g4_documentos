@@ -138,13 +138,13 @@ insert into ReservaEntity(id, fecha, costo) values (554,'2012-04-05 22:20:13',10
 
 
 -- Federico
-insert into DeseadoEntity(id, nombre, cantidad) values (2000, 'mi lista',0);
-insert into DeseadoEntity(id, nombre, cantidad) values (2001, 'mis documentos',0);
-insert into DeseadoEntity(id, nombre, cantidad) values (2002, 'mis desesos',0);
-insert into DeseadoEntity(id, nombre, cantidad) values (2003, 'regalos para navidad',0);
-insert into DeseadoEntity(id, nombre, cantidad) values (2004, 'libritos',0);
-insert into DeseadoEntity(id, nombre, cantidad) values (2005, ' !los quiero',0);
-insert into DeseadoEntity(id, nombre, cantidad) values (2006, ':3 ñom ñom',0);
+insert into DeseadoEntity(id, nombre, cantidad) values (2000, 'mi lista',1);
+insert into DeseadoEntity(id, nombre, cantidad) values (2001, 'mis documentos',2);
+insert into DeseadoEntity(id, nombre, cantidad) values (2002, 'mis desesos',3);
+insert into DeseadoEntity(id, nombre, cantidad) values (2003, 'regalos para navidad',4);
+insert into DeseadoEntity(id, nombre, cantidad) values (2004, 'libritos',5);
+insert into DeseadoEntity(id, nombre, cantidad) values (2005, ' !los quiero',2);
+insert into DeseadoEntity(id, nombre, cantidad) values (2006, ':3 ñom ñom',3);
 
 
 -- Gregorio
@@ -192,8 +192,8 @@ INSERT INTO COMPRAENTITY (id,COSTO, FECHA, TIPODECOMPRA, METODODEPAGOPAYPAL_ID, 
 
 -- Federico
 insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (45, 2000);
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (45, 2001);
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (46, 2002);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (46, 2001);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (47, 2002);
 insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (48, 2003);
 insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (49, 2004);
 insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (50, 2005);
