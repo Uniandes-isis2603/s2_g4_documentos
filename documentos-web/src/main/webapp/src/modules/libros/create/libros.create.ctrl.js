@@ -40,6 +40,14 @@
         $http.get("api/areas").then(function (responseAreas){
                 $scope.areasRecords = responseAreas.data;
             });
+            
+        $http.get("api/cursos").then(function (responseCursos){
+                $scope.cursosRecords = responseCursos.data;
+            });
+            
+        $http.get("api/editoriales").then(function (responseEditoriales){
+            $scope.editorialesRecords = responseEditoriales.data;
+        });
         
         $scope.asociarAutor = function (id) {
             
@@ -93,6 +101,43 @@
             });
         };
             
+        $scope.asociarCurso = function (id) {
+            
+            if(typeof $scope.data.cursos === "undefined")
+            {
+               var cursos = []; 
+            } else
+            {
+                 cursos = $scope.data.cursos;
+            }
+            
+            $http.get("api/cursos/" + id).then(function (responseCurso){
+                
+                
+                var curso = {id:responseCurso.data.id, nombre:responseCurso.data.nombre, codigo:responseCurso.data.codigo, departamento:responseCurso.data.departamento};
+                
+                
+                cursos.push(curso);
+                
+                $scope.data.cursos = cursos;
+               
+            });
+        };
         
+        $scope.asociarEditorial = function(id) {
+            if(typeof $scope.data.editorial === "undefined")
+            {
+                var editorial= {};
+            }
+            else{
+                editorial = $scope.data.editorial;
+            }
+            
+            $http.get("api/editoriales/" + id).then(function(responseEditorial){
+                var editorial = {id:responseEditorial.data.id, nombre:responseEditorial.data.nombre};
+                
+                $scope.data.editorial = editorial;
+            });
+        };
     }]);
 })(window.angular);

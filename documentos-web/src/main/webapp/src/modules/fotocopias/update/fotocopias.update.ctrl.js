@@ -17,7 +17,7 @@
              $scope.data.precio = fotocopia.precio;
              $scope.data.capitulos = fotocopia.capitulos;
              $scope.data.profesor = fotocopia.profesor;
-             
+             $scope.data.pdf = fotocopia.pdf;
          });
          
          
@@ -34,7 +34,11 @@
         $http.get("api/areas").then(function (responseAreas){
                 $scope.areasRecords = responseAreas.data;
             });
-        
+            
+        $http.get("api/cursos").then(function (responseCursos){
+                $scope.cursosRecords = responseCursos.data;
+            });
+                
         $scope.asociarAutor = function (id) {
             
           
@@ -83,6 +87,29 @@
                 areas.push(area);
                 
                 $scope.data.areas = areas;
+               
+            });
+        };
+        
+        $scope.asociarCurso = function (id) {
+            
+            if(typeof $scope.data.cursos === "undefined")
+            {
+               var cursos = []; 
+            } else
+            {
+                 cursos = $scope.data.cursos;
+            }
+            
+            $http.get("api/cursos/" + id).then(function (responseCurso){
+                
+                
+                var curso = {id:responseCurso.data.id, nombre:responseCurso.data.nombre, codigo:responseCurso.data.codigo, departamento:responseCurso.data.departamento};
+                
+                
+                cursos.push(curso);
+                
+                $scope.data.cursos = cursos;
                
             });
         };
