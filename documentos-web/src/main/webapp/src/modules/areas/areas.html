@@ -17,7 +17,7 @@
    <div class="col-sm-5">
             <div ui-view="detailView"></div>
     </div>
-      <div class =" col-sm-3 thumbnail " style="margin-top:50px; width:400; height:450 ">
+      <div class =" col-sm-3 thumbnail pull-right" style="margin-top:50px; width:400; margin-right:50px;height:450 ">
         <div class="container ">
             <div class="col-md-5">
                 <div class="form-area">  
@@ -58,12 +58,12 @@
         
     </div>
 
-    <div class="col-sm-3 thumbnail " style="margin-top:50px; width:400 ;height:520 ">
+    <div class="col-sm-3 thumbnail pull-right" style="margin-top:50px; width:400 ;margin-right:50px;height:520 ">
         <div class="container ">
             <div class="col-md-5">
                 <div class="form-area">  
                     <form role="form">
-                        <br>
+
                         <h3>Filtros</h3>
                         <br>
                         <h4 style="margin-left:12px; ">Tipo</h4>
@@ -74,12 +74,12 @@
                         <div class="form-group col-sm-9">
                            
                             <button ng-click="buscarPorNombre(buscarPorTipo)" type="button" class="btn btn-primary">Buscar</button>
+                        <br>
                         </div> 
-                        <br>
-                        <br>
+
                         
-                        <h4 style="margin-left:12px; ">Calificación</h4>
                         <div class="form-group col-sm-9">
+                            <h4 style="margin-left:12px; ">Calificación</h4>
                             <form>
                             <input type="radio" name="Calificacion" ng-model="buscarPorCalificacion" value="-1"> Sin Calificacion 
                             <input type="radio" name="Calificacion" ng-model="buscarPorCalificacion" value="1"> 1
