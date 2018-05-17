@@ -364,7 +364,7 @@ public class AreaDeConocimientoLogicTest {
      */
     @Test
     public void getAreabyTipo1(){
-        AreaDeConocimientoEntity entity = data.get(0);
+        
         try{
             AreaDeConocimientoEntity resultEntity = areaLogic.getAreasByTipo("Prb4nd!!").get(0);
             
@@ -396,15 +396,48 @@ public class AreaDeConocimientoLogicTest {
         
     }
     
-       /**
+    /**
      * Test que prueba el retorno de las áreas de conocimiento vacío
      */
     @Test
     public void getAreabyTipo3(){
-        AreaDeConocimientoEntity entity = data.get(0);
+
         try{
             List<AreaDeConocimientoEntity> resultEntity = areaLogic.getAreasByTipo("Nada");
             Assert.assertEquals(0,resultEntity.size());
+        
+        }
+      catch(BusinessLogicException e){
+          Assert.fail(e.getMessage());
+      }  
+        
+    }
+    
+           /**
+     * Test que prueba el retorno de las áreas de conocimiento parcial
+     */
+    @Test
+    public void getAreabyTipo4(){
+        AreaDeConocimientoEntity pojoEntity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
+        pojoEntity.setTipo("Nueva Area 1");
+        AreaDeConocimientoEntity newEntity = factory.manufacturePojo(AreaDeConocimientoEntity.class);
+        newEntity.setTipo("Nueva Area 2");
+        AreaDeConocimientoEntity newEntity2 = factory.manufacturePojo(AreaDeConocimientoEntity.class);
+        newEntity2.setTipo("Nueva Area 3");
+       
+        try{
+            
+            areaLogic.createArea(pojoEntity);
+            areaLogic.createArea(newEntity);
+            areaLogic.createArea(newEntity2);
+        
+        
+            List<AreaDeConocimientoEntity> resultEntity = areaLogic.getAreasByTipo("Nueva Area");
+            Assert.assertNotNull(resultEntity);
+            
+            Assert.assertEquals("Nueva Area 1", resultEntity.get(0).getTipo());
+            Assert.assertEquals("Nueva Area 2", resultEntity.get(1).getTipo());
+            Assert.assertEquals("Nueva Area 3", resultEntity.get(2).getTipo());
         
         }
       catch(BusinessLogicException e){

@@ -188,8 +188,5 @@ public class AreaDeConocimientoLogic{
         return persistence.findByTipo(tipo);
     
     }
-
-
-    
     
 }

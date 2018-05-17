@@ -212,4 +212,33 @@ public class AutorResource {
         
         autorLogic.deleteAutor(id);
     }
+     
+    /**
+     * <h1>GET /api/autores/{tipo} : Obtener todas los autores según el tipo.</h1>
+     * 
+     * <pre>Busca y devuelve todos los autores que existen en la aplicacion según el tipo.
+     * 
+     * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Devuelve todas las areas de la aplicacion.</code> 
+     * </pre>
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found. No existe un autor con el id dado.
+     * </code>
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 412 Precondition Failed. La precondición ha fallado.
+     * </code>
+     * @param nombre Identificador del area que se desea borrar. Este debe ser una cadena de dígitos.
+     * @return JSONArray {@link AreaDeConocimientoDetailDTO} - Las areas encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+     */
+    @GET
+    @Path("{nombre}")
+    public List<AutorDetailDTO> getAreasByTipo(@PathParam("nombre") String nombre){
+        try{
+            return listEntity2DTO(autorLogic.getAutoresByNombre(nombre));
+        }
+        catch (BusinessLogicException e){
+            throw new WebApplicationException(e.getMessage(),412);
+        }    
+    }
 }

@@ -85,7 +85,7 @@ public class AreaDeConocimientoPersistence {
     public List<AreaDeConocimientoEntity> findByTipo(String tipo){
         LOGGER.log(Level.INFO, "Consultando el area de conocimiento de tipo {0}", tipo);
         TypedQuery query = em.createQuery("Select u From AreaDeConocimientoEntity u where u.tipo LIKE :tipo", AreaDeConocimientoEntity.class);
-        query = query.setParameter("tipo", tipo);
+        query = query.setParameter("tipo", "%"+tipo+"%");
         return query.getResultList();
     }
 }
