@@ -4,15 +4,10 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.documentos.resources;
-
 import co.edu.uniandes.csw.documentos.dtos.ComentarioDTO;
-import co.edu.uniandes.csw.documentos.dtos.CompraDetailedDTO;
 import co.edu.uniandes.csw.documentos.ejb.ComentarioLogic;
-import co.edu.uniandes.csw.documentos.ejb.CompraLogic;
 import co.edu.uniandes.csw.documentos.entities.ComentarioEntity;
-import co.edu.uniandes.csw.documentos.entities.CompraEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -42,7 +37,7 @@ import javax.ws.rs.Produces;
  *
  * @author n.sotelo
  */
-@Path("libros/{id: \\d+}/comentarios")
+@Path("comentarios")
 @Produces ("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -125,7 +120,9 @@ private ComentarioLogic  logica;
     public ComentarioDTO getComentario(@PathParam("id") Long id)throws BusinessLogicException 
     
     {
+        
       return new  ComentarioDTO(logica.getComentario(id));
+      
     }
     
      /**
@@ -144,15 +141,15 @@ private ComentarioLogic  logica;
      * 
      * </pre>
      * @param id Identificador del comentario que se desea actualizar.
-     * @param Comentario El comentario que se desea actualizar.
+     * @param comentario El comentario que se desea actualizar.
      * @return JSON - El Comentario guardada
      */
     @PUT
     @Path("{id: \\d+}")
-    public ComentarioDTO updateComentario (@PathParam("id") Long id, ComentarioDTO Comentario)throws BusinessLogicException 
-    { System.out.println("Info"+ id +"Comentario.info"+Comentario.getComentario());
-         Comentario.setId(id);
-        return new ComentarioDTO(logica.updateComentario(id, Comentario.toEntity()));
+    public ComentarioDTO updateComentario (@PathParam("id") Long id, ComentarioDTO comentario)throws BusinessLogicException 
+    {
+         comentario.setId(id);
+        return new ComentarioDTO(logica.updateComentario(id, comentario.toEntity()));
     }
     
     /**

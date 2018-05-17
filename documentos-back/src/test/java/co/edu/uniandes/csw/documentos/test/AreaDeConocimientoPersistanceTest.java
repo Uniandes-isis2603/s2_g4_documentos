@@ -170,4 +170,18 @@ public class AreaDeConocimientoPersistanceTest {
         AreaDeConocimientoEntity borrado = em.find(AreaDeConocimientoEntity.class, entity.getId());
         Assert.assertNull(borrado);
     }
+    
+    /**
+     * Prueba para encontrar una area por tipo
+     */
+    @Test
+    public void findAreaDeConocimientoByTipoTest(){
+        AreaDeConocimientoEntity entity = data.get(0);
+        
+        AreaDeConocimientoEntity newEntity = areaPersistence.findByTipo(entity.getTipo()).get(0);
+        
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
+    }
 }

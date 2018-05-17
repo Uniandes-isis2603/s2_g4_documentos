@@ -4,7 +4,8 @@
     mod.controller('tarjetadecreditoCtrl', ['$scope','$http','tarjetadecreditoContext','$state',
         function($scope,$http,tarjetadecreditoContext,$state){
             $http.get(tarjetadecreditoContext).then(function(response){
-                $scope.tarjetadecreditoRecords = response.data;
+                $scope.tarjetadecreditoRecords = response.data; 
+                
             });
         }
     ]);

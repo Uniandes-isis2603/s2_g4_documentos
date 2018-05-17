@@ -1,4 +1,138 @@
-<div class="container-fluid" >
-    <div ui-view="listView"> </div>
-    <div ui-view="detailView"></div>
+<div  id="CursoDiv4" >    
+    
+    <div class="container" style="padding-top:50px " > 
+        <h1 style="letter-spacing:5px ">Areas De Conocimiento</h1>
+            
+    </div>
+        
 </div>
+        
+
+
+<div class ="row">
+     <div class="col-sm-3">
+          <div ui-view="listView"> </div>
+    </div>
+    
+   <div class="col-sm-5">
+            <div ui-view="detailView"></div>
+    </div>
+      <div class =" col-sm-3 thumbnail " style="margin-top:50px; width:400; height:450 ">
+        <div class="container ">
+            <div class="col-md-5">
+                <div class="form-area">  
+                    <form role="form">
+                        <br>
+                        <h3>Controles</h3>
+                        <br>
+                        <h4 style="margin-left:12px; ">Crear</h4>
+                                                    
+                        <div class="form-group col-sm-9">
+                            <input type="text" class="form-control"  placeholder="Tipo" required ng-model="data.tipo">
+                        </div>     
+                        <button type="button" id="crear" name="create"  class="btn actuabbuton pull-right" style="margin-right: 125px; color:white; "  ng-click="create()" ng-disabled="data.tipo === undefined"> <i class="fas fa-plus-circle"></i> Crear Area</button>
+                            
+                    </form>
+                    <br>
+                        
+                        
+                    <form role="form"  style="margin-top: 100px;">
+                        
+                        <h4 style="margin-left:12px; ">Actualizar</h4>
+                        <div class="form-group col-sm-9" >
+                            <input type="number"  style="margin-right:50px;"  placeholder="Id" class="form-control " name="Nombre"  required ng-model="dataActuaBasico.id">
+                        </div> 
+                            
+                        <div class="form-group col-sm-9">
+                            <input type="text" class="form-control"  placeholder="Tipo" required ng-model="dataActuaBasico.tipo">
+                        </div> 
+                        <button type="button" id="actualizar" name="update" class="loginbutton btn  pull-right" 
+                                ng-click="update_editorial(dataActuaBasico.id)" style="margin-right: 125px ; color:white" ng-disabled="(dataActuaBasico.nombre === undefined && dataActuaBasico.id === undefined) ">
+                            <i class="fas fa-edit"></i> Actualizar Area</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-5">
+        
+    </div>
+
+    <div class="col-sm-3 thumbnail " style="margin-top:50px; width:400 ;height:520 ">
+        <div class="container ">
+            <div class="col-md-5">
+                <div class="form-area">  
+                    <form role="form">
+                        <br>
+                        <h3>Filtros</h3>
+                        <br>
+                        <h4 style="margin-left:12px; ">Tipo</h4>
+                                                   
+                        <div class="form-group col-sm-9">
+                            <input type="text" class="form-control"  placeholder="Tipo" ng-model="buscarPorTipo">
+                        </div>     
+                        <br>
+                        <br>
+                        
+                        <h4 style="margin-left:12px; ">Calificación</h4>
+                        <div class="form-group col-sm-9">
+                            <form>
+                            <input type="radio" name="Calificacion" ng-model="buscarPorCalificacion" value="-1"> Sin Calificacion 
+                            <input type="radio" name="Calificacion" ng-model="buscarPorCalificacion" value="1"> 1
+                            <input type="radio" name="Calificacion" ng-model="buscarPorCalificacion" value="2" > 2
+                            <input type="radio" name="Calificacion" ng-model="buscarPorCalificacion" value="3" > 3
+                            <input type="radio" name="Calificacion" ng-model="buscarPorCalificacion" value="4" > 4
+                            <input type="radio" name="Calificacion" ng-model="buscarPorCalificacion" value="5"> 5
+                            <input type="radio" checked name="Calificacion" ng-model="buscarPorCalificacion" value="Todos" > Todos
+                            
+                        </div>
+                        <br>
+                        <br>
+                        
+                        <div class="form-group col-sm-9">
+                            <label for="sel1">
+                                <h4 style="margin-left:12px; ">Precio</h4>
+                            </label>
+                            <select class="form-control" id="sel1" ng-model="buscarPorPrecio">
+                                <option value="5000"> >5000</option>
+                                <option value="10000"> >10000</option>
+                                <option value="15000"> >15000</option>
+                                <option value="20000"> >20000</option>
+                                <option value="25000"> >25000</option>
+                                <option value="30000"> >30000</option>
+                                <option value="35000"> >35000</option>
+                                <option value="40000"> >40000</option>
+                                <option value="45000"> >45000</option>
+                                <option value="50000"> >50000</option>
+                                <option value="1000000"> +50000</option>
+                                
+                            </select>
+
+                        </div> 
+                                                
+                        <div class="form-group col-sm-9">
+                            <h4 style="margin-left:12px; ">Profesor</h4>
+                            <input type="text" class="form-control"  placeholder="Profesor" ng-model="buscarPorProfesor">
+                        </div>   
+                        </div>
+                        <div class="form-group col-sm-9">
+                           
+                            <button ng-click="filtroTodo(buscarPorTipo,buscarPorCalificacion,buscarPorPrecio,buscarPorProfesor)" type="button" class="btn btn-primary">Buscar</button>
+                            <button ng-click="actualizar()" type="button" class="btn btn-primary">Actualizar</button>
+                        </div> 
+                        
+                    </form>
+                    <br>
+                        
+                        
+                 
+                </div>
+            </div>
+        </div>
+        
+    </div>
+ 
+    
+     
+    
+  

@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.documentos.dtos;
-
-import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
-import co.edu.uniandes.csw.documentos.entities.CursoEntity;
 import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
 
 /**
@@ -36,24 +33,22 @@ import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
 public class EditorialDTO 
 {  
     private long id;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     private String nombre;
 /**
  * Constructor por defecto
  */
     public EditorialDTO() 
     {
+     //constructor por defecto
+    }
+   public EditorialDTO(EditorialEntity entidad)
+    {
+        if (entidad!=null)
+        {      this.id= entidad.getId();
+               this.nombre= entidad.getNombre();
+        }
      
     }
-
 /**
  * 
  * @param nombre nuevo de la editorial 
@@ -63,7 +58,13 @@ public class EditorialDTO
         this.nombre = nombre;
     }
     
+    public long getId() {
+        return id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 /**
  * 
  * @return el nombre de la editorial
@@ -71,14 +72,7 @@ public class EditorialDTO
     public String getNombre() {
         return nombre;
     }
-     public EditorialDTO(EditorialEntity entidad)
-    {
-        if (entidad!=null)
-        {      this.id= entidad.getId();
-               this.nombre= entidad.getNombre();
-        }
-     
-    }
+  
      public EditorialEntity toEntity()
         {
             EditorialEntity rta= new EditorialEntity();

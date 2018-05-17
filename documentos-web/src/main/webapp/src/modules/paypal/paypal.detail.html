@@ -1,15 +1,24 @@
-<div class="row" ng-repeat="paypal in currentPaypal">
-    <div class="col-sm-2">
-        <i class="fa fa-cc-paypal" style="font-size:50px;color:white"></i>
-    </div>
-    <div class="col-sm-6">
-        <div class="row" style="color:white;background-color:rgb(0,255,255,0.2)" ><p> Usuario : {{currentPaypal.usuario}}</p></div>
-        <div class="row" style="color:white;background-color:rgb(0,0,0,0.2)" ><p> Correo : {{currentPaypal.correoElectronico}}</p></div>
-    </div>
-    <div class="col-sm-4">
-        <br>
-        <button type="button" class="btn btn-danger btn-md">Delete</button>
-        <button type="button" class="btn btn-warning btn-md" ui-sref="paypalUpdate({paypalId: currentPaypal.id})"> Editar</button>
-    </div>
-    <br><br><br>
+<div id="paypalFondo" style="margin-top:2%"> 
+    <h1>PayPal</h1> </div>
+<div class="container-fluid well span6, center-cropped" style="margin-top: 5%">
+	<div class="row-fluid">
+        <div class="span8">
+            <i class="fab fa-paypal" style = "font-size: 200px" ></i>
+            <h3>Usuario : {{currentPaypal.usuario}}</h3>
+            <h6>Correo : {{currentPaypal.correoElectronico}}</h6>
+        </div>
+        
+        <div class="span2" style="margin-top: 10%">
+            <div class="btn-group">
+                <a class=" dropdown-toggle actuabbuton btn-lg" style="color: white" data-toggle="dropdown" href="#">
+                    Action 
+                    <span class="icon-cog icon-white"></span><span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a ui-sref="paypalUpdate({paypalId: currentPaypal.id})"><span class="icon-wrench"></span> Modify</a></li>
+                    <li><a href="#"><span class="icon-trash"></span> Delete</a></li>
+                </ul>
+            </div>
+        </div>
+</div>
 </div>

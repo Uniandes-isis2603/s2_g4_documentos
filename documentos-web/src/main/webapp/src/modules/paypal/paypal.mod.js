@@ -5,14 +5,21 @@
             $urlRouterProvider.otherwise('/paypal');
             
            $stateProvider.state('paypal',{
-               url:'/paypal',
+               url:'paypal',
                abstract: true,
+               parent:'usuarios',
                views:{
-                   'mainView':{
+                   'paypal':{
                        templateUrl: basePath + 'paypal.html',
                        controller: 'paypalCtrl',
                        controllerAs: 'ctrl'
-                   }
+                   },
+                   'menuView':{
+                      templateUrl: 'src/modules/usuarios/menu.html',
+                      controller: 'usuarioDetailCtrl',
+                      controllerAs: 'ctrl'
+
+                    }
                }
            }).state('paypalList',{
                url: '/list',
