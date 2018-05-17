@@ -116,6 +116,7 @@ public class ImagenLogicTest {
     public void createImagenTest1() {
         
         ImagenEntity newEntity = factory.manufacturePojo(ImagenEntity.class);
+        newEntity.setNombre("Imagen Nueva");
         newEntity.setImg("Portada.png");
         try{
              imagenLogic.createImagen(newEntity);
