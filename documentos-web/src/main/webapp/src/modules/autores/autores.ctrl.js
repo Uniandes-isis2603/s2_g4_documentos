@@ -42,11 +42,11 @@
             };
             $scope.darLibros = function()
             {
-                console.log("holi");
+            
                 $http.get("http://localhost:8080/documentos-web/api/libros").then(function (response) 
                 {
                     $scope.libros = response.data;
-                    console.log($scope.libros)
+                    
                 });   
 
             };
