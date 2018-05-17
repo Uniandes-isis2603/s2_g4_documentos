@@ -5,12 +5,9 @@
  */
 package co.edu.uniandes.csw.documentos.ejb;
 import co.edu.uniandes.csw.documentos.entities.TarjetaDeCreditoEntity;
-import co.edu.uniandes.csw.documentos.entities.TarjetaDeCreditoEntity;
-import co.edu.uniandes.csw.documentos.entities.TarjetaDeCreditoEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.TarjetaDeCreditoPersistence;
-import co.edu.uniandes.csw.documentos.persistence.TarjetaDeCreditoPersistence;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,7 +63,7 @@ public class TarjetaDeCreditoLogic
 
         }
      if (TDC.getTipoDeTarjeta().equals("MasterCard")){
-               if (entity.getNroDeLaTarjeta().length() != 16){
+               if (TDC.getNroDeLaTarjeta().length() != 16){
                 LOGGER.log(Level.INFO, "Error en el numero de la tarjeta tipo");
                 check = false;
                }
@@ -152,7 +149,7 @@ public class TarjetaDeCreditoLogic
         TarjetaDeCreditoEntity entity = persistence.find(TDC.getId());
         if(entity == null)
         {
-        LOGGER.log(Level.INFO, "La TDC con el numero {0} no existe ", entity.getNroDeLaTarjeta());
+        LOGGER.log(Level.INFO, "La TDC con el numero {0} no existe ", TDC.getNroDeLaTarjeta());
         }
         else if (entity.getTipoDeTarjeta().equals("Visa"))
         {

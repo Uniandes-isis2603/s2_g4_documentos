@@ -4,11 +4,12 @@
     mod.controller('autoresCtrl', ['$scope','$http', 'autorContext', '$state', 
         function($scope,$http,autorContext,$state) {
             
+            if($scope.autores === undefined){
                 $http.get("http://localhost:8080/documentos-web/api/autores").then(function (response) 
-            {
-                $scope.autores = response.data;
-            });
-            
+                {
+                    $scope.autores = response.data;
+                });
+            }
             $scope.get = function(){
                 $http.get("http://localhost:8080/documentos-web/api/autores").then(function (response) 
                 {
@@ -17,7 +18,7 @@
             };
             $scope.create= function()
             {
-               
+               $scope.data.id=100;
                 $http.post("http://localhost:8080/documentos-web/api/autores",$scope.data).then(function (response) 
                 {
                     $scope.get();
@@ -80,6 +81,45 @@
                 }
                
             };
+                        $scope.buscarPorNombre=function(tipo){
+            var path = "http://localhost:8080/documentos-web/api/autores";
+            
+            if (tipo != undefined   ){ path += "/" + tipo };
+          
+            $http.get(path).then(function (response) 
+            {
+                $scope.autores = response.data;
+                
+            });                  
+            }
+            $scope.actualizar=function(){
+                $state.reload();
+            };
+            $scope.filtroTodo= function(calificacion,precio,profesor) {
+            var salida = [];
+            var pre = (precio != undefined)? parseInt(precio):10000000;
+            var cali = (calificacion != undefined)? parseInt(calificacion):"Todos";
+            var top = cali + 1;      
+           
+               
+            angular.forEach($scope.autores, function(autores) {
+            angular.forEach(autores.documentos, function(documentos) {
+
+                if (((documentos.calificacionPromedio >= parseInt(calificacion) && documentos.calificacionPromedio < top) || (calificacion === "Todos")) && 
+                        documentos.precio<pre) {
+
+                    salida.push(autores);
+   
+                }
+                });
+
+            });
+              
+            $scope.autores= salida;
+            
+            
+            };            
+           
         }
     ]);
 }
