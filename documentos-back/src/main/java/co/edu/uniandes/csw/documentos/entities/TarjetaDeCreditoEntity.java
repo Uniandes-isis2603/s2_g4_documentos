@@ -19,7 +19,7 @@ public class TarjetaDeCreditoEntity extends MetodoDePagoEntity implements Serial
     
     @PodamExclude
     @ManyToOne
-    private UsuarioEntity UEntity;
+    private UsuarioEntity usuario;
     /**
      * tipo de tarjeta (ej. Visa, MasterCard, Maestro)
      */
@@ -99,14 +99,14 @@ public class TarjetaDeCreditoEntity extends MetodoDePagoEntity implements Serial
      * @return the UEntity
      */
     public UsuarioEntity getUEntity() {
-        return this.UEntity;
+        return usuario;
     }
 
     /**
      * @param UEntity the UEntity to set
      */
     public void setUEntity(UsuarioEntity UEntity) {
-        this.UEntity = UEntity;
+        this.usuario = UEntity;
     }
 
     /**

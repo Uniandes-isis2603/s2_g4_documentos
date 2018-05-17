@@ -164,7 +164,6 @@ public class UsuarioLogicTest {
             entity.setReservas(reservaData);
             entity.setCompras(compraData);
             entity.setPaypal(payPalData);
-            entity.setTarjetasCredito(tarjetaData);
             em.persist(entity);
             data.add(entity);
         }

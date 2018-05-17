@@ -25,6 +25,8 @@
 
 
     ]);
+    
+
     // Resuelve problemas de las promesas
     app.config(['$qProvider','$urlRouterProvider', '$locationProvider',function ($qProvider,$urlRouterProvider,$locationProvider) {
             $qProvider.errorOnUnhandledRejections(false);
@@ -37,7 +39,7 @@
      {$rootScope.carrito=[];
         
         });
-  
+
 
    
     
