@@ -8,14 +8,7 @@
 
             $scope.data = {};
 
-            $scope.createTarjetadecredito = function () {
-                var algo = {
-                    nombreEnLaTarjeta: "gregoriddgo",
-                    nroDeLaTarjeta: "4234567800123456",
-                    numeroDeSeguridad: 122,
-                    tipoDeTarjeta: "Visa"
-                };
-                
+            $scope.createTarjetadecredito = function () {            
                 
                
                 $http.post(tarjetadecreditoContext, $scope.data).then(function () {

@@ -544,3 +544,40 @@ div.b {
     font-size:18px;
     font-weight:100;
 }
+
+#tarjetaFondo
+{
+    color:white;   
+    height: 250px;
+    background-size: cover;  
+     text-align: center;
+     background-position: center center;
+    background-color: #1a52c6;
+    background-image: url(https://images.pexels.com/photos/50987/money-card-business-credit-card-50987.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)      
+}
+
+#paypalFondo
+{
+    color:white;   
+    height: 250px;
+    background-size: cover;  
+     text-align: center;
+     background-position: center center;
+         background-color: #1a52c6;
+
+    background-image:url(https://images.pexels.com/photos/34204/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+      
+}
+
+#facturasFondo
+{
+    color:white;   
+    height: 250px;
+    background-size: cover;  
+     text-align: center;
+     background-position: center center;
+         background-color: #1a52c6;
+
+    background-image:url(https://images.pexels.com/photos/164686/pexels-photo-164686.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+      
+}

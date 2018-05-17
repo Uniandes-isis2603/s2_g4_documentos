@@ -17,12 +17,13 @@ public class TarjetaDeCreditoDetailDTO extends TarjetaDeCreditoDTO {
     
     public TarjetaDeCreditoDetailDTO()
     {
-        super();
+        
     }
     
     public TarjetaDeCreditoDetailDTO(TarjetaDeCreditoEntity entity)
     {
         super(entity);
+
     }
     
     
@@ -30,7 +31,7 @@ public class TarjetaDeCreditoDetailDTO extends TarjetaDeCreditoDTO {
     public TarjetaDeCreditoEntity toEntity()
     {
         TarjetaDeCreditoEntity entity = super.toEntity();
-        
+
         return entity;
     }
 
