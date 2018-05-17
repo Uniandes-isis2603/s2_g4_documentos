@@ -27,19 +27,19 @@ delete from CompraEntity;
 
 
 -- Ernesto
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (100,'LibroEntity','El Amor en los Tiempos del Cólera','https://imagessl1.casadellibro.com/a/l/t0/51/9788497592451.jpg','una novela',3.2,25000);
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (200,'FotocopiaEntity','Calculo diferencial','https://imagessl1.casadellibro.com/a/l/t0/71/9788499690971.jpg','libro de matematicas',3.4,32000);
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (700,'LibroEntity','Cien Años de Soledad','https://imagessl9.casadellibro.com/a/l/t1/39/9788420471839.jpg','novela de Gabriel',2.3,24000);
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (800,'FotocopiaEntity', 'Fisica','https://http2.mlstatic.com/fisica-universitaria-sears-zemansky-solucionario-13a-edicion-D_NQ_NP_614007-MCO26189892253_102017-F.jpg','fotocopias de fisica',3.3,50000);
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (900,'LibroEntity','Como Agua Para Chocolate','https://cloud10.todocoleccion.online/libros-clasicos-segunda-mano/tc/2017/04/30/00/85176408.jpg','novela',5,120000);
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (1000,'LibroEntity','Bajo la misma estrella','https://images-na.ssl-images-amazon.com/images/I/817tHNcyAgL.jpg','novela',3.4,12000);
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio,pdf) values (100,'LibroEntity','El Amor en los Tiempos del Cólera','https://imagessl1.casadellibro.com/a/l/t0/51/9788497592451.jpg','una novela',3.2,25000,'pdf1');
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio,pdf) values (200,'FotocopiaEntity','Calculo diferencial','https://imagessl1.casadellibro.com/a/l/t0/71/9788499690971.jpg','libro de matematicas',3.4,32000,'pdf1');
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio,pdf) values (700,'LibroEntity','Cien Años de Soledad','https://imagessl9.casadellibro.com/a/l/t1/39/9788420471839.jpg','novela de Gabriel',2.3,24000,'pdf1');
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio,pdf) values (800,'FotocopiaEntity', 'Fisica','https://http2.mlstatic.com/fisica-universitaria-sears-zemansky-solucionario-13a-edicion-D_NQ_NP_614007-MCO26189892253_102017-F.jpg','fotocopias de fisica',3.3,50000,'pdf1');
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio,pdf) values (900,'LibroEntity','Como Agua Para Chocolate','https://cloud10.todocoleccion.online/libros-clasicos-segunda-mano/tc/2017/04/30/00/85176408.jpg','novela',5,120000,'pdf1');
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio,pdf) values (1000,'LibroEntity','Bajo la misma estrella','https://images-na.ssl-images-amazon.com/images/I/817tHNcyAgL.jpg','novela',3.4,12000,'pdf1');
 
 
 -- Juan Camilo
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (300,'LibroEntity','Mantenimiento de computadores para ingenieros de sistemas idiotas','http://facultades.unicauca.edu.co/editorial/sites/default/files/imagenesPortada/mantenimiento_de_computadores.jpg','una novela',3.2,200000);
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (400,'FotocopiaEntity','fotocopia2','https://i.pinimg.com/originals/4a/cd/be/4acdbed94f131b5d95f76eb47293d8c1.jpg','libro de fisica',3.4,250400);
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (500,'LibroEntity','Harry Poter y la piedra filosofal','https://4.bp.blogspot.com/-Pm4fx2oIF0I/WMIz7CR6qZI/AAAAAAAAAr4/W7hF85KQYV0AA6O_NHhi6J5_ov_Z6k_TgCLcB/s1600/hp1.jpg','una novela',3.2,12000);
-insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio) values (600,'FotocopiaEntity','fotocopia3','https://www.virginmegastore.ae/medias/sys_master/root/h4e/h76/8818752389150/A-Game-of-Thrones-Book-1-of-A-Song-of-Ice-and-Fire-81498-Detail.jpg','libro de quimica',3.4,254250);
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio,pdf) values (300,'LibroEntity','Mantenimiento de computadores para ingenieros de sistemas idiotas','http://facultades.unicauca.edu.co/editorial/sites/default/files/imagenesPortada/mantenimiento_de_computadores.jpg','una novela',3.2,200000,'pdf1');
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio,pdf) values (400,'FotocopiaEntity','fotocopia2','https://i.pinimg.com/originals/4a/cd/be/4acdbed94f131b5d95f76eb47293d8c1.jpg','libro de fisica',3.4,250400,'pdf1');
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio,pdf) values (500,'LibroEntity','Harry Poter y la piedra filosofal','https://4.bp.blogspot.com/-Pm4fx2oIF0I/WMIz7CR6qZI/AAAAAAAAAr4/W7hF85KQYV0AA6O_NHhi6J5_ov_Z6k_TgCLcB/s1600/hp1.jpg','una novela',3.2,12000,'pdf1');
+insert into DocumentoEntity (id,dtype,nombre,caratula,descripcion,calificacionpromedio,precio,pdf) values (600,'FotocopiaEntity','fotocopia3','https://www.virginmegastore.ae/medias/sys_master/root/h4e/h76/8818752389150/A-Game-of-Thrones-Book-1-of-A-Song-of-Ice-and-Fire-81498-Detail.jpg','libro de quimica',3.4,254250,'pdf1');
 
 -- Juan Camilo
 insert into LibroEntity (id,fechapublicacion,isbn) values (300,'10/20/2012','978-0307387264');
@@ -180,13 +180,13 @@ INSERT INTO COMPRAENTITY (id,COSTO, FECHA, TIPODECOMPRA, METODODEPAGOPAYPAL_ID, 
 --------------------------------------------------------------------------
 
 -- Federico
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (45, 2000);
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (45, 2001);
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (46, 2002);
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (48, 2003);
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (49, 2004);
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (50, 2005);
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (51, 2006);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (45, 2000);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (45, 2001);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (46, 2002);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (48, 2003);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (49, 2004);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (50, 2005);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (51, 2006);
 
 
 -- Federico

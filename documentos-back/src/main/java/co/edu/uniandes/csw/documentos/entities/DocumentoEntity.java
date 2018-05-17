@@ -62,6 +62,11 @@ public class DocumentoEntity implements Serializable {
     private String caratula;
     
     /**
+     * Representa la dirección del pdf
+     */
+    private String pdf;
+    
+    /**
      * Representa los comentarios hechos a un documento.
      */
     @PodamExclude
@@ -271,5 +276,14 @@ public class DocumentoEntity implements Serializable {
     public void setCaratula(String caratula) {
         this.caratula = caratula;
     }
+
+    public String getPdf() {
+        return pdf;
+    }
+
+    public void setPdf(String pdf) {
+        this.pdf = pdf;
+    }
+ 
     
 }
