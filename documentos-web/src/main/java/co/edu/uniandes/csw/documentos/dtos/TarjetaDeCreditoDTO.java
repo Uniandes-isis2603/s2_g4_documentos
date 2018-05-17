@@ -56,6 +56,7 @@ public class TarjetaDeCreditoDTO {
      */
     private Integer numeroDeSeguridad;
 
+    private Long idusuario;
     
     public TarjetaDeCreditoDTO(){
         
@@ -70,6 +71,7 @@ public class TarjetaDeCreditoDTO {
             this.nroDeLaTarjeta = entity.getNroDeLaTarjeta();
             this.numeroDeSeguridad = entity.getNumeroDeSeguridad();
             this.tipoDeTarjeta = entity.getTipoDeTarjeta();
+            this.idusuario = entity.getIdUsuario();
         }
     }
     
@@ -81,6 +83,7 @@ public class TarjetaDeCreditoDTO {
         entity.setNroDeLaTarjeta(this.getNroDeLaTarjeta());
         entity.setNumeroDeSeguridad(this.getNumeroDeSeguridad());
         entity.setTipoDeTarjeta(this.getTipoDeTarjeta());
+        entity.setIdUsuario(this.getIdusuario());
         
         return entity;
     }
@@ -152,6 +155,20 @@ public class TarjetaDeCreditoDTO {
      */
     public void setId(Long Id) {
         this.Id = Id;
+    }
+
+    /**
+     * @return the idusuario
+     */
+    public Long getIdusuario() {
+        return idusuario;
+    }
+
+    /**
+     * @param idusuario the idusuario to set
+     */
+    public void setIdusuario(Long idusuario) {
+        this.idusuario = idusuario;
     }
     
     

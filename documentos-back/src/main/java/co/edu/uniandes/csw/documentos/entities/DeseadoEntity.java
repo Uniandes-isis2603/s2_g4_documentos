@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -50,9 +51,6 @@ public class DeseadoEntity implements Serializable {
     @OneToMany
     private List<DocumentoEntity> documentos;
 
-    @PodamExclude
-    @OneToOne
-    private UsuarioEntity usuario;
 
     /**
      *
@@ -104,18 +102,6 @@ public class DeseadoEntity implements Serializable {
 
     }
 
-    /**
-     * @return the usuario
-     */
-    public UsuarioEntity getUsuario() {
-        return usuario;
-    }
 
-    /**
-     * @param usuario the usuario to set
-     */
-    public void setUsuario(UsuarioEntity usuario) {
-        this.usuario = usuario;
-    }
 
 }

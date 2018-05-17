@@ -21,6 +21,9 @@ public class DeseadoDetailedDTO extends DeseadoDTO{
      * cero a muchos
      */
     private List<DocumentoDTO> documentos;
+    
+        private UsuarioDTO usuario;
+
     /**
      * constructor por defecto
      */
@@ -36,11 +39,13 @@ public class DeseadoDetailedDTO extends DeseadoDTO{
      */
     public DeseadoDetailedDTO(DeseadoEntity entity) {
         super(entity);
-        if(entity.getDocumentos()!=null)
-        {
-           //this.documento= new DocumentoDTO( entity.getDocumentos());
-            
-        }
+           if (entity.getDocumentos() != null) {
+            documentos = new ArrayList<>();
+            for (DocumentoEntity entityDocumento : entity.getDocumentos()) {
+                 documentos.add(new DocumentoDTO(entityDocumento));
+            }
+        
+    }
     }
     
        /**
@@ -56,7 +61,7 @@ public class DeseadoDetailedDTO extends DeseadoDTO{
         if (getDocumentos() != null) {
             List<DocumentoEntity> DocumentoEntity = new ArrayList<>();
             for (DocumentoDTO documento : getDocumentos()) {
-                //DocumentoEntity.add(documento.toEntity());
+                DocumentoEntity.add(documento.toEntity());
             }
            deseado.setDocumentos(DocumentoEntity);
         }
@@ -77,5 +82,19 @@ public class DeseadoDetailedDTO extends DeseadoDTO{
      */
     public void setDocumentos(List<DocumentoDTO> documentos) {
         this.documentos = documentos;
+    }
+
+    /**
+     * @return the usuario
+     */
+    public UsuarioDTO getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(UsuarioDTO usuario) {
+        this.usuario = usuario;
     }
 }

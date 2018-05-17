@@ -166,10 +166,14 @@ public class UsuarioResource {
     public UsuarioDetailedDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailedDTO usuario) throws BusinessLogicException {
         usuario.setId(id);
         UsuarioEntity entity = logic.getUsuario(id);
-        if (entity == null) {
-            throw new BusinessLogicException("El recurso /usuarios/" + id + " no existe.");
-        }
-        return new UsuarioDetailedDTO(logic.updateUsuario(id, usuario.toEntity()));
+        UsuarioEntity entity2 =usuario.toEntity();
+        entity2.setComentarios(entity.getComentarios());
+        entity2.setCompras(entity.getCompras());
+        entity2.setDeseados(entity.getDeseados());
+        entity2.setReservas(entity.getReservas());
+        entity2.setPaypal(entity.getPayPal());
+        entity2.setTarjetaDeCredito(entity.getTarjetaDeCredito());
+        return new UsuarioDetailedDTO(logic.updateUsuario(id, entity2));
     }
     
     /**

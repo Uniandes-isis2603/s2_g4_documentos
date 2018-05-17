@@ -8,7 +8,10 @@ delete from UsuarioEntity_TarjetaDeCreditoEntity;
 delete from UsuarioEntity_PayPalEntity;
 delete from UsuarioEntity_ReservaEntity;
 delete from UsuarioEntity_DeseadoEntity;
+delete from reservaEntity_documentoEntity;
 delete from CursoEntity_DocumentoEntity;
+delete from ReservaEntity_DocumentoEntity;
+delete from DeseadoEntity_DocumentoEntity;
 delete from FacturaEntity;
 delete from UsuarioEntity;
 delete from LibroEntity;
@@ -138,13 +141,13 @@ insert into ReservaEntity(id, fecha, costo) values (554,'2012-04-05 22:20:13',10
 
 
 -- Federico
-insert into DeseadoEntity(id, nombre, cantidad) values (2000, 'mi lista',0);
-insert into DeseadoEntity(id, nombre, cantidad) values (2001, 'mis documentos',0);
-insert into DeseadoEntity(id, nombre, cantidad) values (2002, 'mis desesos',0);
-insert into DeseadoEntity(id, nombre, cantidad) values (2003, 'regalos para navidad',0);
-insert into DeseadoEntity(id, nombre, cantidad) values (2004, 'libritos',0);
-insert into DeseadoEntity(id, nombre, cantidad) values (2005, ' !los quiero',0);
-insert into DeseadoEntity(id, nombre, cantidad) values (2006, ':3 ñom ñom',0);
+insert into DeseadoEntity(id, nombre, cantidad) values (2000, 'mi lista',1);
+insert into DeseadoEntity(id, nombre, cantidad) values (2001, 'mis documentos',2);
+insert into DeseadoEntity(id, nombre, cantidad) values (2002, 'mis desesos',3);
+insert into DeseadoEntity(id, nombre, cantidad) values (2003, 'regalos para navidad',4);
+insert into DeseadoEntity(id, nombre, cantidad) values (2004, 'libritos',5);
+insert into DeseadoEntity(id, nombre, cantidad) values (2005, ' !los quiero',2);
+insert into DeseadoEntity(id, nombre, cantidad) values (2006, ':3 ñom ñom',3);
 
 
 -- Gregorio
@@ -154,11 +157,11 @@ insert into PayPalEntity (id, usuario, correoElectronico, idusuario) values (650
 insert into PayPalEntity (id, usuario, correoElectronico, idusuario) values (65003,'juan','juan@ospina', 47);
 
 -- Gregorio
-insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7500, 'Visa','4234567890123456', 'gregorio', 123);
-insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7501, 'MasterCard','5134567890123456', 'andres', 124);
-insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7502, 'Visa','4234567870123456', 'jeronimo', 125);
-insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7503, 'Visa','4234567880123456', 'raquel', 130);
-insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7504, 'MasterCard','5134567890153456','jaime', 198);
+insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad, idusuario) values (7500, 'Visa','4234567890123456', 'gregorio', 123, 45);
+insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad, idusuario) values (7501, 'MasterCard','5134567890123456', 'andres', 124, 45);
+insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad, idusuario) values (7502, 'Visa','4234567870123456', 'jeronimo', 125, 46);
+insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad, idusuario) values (7503, 'Visa','4234567880123456', 'raquel', 130, 47);
+insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad, idusuario) values (7504, 'MasterCard','5134567890153456','jaime', 198, 45);
 
 
 insert into FacturaEntity (id, fecha, costo, usuario_id, METODODEPAGOPAYPAL_ID, METODODEPAGOTDC_ID) values (1, '2018-02-22 20:38:54.973', 3000,45, NULL, 7500);
@@ -190,10 +193,28 @@ INSERT INTO COMPRAENTITY (id,COSTO, FECHA, TIPODECOMPRA, METODODEPAGOPAYPAL_ID, 
 ----------------------------- RELACIONES ---------------------------------
 --------------------------------------------------------------------------
 
+--Federico
+insert into ReservaEntity_DocumentoEntity (ReservaEntity_id,Documentos_id) values(545,100);
+insert into ReservaEntity_DocumentoEntity (ReservaEntity_id,Documentos_id) values(545,200);
+insert into ReservaEntity_DocumentoEntity (ReservaEntity_id,Documentos_id) values(546,300);
+insert into ReservaEntity_DocumentoEntity (ReservaEntity_id,Documentos_id) values(546,400);
+insert into ReservaEntity_DocumentoEntity (ReservaEntity_id,Documentos_id) values(547,500);
+insert into ReservaEntity_DocumentoEntity (ReservaEntity_id,Documentos_id) values(547,600);
+
+
+--Federico
+insert into DeseadoEntity_DocumentoEntity (DeseadoEntity_id,Documentos_id) values(2000,100);
+insert into DeseadoEntity_DocumentoEntity (DeseadoEntity_id,Documentos_id) values(2000,200);
+insert into DeseadoEntity_DocumentoEntity (DeseadoEntity_id,Documentos_id) values(2000,300);
+insert into DeseadoEntity_DocumentoEntity (DeseadoEntity_id,Documentos_id) values(2001,400 );
+insert into DeseadoEntity_DocumentoEntity (DeseadoEntity_id,Documentos_id) values(2001,500 );
+insert into DeseadoEntity_DocumentoEntity (DeseadoEntity_id,Documentos_id) values(2001,600 );
+
+
 -- Federico
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (45, 2000);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (46, 2001);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (47, 2002);
 insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (45, 2001);
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (46, 2002);
 insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (48, 2003);
 insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (49, 2004);
 insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (50, 2005);
@@ -217,11 +238,11 @@ insert into UsuarioEntity_PayPalEntity (UsuarioEntity_ID, PayPal_ID) values (46,
 insert into UsuarioEntity_PayPalEntity (UsuarioEntity_ID, PayPal_ID) values (47, 65003);
 
 -- Gregorio
-insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (45, 7501);
-insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (46, 7502);
-insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (47, 7503);
-insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (45, 7500);
-insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (45, 7504);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetaDeCredito_id) values (45, 7501);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetaDeCredito_id) values (46, 7502);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetaDeCredito_id) values (47, 7503);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetaDeCredito_id) values (45, 7500);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetaDeCredito_id) values (45, 7504);
 
 -- Ernesto
 insert into DocumentoEntity_AreaDeConocimientoEntity(documentos_id,areas_id) values (100,11);
@@ -236,25 +257,30 @@ insert into DocumentoEntity_CursoEntity(documentoentity_id,cursos_id) values (80
 insert into DocumentoEntity_CursoEntity(documentoentity_id,cursos_id) values (200,12);
 
 -- Nicolas
-insert into CursoEntity_DocumentoEntity(cursoentity_id,bibliografiadelcurso_id) values (3000,300);
+insert into ReservaEntity_DocumentoEntity(reservaEntity_id, documentos_id) values(545, 100);
+insert into ReservaEntity_DocumentoEntity(reservaEntity_id, documentos_id) values(545, 200);
+insert into ReservaEntity_DocumentoEntity(reservaEntity_id, documentos_id) values(545, 300);
+insert into ReservaEntity_DocumentoEntity(reservaEntity_id, documentos_id) values(545, 400);
+insert into ReservaEntity_DocumentoEntity(reservaEntity_id, documentos_id) values(545, 500);
+
 
 
 -- Ernesto
-insert into DocumentoEntity_ComentarioEntity(documentoentity_id,comentarios_id) values (100,11);
-insert into DocumentoEntity_ComentarioEntity(documentoentity_id,comentarios_id) values (200,12);
-insert into DocumentoEntity_ComentarioEntity(documentoentity_id,comentarios_id) values (700,13);
-insert into DocumentoEntity_ComentarioEntity(documentoentity_id,comentarios_id) values (800,14);
+insert into DocumentoEntity_ComentarioEntity(documentos_id,comentarios_id) values (100,11);
+insert into DocumentoEntity_ComentarioEntity(documentos_id,comentarios_id) values (200,12);
+insert into DocumentoEntity_ComentarioEntity(documentos_id,comentarios_id) values (700,13);
+insert into DocumentoEntity_ComentarioEntity(documentos_id,comentarios_id) values (800,14);
 
 -- Juan Camilo
-insert into DocumentoEntity_AreaDeConocimientoEntity (Areas_id,Documentos_id) values (10001,100);
-insert into DocumentoEntity_AreaDeConocimientoEntity (Areas_id,Documentos_id) values (10001,200);
-insert into DocumentoEntity_AreaDeConocimientoEntity (Areas_id,Documentos_id) values (10001,400);
-insert into DocumentoEntity_AreaDeConocimientoEntity (Areas_id,Documentos_id) values (10003,100);
-insert into DocumentoEntity_AreaDeConocimientoEntity (Areas_id,Documentos_id) values (10003,300);
-insert into DocumentoEntity_AreaDeConocimientoEntity (Areas_id,Documentos_id) values (10005,500);
-insert into DocumentoEntity_AreaDeConocimientoEntity (Areas_id,Documentos_id) values (10005,100);
-insert into DocumentoEntity_AreaDeConocimientoEntity (Areas_id,Documentos_id) values (10004,600);
-insert into DocumentoEntity_AreaDeConocimientoEntity (Areas_id,Documentos_id) values (10002,400);
+insert into DocumentoEntity_AreaDeConocimientoEntity (Areas_id,documentos_id) values (10001,100);
+insert into DocumentoEntity_AreaDeConocimientoEntity (Areas_id,documentos_id) values (10001,200);
+insert into DocumentoEntity_AreaDeConocimientoEntity (Areas_id,documentos_id) values (10001,400);
+insert into DocumentoEntity_AreaDeConocimientoEntity (Areas_id,documentos_id) values (10003,100);
+insert into DocumentoEntity_AreaDeConocimientoEntity (Areas_id,documentos_id) values (10003,300);
+insert into DocumentoEntity_AreaDeConocimientoEntity (Areas_id,documentos_id) values (10005,500);
+insert into DocumentoEntity_AreaDeConocimientoEntity (Areas_id,documentos_id) values (10005,100);
+insert into DocumentoEntity_AreaDeConocimientoEntity (Areas_id,documentos_id) values (10004,600);
+insert into DocumentoEntity_AreaDeConocimientoEntity (Areas_id,documentos_id) values (10002,400);
 
 -- Ernesto
 insert into DocumentoEntity_AutorEntity(documentos_id,autores_id) values (100,11);
@@ -264,15 +290,15 @@ insert into DocumentoEntity_AutorEntity(documentos_id,autores_id) values (800,13
 
 
 -- Juan Camilo
-insert into DocumentoEntity_AutorEntity (Documentos_id, Autores_id) values (100,10001);
-insert into DocumentoEntity_AutorEntity (Documentos_id, Autores_id) values (200,10001);
-insert into DocumentoEntity_AutorEntity (Documentos_id, Autores_id) values (300,10002);
-insert into DocumentoEntity_AutorEntity (Documentos_id, Autores_id) values (400,10003);
-insert into DocumentoEntity_AutorEntity (Documentos_id, Autores_id) values (300,10004);
-insert into DocumentoEntity_AutorEntity (Documentos_id, Autores_id) values (600,10004);
-insert into DocumentoEntity_AutorEntity (Documentos_id, Autores_id) values (500,10004);
-insert into DocumentoEntity_AutorEntity (Documentos_id, Autores_id) values (100,10002);
-insert into DocumentoEntity_AutorEntity (Documentos_id, Autores_id) values (200,10003);
+insert into DocumentoEntity_AutorEntity (documentos_id, Autores_id) values (100,10001);
+insert into DocumentoEntity_AutorEntity (documentos_id, Autores_id) values (200,10001);
+insert into DocumentoEntity_AutorEntity (documentos_id, Autores_id) values (300,10002);
+insert into DocumentoEntity_AutorEntity (documentos_id, Autores_id) values (400,10003);
+insert into DocumentoEntity_AutorEntity (documentos_id, Autores_id) values (300,10004);
+insert into DocumentoEntity_AutorEntity (documentos_id, Autores_id) values (600,10004);
+insert into DocumentoEntity_AutorEntity (documentos_id, Autores_id) values (500,10004);
+insert into DocumentoEntity_AutorEntity (documentos_id, Autores_id) values (100,10002);
+insert into DocumentoEntity_AutorEntity (documentos_id, Autores_id) values (200,10003);
 
 
 

@@ -1,0 +1,26 @@
+
+ <div class="containerFede" style="margin-left:25%;padding:1px 16px;height:1000px;">
+    <div class="form_top">
+        <h2>Actualización de usuario</h2>
+    </div>
+    <form class="form_reg"  name="usuario" action="">
+        <input class="registroU" type="text"  maxlength="15" minlength="7" required autofocus ng-model="datosUpdate.nombre"  placeholder="&#128102; nombre"/>
+        <input class="registroU" type="text"  maxlength="15" minlength="7" required ng-model="datosUpdate.nombreUsuario" placeholder="&#128125; nickName" />
+        <input class="registroU" type="password"  placeholder="&#11496; contraseña" />
+        <input class="registroU" type="email"  maxlength="30" minlength="5" required ng-model="datosUpdate.correo" placeholder="&#9993; correo" />
+        <input class="registroU" type="number"  min="0" max="1"  required ng-model="datosUpdate.genero"  placeholder="&#9892; genero"/>
+        <input class="registroU"  type="number"  min="17" max="99" required ng-model="datosUpdate.edad" placeholder="&#49;&#54;&#60; edad" />
+             <div class="form-group col-sm-10" ng-if="!usuario.$valid">
+            <div class="alert alert-warning">
+                <strong>Recuerda!</strong><p>Todos los campos deben ser llenados*</p>
+            </div> 
+            </div> 
+    <div class="btn_form">
+            <input ng-show="usuario.$valid" ng-click="update()" ui-sref="usuariosList" type="submit" value="actualizar" class="btn btn-success"  >
+            <a class="btn btn-info" ui-sref="usuarioDetail({usuarioId: currentUsuario.id})">Regresar</a>
+            
+       
+    </div>
+               
+    </form>
+</div>
