@@ -20,7 +20,9 @@
          
          
          $scope.createLibro = function(){
-             $http.put(LibroContext + "/" + idLibro, $scope.data).then(function(response){
+             $http.put(LibroContext + "/" + idLibro, $scope.data).then(function(response)
+             {
+                 
                  $state.go('librosList',{libroId: response.data.id},{reload:true});
              });
          };

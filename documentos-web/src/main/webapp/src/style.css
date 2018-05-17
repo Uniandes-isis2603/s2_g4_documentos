@@ -443,6 +443,17 @@ body{
     background-image: url(https://images.pexels.com/photos/977930/pexels-photo-977930.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
       
 }
+#CursoDiv7
+{
+    color:white;   
+    height: 250px;
+    background-size: cover;  
+     text-align: center;
+     background-position: center center;
+
+background-image: url(https://images.pexels.com/photos/633804/pexels-photo-633804.jpeg?auto=compress&cs=tinysrgb&h=650&w=940);
+}
+
 .btn-outline {
     background-color: transparent;
     color: #007a66;

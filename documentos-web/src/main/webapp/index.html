@@ -48,10 +48,16 @@
 
        <script src="src/modules/libros/libros.ctrl.js" type="text/javascript"></script>
        <script src="src/modules/libros/libros.detail.ctrl.js" type="text/javascript"></script>
-       
        <script src="src/modules/libros/update/libros.update.ctrl.js" type="text/javascript"></script>
        <script src="src/modules/libros/create/libros.create.ctrl.js" type="text/javascript"></script>
 
+       
+       
+       <script src="src/modules/carrito/carrito.mod.js" type="text/javascript"></script>
+       <script src="src/modules/carrito/carrito.ctrl.js" type="text/javascript"></script>
+       
+       
+        
             
        
             
@@ -69,21 +75,22 @@
        <!--Editoriales -->
         <script src="src/modules/Editoriales/editoriales.mod.js" type="text/javascript"></script>
         <script src="src/modules/Editoriales/editoriales.ctrl.js" type="text/javascript"></script>
-            
+          <script src="src/modules/Editoriales/editorialesDetailctrl.js" type="text/javascript"></script>  
 
+          <!--Editoriales -->
         <script src="src/modules/cursos/cursos.mod.js" type="text/javascript"></script>
         <script src="src/modules/cursos/cursos.ctrl.js" type="text/javascript"></script>
-            
+        <script src="src/modules/cursos/cursosDetailctrl.js" type="text/javascript"></script>  
       
       <!--Autores-->
        <script src="src/modules/autores/autores.mod.js" type="text/javascript"></script>
       <script src="src/modules/autores/autores.ctrl.js" type="text/javascript"></script>
-     
+       <script src="src/modules/autores/autoresDetailctrl.js" type="text/javascript"></script>
        
         <!--Areas-->
        <script src="src/modules/areas/areas.mod.js" type="text/javascript"></script>
        <script src="src/modules/areas/areas.ctrl.js" type="text/javascript"></script>
-
+<script src="src/modules/areas/areasDetailctrl.js" type="text/javascript"></script>
       
       <!--Paypal-->
        <script src="src/modules/paypal/paypal.mod.js" type="text/javascript"></script>
@@ -128,7 +135,7 @@
                            <span class="icon-bar"></span>
                            <span class="icon-bar"></span>
                        </button>
-                       <a class="navbar-brand active" ui-sref="inicio" id="principal"> <span> <i class="fas fa-book"></i></span>  Bookzon</a>
+                       <a class="navbar-brand active" ui-sref="inicio" id="principal" style="color: white;"> <span> <i class="fas fa-book"></i></span>  Bookzon</a>
                    </div>
                    <div class="collapse navbar-collapse" id="koofe">
                        <ul class="nav navbar-nav">
@@ -144,10 +151,10 @@
           </ul>
         </li>
                            
-                            <li><a ui-sref="editoriales" class="navBusqueda">Editoriales</a></li>
-                            <li><a ui-sref="cursos" class="navBusqueda">Cursos</a></li>
-                            <li><a ui-sref="autores" class="navBusqueda">Autores</a></li>
-                            <li><a ui-sref="areas" class="navBusqueda">Areas de Conocimiento</a></li>
+                            <li><a ui-sref="editorialesList" class="navBusqueda">Editoriales</a></li>
+                            <li><a ui-sref="cursosList" class="navBusqueda">Cursos</a></li>
+                            <li><a ui-sref="autoresList" class="navBusqueda">Autores</a></li>
+                            <li><a ui-sref="areasList" class="navBusqueda">Areas de Conocimiento</a></li>
                             <li><a ui-sref="usuariosList" class="navBusqueda">Usuarios</a></li>
 
  
@@ -157,7 +164,7 @@
                                <li><a data-toggle="modal" href="#myModal">Sign in</a></li>
                                
 
-                               <li> <a href="#"><i class="fas fa-shopping-cart"></i> Shoping Cart</a> </li>
+                               <li> <a ui-sref="carrito"> <i class="fas fa-shopping-cart"></i> Shoping Cart ({{carrito.length}})</a> </li>
                            </ul>
                        </div>
                            
@@ -213,12 +220,7 @@
            
        <div class="span4" id="navego" ui-view="mainView"></div>
        
-       <div class ="Intro" ng-if="home==0">
-           <h1>Bienvenidos a Bookzon</h1>
-           
-           
-           <center><hr></center>
-       </div>
+  
          
    
 

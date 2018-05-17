@@ -1,5 +1,5 @@
 (function (ng){
-    var mod = ng.module("autorModule");
+    var mod = ng.module("autoresModule");
     mod.constant("autorContext","api/autores");
     mod.controller('autoresCtrl', ['$scope','$http', 'autorContext', '$state', 
         function($scope,$http,autorContext,$state) {

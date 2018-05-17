@@ -1,0 +1,64 @@
+<div  id="CursoDiv4" >    
+    
+    <div class="container" style="padding-top:50px " > 
+        <h1 style="letter-spacing:5px ">Areas De Conocimiento</h1>
+            
+    </div>
+        
+</div>
+        
+
+
+<div class ="row">
+     <div class="col-sm-3">
+          <div ui-view="listView"> </div>
+    </div>
+    
+   <div class="col-sm-5">
+            <div ui-view="detailView"></div>
+    </div>
+      <div class =" col-sm-3 thumbnail " style="margin-top:50px; width:400; height:450 ">
+        <div class="container ">
+            <div class="col-md-5">
+                <div class="form-area">  
+                    <form role="form">
+                        <br>
+                        <h3>Controles</h3>
+                        <br>
+                        <h4 style="margin-left:12px; ">Crear</h4>
+                           <div class="form-group col-sm-9" >
+                            <input type="number"  style="margin-right:50px;"  placeholder="Id" class="form-control " name="Nombre"  required ng-model="data.id">
+                        </div> 
+                            
+                        <div class="form-group col-sm-9">
+                            <input type="text" class="form-control"  placeholder="Tipo" required ng-model="data.tipo">
+                        </div>     
+                        <button type="button" id="crear" name="create"  class="btn actuabbuton pull-right" style="margin-right: 125px; color:white; "  ng-click="create()" ng-disabled="data.tipo === undefined"> <i class="fas fa-plus-circle"></i> Crear Area</button>
+                            
+                    </form>
+                    <br>
+                        
+                        
+                    <form role="form"  style="margin-top: 100px;">
+                        
+                        <h4 style="margin-left:12px; ">Actualizar</h4>
+                        <div class="form-group col-sm-9" >
+                            <input type="number"  style="margin-right:50px;"  placeholder="Id" class="form-control " name="Nombre"  required ng-model="dataActuaBasico.id">
+                        </div> 
+                            
+                        <div class="form-group col-sm-9">
+                            <input type="text" class="form-control"  placeholder="Tipo" required ng-model="dataActuaBasico.tipo">
+                        </div> 
+                        <button type="button" id="actualizar" name="update" class="loginbutton btn  pull-right" 
+                                ng-click="update_editorial(dataActuaBasico.id)" style="margin-right: 125px ; color:white" ng-disabled="(dataActuaBasico.nombre === undefined && dataActuaBasico.id === undefined) ">
+                            <i class="fas fa-edit"></i> Actualizar Area</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+     
+    
+  

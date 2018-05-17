@@ -1,5 +1,5 @@
 (function (ng){
-    var mod = ng.module("areaModule");
+    var mod = ng.module("areasModule");
     mod.constant("areaContext","api/areas");
     mod.controller('areasCtrl', ['$scope','$http', 'areaContext', '$state', '$rootScope', 
                  function($scope,$http,autorContext,$state) {
@@ -42,7 +42,7 @@
             };
             $scope.darLibros = function()
             {
-                console.log("holi");
+               
                 $http.get("http://localhost:8080/documentos-web/api/libros").then(function (response) 
                 {
                     $scope.libros = response.data;
