@@ -94,11 +94,7 @@
            
                
             };
-            $scope.actualizar=function(){
-                $state.reload();
-            };
-            $scope.filtroTodo= function(tipo,calificacion,precio,profesor) {
-                    
+            $scope.buscarPorNombre=function(tipo){
             var path = "http://localhost:8080/documentos-web/api/areas";
             
             if (tipo != undefined   ){ path += "/" + tipo };
@@ -107,19 +103,24 @@
             {
                 $scope.areas = response.data;
                 
-            });  
-            
+            });                  
+            }
+            $scope.actualizar=function(){
+                $state.reload();
+            };
+            $scope.filtroTodo= function(calificacion,precio,profesor) {
+                    
             if(calificacion !== "Todos"){
                  var salida = [];
              angular.forEach($scope.areas, function(areas) {
                 angular.forEach(areas.documentos, function(documentos) {
                     var top = parseInt(calificacion) + 1;
-
+                       var pre = (precio != undefined)? calificacion:10000000;
                 if (documentos.calificacionPromedio >= parseInt(calificacion) && documentos.calificacionPromedio < top && 
-                        documentos.precio<parseInt(precio)) {
-                    
-                        salida.push(areas);
-                    
+                        documentos.precio<pre) {
+
+                    salida.push(areas);
+   
                 }
                 });
 
