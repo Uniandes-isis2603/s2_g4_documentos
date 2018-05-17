@@ -1,7 +1,7 @@
 (function (ng){
     var mod = ng.module("libroModule");
     mod.constant("libroContext","api/libros");
-    mod.controller('libroCtrl', ['$scope','$http', 'libroContext', '$state',
+    mod.controller('libroCtrl', ['$scope','$http', 'libroContext', '$state','$rootScope',
         /**
          * @ngdoc controller
          * @name libros.controller:libroCtrl
@@ -20,7 +20,7 @@
          * @param {Object} $state Dependencia inyectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.   
          */
-        function($scope,$http,libroContext,$state) {
+        function($scope,$http,libroContext,$state,$rootScope) {
             /**
              * @ngdoc function
              * @name getLibros
@@ -36,6 +36,8 @@
             $http.get(libroContext).then(function(response){
                 $scope.librosRecords = response.data;
             });
+            
+           
         }
     ]);
 }

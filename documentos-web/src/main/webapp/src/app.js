@@ -37,6 +37,10 @@
             $rootScope.cambioColor={};
             $rootScope.cambioColor.style={"color":"green"};
 
+
+            $rootScope.documentosReservas=[];
+            
+
         });
         
         
