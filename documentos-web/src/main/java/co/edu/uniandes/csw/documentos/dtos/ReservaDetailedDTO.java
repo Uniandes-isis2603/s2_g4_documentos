@@ -45,6 +45,8 @@ public class ReservaDetailedDTO extends ReservaDTO{
             for (DocumentoEntity entityDocumento : entity.getDocumentos()) {
                  documentos.add(new DocumentoDTO(entityDocumento));
             }
+            
+       
         
     }
     }

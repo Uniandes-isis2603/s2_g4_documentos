@@ -100,7 +100,7 @@
                 <version>0.16</version>
                 <executions>
                     <execution>
-                        
+                   
                         <configuration>
                             <backend>swagger</backend>
                             <deployedDomain>localhost:8080</deployedDomain>

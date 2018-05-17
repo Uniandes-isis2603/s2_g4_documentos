@@ -73,18 +73,14 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
             }
         }
         
-//         if (entity.getDeseados() != null) {
-//            deseados = new ArrayList<>();
-//            for (DeseadoEntity entityDeseado : entity.getDeseados()) {
-//                deseados.add(new DeseadoDTO(entityDeseado));
-//            }
-//       }
-        //if (entity.getMetodosDePago() != null) {
-        //  MetodosDePago = new ArrayList<>();
-        //for (AuthorEntity entityAuthor : entity.getMetodosDePago()) {
-        //  MetodosDePago.add(new AuthorDTO(entityAuthor));
-        //}
-        //}
+         if (entity.getDeseados() != null) {
+            deseados = new ArrayList<>();
+            for (DeseadoEntity entityDeseado : entity.getDeseados()) {
+                deseados.add(new DeseadoDTO(entityDeseado));
+            }
+
+    }
+     
 
         if (entity.getCompras() != null) {
             compras = new ArrayList<>();
@@ -93,19 +89,19 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
             }
         }
         
-//           if (entity.getPayPal()!= null) {
-//            payPal = new ArrayList<>();
-//            for (PayPalEntity entityPayPal : entity.getPayPal()) {
-//                 payPal.add(new PayPalDTO(entityPayPal));
-//            }
-//        }
+           if (entity.getPayPal()!= null) {
+            payPal = new ArrayList<>();
+            for (PayPalEntity entityPayPal : entity.getPayPal()) {
+                 payPal.add(new PayPalDTO(entityPayPal));
+            }
+        }
 
-//              if (entity.getTarjetaDeCredito()!= null) {
-//            tarjetaDeCredito = new ArrayList<>();
-//            for (TarjetaDeCreditoEntity entityTarjetaCredito : entity.getTarjetaDeCredito()) {
-//                 tarjetaDeCredito.add(new TarjetaDeCreditoDTO(entityTarjetaCredito));
-//            }
-//        }
+              if (entity.getTarjetaDeCredito()!= null) {
+            tarjetaDeCredito = new ArrayList<>();
+            for (TarjetaDeCreditoEntity entityTarjetaCredito : entity.getTarjetaDeCredito()) {
+                 tarjetaDeCredito.add(new TarjetaDeCreditoDTO(entityTarjetaCredito));
+            }
+       }
         
     }
 
@@ -148,13 +144,24 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
             usuario.setComentarios(ComentarioEntity);
         }
         
-          if (getComentarios() != null) {
-            List<ComentarioEntity> ComentarioEntity = new ArrayList<>();
-            for (ComentarioDTO comentario : getComentarios()) {
-                ComentarioEntity.add(comentario.toEntity());
+            if (getTarjetaDeCredito()!= null) {
+            List<TarjetaDeCreditoEntity> tarjetaDeCreditoEntity = new ArrayList<>();
+            for (TarjetaDeCreditoDTO tarjetaDeCredito : getTarjetaDeCredito()) {
+                tarjetaDeCreditoEntity.add(tarjetaDeCredito.toEntity());
             }
-            usuario.setComentarios(ComentarioEntity);
+            usuario.setTarjetaDeCredito(tarjetaDeCreditoEntity);
         }
+            
+            if (getPayPal()!= null) {
+            List<PayPalEntity> payPalEntity = new ArrayList<>();
+            for (PayPalDTO payPal : getPayPal()) {
+                payPalEntity.add(payPal.toEntity());
+            }
+            usuario.setPaypal(payPalEntity);
+        }
+        
+   
+      
 
         //if (getMetodosDePago() != null) {
         // List<ComentarioEntity> ComentarioEntity = new ArrayList<>();

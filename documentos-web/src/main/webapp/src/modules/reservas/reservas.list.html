@@ -1,30 +1,118 @@
 
+<div  id="CursoDiv3" class="container-fluid"   >    
+    
+    <div class="container" style="padding-top:50px " > 
+        <h1 style="letter-spacing:5px ">Reservas</h1>
+            
+    </div>
+        
+</div>
 
-<div class="container-fluid" style="padding-left: 400px; margin-top: 100px; ">
-        <table class="tablaListaU">
-            <thead>
-                <tr>
-                    <th>número de reserva</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>visualizar</th>
-                    <th>Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="reserva in reservasRecords">
-                    <td id="id">{{reserva.id}}</td>
-                    <td id="nombre"></td>
-                    <td id="UserName"></td>
-                    <td id="UserName"></td>
-                    <td id="UserName"></td>
-                    <td><button id="botonFede" ui-sref="reservaDetail({reservaId: reserva.id})">ver</button> </td>
-                    <td><button id="botonFede" ui-sref="usuarioDetail({usuarioId: usuario.id})">Eliminar</button> </td>
+<div class="container-fluid" style="padding-left: 250px; margin-top: 60px; ">
+    <div class ="row" > 
+    <div class="col-sm-1">
+        
+    </div>
+    <div class="col-sm-7"> 
+        <div style="padding-top:4px; " ng-app="reservasModule">
+            <div class="panel-group" id="accordion">
+                <div ng-repeat="reserva in reservasRecords">
+                    
+                    <div  class="panel container-fluid" style="margin-bottom:20px; ">
+                        
+                           
+                        <div class="panel-heading" style="background-color: white;"   >
+                            
+                            <h4 class="panel-title " style="color:#2c3e50" >
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}">
+                                    
+                                    {{reserva.id}}   
+                                        
+                                </a>
+                                
+                                    
+                            </h4>
+                                
+                        </div>
+                        <div id="collapse{{$index}}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                 
+                                <div class="row">
+                                    <div class="col-sm-3"> 
+                                       <h4> <strong>Id</strong></h4>
+                                            
+                                        
+                                        <h4><strong>costo</strong></h4>
+                                    
+                                        <h4><strong>fecha</strong></h4>
+                        
+                                        
+                                    </div>
+                                    <div class="col-sm-3">
+                                       <h4> {{reserva.id}}</h4>
+                                     
+                                        <h4>${{reserva.costo}}</h4>
+                                        
+                                        <h4>{{reserva.fecha}}</h4>
+                    
+                                    </div>
+                                    
+                                    <div style="padding-left: 250px;" class="col-sm-3">
+                                        <button  type="button" name="update" class=" btn loginbutton pull-right" 
+                                                style="margin-right: 125px ;  margin-bottom: 30px; color:white" ng-click="darLibros()"><a  style="color: white" data-toggle="modal" href="#Modal{{$index}}">
+                                                <i class="fas fa-plus-circle" ></i> Añadir Libros
+                                            </a></button>
+                                    </div> 
+                                 
+                                        
+                                      <div class="row" style="padding-left: 20px; padding-bottom: 30px; padding-right: 20px; float:left; justify-content: space-around; display: flex; ">
+                                        <div  style="padding-left: 10px; padding-bottom: 20px" ng-repeat="documento in reserva.documentos" >
+                                           
+                                            <div class="thumbnail " style="height: 210; width:150px; " >
+                                                <img ui-sref="libroDetail({libroId: documento.id})" src="{{documento.caratula}}" alt="..." style=" width:150px; height:200;  " >
+                                                <h5>{{documento.nombre}}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                 
+                                        
+                                  
+                                    <div class="modal fade" id="Modal{{$index}}" role="dialog">
+                                        <div class="modal-dialog modal-lg">
+                                            
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                                                    <h4 class="modal-title">Sign In</h4>
+                                                </div>
+                                                <div class="modal-body" >
+                                                    
+                                                    <ul  class="ul-list"ng-repeat="libro in libros">
+                                                        <li class="list-group-item"> {{libro.nombre}} <a ng-click="reservarLibro(libro)" class="pull-right"><i class="fas fa-plus"></i></a>
+                                                    </ul>  
+                                                   
+                                                    
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn loginbutton " data-dismiss="modal" style="color:white" ng-click="updateAll(reserva)"> Aceptar</button>
+                                                </div>
+                                            </div>
+                                        </div>
 
-
-                </tr>
-            </tbody>
-
-        </table>
+                                    </div>
+                                </div>
+                                     
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <br>
+            <button style="margin-bottom : 30px;" class= "btn btn-info" ng-click="create()" >Crear nueva reserva</button>  
+        </div>
+    </div>
+   </div>
+       </div>

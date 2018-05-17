@@ -25,6 +25,8 @@
 
 
     ]);
+    
+
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
             $qProvider.errorOnUnhandledRejections(false);
@@ -32,7 +34,13 @@
 
      app.run( function ($rootScope) {
             $rootScope.home=0;
+            $rootScope.cambioColor={};
+            $rootScope.cambioColor.style={"color":"green"};
+
         });
+        
+        
+        
     
 
 })(window.angular);

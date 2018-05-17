@@ -115,6 +115,12 @@ hr {
     background-color: #2c3e50;
 }
 
+
+.Projo{
+   color: red;
+    background-color: black;
+}
+
 .menuUlUsuario{
     margin-top:120px;
     list-style: none;
@@ -397,4 +403,133 @@ body{
      background-position: center center;
     background-image: url(https://images.pexels.com/photos/185762/pexels-photo-185762.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)
       
+}
+
+.containerFede{
+        max-width: 450px;
+        height: auto;
+        margin: 5% auto;
+        padding-top: 20px;
+        border-radius: 24px 24px 24px 24px;
+        -moz-border-radius: 24px 24px 24px 24px;
+        -webkit-border-radius: 24px 24px 24px 24px;
+         border: 0px solid #000000;
+
+}
+
+.form_top{
+
+   width: 100%;
+   text-align: center;
+    color: scrollbar;   
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+.form_top h2{
+    font-weight: bold;
+    color: #9d9d9d;
+}
+
+.form_reg{
+    padding: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+         
+}
+.btn_form{
+    justify-content:space-around;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none; 
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    
+}
+.registroU{
+    padding: 6px;
+    margin: 20px;
+    border: none;
+    transition: all;
+    border-bottom: solid #9d9d9d 3px;
+
+}
+.registroU:focus{
+    border-bottom: solid #2c3e50 3px;
+}
+.tablaFede{
+    color: #9d9d9d;
+}
+.uliUpdate{
+      list-style-type: none;
+    margin: 5px;
+    padding: 5px;
+    overflow: hidden;
+}
+.life
+{
+     float: left;
+}
+
+#librosReserva{
+    display : flex;
+        border-radius: 24px 24px 24px 24px;
+        -moz-border-radius: 24px 24px 24px 24px;
+        -webkit-border-radius: 24px 24px 24px 24px;
+         border: 2px solid #2c3e50;  
+
+}
+
+#CursoDiv3{
+    color:white;   
+    height: 250px;
+    background-size: cover;  
+     text-align: center;
+     background-position: center center;
+    background-image: url(https://images.pexels.com/photos/590493/pexels-photo-590493.jpeg?cs=srgb&dl=blur-book-stack-books-590493.jpg&fm=jpg)
+      
+}
+
+#CursoDiv4{
+    color:white;   
+    height: 250px;
+    background-size: cover;
+    padding-bottom: 10px;
+     text-align: center;
+     background-position: center center;
+    background-image: url(https://images.pexels.com/photos/34075/pexels-photo.jpg?cs=srgb&dl=book-lake-learning-34075.jpg&fm=jpg)
+      
+}
+
+#CursoDiv5{
+    color:white;   
+    height: 250px;
+    background-size: cover;
+    padding-bottom: 10px;
+     text-align: center;
+     background-position: center center;
+    background-image: url(https://images.pexels.com/photos/264771/pexels-photo-264771.jpeg?cs=srgb&dl=birthday-bow-box-264771.jpg&fm=jpg)
+      
+}
+nav.acceder ul{
+    list-style: none;
+    position: relative;
+    float: left;
+    
+}
+
+
+nav.acceder #login-content{
+    position: absolute;
+    top:  26px;
+    z-index: 999;
+    padding:  15px;
+    width: 250px;
+       
 }

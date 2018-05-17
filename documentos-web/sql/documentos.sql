@@ -9,6 +9,8 @@ delete from UsuarioEntity_PayPalEntity;
 delete from UsuarioEntity_ReservaEntity;
 delete from UsuarioEntity_DeseadoEntity;
 delete from CursoEntity_DocumentoEntity;
+delete from ReservaEntity_DocumentoEntity;
+delete from DeseadoEntity_DocumentoEntity;
 delete from FacturaEntity;
 delete from UsuarioEntity;
 delete from LibroEntity;
@@ -190,14 +192,33 @@ INSERT INTO COMPRAENTITY (id,COSTO, FECHA, TIPODECOMPRA, METODODEPAGOPAYPAL_ID, 
 ----------------------------- RELACIONES ---------------------------------
 --------------------------------------------------------------------------
 
+--Federico
+insert into ReservaEntity_DocumentoEntity (ReservaEntity_id,Documentos_id) values(545,100);
+insert into ReservaEntity_DocumentoEntity (ReservaEntity_id,Documentos_id) values(545,200);
+insert into ReservaEntity_DocumentoEntity (ReservaEntity_id,Documentos_id) values(546,300);
+insert into ReservaEntity_DocumentoEntity (ReservaEntity_id,Documentos_id) values(546,400);
+insert into ReservaEntity_DocumentoEntity (ReservaEntity_id,Documentos_id) values(547,500);
+insert into ReservaEntity_DocumentoEntity (ReservaEntity_id,Documentos_id) values(547,600);
+
+
+--Federico
+insert into DeseadoEntity_DocumentoEntity (DeseadoEntity_id,Documentos_id) values(2000,100);
+insert into DeseadoEntity_DocumentoEntity (DeseadoEntity_id,Documentos_id) values(2000,200);
+insert into DeseadoEntity_DocumentoEntity (DeseadoEntity_id,Documentos_id) values(2000,300);
+insert into DeseadoEntity_DocumentoEntity (DeseadoEntity_id,Documentos_id) values(2001,400 );
+insert into DeseadoEntity_DocumentoEntity (DeseadoEntity_id,Documentos_id) values(2001,500 );
+insert into DeseadoEntity_DocumentoEntity (DeseadoEntity_id,Documentos_id) values(2001,600 );
+
+
+
 -- Federico
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (45, 2000);
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (46, 2001);
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (47, 2002);
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (48, 2003);
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (49, 2004);
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (50, 2005);
-insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseado_ID) values (51, 2006);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (45, 2000);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (46, 2001);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (47, 2002);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (48, 2003);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (49, 2004);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (50, 2005);
+insert into UsuarioEntity_DeseadoEntity (UsuarioEntity_ID, Deseados_ID) values (51, 2006);
 
 
 -- Federico
@@ -217,11 +238,11 @@ insert into UsuarioEntity_PayPalEntity (UsuarioEntity_ID, PayPal_ID) values (46,
 insert into UsuarioEntity_PayPalEntity (UsuarioEntity_ID, PayPal_ID) values (47, 65003);
 
 -- Gregorio
-insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (45, 7501);
-insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (46, 7502);
-insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (47, 7503);
-insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (45, 7500);
-insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetasCredito_id) values (45, 7504);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetaDeCredito_id) values (45, 7501);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetaDeCredito_id) values (46, 7502);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetaDeCredito_id) values (47, 7503);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetaDeCredito_id) values (45, 7500);
+insert into UsuarioEntity_TarjetaDeCreditoEntity (UsuarioEntity_id, tarjetaDeCredito_id) values (45, 7504);
 
 -- Ernesto
 insert into DocumentoEntity_AreaDeConocimientoEntity(documentos_id,areas_id) values (100,11);

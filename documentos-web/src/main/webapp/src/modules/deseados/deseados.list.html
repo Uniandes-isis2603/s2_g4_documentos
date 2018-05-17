@@ -1,26 +1,126 @@
 
+<div  id="CursoDiv5" class="container-fluid"   >    
+    
+    <div class="container" style="padding-top:50px " > 
+        <h1 style="letter-spacing:5px ">Listas De Deseos</h1>
+            
+    </div>
+        
+</div>
 
-<div class="container-fluid" style="padding-left: 400px; margin-top: 100px; ">
-        <table class="tablaListaU">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Fecha</th>
-                    <th>Costo</th>
-                    <th>visualizar</th>
-                    <th>Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="deseado in deseadosRecords">
-                    <td id="id">{{deseado.id}}</td>
-                    <td id="nombre">{{deseado.fecha}}</td>
-                    <td id="UserName">{{deseado.costo}}</td>
-                    <td><button id="botonFede" ui-sref="usuarioDetail({usuarioId: usuario.id})">ver</button> </td>
-                    <td><button id="botonFede" ui-sref="usuarioDetail({usuarioId: usuario.id})">Eliminar</button> </td>
+<div class="container-fluid" style="padding-left: 250px; margin-top: 60px; ">
+    <div class ="row" > 
+    <div class="col-sm-1">
+        
+    </div>
+    <div class="col-sm-7"> 
+        <div style="padding-top:20px; " ng-app="deseadoModule">
+            <div class="panel-group" id="accordion">
+                <div ng-repeat="deseado in deseadosRecords">
+                    
+                    <div  class="panel container-fluid" style="margin-bottom:20px; ">
+                        
+                           
+                        <div class="panel-heading" style="background-color: white;"   >
+                            
+                            <h4 class="panel-title " style="color:#2c3e50" >
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}">
+                                    
+                                    {{deseado.nombre}}   
+                                        
+                                </a>
+                                
+                                    
+                            </h4>
+                                
+                        </div>
+                        <div id="collapse{{$index}}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                 
+                                <div class="row">
+                                    <div class="col-sm-3"> 
+                                        <h4> <strong>Id</strong></h4>
+                                        <h4><strong>nombre</strong></h4>
+                                        <h4><strong>cantidad</strong></h4>
+                        
+                                        
+                                    </div>
+                                    <div class="col-sm-3">
+                                       <h4> {{deseado.id}}</h4>
+                                     
+                                        <h4>{{deseado.nombre}}</h4>
+                                        
+                                        <h4>{{deseado.cantidad}}</h4>
+                    
+                                    </div>
+                                    
+                                    <div style="padding-left: 250px;" class="col-sm-3">
+                                        <button  type="button" name="update" class=" btn loginbutton pull-right" 
+                                                style="margin-right: 125px ;  margin-bottom: 30px; color:white" ng-click="darLibros()"><a  style="color: white" data-toggle="modal" href="#Modal{{$index}}">
+                                                <i class="fas fa-plus-circle" ></i> Añadir Libros
+                                            </a></button>
+                                    </div> 
+                                 
+                                        
+                                      <div class="row" style="padding-left: 20px; padding-bottom: 30px; padding-right: 20px; float:left; justify-content: space-around; display: flex; ">
+                                        <div  style="padding-left: 10px; padding-bottom: 20px" ng-repeat="documento in deseado.documentos" >
+                                           
+                                            <div class="thumbnail " style="height: 210; width:150px; " >
+                                                <img ui-sref="libroDetail({libroId: documento.id})" src="{{documento.caratula}}" alt="..." style=" width:150px; height:200;  " >
+                                                <h5>{{documento.nombre}}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                 
+                                        
+                                  
+                                    <div class="modal fade" id="Modal{{$index}}" role="dialog">
+                                        <div class="modal-dialog modal-lg">
+                                            
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                                                    <h4 class="modal-title">Sign In</h4>
+                                                </div>
+                                                <div class="modal-body" >
+                                                    
+                                                    <ul  class="ul-list"ng-repeat="libro in libros">
+                                                        <li class="list-group-item"> {{libro.nombre}} <a ng-click="libroDeseado(libro)" class="pull-right"><i class="fas fa-plus"></i></a>
+                                                    </ul>  
+                                                   
+                                                    
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn loginbutton " data-dismiss="modal" style="color:white" ng-click="updateAll(deseado)"> Aceptar</button>
+                                                </div>
+                                            </div>
+                                        </div>
 
-
-                </tr>
-            </tbody>
-
-        </table>
+                                    </div>
+                                </div>
+                                     
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <br>
+            <nav class="acceder">
+                <ul>
+                    <li>
+                        <button ng-click="showForm()" ng-hide="formVisibility" class="btn btn-info" id= "login">Crear nueva lista de deseos</button>
+                        <div ng-show="formVisibility"id="login-content">
+                             <form>
+                           <input class="registroU" type="text" nombre=" nombre" maxlength="15" minlength="7" required ng-model="data.nombre" placeholder="&#128366; nombre de la lista" />   
+                           <input class="btn btn-info"  ng-click="create()" type="submit" id="submit"  value="Crear">  
+                             </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+   </div>
+       </div>

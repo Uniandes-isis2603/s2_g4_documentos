@@ -43,7 +43,9 @@
                 parent: 'usuarios',
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'usuarios.list.html'
+                        templateUrl: basePath + 'usuarios.list.html',
+                        controller: 'usuarioCtrl',
+                        controllerAs: 'ctrl'
                     }
                 }
             }).state('usuarioCreate', {
@@ -51,8 +53,9 @@
                 parent: 'usuarios',
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/new/usuarios.new.html',
-                        controller: 'usuariosNewCtrl',
+                        templateUrl: basePath + 'usuarios.new.html',
+                        controller: 'usuarioCtrl',
+                        controllerAs: 'ctrl'
                     }
                 }
             }).state('usuarioDetail', {
@@ -64,12 +67,12 @@
                 views: {
                     'detailView': {
                         templateUrl: basePath + 'usuarios.detail.html',
-                        controller: 'usuarioDetailCtrl',
+                        controller: 'usuarioCtrl',
                         controllerAs: 'ctrl'
                     },
                     'menuView': {
                         templateUrl: basePath + 'menu.html',
-                        controller: 'usuarioDetailCtrl',
+                        controller: 'usuarioCtrl',
                         controllerAs: 'ctrl'
                     }
 
@@ -82,8 +85,15 @@
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/update/usuarios.update.html',
-                        controller: 'usuariosUpdateCtrl'
+                        templateUrl: basePath + 'usuarios.update.html',
+                         controller: 'usuarioCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                    ,
+                    'menuView': {
+                        templateUrl: basePath + 'menu.html',
+                        controller: 'usuarioCtrl',
+                        controllerAs: 'ctrl'
                     }
                 }
                

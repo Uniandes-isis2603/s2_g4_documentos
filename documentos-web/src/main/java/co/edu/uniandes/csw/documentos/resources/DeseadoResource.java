@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.documentos.resources;
 
 import co.edu.uniandes.csw.documentos.dtos.DeseadoDetailedDTO;
-import co.edu.uniandes.csw.documentos.dtos.DeseadoDetailedDTO;
+import co.edu.uniandes.csw.documentos.dtos.UsuarioDetailedDTO;
 import co.edu.uniandes.csw.documentos.ejb.DeseadoLogic;
 import co.edu.uniandes.csw.documentos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.documentos.entities.DeseadoEntity;
@@ -87,14 +87,19 @@ public class DeseadoResource {
      */
     @POST
     public DeseadoDetailedDTO createDeseado(@PathParam("usuarioId") Long idUser, DeseadoDetailedDTO Deseado) throws BusinessLogicException {
+               UsuarioEntity usuario = null;
+
         try {
-            usuarioLogic.getUsuario(idUser);
+           usuario= usuarioLogic.getUsuario(idUser);
 
         } catch (BusinessLogicException ex) {
             throw new BusinessLogicException("el usuario al que le quiere agregar el recurso no existe");
 
         }
 
+                Deseado.setUsuario(new UsuarioDetailedDTO(usuario));
+        usuario.getDeseados().add(Deseado.toEntity());
+        usuarioLogic.updateUsuario(usuario.getId(), usuario);
         return new DeseadoDetailedDTO(DeseadoLogica.createDeseado(Deseado.toEntity()));
     }
 
@@ -112,9 +117,9 @@ public class DeseadoResource {
      * en la aplicación de no haber ninguna retornar lista vacia.
      */
     @GET
-    public List<DeseadoDetailedDTO> getDeseados() {
-        List<DeseadoDetailedDTO> lista = new ArrayList<>();
-        lista = listDeseadoEntity2DetailDTO(DeseadoLogica.getDeseados());
+    public List<DeseadoDetailedDTO> getDeseados(@PathParam("usuarioId") Long idUser) throws BusinessLogicException {
+          List<DeseadoDetailedDTO> lista = new ArrayList<>();
+        lista = listDeseadoEntity2DetailDTO(usuarioLogic.getUsuario(idUser).getDeseados());
         return lista;
     }
 
