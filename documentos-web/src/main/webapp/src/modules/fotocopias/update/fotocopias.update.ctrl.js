@@ -44,7 +44,7 @@
                var autores = []; 
             } else
             {
-                var autores = $scope.data.autores;
+               autores = $scope.data.autores;
             }
             
             
@@ -69,7 +69,7 @@
                var areas = []; 
             } else
             {
-                var areas = $scope.data.areas;
+                areas = $scope.data.areas;
             }
             
             
