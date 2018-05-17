@@ -16,12 +16,12 @@
                 views: {
                     'reservas': {
                         templateUrl: basePath + 'reservas.html',
-                        controller: 'reservasCtrl',
+                        controller: 'reservaCtrl',
                         controllerAs: 'ctrl'
                     },
                     'menuView':{
                       templateUrl: 'src/modules/usuarios/menu.html',
-                      controller: 'usuarioDetailCtrl',
+                      controller: 'usuarioCtrl',
                       controllerAs: 'ctrl'
 
                     }
@@ -30,30 +30,16 @@
             }).state('reservasList', {
                 url: '/list',
                 parent: 'reservas',
+             
                 views: {
                     'detailView': {
                         templateUrl: basePath + 'reservas.list.html',
-                        controller: 'reservasCtrl',
+                        controller: 'reservaCtrl',
                         controllerAs: 'ctrl'
                     }
                  
                     
                 }
-            }).state('reservaDetail', {
-                url: '/{reservaId:int}/detail',
-                parent:'reservas',
-                param:{
-                    reservaId: null
-                },
-                views: {
-                    'detailView':{
-                        templateUrl: basePath + 'reservas.detail.html',
-                        cotroller: 'reservaDetailCtrl',
-                        controllerAs: 'ctrl'
-                        
-                    }
-                }
-                
             });
     }]);
 })(window.angular);
