@@ -157,11 +157,11 @@ insert into PayPalEntity (id, usuario, correoElectronico, idusuario) values (650
 insert into PayPalEntity (id, usuario, correoElectronico, idusuario) values (65003,'juan','juan@ospina', 47);
 
 -- Gregorio
-insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7500, 'Visa','4234567890123456', 'gregorio', 123);
-insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7501, 'MasterCard','5134567890123456', 'andres', 124);
-insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7502, 'Visa','4234567870123456', 'jeronimo', 125);
-insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7503, 'Visa','4234567880123456', 'raquel', 130);
-insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7504, 'MasterCard','5134567890153456','jaime', 198);
+insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad, idusuario) values (7500, 'Visa','4234567890123456', 'gregorio', 123, 45);
+insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad, idusuario) values (7501, 'MasterCard','5134567890123456', 'andres', 124, 45);
+insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad, idusuario) values (7502, 'Visa','4234567870123456', 'jeronimo', 125, 46);
+insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad, idusuario) values (7503, 'Visa','4234567880123456', 'raquel', 130, 47);
+insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad, idusuario) values (7504, 'MasterCard','5134567890153456','jaime', 198, 45);
 
 
 insert into FacturaEntity (id, fecha, costo, usuario_id, METODODEPAGOPAYPAL_ID, METODODEPAGOTDC_ID) values (1, '2018-02-22 20:38:54.973', 3000,45, NULL, 7500);

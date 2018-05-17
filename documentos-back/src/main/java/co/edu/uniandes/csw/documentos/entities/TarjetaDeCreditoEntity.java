@@ -36,6 +36,8 @@ public class TarjetaDeCreditoEntity extends MetodoDePagoEntity implements Serial
      * 
      */
     private Integer numeroDeSeguridad;
+    
+    private Long idUsuario;
 
     /**
      * @return the tipoDeTarjeta
@@ -105,6 +107,20 @@ public class TarjetaDeCreditoEntity extends MetodoDePagoEntity implements Serial
      */
     public void setUEntity(UsuarioEntity UEntity) {
         this.usuario = UEntity;
+    }
+
+    /**
+     * @return the idusuario
+     */
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
+
+    /**
+     * @param idusuario the idusuario to set
+     */
+    public void setIdUsuario(Long idusuario) {
+        this.idUsuario = idusuario;
     }
 
   

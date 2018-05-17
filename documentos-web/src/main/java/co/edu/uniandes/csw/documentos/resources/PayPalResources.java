@@ -109,7 +109,7 @@ public class PayPalResources {
         UsuarioEntity entity = uLogic.getUsuario(Uid);
         if(entity != null)
         {
-          return listaPP(PPLogic.getPayPal());  
+          return listaPP(PPLogic.getPPByUser(Uid));  
         }
         throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
     }
