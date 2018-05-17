@@ -5,9 +5,7 @@
  
 
 
-    mod.controller('libroDetailCtrl', ['$scope', '$http', 'libroContext', '$state','$rootScope',
-        
-    
+    mod.controller('libroDetailCtrl', ['$scope', '$http', 'libroContext', '$state','$rootScope','$sce',
         
         /**
          * @ngdoc controller
@@ -24,9 +22,13 @@
          * @param {Object} $state  Dependencia inyectada en la que se recibe el
          * estado actual de la navecación definida en el módulo.   
          */
-        function ($scope, $http, libroContext, $state,$rootScope) {
+        function ($scope, $http, libroContext, $state,$rootScope, $sce) {
                $scope.comentario={};
             $scope.comentario.comentario="";
+            
+               $scope.trustSrc = function(src) {
+            return $sce.trustAsResourceUrl(src);
+        }
             
             $scope.comentario.fecha=new Date().toJSON()+"";
             $scope.comentario.id=9000;
