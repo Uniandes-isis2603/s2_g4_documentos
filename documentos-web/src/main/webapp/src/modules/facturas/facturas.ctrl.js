@@ -5,16 +5,6 @@
         function($scope,$http,facturasContext,$state){
             $http.get(facturasContext).then(function(response){
                 $scope.facturasRecords = response.data;
-            });
-            
-            
-            
-        function ($scope, $http){
-            $http({
-                action: "https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/",
-                method : 'POST',
-                : 
-            });
-        }
+            });         
         }]);
 })(window.angular);
