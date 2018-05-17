@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.documentos.dtos;
-
-import co.edu.uniandes.csw.documentos.entities.CursoEntity;
-import co.edu.uniandes.csw.documentos.entities.DocumentoEntity;
 import co.edu.uniandes.csw.documentos.entities.EditorialEntity;
 import co.edu.uniandes.csw.documentos.entities.LibroEntity;
 import java.util.ArrayList;
@@ -25,7 +22,46 @@ public class EditorialDetailedDTO extends EditorialDTO{
     private List<LibroDTO> libros;
 
    
+
 /**
+ * consturctor por defecto
+ */
+    public EditorialDetailedDTO() 
+    {
+      //constructor por defecto
+    }
+    
+     public EditorialDetailedDTO( EditorialEntity entidad)
+    {
+        super(entidad);
+        if(entidad!=null)
+        {
+            List<LibroDTO> lista= new ArrayList<>();
+            for (LibroEntity en :entidad.getLibros()) {
+                lista.add(new LibroDTO(en));
+                
+            }
+            this.setLibros(lista);
+        }
+    }
+     @Override
+     public EditorialEntity toEntity()
+    {
+       EditorialEntity rta= super.toEntity();
+       if (libros != null) {
+            List<LibroEntity> listaEntity = new ArrayList<>();
+            for (LibroDTO dtoCurso : libros) 
+            {
+                listaEntity.add(dtoCurso.toEntity());
+            }
+            rta.setLibros(listaEntity);
+        }
+       return rta;
+    }
+     
+   
+    
+    /**
  * 
  * @return lista de libros que pertenecen a la editorial
  */
@@ -41,37 +77,4 @@ public class EditorialDetailedDTO extends EditorialDTO{
         this.libros = libros;
     }
     
-/**
- * consturctor por defecto
- */
-    public EditorialDetailedDTO() 
-    {
-      
-    }
-     public EditorialEntity toEntity()
-    {
-       EditorialEntity rta= super.toEntity();
-       if (libros != null) {
-            List<LibroEntity> listaEntity = new ArrayList<>();
-            for (LibroDTO dtoCurso : libros) 
-            {
-                listaEntity.add(dtoCurso.toEntity());
-            }
-            rta.setLibros(listaEntity);
-        }
-       return rta;
-    }
-    public EditorialDetailedDTO( EditorialEntity entidad)
-    {
-        super(entidad);
-        if(entidad!=null)
-        {
-            List<LibroDTO> lista= new ArrayList<>();
-            for (LibroEntity en :entidad.getLibros()) {
-                lista.add(new LibroDTO(en));
-                
-            }
-            this.setLibros(lista);
-        }
-    }
 }

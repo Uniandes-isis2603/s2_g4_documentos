@@ -171,4 +171,19 @@ public class AutorPersistanceTest {
         AutorEntity borrado = em.find(AutorEntity.class, entity.getId());
         Assert.assertNull(borrado);
     }
+    
+        
+    /**
+     * Prueba para encontrar un autor por nombre
+     */
+    @Test
+    public void findAutorByNombreTest(){
+        AutorEntity entity = data.get(0);
+        
+        AutorEntity newEntity = autoresPersistence.findByNombre(entity.getNombre()).get(0);
+        
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+    }
 }

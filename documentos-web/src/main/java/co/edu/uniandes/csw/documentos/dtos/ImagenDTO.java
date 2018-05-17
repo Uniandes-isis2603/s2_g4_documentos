@@ -44,7 +44,7 @@ import co.edu.uniandes.csw.documentos.entities.ImagenEntity;
  * 
  *   {
  *      "id": 91852,
- *      "tipo": "Portada",
+ *      "nombre": "Portada",
  *      "img": "./libro_32/imagenes/portada.jpg"
  *   }
  *
@@ -65,9 +65,9 @@ public class ImagenDTO {
     }
     
     /**
-     * Crea un objeto AuthorDTO a partir de un objeto AuthorEntity.
+     * Crea un objeto ImagenDTO a partir de un objeto ImagenEntity.
      *
-     * @param entity Entidad AuthorEntity desde la cual se va a crear el nuevo
+     * @param entity Entidad ImagenEntity desde la cual se va a crear el nuevo
      * objeto.
      * 
      */
@@ -121,12 +121,13 @@ public class ImagenDTO {
     }
 
     /**
-     * Convierte un objeto AuthorDTO a AuthorEntity.
+     * Convierte un objeto ImagenDTO a ImagenEntity.
      *
-     * @return Nueva objeto AuthorEntity.
+     * @return Nueva objeto ImagenEntity.
      * 
      */
     public ImagenEntity toEntity() {
+        
         ImagenEntity entity = new ImagenEntity();
         entity.setId(this.getId());
         entity.setNombre(this.getNombre());

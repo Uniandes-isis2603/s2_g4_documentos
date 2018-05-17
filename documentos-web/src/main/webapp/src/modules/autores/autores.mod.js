@@ -41,68 +41,15 @@
             
             $stateProvider.state('autores', {
                 url: '/autores',
-                abstract: true,
+              
                 views: {
                     'mainView': {
-                        templateUrl: basePath + 'autores.html',
+                        templateUrl: basePath + 'autores.list.html',
                         controller: 'autoresCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('autoresList', {
-                url: '/list',
-                parent: 'autores',
-                views: {
-                    'listView':{
-                        templateUrl: basePath + 'autores.list.html'
-                    }
-                }
-            }).state('autorDetail', {
-                url:'/detail/{autorId:int}',
-                parent: 'autores',
-                param: {
-                    autorId: null
-                },
-                views: {
-                    'detailView':{
-                        templateUrl: basePath + 'autores.detail.html',
-                        controller: 'autoresDetailCtrl',
-                        controllerAs:'ctrl'
-                    }
-                }
-            }).state('autoresCreate', {
-                url: '/create',
-                parent: 'autores',
-                views: {
-                    'detailView': {
-                        templateUrl: basePath + 'new/autores.new.html',
-                        controller: 'autorNewCtrl'
-                    }
-                }
-            }).state('autorUpdate', {
-                url: '/update/{autorId:int}',
-                parent: 'autores',
-                param: {
-                    autorId: null
-                },
-                views: {
-                    'detailView': {
-                        templateUrl: basePath + 'new/autores.new.html',
-                        controller: 'autorUpdateCtrl'
-                    }
-                }
-            }).state('autorDelete', {
-                url: '/delete/{autorId:int}',
-                parent: 'autores',
-                param: {
-                    autorId: null
-                },
-                views: {
-                    'detailView': {
-                        templateUrl: basePath + 'delete/autores.delete.html',
-                        controller: 'autorDeleteCtrl'
-                    }
-                }
+          
             });
         }]);
 })(window.angular);
