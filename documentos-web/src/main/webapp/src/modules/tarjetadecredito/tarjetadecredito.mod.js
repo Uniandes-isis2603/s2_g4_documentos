@@ -7,11 +7,17 @@
             $stateProvider.state('tarjetadecredito', {
                 url: 'tarjetadecredito',
                 abstract: true,
+                parent:'usuarios',
                 views: {
-                    'mainView': {
+                    'tarjetas': {
                         templateUrl: basePath+'tarjetadecredito.html',
                         controller: 'tarjetadecreditoCtrl',
                         controllerAs: 'ctrl'
+                    },
+                    'menuView': {
+                      templateUrl: 'src/modules/usuarios/menu.html',
+                      controller: 'usuarioDetailCtrl',
+                      controllerAs: 'ctrl'
                     }
                 }
             }).state('tarjetadecreditoList', {

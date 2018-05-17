@@ -19,8 +19,8 @@
        'tarjetadecreditoModule',
        'comprasModule',
        'inicioModule', 
-       'carritoModule'
-
+       'carritoModule',
+        'facturasModule'
         
 
 

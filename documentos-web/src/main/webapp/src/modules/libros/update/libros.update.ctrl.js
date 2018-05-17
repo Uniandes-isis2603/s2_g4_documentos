@@ -37,14 +37,14 @@
         
         $scope.asociarAutor = function (id) {
             
-          
+            var autores;
             
             if(typeof $scope.data.autores === "undefined")
             {
-               var autores = []; 
+                autores = []; 
             } else
             {
-                var autores = $scope.data.autores;
+                 autores = $scope.data.autores;
             }
             
             
@@ -62,14 +62,14 @@
         
         $scope.asociarArea = function (id) {
             
-          
+            var areas;
             
             if(typeof $scope.data.areas === "undefined")
             {
-               var areas = []; 
+                areas = []; 
             } else
             {
-                var areas = $scope.data.areas;
+                 areas = $scope.data.areas;
             }
             
             

@@ -43,6 +43,7 @@ public class UsuarioEntity implements Serializable {
     @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CompraEntity> compras;
 
+    
     /**
      * comentarios, relación unidireccional
      */
