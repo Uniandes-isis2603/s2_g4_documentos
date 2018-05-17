@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -122,6 +122,7 @@ private CompraLogic logica;
      * </pre>
      * @param id Identificador de la compra que se busca.
      * @return JSON {@link CompraDetailedDTO} - La compra deseada
+     * @throws co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException
      */
     @GET
     @Path("{id: \\d+}")

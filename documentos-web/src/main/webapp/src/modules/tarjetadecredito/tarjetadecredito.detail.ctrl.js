@@ -5,8 +5,9 @@
         function ($scope, $http, tarjetadecreditoContext, $state) {
 
             if (($state.params.tarjetadecreditoId !== undefined) && ($state.params.tarjetadecreditoId !== null)) {
-                $http.get(tarjetadecreditoContext + "/" + $state.params.tarjetadecreditoId).then(function (response) {
+                $http.get(tarjetadecreditoContext + '/' + $state.params.tarjetadecreditoId).then(function (response) {
                     $scope.currentTarjetadecredito = response.data;
+                    
                 });
             }
         }

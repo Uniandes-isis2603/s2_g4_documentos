@@ -1,6 +1,7 @@
 delete from DocumentoEntity_AreaDeConocimientoEntity;
 delete from DocumentoEntity_AutorEntity;
 delete from DocumentoEntity_ComentarioEntity;
+delete from FacturaEntity_DocumentoEntity;
 delete from DocumentoEntity_CursoEntity;
 delete from DocumentoEntity_ImagenEntity;
 delete from UsuarioEntity_TarjetaDeCreditoEntity;
@@ -8,6 +9,7 @@ delete from UsuarioEntity_PayPalEntity;
 delete from UsuarioEntity_ReservaEntity;
 delete from UsuarioEntity_DeseadoEntity;
 delete from CursoEntity_DocumentoEntity;
+delete from FacturaEntity;
 delete from UsuarioEntity;
 delete from LibroEntity;
 delete from FotocopiaEntity;
@@ -18,12 +20,12 @@ delete from AreaDeConocimientoEntity;
 delete from ImagenEntity;
 delete from AutorEntity;
 delete from EditorialEntity;
+delete from CompraEntity;
 delete from PayPalEntity;
 delete from TarjetaDeCreditoEntity;
 delete from ReservaEntity;
 delete from DeseadoEntity;
 delete from ComentarioEntity;
-delete from CompraEntity;
 
 
 -- Ernesto
@@ -154,9 +156,20 @@ insert into PayPalEntity (id, usuario, correoElectronico, idusuario) values (650
 -- Gregorio
 insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7500, 'Visa','4234567890123456', 'gregorio', 123);
 insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7501, 'MasterCard','5134567890123456', 'andres', 124);
-insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7503, 'Visa','4234567870123456', 'jeronimo', 125);
-insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7502, 'Visa','4234567880123456', 'raquel', 130);
+insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7502, 'Visa','4234567870123456', 'jeronimo', 125);
+insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7503, 'Visa','4234567880123456', 'raquel', 130);
 insert into TarjetaDeCreditoEntity (id, tipoDeTarjeta, nroDeLaTarjeta, nombreEnLaTarjeta, numeroDeSeguridad) values (7504, 'MasterCard','5134567890153456','jaime', 198);
+
+
+insert into FacturaEntity (id, fecha, costo, usuario_id, METODODEPAGOPAYPAL_ID, METODODEPAGOTDC_ID) values (1, '2018-02-22 20:38:54.973', 3000,45, NULL, 7500);
+insert into FacturaEntity (id, fecha, costo, usuario_id, METODODEPAGOPAYPAL_ID, METODODEPAGOTDC_ID) values (2, '2018-03-22 20:38:54.973', 6000,45, NULL, 7500);
+insert into FacturaEntity (id, fecha, costo, usuario_id, METODODEPAGOPAYPAL_ID, METODODEPAGOTDC_ID) values (3, '2018-04-22 20:38:54.973', 5000,45, NULL, 7500);
+insert into FacturaEntity (id, fecha, costo, usuario_id, METODODEPAGOPAYPAL_ID, METODODEPAGOTDC_ID) values (4, '2018-05-22 20:38:54.973', 4000,45, NULL, 7500);
+
+insert into FacturaEntity_DocumentoEntity(FacturaEntity_ID, Documentos_ID) values (1, 100 );
+insert into FacturaEntity_DocumentoEntity(FacturaEntity_ID, Documentos_ID) values (1, 700 );
+insert into FacturaEntity_DocumentoEntity(FacturaEntity_ID, Documentos_ID) values (2, 900 );
+
 
 -- Ernesto
 insert into EditorialEntity(id,nombre) values (11,'Vintage espaniol');
@@ -170,9 +183,7 @@ insert into ComentarioEntity(id,comentario,fecha) values (11000,'es malo','2015-
 --Nicolas
 insert into CursoEntity(id,codigo,departamento,nombre) values (3000,'Ma205','Matematicas','Matematica basica');
 
-INSERT INTO COMPRAENTITY (id,COSTO, FECHA, TIPODECOMPRA, METODODEPAGOPAYPAL_ID, METODODEPAGOTDC_ID) 
-
-	VALUES (10000,300, '2018-02-22 20:38:54.973', 'efectivo', NULL, 7500);
+INSERT INTO COMPRAENTITY (id,COSTO, FECHA, TIPODECOMPRA, METODODEPAGOPAYPAL_ID, METODODEPAGOTDC_ID) VALUES (10000,300, '2018-02-22 20:38:54.973', 'efectivo', NULL, 7500);
 
 
 --------------------------------------------------------------------------
