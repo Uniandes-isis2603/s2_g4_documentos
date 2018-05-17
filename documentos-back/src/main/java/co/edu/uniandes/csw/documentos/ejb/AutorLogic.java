@@ -169,4 +169,23 @@ public class AutorLogic {
         }
     }
 
+    /**
+     * Metodo que obtiene los diferentes autores segun el nombre
+     * @param nombre
+     * @return
+     * @throws BusinessLogicException 
+     */
+    public List<AutorEntity> getAutoresByNombre(String nombre) throws BusinessLogicException{
+    
+    
+        LOGGER.log(Level.INFO, "Inicia proceso de buscar el autor de nombre {0}", nombre);
+        if (!(nombre.matches("([A-Z]|[a-z]|[ñ]|[0-9]|\\s)+")|| nombre.contains(" "))){
+            LOGGER.log(Level.INFO, "El nombre del autor no puede contener caracteres especiales");
+            throw new BusinessLogicException("El nombre del autor no puede contener caracteres especiales");
+        }
+        return persistence.findByNombre(nombre);
+    
+    }
+
+
 }

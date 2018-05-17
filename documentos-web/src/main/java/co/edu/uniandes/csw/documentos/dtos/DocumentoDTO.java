@@ -59,6 +59,7 @@ public class DocumentoDTO {
             this.calificacionPromedio = documentoE.getCalificacionPromedio();
             this.caratula = documentoE.getCaratula();
             this.descripcion = documentoE.getDescripcion();
+            this.pdf = documentoE.getPdf();
         }
     }
     
@@ -75,6 +76,7 @@ public class DocumentoDTO {
         documentoE.setCalificacionPromedio(this.calificacionPromedio);
         documentoE.setCaratula(this.caratula);
         documentoE.setDescripcion(this.descripcion);
+        documentoE.setPdf(this.pdf);
         
         return documentoE;
     }
@@ -108,6 +110,11 @@ public class DocumentoDTO {
      * caratula del documento.
      */
     private String caratula;
+    
+    /**
+     * 
+     */
+    private String pdf;
 
     /**
      * 
@@ -206,5 +213,12 @@ public class DocumentoDTO {
     }
     
     
+    public String getPdf() {
+        return pdf;
+    }
+
+    public void setPdf(String pdf) {
+        this.pdf = pdf;
+    }
     
 }

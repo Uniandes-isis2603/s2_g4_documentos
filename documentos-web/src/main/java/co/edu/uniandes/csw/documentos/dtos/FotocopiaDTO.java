@@ -85,6 +85,7 @@ public class FotocopiaDTO extends DocumentoDTO{
         fotocopiaE.setCapitulo(this.capitulos);
         fotocopiaE.setCaratula(this.getCaratula());
         fotocopiaE.setDescripcion(this.getDescripcion());
+        fotocopiaE.setPdf(this.getPdf());
         return fotocopiaE;
     }
     
@@ -102,6 +103,11 @@ public class FotocopiaDTO extends DocumentoDTO{
      * capitulos de la fotocopia.
      */
     private String capitulos;
+    
+    /**
+     * PDF del documento
+     */
+    private String pdf;
 
     /**
      * 
@@ -150,4 +156,7 @@ public class FotocopiaDTO extends DocumentoDTO{
     public void setCapitulos(String capitulos) {
         this.capitulos = capitulos;
     }
+
+
+    
 }

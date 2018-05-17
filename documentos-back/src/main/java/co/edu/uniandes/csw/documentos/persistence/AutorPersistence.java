@@ -77,4 +77,16 @@ public class AutorPersistence{
         AutorEntity entity = find(id);
         em.remove(entity);
     }
+    
+    /**
+     * Metodo que encuentra los autores con un nombre dado
+     * @param tipo. Tipo de Area de conocimiento a buscar
+     * @return Lista con las areas encontradas con el tipo dado
+     */
+    public List<AutorEntity> findByNombre(String nombre){
+        LOGGER.log(Level.INFO, "Consultando el autor de nombre {0}", nombre);
+        TypedQuery query = em.createQuery("Select u From AutorEntity u where u.nombre LIKE :nombre", AutorEntity.class);
+        query = query.setParameter("nombre", "%"+nombre+"%");
+        return query.getResultList();
+    }
 }

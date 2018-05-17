@@ -211,4 +211,33 @@ public class AreaDeConocimientoResource {
         
         areaLogic.deleteArea(id);
     }
+     
+    /**
+     * <h1>GET /api/areas/{tipo} : Obtener todas las areas según el tipo.</h1>
+     * 
+     * <pre>Busca y devuelve todas las areas que existen en la aplicacion según el tipo.
+     * 
+     * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Devuelve todas las areas de la aplicacion.</code> 
+     * </pre>
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found. No existe un area con el id dado.
+     * </code>
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 412 Precondition Failed. La precondición ha fallado.
+     * </code>
+     * @param tipo Identificador del area que se desea borrar. Este debe ser una cadena de dígitos.
+     * @return JSONArray {@link AreaDeConocimientoDetailDTO} - Las areas encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+     */
+    @GET
+    @Path("{tipo}")
+    public List<AreaDeConocimientoDetailDTO> getAreasByTipo(@PathParam("tipo") String tipo){
+        try{
+            return listEntity2DTO(areaLogic.getAreasByTipo(tipo));
+        }
+        catch (BusinessLogicException e){
+            throw new WebApplicationException(e.getMessage(),412);
+        }    
+    }
 }

@@ -81,6 +81,7 @@ public class LibroDTO extends DocumentoDTO {
         libroE.setCaratula(this.getCaratula());
         libroE.setDescripcion(this.getDescripcion());
         libroE.setFechaPublicacion(this.fechaPublicacion);
+        libroE.setPdf(this.pdf);
         
         return libroE;
     }
@@ -95,6 +96,11 @@ public class LibroDTO extends DocumentoDTO {
      */
     private Date fechaPublicacion;
 
+    /**
+     * 
+     */
+    private String pdf;
+    
     /**
      * 
      * @return el codigo ISBN del libro
@@ -126,4 +132,14 @@ public class LibroDTO extends DocumentoDTO {
     public void setFechaPublicacion(Date fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
     }
+
+    public String getPdf() {
+        return pdf;
+    }
+
+    public void setPdf(String pdf) {
+        this.pdf = pdf;
+    }
+    
+    
 }
