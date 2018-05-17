@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.documentos.entities;
 
-import co.edu.uniandes.csw.bookstore.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +16,6 @@ import javax.persistence.Temporal;
 
 import javax.persistence.*;
 import uk.co.jemos.podam.common.PodamExclude;
-import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *

@@ -8,7 +8,6 @@ package co.edu.uniandes.csw.documentos.ejb;
 import co.edu.uniandes.csw.documentos.entities.PayPalEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.PayPalPersistence;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -125,12 +124,8 @@ public class PayPalLogic {
          persistence.delete(Id);
         }
         else{
-        LOGGER.log(Level.INFO, "La cuenta con el correo {0} no existe", busqueda.getCorreoElectronico());
         throw new BusinessLogicException("La cuenta a borrar no existe.");
     }
     }
-    
-    
-    
-    
+ 
 }
