@@ -19,24 +19,23 @@
        'paypalModule',
        'tarjetadecreditoModule',
        'comprasModule',
-       'inicioModule',
+       'inicioModule', 
+       'carritoModule'
 
         
 
 
     ]);
     // Resuelve problemas de las promesas
-    app.config(['$qProvider','$urlRouterProvider', function ($qProvider,$urlRouterProvider) {
+    app.config(['$qProvider','$urlRouterProvider',function ($qProvider,$urlRouterProvider) {
             $qProvider.errorOnUnhandledRejections(false);
-             $urlRouterProvider.otherwise("inicio");
+           $urlRouterProvider.when('', '/inicio');
+           
         }]);
 
-     app.run( function ($rootScope) {
-            $rootScope.algo = function() {
-                
-            };
-            
-            
+     app.run( function ($rootScope) 
+     {$rootScope.carrito=[];
+        
         });
   
 

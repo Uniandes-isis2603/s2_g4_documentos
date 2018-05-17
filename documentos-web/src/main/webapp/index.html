@@ -48,10 +48,16 @@
 
        <script src="src/modules/libros/libros.ctrl.js" type="text/javascript"></script>
        <script src="src/modules/libros/libros.detail.ctrl.js" type="text/javascript"></script>
-       
        <script src="src/modules/libros/update/libros.update.ctrl.js" type="text/javascript"></script>
        <script src="src/modules/libros/create/libros.create.ctrl.js" type="text/javascript"></script>
 
+       
+       
+       <script src="src/modules/carrito/carrito.mod.js" type="text/javascript"></script>∫
+       <script src="src/modules/carrito/carrito.ctrl.js" type="text/javascript"></script>
+       
+       
+       
             
        
             
@@ -157,7 +163,7 @@
                                <li><a data-toggle="modal" href="#myModal">Sign in</a></li>
                                
 
-                               <li> <a href="#"><i class="fas fa-shopping-cart"></i> Shoping Cart</a> </li>
+                               <li> <a ui-sref="carrito"> <i class="fas fa-shopping-cart"></i> Shoping Cart ({{carrito.length}})</a> </li>
                            </ul>
                        </div>
                            
@@ -213,12 +219,7 @@
            
        <div class="span4" id="navego" ui-view="mainView"></div>
        
-       <div class ="Intro" ng-if="home==0">
-           <h1>Bienvenidos a Bookzon</h1>
-           
-           
-           <center><hr></center>
-       </div>
+  
          
    
 
