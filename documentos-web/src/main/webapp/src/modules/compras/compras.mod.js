@@ -28,11 +28,18 @@
             $stateProvider.state('compras',{
                 url:'/compras',
                 abstract: true,
+                parent:'usuarios',
                 views: {
-                    'mainView':{
+                    'compras':{
                         templateUrl: basePath + 'compras.html',
                         controller: 'comprasCtrl',
                         controllerAs: 'ctrl'
+                    },
+                   'menuView':{
+                      templateUrl: 'src/modules/usuarios/menu.html',
+                      controller: 'usuarioDetailCtrl',
+                      controllerAs: 'ctrl'
+
                     }
                 }
             }).state('comprasList',{

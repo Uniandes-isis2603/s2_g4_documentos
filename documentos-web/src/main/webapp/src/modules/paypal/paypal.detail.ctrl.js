@@ -5,7 +5,7 @@
         function ($scope, $http, paypalContext, $state) {
 
             if (($state.params.paypalId !== undefined) && ($state.params.paypalId !== null)) {
-                $http.get(paypalContext + "/" + $state.params.paypalId).then(function (response) {
+                $http.get(paypalContext + '/' + $state.params.paypalId).then(function (response) {
                     $scope.currentPaypal = response.data;
                 });
             }

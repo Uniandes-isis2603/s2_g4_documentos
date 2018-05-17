@@ -42,19 +42,5 @@ public class MetodoDePagoEntity implements Serializable{
         this.Id = Id;
     }
     
-    @Override
-    public boolean equals(Object obj) {
-        if (this.getId() != null && ((BaseEntity) obj).getId() != null) {
-            return this.getId().equals(((BaseEntity) obj).getId());
-        }
-        return super.equals(obj);
-    }
 
-    @Override
-    public int hashCode() {
-        if (this.getId() != null) {
-            return this.getId().hashCode();
-        }
-        return super.hashCode();
-    }
 }
