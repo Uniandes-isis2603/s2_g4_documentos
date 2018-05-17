@@ -20,7 +20,6 @@
        'paypalModule',
        'tarjetadecreditoModule',
        'comprasModule',
-       'facturasModule'
 
         
 
