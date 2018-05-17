@@ -57,7 +57,7 @@ public class FotocopiaDetailDTO extends DocumentoDetailDTO {
         fotocopiaE.setComentarios(super.toEntity().getComentarios());
         fotocopiaE.setCursos(super.toEntity().getCursos());
         fotocopiaE.setDescripcion(super.toEntity().getDescripcion());
-
+        fotocopiaE.setPdf(super.toEntity().getPdf());
         return fotocopiaE;
     }
     
