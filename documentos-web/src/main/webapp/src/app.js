@@ -20,8 +20,7 @@
        'comprasModule',
        'inicioModule', 
        'carritoModule',
-       'facturasModule'
-
+        'facturasModule'
         
 
 

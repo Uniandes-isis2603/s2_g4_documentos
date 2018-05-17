@@ -3,7 +3,7 @@
         
         <div style="margin-top:50px; " ng-app="areasModule">
             
-            <ul ng-repeat="area in areas" class="list-group">
+            <ul ng-repeat="area in areas track by $index" class="list-group">
       
                 <li class="list-group-item" style="margin-top:0; margin-bottom: 0; ">         
                         <a><i ng-click="delete(area.id)" style="color:lightgray" class=" canequita fas fa-trash pull-right"></i></a>

@@ -1,7 +1,7 @@
 (function(ng){
     var mod= ng.module("fotocopiaModule");
     mod.constant("fotocopiaContext","api/fotocopias");
-    mod.controller('fotocopiaDetailCtrl', ['$scope', '$http','fotocopiaContext', '$state','$rootScope',
+    mod.controller('fotocopiaDetailCtrl', ['$scope', '$http','fotocopiaContext', '$state','$rootScope','$sce',
         /**
          * @ngdoc controller
          * @name fotocopias.controller:fotocopiaDetailCtrl
@@ -17,7 +17,7 @@
          * @param {Object} $state  Dependencia inyectada en la que se recibe el
          * estado actual de la navecación definida en el módulo.   
          */
-        function($scope,$http, fotocopiaContext,$state,$rootScope) {
+        function($scope,$http, fotocopiaContext,$state,$rootScope, $sce) {
             if(($state.params.fotocopiaId !== undefined) && ($state.params.fotocopiaId !==null)){
                 /**
                  * @ngdoc function
@@ -34,6 +34,10 @@
             $scope.comentario.comentario="";
             $scope.comentario.fecha=new Date().toJSON()+"";
             $scope.comentario.id=9000;
+            
+            $scope.trustSrc = function(src) {
+            return $sce.trustAsResourceUrl(src);
+        }
                 $http.get(fotocopiaContext + '/' + $state.params.fotocopiaId).then(function(response){
                     $scope.currentFotocopia =response.data;
                 });

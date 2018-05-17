@@ -5,6 +5,6 @@
         function($scope,$http,facturasContext,$state){
             $http.get(facturasContext).then(function(response){
                 $scope.facturasRecords = response.data;
-            });
+            });         
         }]);
 })(window.angular);

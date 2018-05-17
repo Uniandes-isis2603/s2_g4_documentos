@@ -14,12 +14,15 @@
     color: grey;
     border: grey;
 }
+#facturaContainer
+{
+    
+}
 #busqueda:hover
 {
     background-color:grey;
     color:whitesmoke;
 }
-
 #busqueda:active{
     background-color: yellow;
 }
@@ -38,7 +41,6 @@
     text-align: center;
     padding-top:25%; 
 }
-
 .finalLibros{
     background-image:url(http://www.readbreatherelax.com/wp-content/uploads/2013/07/book-the-end-hd-wallpaper.jpg);
     background-attachment: fixed;
@@ -49,17 +51,13 @@
     padding-top:10%; 
     padding-bottom: 10%;
     font-size: 6.2vw;
-
 }
-
-
 .center-cropped {
     width: 400px;
     height: 300px;
     background-position: center center;
     background-repeat: no-repeat;
 }
-
 body{
     padding-top:20px;
 }
@@ -67,23 +65,18 @@ h1{
     font-size: 5em;
     font-weight: 700;
     color:white;
-
     text-shadow: 0px 4px 3px rgba(0,0,0,0.4) ,
         0px 8px 13px rgba(0,0,0,0.1),
         0px 18px 23px rgba(0,0,0,0.1)
 }
 hr {
-
     width: 400px;
 }
-
 .limitar {
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: 'Roboto', sans-serif;
-
-
     padding: 1px 1px 1px 1px;
     border-radius: 10px;
     height: 49px;
@@ -93,45 +86,32 @@ hr {
     position: relative;
     text-align: center;
     overflow: hidden;
-
 }
-
-
 .limitar:hover {
-
     white-space: normal; 
     height:80px;
     width: 190px;
     overflow: visible;
     overflow-wrap: break-word;
-
 }
-
-
 .menuNavUsuario{
     position: fixed;
     width:300px;
     height: 100%;
     background-color: #2c3e50;
 }
-
 .menuUlUsuario{
     margin-top:120px;
     list-style: none;
     display: block;
 }
-
-
 .menuUser{
     width:200px;
     height: 50px;
     border-bottom: 1px solid #000066EC ;
     overflow: hidden;
     opacity: .5;
-
-
 }
-
 .linkUser{
     position: absolute;
     float: right;
@@ -141,11 +121,7 @@ hr {
     padding-left: 10px;
     padding-top: 10px;
     text-decoration: none;
-
-
 }
-
-
 .menuUser a:hover {
     background-color: white;
     width:200px;
@@ -153,17 +129,11 @@ hr {
     color: black;
     opacity: 40;
     text-decoration: none;
-
 }
-
 .infoUser{
-
     padding-top: 120px;
     position: absolute;
 }
-
-
-
 #infoUsuario
 {
     display: block;
@@ -172,34 +142,26 @@ hr {
     padding: 14px 16px;
     text-decoration: none;
 }
-
-
 .tablaListaU{
     width: 100%;
     text-align: left;
     background: white;
     border-collapse: collapse;
-
 }
-
 .tablaListaU th,td{
     padding: 30px;
 }
-
 .tablaListaU thead{
     border-bottom: solid 12px;
     border-bottom-color:  #8c8c8c;
     color: white;
     background-color:  #2c3e50;
 }
-
 .tablaListaU tr:hover td{
     background-color: #8c8c8c;
     color: white;
 }
-
 #botonFede {
-
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
@@ -213,21 +175,17 @@ hr {
     transition-duration: 0.4s;
     cursor: pointer;
 }
-
 #botonFede:hover {
     background-color: #255625; 
     border-bottom-color: #255625;
     color: white;
 }
-
 .listaReservas {
   display:inline;  display:inline;
      padding-left:3px;
      padding-right:3px;
      
 }
-
-
 .navbar-inverse {
     /* background-color:transparent !important;
      border-color:transparent;
@@ -248,13 +206,11 @@ hr {
     color: grey;
     border: grey;
 }
-
 #busqueda:hover
 {
     background-color:grey;
     color:whitesmoke;
 }
-
 .loginbutton
 {
     background-color: #2c3e50; 
@@ -283,7 +239,6 @@ hr {
     background-color: #46586A;
     border-color: #46586A;
 }
-
 #busqueda:focus {     
     background-color:grey;
     color:whitesmoke;  
@@ -293,13 +248,12 @@ hr {
     color:whitesmoke;  
 }
 .Intro{
-    background-image:url(https://preview.ibb.co/bZVMK7/Libro.jpg);
+    background-image:url(https://images.pexels.com/photos/159621/open-book-library-education-read-159621.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
     height: 97.5vh;
     background-size: cover;
     text-align: center;
     padding-top:25%;
 }
-
 .finalLibros{
     background-image:url(http://www.readbreatherelax.com/wp-content/uploads/2013/07/book-the-end-hd-wallpaper.jpg);
     background-attachment: fixed;
@@ -312,15 +266,12 @@ hr {
     font-size: 6.2vw;
     
 }
-
-
 .center-cropped {
     width: 400px;
     height: 300px;
     background-position: center center;
     background-repeat: no-repeat;
 }
-
 body{
     padding-top:20px;
 }
@@ -337,7 +288,6 @@ hr {
     
     width: 400px;
 }
-
 .limitar {
     white-space: nowrap; 
     overflow: hidden;
@@ -356,8 +306,6 @@ hr {
     overflow: hidden;
     
 }
-
-
 .limitar:hover {
     
     white-space: normal; 
@@ -367,12 +315,10 @@ hr {
     overflow-wrap: break-word;
     
 }
-
 .jumbotron h1
 { text-align: center;
   color:white;
 }
-
 body{
     
     font-family: 'Roboto', sans-serif;
@@ -387,7 +333,6 @@ body{
     background-image: url(https://images.unsplash.com/photo-1514820044349-39f34ceb5f8b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5ad63b9224ab39a7ae2d0ffbc43e1a7b&auto=format&fit=crop&w=1050&q=80)
       
 }
-
 #CursoDiv2
 {
     color:white;   
@@ -395,156 +340,9 @@ body{
     background-size: cover;  
      text-align: center;
      background-position: center center;
-    background-image: url(https://images.pexels.com/photos/185762/pexels-photo-185762.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    background-image: url(https://images.pexels.com/photos/185762/pexels-photo-185762.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)
       
 }
-
-
-#CursoDiv3
-{
-    color:white;   
-    height: 250px;
-    background-size: cover;  
-     text-align: center;
-     background-position: center center;
-    background-image: url(https://images.pexels.com/photos/958164/pexels-photo-958164.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
-      
-}
-
-
-#CursoDiv4
-{
-    color:white;   
-    height: 250px;
-    background-size: cover;  
-     text-align: center;
-     background-position: center center;
-    background-image: url(https://images.unsplash.com/photo-1519680980544-54b7cc4ec68a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=edd60eb86247a438c7e310d4994b6f47&auto=format&fit=crop&w=1350&q=80);
-      
-}
-
-#CursoDiv5
-{
-    color:white;   
-    height: 250px;
-    background-size: cover;  
-     text-align: center;
-     background-position: center center;
-    background-image: url(https://images.pexels.com/photos/590493/pexels-photo-590493.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
-      
-}
-#CursoDiv6
-{
-    color:white;   
-    height: 250px;
-    background-size: cover;  
-     text-align: center;
-     background-position: center center;
-    background-image: url(https://images.pexels.com/photos/977930/pexels-photo-977930.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
-      
-}
-#CursoDiv7
-{
-    color:white;   
-    height: 250px;
-    background-size: cover;  
-     text-align: center;
-     background-position: center center;
-
-background-image: url(https://images.pexels.com/photos/633804/pexels-photo-633804.jpeg?auto=compress&cs=tinysrgb&h=650&w=940);
-}
-
-.btn-outline {
-    background-color: transparent;
-    color: #007a66;
-    transition: all .2s;
-    border: 1px solid #007a66; 
-}
-
-.btn-primary.btn-outline {
-    color: #007a66;
-}
-
-.btn-success.btn-outline {
-    color: #5cb85c;
-}
-
-.btn-info.btn-outline {
-    color: #5bc0de;
-}
-
-.btn-warning.btn-outline {
-    color: #f0ad4e;
-}
-
-.btn-danger.btn-outline {
-    color: #d9534f;
-}
-
-.btn-primary.btn-outline:hover,
-.btn-success.btn-outline:hover,
-.btn-info.btn-outline:hover,
-.btn-warning.btn-outline:hover,
-.btn-danger.btn-outline:hover {
-    color: whitesmoke;
-    background-color:#007a66;
-}
-
-.containerFoto{
-    position: relative;
-    width: 50%;
-}
-
-.imageLibro {
-  opacity: 1;
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: .5s ease;
-  backface-visibility: hidden;
-}
-
-.middleLibro {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.containerFoto:hover .imageLibro {
-  opacity: 0.3;
-}
-
-.containerFoto:hover .middleLibro {
-  opacity: 1;
-}
-
-.hoverDeLibroIcono{
-    
-    color:darkgray;
-    
-}
-
-.hoverDeLibroIcono:hover{
-    
-    border: none;
-    color: gray
-}
-
-
-div.b {
-    white-space: nowrap; 
-    width: 200px; 
-    overflow: hidden;
-    text-overflow: ellipsis; 
-    font-size:18px;
-    font-weight:100;
-}
-
 #tarjetaFondo
 {
     color:white;   
@@ -555,7 +353,6 @@ div.b {
     background-color: #1a52c6;
     background-image: url(https://images.pexels.com/photos/50987/money-card-business-credit-card-50987.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)      
 }
-
 #paypalFondo
 {
     color:white;   
@@ -564,11 +361,9 @@ div.b {
      text-align: center;
      background-position: center center;
          background-color: #1a52c6;
-
     background-image:url(https://images.pexels.com/photos/34204/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
       
 }
-
 #facturasFondo
 {
     color:white;   
@@ -577,7 +372,6 @@ div.b {
      text-align: center;
      background-position: center center;
          background-color: #1a52c6;
-
     background-image:url(https://images.pexels.com/photos/164686/pexels-photo-164686.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
       
 }
