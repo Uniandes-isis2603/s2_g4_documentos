@@ -12,7 +12,7 @@
               var elTotal=0;
               for(var i=0;i<$scope.carro.length;i++ )
               {
-                  console.log($scope.carro[i]);
+                  
                   elTotal+= $scope.carro[i].precio;
               }
                   

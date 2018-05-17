@@ -14,8 +14,8 @@
        'usuarioModule',
        'reservaModule',
        'deseadoModule',
-       'autorModule',
-       'areaModule',
+       'autoresModule',
+       'areasModule',
        'paypalModule',
        'tarjetadecreditoModule',
        'comprasModule',
@@ -29,7 +29,7 @@
     // Resuelve problemas de las promesas
     app.config(['$qProvider','$urlRouterProvider',function ($qProvider,$urlRouterProvider) {
             $qProvider.errorOnUnhandledRejections(false);
-           $urlRouterProvider.when('', '/inicio');
+          $urlRouterProvider.otherwise('inicio');
            
         }]);
 
