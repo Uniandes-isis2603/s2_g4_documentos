@@ -27,6 +27,7 @@
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/usuarios/';
             $urlRouterProvider.otherwise("/usuariosList");
+            
             $stateProvider.state('usuarios', {
                 url: '/usuarios',
                 abstract: true,
@@ -42,7 +43,9 @@
                 parent: 'usuarios',
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'usuarios.list.html'
+                        templateUrl: basePath + 'usuarios.list.html',
+                        controller: 'usuarioCtrl',
+                        controllerAs: 'ctrl'
                     }
                 }
             }).state('usuarioCreate', {
@@ -50,8 +53,9 @@
                 parent: 'usuarios',
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/new/usuarios.new.html',
-                        controller: 'usuariosNewCtrl'
+                        templateUrl: basePath + 'usuarios.new.html',
+                        controller: 'usuarioCtrl',
+                        controllerAs: 'ctrl'
                     }
                 }
             }).state('usuarioDetail', {
@@ -63,16 +67,36 @@
                 views: {
                     'detailView': {
                         templateUrl: basePath + 'usuarios.detail.html',
-                        controller: 'usuarioDetailCtrl',
+                        controller: 'usuarioCtrl',
                         controllerAs: 'ctrl'
                     },
                     'menuView': {
                         templateUrl: basePath + 'menu.html',
-                        controller: 'usuarioDetailCtrl',
+                        controller: 'usuarioCtrl',
                         controllerAs: 'ctrl'
                     }
 
                 }
+            }).state('usuarioUpdate', {
+                url: '/update/{usuarioId:int}',
+                parent: 'usuarios',
+                param: {
+                    usuarioId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'usuarios.update.html',
+                         controller: 'usuarioCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                    ,
+                    'menuView': {
+                        templateUrl: basePath + 'menu.html',
+                        controller: 'usuarioCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+               
             });
         }]);
 })(window.angular);

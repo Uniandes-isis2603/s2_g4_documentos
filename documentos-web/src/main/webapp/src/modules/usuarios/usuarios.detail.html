@@ -1,30 +1,41 @@
 
 
+    <div  class="presentacion" style="margin-left:25%;padding:1px 16px;height:1000px;" >
 
-
-    <div  class="presentacion" style="margin-left:25%;padding:1px 16px;height:1000px" >
 
         <div class="infoUser"  >
             <dl> 
-                <dt>Nombre</dt>  <dd>{{currentUsuario.nombre}}</dd>
+                <dt>Nombre</dt>  <dd>{{currentUsuario.nombre}}
+                </dd>
                 <hr>
                 <dt>Nombre de usuario</dt>
-                <dd>{{currentUsuario.nombreUsuario}}</dd>
+                <dd>{{currentUsuario.nombreUsuario}}
+                </dd>
                 <hr>
                 <dt>Correo</dt>
-                <dd>{{currentUsuario.correo}}</dd>
+                <dd>{{currentUsuario.correo}}             
+                </dd>
                 <hr>
                 <dt>Edad</dt>
-                <dd>{{currentUsuario.edad}}</dd>
+                <dd>{{currentUsuario.edad}}            
+                </dd>
                 <hr>
                 <dt>Genero</dt>
-                <dd>{{currentUsuario.genero}}</dd>
+                <dd>{{currentUsuario.genero}}            
+                </dd>
                 <hr>
-                <button>Actualizar información </button>  
-                <button ui-sref="usuariosList">volver a la lista de usuarios</button>
-
-
             </dl>
+            <button ng-class="personalizado" ui-sref="usuarioUpdate({usuarioId: currentUsuario.id})">Actualizar información </button>  
+            <button class= "btn btn-info" ui-sref="usuariosList">volver a la lista de usuarios</button>
+            <select class= "btn btn-info" ng-model="personalizado" n>
+                <option value="Projo"> Frutos Rojos</option>
+                <option value="btn btn-info"> Naturaleza</option>
+                <option value="Pnegro"> luna nueva</option>
+                <option value="Pblanco"> versión ios</option>
+                
+              </select>
+
         </div>
     </div>
-</div>
+       
+
