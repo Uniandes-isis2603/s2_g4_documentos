@@ -1,55 +1,148 @@
-<div class="container-fluid">
+<div class="container-fluid " style="margin-top:2%;">
     <div class="panel-group">
-        <div class="panel-heading">
-
-        </div>
         <div class="panel-body">
-            <div class="col-md-1">
+            
+            <div class="col-md-2">
                 <ul class="list-group" ng-repeat="imagen in currentLibro.imagenes">
                     <li  style="padding-right: 10%; padding-bottom: 10%; list-style-type: none;">
                         <img ng-src="{{imagen.img}}" alt="imagen" style="position: relative; float: left; width:  100px; height: 100px; background-position: 50% 50%; background-repeat:   no-repeat;background-size:cover; padding-right: 10%; padding-bottom: 10%">
                     </li>
                 </ul>
             </div>
-            <div class="col-md-3">
-                <img ng-src="{{currentLibro.caratula}}" alt="libro" style="width: 100%">
-            </div>
             <div class="col-md-5">
-                <h2 style="font-family: 'Roboto', sans-serif; font-size: 55px">{{currentLibro.nombre}}</h2>
-                <h2 class=w3-text-green style="font-family: 'Roboto', sans-serif; font-size: 50px">${{currentLibro.precio}}</h2>
-                <h3 style="font-family: 'Roboto', sans-serif">Escrito por: <a ng-repeat="autor in currentLibro.autores">{{autor.nombre}},</a></h3> 
-                <h3 style="font-family: 'Roboto', sans-serif">Descripción:</h3>
-                <h4 style="font-family: 'Roboto', sans-serif">{{currentLibro.descripcion}}</h4>
-                <h3 style="font-family: 'Roboto', sans-serif">Fecha de publicación: {{currentLibro.fechaPublicacion |date:format :timezone}}</h3>
-                <h3 style="font-family: 'Roboto', sans-serif">Publicado por:</h3>
-                <h3 style="font-family: 'Roboto', sans-serif"><a> {{currentLibro.editorial.nombre}}</a></h3>
-                <h3 style="font-family: 'Roboto', sans-serif">ISBN: {{currentLibro.ISBN}}</h3>
+                <img ng-src="{{currentLibro.caratula}}" alt="libro" style="width: 100% ; height:110%">
             </div>
-            <div class="col-md-3">
-                <h2></h2>
+            <div class="col-md-4 container" style="background-color:white;height: 30%; padding: 2em; box-shadow: 2px 2px 4px 4px lightgray; ">
+                
+                
+                   
+                        
+                        <p style="font-weight:100; font-size: 13px;"> {{currentLibro.comentarios.length}} comentarios <span class="pull-right" style="margin-right: 50px;">  
+                                <i class="fas fa-star" style="color:#FFD700; margin-top: 20%; "></i>{{currentLibro.calificacionPromedio}}</span></p>
+                      
+                        
+                          <button class="btn btn-primary pull-right" type="button" 
+                          style=" margin-right:50px; background-color: #2c3e50" ng-click="agregar(currentLibro)" ><i class="fas fa-shopping-cart" style="font-size: 20px;"></i> </button>
+                        <button class="btn loginbutton" ui-sref="librosUpdate({libroId: currentLibro.id})" style="color:white; "><i class="fas fa-edit"></i> Editar</button>
+                          
+                        <h2 style="font-weight:700;">{{currentLibro.nombre}}</h2>
+              
+                        <p style="font-weight:100; font-size: 30px;">${{currentLibro.precio|currency:"":0}}<span style="font-size: 14px;"><a  class="pull-right" style="margin-top: 2%;"ng-click="showDiv = !showDiv"> Ver Mas </a></span></p>
+                      
+                    </div>
+                
+                
+                <div ng-show="showDiv" >
+                    
+                    <div class="col-md-4 container" style="background-color:white;height: 95%; box-shadow: 2px 2px 4px 4px lightgray; margin-top: 20px;">
+                 <div style=" border-bottom-style: dotted; border-color: #d9dcdd">
+                        <h3 style="font-weight:700;"> Autores</h3>
+                          <div ng-show="currentLibro.autores.length===0">
+                                   <div class="alert alert-warning" role="alert"> El libro no tiene autores asociados </div>
+                    </div> 
+                        <ul ng-repeat="autor in currentLibro.autores " style="margin-left:-1.5em; ">
+                            <li>
+                                <h4>{{autor.nombre}} </h4>
+                            </li>
+                            
+                        </ul>
+                       
+                  </div>
+                <div style=" border-bottom-style: dotted; border-color: #d9dcdd">
+                <h3 style="font-weight:700;">Descripción</h3>
+                
+                <h4 style="font-family: 'Roboto', sans-serif">{{currentLibro.descripcion}}</h4 >
+                
+                <h3 style="font-weight:700;">Fecha de publicación</h3> 
+                <h4>{{currentLibro.fechaPublicacion |date:format :timezone}}</h4>
+                </div>
+                <div style=" border-bottom-style: dotted; border-color: #d9dcdd">           
+                <h3 style="font-weight:700;">Editorial</h3>
+               <div ng-show="currentLibro.editorial===null">
+                                   <div class="alert alert-warning" role="alert"> El libro no tiene una editorial </div>
+                    </div> 
+                            
+                                <h4>{{currentLibro.editorial.nombre}} </h4>
+                         
+                <h3 style="font-weight:700;">ISBN</h3> 
+                <h4> {{currentLibro.ISBN}}</h4>
+                </div> 
+                
+                
+                 <h3 style="font-weight:700;">Areas</h3> 
+                    <div ng-show="currentLibro.areas.length===0">
+                                   <div class="alert alert-warning" role="alert"> El libro no tiene areas asociadas
+                    </div>
+                    </div>
+                        
+                   <div ng-repeat="area in currentLibro.areas " ng-if="$index % 3 === 0" class="row" style="margin-left:-1em;  ">
+                       <div class="col-xs-4"> <h4>{{currentLibro.areas[$index].tipo}}</h4></div>
+                            <div class="col-xs-4"> <h4>{{currentLibro.areas[$index+1].tipo}}</h4></div>
+                            <div class="col-xs-4"><h4>{{currentLibro.areas[$index+2].tipo}}</h4></div>
+                    
+                  </div>
+                 <h3 style="font-weight:700;">Cursos</h3> 
+                    <div ng-show="currentLibro.cursos.length===0">
+                                   <div class="alert alert-warning" role="alert"> El libro no tiene cursos asociados </div>
+                    </div>              
+                   
+              <div ng-repeat="curso in currentLibro.cursos " ng-if="$index % 3 === 0" class="row" style="margin-left:-1em;  ">
+                       <div class="col-xs-4"> <h4>{{currentLibro.cursos[$index].nombre}}</h4></div>
+                            <div class="col-xs-4"> <h4>{{currentLibro.cursos[$index+1].nombre}}</h4></div>
+                            <div class="col-xs-4"><h4>{{currentLibro.cursos[$index+2].nombre}}</h4></div>
+                    
+                  </div>
+                 </div>
+                
+                 
+            </div>
+            
+            
+            
+            <div class="col-md-1">
+               
             </div>
         </div>
+    
         <div class="panel-body">
             <div class="form-group row">
                         <div class="form-group col-sm-12">
-                            <button class="w3-btn w3-border w3-blue" ui-sref="librosUpdate({libroId: currentLibro.id})"><span><i class="fa fa-wrench" style="font-size: 20px"></i></span> Editar</button>
-                            <button class="w3-btn w3-border w3-red" ><span><i class="fa fa-eraser" style="font-size: 20px"></i></span> Eliminar</button>
+                            
+                            
                         </div>
                 </div> 
         </div>
-        <div class="panel-body">
-            <h3 style="font-family: 'Roboto', sans-serif">Perteneciente a: <a ng-repeat="area in currentLibro.areas">{{area.tipo}}, </a></h3>
-            <h3 style="font-family: 'Roboto', sans-serif">Ha sido util en estos cursos:<a ng-repeat="curso in currentLibro.cursos">{{curso.nombre}}, </a></h3>
-        </div>
-        <div class="panel-footer">
-            <h2 style="font-family: 'Roboto', sans-serif" class="w3-text-black">Comentarios:</h1>
-            <div class="panel-group" ng-repeat="comentario in currentLibro.comentarios">
-                <div class="panel-body" >
-                    <h4>
-                        {{comentario.comentario}}
-                    </h4>
-                </div> 
             </div>
         </div>
-    </div>
-</div>
+      
+<div style="margin-bottom: 5em;"> 
+    
+            <h2 style="font-weight:700; margin-left: 45%;">Comentarios</h2>
+            <button type="button" class="btn btn-link" ng-click="showDiv2 = !showDiv2" style="margin-left: 46%">Añadir Comentario</button>
+            <div ng-show="showDiv2" style="margin-bottom:15%; margin-top: 2%" >
+                            <div class="col-sm-10" style="padding-left: 150px;margin-bottom: 30px;margin-left: 3%; ">
+                               <textarea class="form-control" name="addComment" ng-model="comentario.comentario" id="addComment" rows="5" ></textarea>
+                                <button type="button" ng-click="agregarC(currentLibro)" class="btn actuabbuton pull-right" style="color: white; margin-left:50%; margin-top:1%;  "> <i class="fas fa-angle-double-right"></i> Enviar</button>
+                       
+                               
+                           </div>
+                           
+                          
+    
+                    </div>
+            
+            
+            <div class="container" style="margin-top: 6%;">
+                
+            <div  ng-repeat="comentario in currentLibro.comentarios|orderBy:'-fecha'" style=" border-bottom-style:solid; border-color: #d9dcdd ; margin-bottom: 5em;padding: 0em 5em;"  >
+                
+
+                    <h4>
+                        {{comentario.comentario}}<span class="pull-right">{{comentario.fecha|date:"medium"}}  <span  style="padding-left:10px;"> <a> <i class="fas fa-minus" style="color: lightgray;" ng-click="borrar(comentario,currentLibro)"></i> </a></span> </span>
+                    </h4>
+               
+            </div>
+                </div>
+            </div>
+       
+    

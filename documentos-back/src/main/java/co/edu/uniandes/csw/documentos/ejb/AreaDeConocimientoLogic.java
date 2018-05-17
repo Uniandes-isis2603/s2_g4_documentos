@@ -169,4 +169,24 @@ public class AreaDeConocimientoLogic{
             entity.setDocumentos(documentos);
         }
     }
+
+        
+    /**
+     * Metodo que obtiene las diferentes areas de conocimiento segun el tipo
+     * @param tipo
+     * @return
+     * @throws BusinessLogicException 
+     */
+    public List<AreaDeConocimientoEntity> getAreasByTipo(String tipo) throws BusinessLogicException{
+    
+    
+        LOGGER.log(Level.INFO, "Inicia proceso de buscar el area de tipo {0}", tipo);
+        if (!(tipo.matches("([A-Z]|[a-z]|ñ|[0-9]|\\s)+")|| tipo.contains(" "))){
+            LOGGER.log(Level.INFO, "El nombre del area de conocimiento no puede contener caracteres especiales");
+            throw new BusinessLogicException("El nombre del area de conocimiento no puede contener caracteres especiales");
+        }
+        return persistence.findByTipo(tipo);
+    
+    }
+    
 }

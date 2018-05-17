@@ -14,7 +14,7 @@
                     $state.reload();
                 });
                 
-                console.log($scope.data);
+             
             };
             
             $http.get("api/usuario/45/metodosdepago/tarjetasdecredito").then(function(TDCresponse)

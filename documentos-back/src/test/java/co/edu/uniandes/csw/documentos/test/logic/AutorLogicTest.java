@@ -349,6 +349,95 @@ public class AutorLogicTest {
 
 
     }
+    
+        
+    /**
+     * Test que prueba el retorno de los autores de manera incorrecta
+     */
+    @Test
+    public void getAutorbyNombre1(){
+        AutorEntity entity = data.get(0);
+        try{
+            AutorEntity resultEntity = autorLogic.getAutoresByNombre("Prb4nd!!").get(0);
+            
+            //No deberia llegar aca
+            Assert.fail("No se generó el error esperado");
+        }
+      catch(BusinessLogicException e){
+          //Debe llegar acá
+      }  
+        
+    }
+    
+    /**
+     * Test que prueba el retorno de los autores
+     */
+    @Test
+    public void getAutorbyNombre2(){
+        AutorEntity entity = data.get(0);
+        try{
+            AutorEntity resultEntity = autorLogic.getAutoresByNombre(entity.getNombre()).get(0);
+            Assert.assertNotNull(resultEntity);
+        
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
+        }
+      catch(BusinessLogicException e){
+          Assert.fail(e.getMessage());
+      }  
+        
+    }
+    
+    /**
+     * Test que prueba el retorno de los autores vacío
+     */
+    @Test
+    public void getAreabyTipo3(){
+  
+        try{
+            List<AutorEntity> resultEntity = autorLogic.getAutoresByNombre("Nada");
+            Assert.assertEquals(0,resultEntity.size());
+        
+        }
+      catch(BusinessLogicException e){
+          Assert.fail(e.getMessage());
+      }  
+        
+    }
+    
+           /**
+     * Test que prueba el retorno de los autores parcial
+     */
+    @Test
+    public void getAreabyTipo4(){
+        AutorEntity pojoEntity = factory.manufacturePojo(AutorEntity.class);
+        pojoEntity.setNombre("Nuevo Autor 1");
+        AutorEntity newEntity = factory.manufacturePojo(AutorEntity.class);
+        newEntity.setNombre("Nuevo Autor 2");
+        AutorEntity newEntity2 = factory.manufacturePojo(AutorEntity.class);
+        newEntity2.setNombre("Nuevo Autor 3");
+       
+        try{
+            
+            autorLogic.createAutor(pojoEntity);
+            autorLogic.createAutor(newEntity);
+            autorLogic.createAutor(newEntity2);
+        
+        
+            List<AutorEntity> resultEntity = autorLogic.getAutoresByNombre("Nuevo Autor");
+            Assert.assertNotNull(resultEntity);
+            
+            Assert.assertEquals("Nuevo Autor 1", resultEntity.get(0).getNombre());
+            Assert.assertEquals("Nuevo Autor 2", resultEntity.get(1).getNombre());
+            Assert.assertEquals("Nuevo Autor 3", resultEntity.get(2).getNombre());
+        
+        }
+      catch(BusinessLogicException e){
+          Assert.fail(e.getMessage());
+      }  
+        
+    }
+    
     /**
      * Metodo que permite agregar documentos validos
      * @return documentos. Lista de documentos validos, entre Libros y Fotocopias

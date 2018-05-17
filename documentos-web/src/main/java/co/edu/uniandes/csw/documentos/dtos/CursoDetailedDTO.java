@@ -21,20 +21,7 @@ import java.util.List;
 public class CursoDetailedDTO  extends CursoDTO{
     
     List<DocumentoDTO> bibliografiaDelCurso;
-/**
- * 
- * @return la lista que representa la bibliografia del curso 
- */
-    public List<DocumentoDTO> getBibliografiaDelCurso() {
-        return bibliografiaDelCurso;
-    }
- /**
-  * 
-  * @param bibliografiaDelCurso nueva lista que representa la bibliografia del curso. 
-  */
-    public void setBibliografiaDelCurso(List<DocumentoDTO> bibliografiaDelCurso) {
-        this.bibliografiaDelCurso = bibliografiaDelCurso;
-    }
+
   /**
    * Constructor por defecto 
    */
@@ -42,6 +29,7 @@ public class CursoDetailedDTO  extends CursoDTO{
     {
         
     }
+    
      public CursoDetailedDTO(CursoEntity entidad)
     {
        
@@ -58,6 +46,7 @@ public class CursoDetailedDTO  extends CursoDTO{
        }
      
     }
+     @Override
     public CursoEntity toEntity()
     {
        CursoEntity rta= super.toEntity();
@@ -70,6 +59,20 @@ public class CursoDetailedDTO  extends CursoDTO{
             rta.setBibliografiaDelCurso(listaEntity);
         }
        return rta;
+    }
+    /**
+ * 
+ * @return la lista que representa la bibliografia del curso 
+ */
+    public List<DocumentoDTO> getBibliografiaDelCurso() {
+        return bibliografiaDelCurso;
+    }
+ /**
+  * 
+  * @param bibliografiaDelCurso nueva lista que representa la bibliografia del curso. 
+  */
+    public void setBibliografiaDelCurso(List<DocumentoDTO> bibliografiaDelCurso) {
+        this.bibliografiaDelCurso = bibliografiaDelCurso;
     }
     
 }

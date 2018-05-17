@@ -2,7 +2,7 @@
 
     var mod = ng.module("inicioModule");
 
-    mod.controller("inicioCtrl", ['$scope','$rootScope' , '$state', '$stateParams', '$http', function ($scope,$rootScope ,$state, $stateParams, $http) {
-          $rootScope.home=1;
+    mod.controller("inicioCtrl", ['$scope', '$state', '$stateParams', '$http', function ($scope,$state, $stateParams, $http) {
+          sessionStorage.getItem("home");
         }]);
 })(window.angular);

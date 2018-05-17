@@ -36,6 +36,21 @@
             $http.get(libroContext).then(function(response){
                 $scope.librosRecords = response.data;
             });
+              $scope.get = function(){
+                $http.get("http://localhost:8080/documentos-web/api/libros").then(function (response) 
+                {
+                    $scope.librosRecords = response.data;
+                });
+            };
+            $scope.delete= function (libro)
+            {
+                
+                 $http.delete("http://localhost:8080/documentos-web/api/libros/"+libro.id ).then(function () 
+                {
+                    $scope.get();
+                });
+            };
+            
         }
     ]);
 }

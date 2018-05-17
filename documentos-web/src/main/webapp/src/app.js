@@ -6,8 +6,6 @@
        
         // Internal modules dependencies       
 
-        'inicioModule',
-        'citiesModule',
         'editorialesModule',
         'cursosModule',
        'libroModule',
@@ -15,25 +13,33 @@
        'usuarioModule',
        'reservaModule',
        'deseadoModule',
-       'autorModule',
-       'areaModule',
+       'autoresModule',
+       'areasModule',
        'paypalModule',
        'tarjetadecreditoModule',
        'comprasModule',
+       'inicioModule', 
+       'carritoModule'
 
         
 
 
     ]);
     // Resuelve problemas de las promesas
-    app.config(['$qProvider', function ($qProvider) {
+    app.config(['$qProvider','$urlRouterProvider',function ($qProvider,$urlRouterProvider) {
             $qProvider.errorOnUnhandledRejections(false);
+          $urlRouterProvider.otherwise('inicio');
+           
         }]);
 
-     app.run( function ($rootScope) {
-            $rootScope.home=0;
+     app.run( function ($rootScope) 
+     {$rootScope.carrito=[];
+        
         });
-    
+  
 
+   
+    
+ 
 })(window.angular);
 
