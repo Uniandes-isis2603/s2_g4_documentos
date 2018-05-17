@@ -103,11 +103,6 @@ public class FotocopiaDTO extends DocumentoDTO{
      * capitulos de la fotocopia.
      */
     private String capitulos;
-    
-    /**
-     * PDF del documento
-     */
-    private String pdf;
 
     /**
      * 
