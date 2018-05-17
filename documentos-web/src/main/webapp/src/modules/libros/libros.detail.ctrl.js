@@ -25,9 +25,11 @@
          * estado actual de la navecación definida en el módulo.   
          */
         function ($scope, $http, libroContext, $state,$rootScope) {
-                $scope.comentarioContenido=" ";
-        $scope.comentario={};
-        $scope.data={};
+               $scope.comentario={};
+            $scope.comentario.comentario="";
+            
+            $scope.comentario.fecha=new Date().toJSON()+"";
+            $scope.comentario.id=9000;
             if (($state.params.libroId !== undefined) && ($state.params.libroId !== null)) {
                 /**
                  * @ngdoc function
@@ -49,6 +51,41 @@
                     
                     
 };
+
+
+  $scope.agregarC=function (libro) 
+                {
+                   
+                    libro.comentarios.push($scope.comentario);
+                    
+                    $http.put("http://localhost:8080/documentos-web/api/libros/"+libro.id ,libro).then(function (response) 
+                    {
+                         $http.get(libroContext + '/' + $state.params.libroId).then(function (response) {
+                    $scope.currentLibro = response.data;
+                });
+                    });
+                    $scope.comentario={};
+                    
+                };
+                $scope.borrar=function (comentario,libro) 
+                {
+
+                     for (var i = 0; i < libro.comentarios.length; i++) 
+                    {
+                        if(libro.comentarios[i].id===comentario.id)
+                         {
+                           
+                            libro.comentarios.splice(i,1);  
+                         };
+                    
+                    }
+                    $http.put("http://localhost:8080/documentos-web/api/libros/"+libro.id ,libro);
+                    
+               
+                    
+                };
+                  
+
             }
 
         }

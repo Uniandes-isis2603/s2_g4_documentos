@@ -44,12 +44,13 @@
             };
             $scope.delete= function (libro)
             {
-                console.log(libro);
+                
                  $http.delete("http://localhost:8080/documentos-web/api/libros/"+libro.id ).then(function () 
                 {
                     $scope.get();
                 });
             };
+            
         }
     ]);
 }

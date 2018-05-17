@@ -29,6 +29,11 @@
                  * de los libros o API donde se puede consultar. 
                  * @param {json} response 
                  */
+                  $scope.comentario={};
+            $scope.fecha=   new Date();               
+            $scope.comentario.comentario="";
+            $scope.comentario.fecha=new Date().toJSON()+"";
+            $scope.comentario.id=9000;
                 $http.get(fotocopiaContext + '/' + $state.params.fotocopiaId).then(function(response){
                     $scope.currentFotocopia =response.data;
                 });
@@ -36,8 +41,41 @@
                 $scope.agregar = function (libro)
                 {
                     
-                  console.log(libro);
+                  
                   $rootScope.carrito.push(libro);
+                    
+                };
+                
+                $scope.agregarC=function (libro) 
+                {
+                  
+                    libro.comentarios.push($scope.comentario);
+                    
+                    $http.put("http://localhost:8080/documentos-web/api/fotocopias/"+libro.id ,libro).then(function (response) 
+                    {
+                          $http.get(fotocopiaContext + '/' + $state.params.fotocopiaId).then(function(response){
+                    $scope.currentFotocopia =response.data;
+                });
+               
+                    });
+                    $scope.comentario={};
+                    
+                };
+                  $scope.borrar=function (comentario,libro) 
+                {
+
+                     for (var i = 0; i < libro.comentarios.length; i++) 
+                    {
+                        if(libro.comentarios[i].id===comentario.id)
+                         {
+                           
+                            libro.comentarios.splice(i,1);  
+                         };
+                    
+                    }
+                    $http.put("http://localhost:8080/documentos-web/api/fotocopias/"+libro.id ,libro);
+                    
+               
                     
                 };
              

@@ -36,6 +36,22 @@
             $http.get(fotocopiaContext).then(function(response){
                 $scope.fotocopiasRecords = response.data;
             });
+             $scope.get = function(){
+                $http.get("http://localhost:8080/documentos-web/api/fotocopias").then(function (response) 
+                {
+                    $scope.fotocopiasRecords = response.data;
+                });
+            };
+            $scope.delete= function (libro)
+            {
+                console.log(libro);
+                 $http.delete("http://localhost:8080/documentos-web/api/fotocopias/"+libro.id ).then(function () 
+                {
+                    $scope.get();
+                });
+            };
+            
+            
         }
     ]);
 }

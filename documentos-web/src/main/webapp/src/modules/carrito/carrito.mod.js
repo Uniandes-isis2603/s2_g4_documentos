@@ -3,7 +3,7 @@ var mod = ng.module("carritoModule", ['ui.router']);
  
     mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/carrito/';
-            $urlRouterProvider.otherwise("inicio");
+            $urlRouterProvider.otherwise("/");
 
             $stateProvider.state('carrito', {
                 url: '/carrito',
