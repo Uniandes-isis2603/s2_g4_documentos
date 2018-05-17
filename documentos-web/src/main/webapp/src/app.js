@@ -6,7 +6,6 @@
        
         // Internal modules dependencies       
 
-        'citiesModule',
         'editorialesModule',
         'cursosModule',
        'libroModule',
