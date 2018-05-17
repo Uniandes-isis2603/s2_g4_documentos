@@ -16,12 +16,12 @@
                 views: {
                     'deseados': {
                         templateUrl: basePath + 'deseados.html',
-                        controller: 'deseadosCtrl',
+                        controller: 'deseadoCtrl',
                         controllerAs: 'ctrl'
                     },
                     'menuView':{
                       templateUrl: 'src/modules/usuarios/menu.html',
-                      controller: 'usuarioDetailCtrl',
+                      controller: 'usuarioCtrl',
                       controllerAs: 'ctrl'
 
                     }
@@ -30,30 +30,16 @@
             }).state('deseadosList', {
                 url: '/list',
                 parent: 'deseados',
+             
                 views: {
                     'detailView': {
                         templateUrl: basePath + 'deseados.list.html',
-                        controller: 'deseadosCtrl',
+                        controller: 'deseadoCtrl',
                         controllerAs: 'ctrl'
                     }
                  
                     
                 }
-            }).state('deseadoDetail', {
-                url: '/{deseadoId:int}/detail',
-                parent:'deseados',
-                param:{
-                    deseadoId: null
-                },
-                views: {
-                    'detailView':{
-                        templateUrl: basePath + 'deseados.detail.html',
-                        cotroller: 'deseadoDetailCtrl',
-                        controllerAs: 'ctrl'
-                        
-                    }
-                }
-                
             });
     }]);
 })(window.angular);

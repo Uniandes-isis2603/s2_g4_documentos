@@ -25,3 +25,4 @@ hs_err_pid*
 /target/
 /documentos-back/target/
 /documentos-back/nbproject/
+documentos-web/pom.xml

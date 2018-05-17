@@ -1,3 +1,4 @@
+
 (function (ng) {
     var mod = ng.module("libroModule");
     mod.constant("libroContext", "api/libros");
@@ -5,10 +6,7 @@
  
 
 
-    mod.controller('libroDetailCtrl', ['$scope', '$http', 'libroContext', '$state','$rootScope',
-        
-    
-        
+    mod.controller('libroDetailCtrl', ['$scope', '$http', 'libroContext', '$state','$rootScope','$sce',
         /**
          * @ngdoc controller
          * @name libros.controller:libroDetailCtrl
@@ -24,9 +22,14 @@
          * @param {Object} $state  Dependencia inyectada en la que se recibe el
          * estado actual de la navecación definida en el módulo.   
          */
-        function ($scope, $http, libroContext, $state,$rootScope) {
+
+        function ($scope, $http, libroContext, $state,$rootScope, $sce) {
                $scope.comentario={};
             $scope.comentario.comentario="";
+            
+               $scope.trustSrc = function(src) {
+            return $sce.trustAsResourceUrl(src);
+        }
             
             $scope.comentario.fecha=new Date().toJSON()+"";
             $scope.comentario.id=9000;
@@ -63,6 +66,7 @@
                          $http.get(libroContext + '/' + $state.params.libroId).then(function (response) {
                     $scope.currentLibro = response.data;
                 });
+
                     });
                     $scope.comentario={};
                     
@@ -84,7 +88,6 @@
                
                     
                 };
-                  
 
             }
 

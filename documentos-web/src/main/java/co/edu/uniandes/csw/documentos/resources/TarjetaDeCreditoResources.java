@@ -99,7 +99,7 @@ public class TarjetaDeCreditoResources {
         UsuarioEntity entity = uLogic.getUsuario(Uid);
         if(entity != null)
         {
-          return listaPP(TDCLogic.getTarjetaDeCredito());  
+          return listaPP(TDCLogic.getTarjetaPorUsuario(Uid));  
         }
         throw new WebApplicationException("el usuario al que le quiere agregar el recurso no existe");
     }

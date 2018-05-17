@@ -39,10 +39,23 @@ public class PayPalLogic {
         return persistence.findAll();
     }
     
-    public List<PayPalEntity> getPPByUser(Long id)
+    public List<PayPalEntity> getPPByUser(Long id) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO,"Inicia proceso de consultar cuentas PayPal");
-        return persistence.findUser(id);
+        List<PayPalEntity> pay = persistence.findAll();
+        List<PayPalEntity> respu = new ArrayList<>();
+        if(pay.isEmpty())
+        {
+            throw new BusinessLogicException("No existen paypals en el sistema");
+        }
+        for(PayPalEntity paypal: pay)
+        {
+            if(paypal.getIdusuario().equals(id))
+            {
+                respu.add(paypal);
+            }
+        }
+        
+        return respu;
     }
 
     

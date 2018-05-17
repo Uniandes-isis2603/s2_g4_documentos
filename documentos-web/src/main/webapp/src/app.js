@@ -25,10 +25,13 @@
 
 
     ]);
+    
+
     // Resuelve problemas de las promesas
-    app.config(['$qProvider','$urlRouterProvider',function ($qProvider,$urlRouterProvider) {
+    app.config(['$qProvider','$urlRouterProvider', '$locationProvider',function ($qProvider,$urlRouterProvider,$locationProvider) {
             $qProvider.errorOnUnhandledRejections(false);
           $urlRouterProvider.otherwise('inicio');
+          $locationProvider.hashPrefix('!');
            
         }]);
 
@@ -36,7 +39,7 @@
      {$rootScope.carrito=[];
         
         });
-  
+
 
    
     

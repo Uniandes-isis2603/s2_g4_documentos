@@ -1,0 +1,30 @@
+<div class="containerFede">
+    <div class="form_top">
+        <h1 style="letter-spacing:5px; color: #2c3e50;">Registro De Usuario</h1>
+    </div>
+    <form class="form_reg"  name="usuario" action="">
+        <input class="registroU" type="text"  maxlength="15" minlength="7" required autofocus ng-model="data.nombre"  placeholder="&#128102; nombre"/>
+        <input class="registroU" type="text"  maxlength="15" minlength="7" required ng-model="data.nombreUsuario" placeholder="&#128125; nickName" />
+        <input class="registroU" type="password"   maxlength="20" minlength="7" placeholder="&#11496; contraseña" />
+        <input class="registroU" type="email"  maxlength="30" minlength="5" required ng-model="data.correo" placeholder="&#9993; correo" />
+        <input class="registroU" type="number"  min="0" max="1"  required ng-model="data.genero"  placeholder="&#9892; genero"/>
+        <input class="registroU"  type="number"  min="17" max="99" required ng-model="data.edad" placeholder="&#49;&#54;&#60; edad" />
+             <div class="form-group col-sm-10" ng-if="!usuario.$valid">
+            <div class="alert alert-warning">
+                <strong>Recuerda!</strong><p>Todos los campos deben ser llenados*</p>
+            </div> 
+            </div> 
+    <div class="btn_form">
+            <input  class="btn btn-info" type="submit" id="submit"  value="Crear Cuenta">  
+            <a class="btn btn-info" ui-sref="usuariosList">Cancelar</a>
+       
+    </div>
+               
+
+
+    </form>
+</div>
+
+
+
+   

@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.documentos.ejb;
 import co.edu.uniandes.csw.documentos.entities.TarjetaDeCreditoEntity;
 import co.edu.uniandes.csw.documentos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.documentos.persistence.TarjetaDeCreditoPersistence;
+
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -112,6 +113,25 @@ public class TarjetaDeCreditoLogic
     {
         LOGGER.log(Level.INFO, "Inicia proceso de encontrar tarjeta con id = {0}", Id);
         return persistence.find(Id);
+    }
+    
+    public List<TarjetaDeCreditoEntity> getTarjetaPorUsuario(Long Id) throws BusinessLogicException
+    {
+         List<TarjetaDeCreditoEntity> tarjeta = persistence.findAll();
+        List<TarjetaDeCreditoEntity> respu = new ArrayList<>();
+        if(tarjeta.isEmpty())
+        {
+            throw new BusinessLogicException("No existen tdc's en el sistema");
+        }
+        for(TarjetaDeCreditoEntity tdc: tarjeta)
+        {
+            if(tdc.getIdUsuario().equals(Id))
+            {
+                respu.add(tdc);
+            }
+        }
+        
+        return respu;
     }
    
     

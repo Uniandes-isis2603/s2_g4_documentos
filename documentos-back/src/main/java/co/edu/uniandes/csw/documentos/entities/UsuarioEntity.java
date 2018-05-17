@@ -55,15 +55,15 @@ public class UsuarioEntity implements Serializable {
      * paypal, relación de composición biidireccional
      */
     @PodamExclude
-    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PayPalEntity> paypal;
+    @OneToMany( cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<PayPalEntity> payPal;
 
     /**
      * tarjetasCredito, relación de composición bidireccional
      */
     @PodamExclude
-    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<TarjetaDeCreditoEntity> tarjetasCredito;
+    @OneToMany( cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<TarjetaDeCreditoEntity> tarjetaDeCredito;
 
     /**
      * deseado, relación de composición unidireccional
@@ -182,29 +182,29 @@ public class UsuarioEntity implements Serializable {
     /**
      * @return the paypal
      */
-    public List<PayPalEntity> getPaypal() {
-        return paypal;
+    public List<PayPalEntity> getPayPal() {
+        return payPal;
     }
 
     /**
      * @param paypal the paypal to set
      */
     public void setPaypal(List<PayPalEntity> paypal) {
-        this.paypal = paypal;
+        this.payPal = paypal;
     }
 
     /**
      * @return the tarjetasCredito
      */
-    public List<TarjetaDeCreditoEntity> getTarjetasCredito() {
-        return tarjetasCredito;
+    public List<TarjetaDeCreditoEntity> getTarjetaDeCredito() {
+        return tarjetaDeCredito;
     }
 
     /**
      * @param tarjetasCredito the tarjetasCredito to set
      */
-    public void setTarjetasCredito(List<TarjetaDeCreditoEntity> tarjetasCredito) {
-        this.tarjetasCredito = tarjetasCredito;
+    public void setTarjetaDeCredito(List<TarjetaDeCreditoEntity> tarjetasCredito) {
+        this.tarjetaDeCredito = tarjetasCredito;
     }
 
     /**
@@ -249,4 +249,8 @@ public class UsuarioEntity implements Serializable {
         this.genero = genero;
     }
 
+   
+
+  
+  
 }

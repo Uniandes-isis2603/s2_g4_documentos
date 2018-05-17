@@ -40,7 +40,7 @@ public class ReservaEntity implements Serializable {
      * documentos, relación unidireccional
      */
     @PodamExclude
-    @OneToMany
+    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DocumentoEntity> documentos;
 
  

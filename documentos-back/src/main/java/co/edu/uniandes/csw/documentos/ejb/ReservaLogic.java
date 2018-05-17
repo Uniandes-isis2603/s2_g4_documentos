@@ -45,7 +45,7 @@ public class ReservaLogic {
             LOGGER.log(Level.INFO, "los atributos son nulos o invalidos");
             throw new BusinessLogicException("los atributos son nulos o invalidos");
 
-        } else if (entity.getCosto() <= 0) {
+        } else if (entity.getCosto() < 0) {
             LOGGER.log(Level.INFO, "La Reserva tiene un valor menor a cero");
             throw new BusinessLogicException("La Reserva tiene un valor menor a cero");
 
