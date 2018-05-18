@@ -20,8 +20,16 @@ import java.util.ArrayList;
 @Stateless
 public class FacturaLogic {
 
-    @Inject
+    /**
+     * Perssitencia de ña Factura
+     */
     private FacturaPersistence persistencia;
+    
+    
+    @Inject
+    public FacturaLogic(FacturaPersistence persistencia){
+        this.persistencia = persistencia;
+    }
 
     public FacturaEntity createFactura(FacturaEntity entity) throws BusinessLogicException {
         if (persistencia.find(entity.getId()) != null) {

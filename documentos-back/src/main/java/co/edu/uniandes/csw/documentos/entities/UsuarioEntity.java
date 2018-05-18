@@ -37,14 +37,6 @@ public class UsuarioEntity implements Serializable {
     private List<ReservaEntity> reservas;
 
     /**
-     * reservas, relación de composición unidireccional
-     */
-    @PodamExclude
-    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CompraEntity> compras;
-
-    
-    /**
      * comentarios, relación unidireccional
      */
     @PodamExclude
@@ -149,20 +141,6 @@ public class UsuarioEntity implements Serializable {
      */
     public void setReservas(List<ReservaEntity> reservas) {
         this.reservas = reservas;
-    }
-
-    /**
-     * @return the compras
-     */
-    public List<CompraEntity> getCompras() {
-        return compras;
-    }
-
-    /**
-     * @param compras the compras to set
-     */
-    public void setCompras(List<CompraEntity> compras) {
-        this.compras = compras;
     }
 
     /**

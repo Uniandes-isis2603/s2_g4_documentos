@@ -1,0 +1,18 @@
+<div class="container-fluid" style="padding-top: 7%; background-image: url('https://preview.ibb.co/dRGVqd/black_and_white_books_design_34627.jpg');">
+<div class="col-md-4"></div>
+<div class="col-md-4" ng-if="!isAuthenticated()" >
+    <form class="form-signin">
+        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+        <center><img src="https://image.freepik.com/free-icon/male-user-shadow_318-34042.jpg" class="w3-circle" alt="Norway" style="height: 40%; width: 60%"></center>
+        <input type="text" class="form-control" placeholder="Nombre de usuario" required="" autofocus="" ng-model="data.username">
+        <h1></h1>
+        <input type="password" class="form-control" placeholder="Contraseña" required="" ng-model="data.password">
+        <br>
+        <button type="button" class="btn btn-lg btn-primary btn-block" ng-click="autenticar()">
+            Iniciar Sesión
+        </button>
+        <a class="btn btn-lg btn-primary btn-block" ui-sref="librosList">Cancelar</a>
+    </form>
+</div>
+<div class="col-md-4"></div>
+</div>

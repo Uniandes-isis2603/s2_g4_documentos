@@ -96,13 +96,13 @@ public class ReservaLogic {
      */
     public ReservaEntity updateReserva(ReservaEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar una Reserva ");
-
+        double cero = 0.0;
         ReservaEntity buscado = persistence.find(entity.getId());
         if (buscado == null) {
             LOGGER.log(Level.INFO, "La Reserva con el id {0} no existe ", entity.getId());
             throw new BusinessLogicException("La Reserva con el id dado no existe ");
 
-        } else if (entity.getId() == null || entity.getFecha() == null || entity.getCosto() == 0) {
+        } else if (entity.getId() == null || entity.getFecha() == null || entity.getCosto() == cero) {
 
             LOGGER.log(Level.INFO, "los atributos son nulos o invalidos");
             throw new BusinessLogicException("los atributos son nulos o invalidos");
