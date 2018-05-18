@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.documentos.dtos;
 
 import co.edu.uniandes.csw.documentos.entities.ComentarioEntity;
-import co.edu.uniandes.csw.documentos.entities.CompraEntity;
 import co.edu.uniandes.csw.documentos.entities.DeseadoEntity;
 import co.edu.uniandes.csw.documentos.entities.PayPalEntity;
 import co.edu.uniandes.csw.documentos.entities.ReservaEntity;
@@ -31,10 +30,6 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
      */
     private List<ComentarioDTO> comentarios;
 
-    /**
-     * cero a muchos
-     */
-    private List<CompraDTO> compras;
 
     /**
      * uno a muchos
@@ -80,15 +75,7 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
             }
 
     }
-     
-
-        if (entity.getCompras() != null) {
-            compras = new ArrayList<>();
-            for (CompraEntity entityCompra : entity.getCompras()) {
-                 compras.add(new CompraDTO(entityCompra));
-            }
-        }
-        
+             
            if (entity.getPayPal()!= null) {
             payPal = new ArrayList<>();
             for (PayPalEntity entityPayPal : entity.getPayPal()) {
@@ -129,13 +116,7 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
             }
             usuario.setReservas(ReservasEntity);
         }
-        if (getCompras() != null) {
-            List<CompraEntity> comprasEntity = new ArrayList<>();
-            for (CompraDTO compra : getCompras()) {
-                comprasEntity.add(compra.toEntity());
-            }
-            usuario.setCompras(comprasEntity);
-        }
+        
         if (getComentarios() != null) {
             List<ComentarioEntity> ComentarioEntity = new ArrayList<>();
             for (ComentarioDTO comentario : getComentarios()) {
@@ -206,20 +187,6 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
      */
     public void setComentarios(List<ComentarioDTO> comentarios) {
         this.comentarios = comentarios;
-    }
-
-    /**
-     * @return the compras
-     */
-    public List<CompraDTO> getCompras() {
-        return compras;
-    }
-
-    /**
-     * @param compras the compras to set
-     */
-    public void setCompras(List<CompraDTO> compras) {
-        this.compras = compras;
     }
 
     /**
