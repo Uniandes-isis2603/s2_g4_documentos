@@ -41,7 +41,7 @@
                 $http.post('api/login',$scope.data).then(function(response){
 
                 for (var item in $scope.users) {
-                    if ($scope.users[item].user === response.data.username && $scope.users[item].password === response.data.password && $scope.users[item].rol === response.data.rol) {
+                    if ($scope.users[item].user === response.data.username && $scope.users[item].password === response.data.password) {
                         flag = true;
                         $scope.user = $scope.users[item];
                         $state.go('librosList', {}, {reload: true});
