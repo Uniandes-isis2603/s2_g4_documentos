@@ -5,6 +5,7 @@
         function($scope,$http,areaContext,$state) {
 
             if($scope.areas === undefined){
+
                 $http.get("http://localhost:8080/documentos-web/api/areas").then(function (response) 
                 {
                     $scope.areas = response.data;
@@ -97,15 +98,18 @@
            
                
             };
+
             $scope.buscarPorNombre=function(tipo){
             var path = "http://localhost:8080/documentos-web/api/areas";
             
             if (tipo != undefined   ){ path += "/" + tipo };
           
+
             $http.get(path).then(function (response) 
             {
                 $scope.areas = response.data;
                 
+
             });                  
             }
             $scope.actualizar=function(){
@@ -125,13 +129,14 @@
                         documentos.precio<pre) {
 
                     salida.push(areas);
-   
+
                 }
                 });
 
             });
               
             $scope.areas= salida;
+
             
             
             };            

@@ -51,6 +51,7 @@
                     $scope.get();
                 });
             };
+
             
             $scope.filtroTodo= function(calificacion,precio,profesor) {
             var salida = [];
@@ -75,6 +76,7 @@
             
             
             };
+
 
         }
     ]);

@@ -13,6 +13,10 @@ var mod = ng.module("inicioModule", ['ui.router']);
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'inicio.html'
                     }
+                },
+                data:{
+                    requireLogin: false,
+                    
                 }
           
             });
