@@ -17,8 +17,6 @@
        'areasModule',
        'paypalModule',
        'tarjetadecreditoModule',
-       'comprasModule',
-        
        'carritoModule',
         'facturasModule',
         'loginModule',
