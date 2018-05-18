@@ -11,9 +11,9 @@
     ,
     {
         "id": 2,
-        "name": "Rubby",
-        "user": "rubby",
-        "password": "rubby123",
+        "name": "Gregorio",
+        "user": "admin",
+        "password": "123",
         "birthDate": "1990/06/17",
         "rol": "admin",
         "token": 456
