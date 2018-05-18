@@ -65,6 +65,22 @@
                 });
                 
           };
+             $scope.borrar=function (documento)
+          {
+              
+                for (var i = 0; i < $rootScope.carrito.length; i++) 
+                {
+                if($rootScope.carrito[i].id===documento.id)
+                {
+                     
+                    $rootScope.carrito.splice(i,1);
+                    $scope.carro.splice(i,1);
+                 
+                }
+                  
+            }
+             $state.reload();
+          };
           
                    
             
