@@ -74,8 +74,9 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
                 deseados.add(new DeseadoDTO(entityDeseado));
             }
 
+
     }
-             
+
            if (entity.getPayPal()!= null) {
             payPal = new ArrayList<>();
             for (PayPalEntity entityPayPal : entity.getPayPal()) {
@@ -116,7 +117,8 @@ public class UsuarioDetailedDTO extends UsuarioDTO {
             }
             usuario.setReservas(ReservasEntity);
         }
-        
+    
+
         if (getComentarios() != null) {
             List<ComentarioEntity> ComentarioEntity = new ArrayList<>();
             for (ComentarioDTO comentario : getComentarios()) {
