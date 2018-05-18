@@ -54,13 +54,13 @@
                 $scope.data.id=reserva.id;
                 
                 $scope.data.fecha=new Date(2019,05,05);
-             console.log($scope.data.documentos); 
+
              for( var libro in reserva.documentos)
              {
                  $scope.data.costo+=reserva.documentos[libro].precio;
                  $scope.data.documentos.push(reserva.documentos[libro]);
              }
-            console.log($scope.data.documentos); 
+
                 $http.put(usuarioContext +'/'+ $state.params.usuarioId + '/' + reservaContext + '/' + reserva.id ,$scope.data).then(function (response) 
                 {
                     $state.reload();
