@@ -8,11 +8,12 @@
             $scope.dataActuaBasico={};
             $scope.data.libros=[];
             
-            
-            $http.get("http://localhost:8080/documentos-web/api/editoriales").then(function (response) 
-            {
-                $scope.editoriales = response.data;
-            });
+            if($scope.editoriales === undefined){
+                $http.get("http://localhost:8080/documentos-web/api/editoriales").then(function (response) 
+                {
+                    $scope.editoriales = response.data;
+                });
+            }
             
             $scope.get = function(){
                 $http.get("http://localhost:8080/documentos-web/api/editoriales").then(function (response) 
@@ -89,6 +90,34 @@
                 }
                
             };
+            
+            $scope.actualizar=function(){
+                $state.reload();
+            };
+            $scope.filtroTodo= function(calificacion,precio,profesor) {
+            var salida = [];
+            var pre = (precio != undefined)? parseInt(precio):10000000;
+            var cali = (calificacion != undefined)? parseInt(calificacion):"Todos";
+            var top = cali + 1;      
+           
+               
+            angular.forEach($scope.areas, function(areas) {
+            angular.forEach(areas.documentos, function(documentos) {
+
+                if (((documentos.calificacionPromedio >= parseInt(calificacion) && documentos.calificacionPromedio < top) || (calificacion === "Todos")) && 
+                        documentos.precio<pre) {
+
+                    salida.push(areas);
+   
+                }
+                });
+
+            });
+              
+            $scope.areas= salida;
+            
+            
+            };    
             
         }]);
 })(window.angular);
