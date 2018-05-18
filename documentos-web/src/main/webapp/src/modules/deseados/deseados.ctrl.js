@@ -56,13 +56,13 @@
             {
                 $scope.data.id=deseado.id;
                  $scope.data.nombre=deseado.nombre;
-             console.log($scope.data.documentos); 
+
              for( var libro in deseado.documentos)
              {
                  $scope.data.cantidad++;
                  $scope.data.documentos.push(deseado.documentos[libro]);
              }
-            console.log($scope.data.documentos); 
+
                 $http.put(usuarioContext +'/'+ $state.params.usuarioId + '/' + deseadoContext + '/' + deseado.id ,$scope.data).then(function (response) 
                 {
                     $state.reload();
