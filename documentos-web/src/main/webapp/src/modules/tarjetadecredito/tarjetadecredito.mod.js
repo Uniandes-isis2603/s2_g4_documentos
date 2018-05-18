@@ -16,7 +16,7 @@
                     },
                     'menuView': {
                       templateUrl: 'src/modules/usuarios/menu.html',
-                      controller: 'usuarioDetailCtrl',
+                      controller: 'usuarioCtrl',
                       controllerAs: 'ctrl'
                     }
                 }

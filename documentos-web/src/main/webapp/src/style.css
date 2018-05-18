@@ -14,6 +14,757 @@
     color: grey;
     border: grey;
 }
+#busqueda:hover
+{
+    background-color:grey;
+    color:whitesmoke;
+}
+
+#busqueda:active{
+    background-color: yellow;
+}
+#busqueda:focus {     
+    background-color:grey;
+    color:whitesmoke;  
+}
+#busqueda:target{     
+    background-color:grey;
+    color:whitesmoke;  
+}
+.Intro{
+    background-image:url(https://preview.ibb.co/bZVMK7/Libro.jpg);
+    height: 100vh;
+    background-size: cover;
+    text-align: center;
+    padding-top:25%; 
+}
+
+.finalLibros{
+    background-image:url(http://www.readbreatherelax.com/wp-content/uploads/2013/07/book-the-end-hd-wallpaper.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    height: auto;
+    width: 100%;
+    text-align: center;
+    padding-top:10%; 
+    padding-bottom: 10%;
+    font-size: 6.2vw;
+
+}
+
+
+.center-cropped {
+    width: 400px;
+    height: 300px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+body{
+    padding-top:20px;
+}
+h1{
+    font-size: 5em;
+    font-weight: 700;
+    color:white;
+
+    text-shadow: 0px 4px 3px rgba(0,0,0,0.4) ,
+        0px 8px 13px rgba(0,0,0,0.1),
+        0px 18px 23px rgba(0,0,0,0.1)
+}
+hr {
+
+    width: 400px;
+}
+
+.limitar {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: 'Roboto', sans-serif;
+
+
+    padding: 1px 1px 1px 1px;
+    border-radius: 10px;
+    height: 49px;
+    width: 100%;
+    margin: 5px 1% 5px 1%;
+    float: left;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+
+}
+
+
+.limitar:hover {
+
+    white-space: normal; 
+    height:80px;
+    width: 190px;
+    overflow: visible;
+    overflow-wrap: break-word;
+
+}
+
+
+.menuNavUsuario{
+    position: fixed;
+    width:300px;
+    height: 100%;
+    background-color: #2c3e50;
+}
+
+
+
+
+.menuUlUsuario{
+    margin-top:120px;
+    list-style: none;
+    display: block;
+}
+
+
+.menuUser{
+    width:200px;
+    height: 50px;
+    border-bottom: 1px solid #000066EC ;
+    overflow: hidden;
+    opacity: .5;
+
+
+}
+
+.linkUser{
+    position: absolute;
+    float: right;
+    color: white;
+    opacity: .9;
+    font-size: 1.2em;
+    padding-left: 10px;
+    padding-top: 10px;
+    text-decoration: none;
+
+
+}
+
+
+.menuUser a:hover {
+    background-color: white;
+    width:200px;
+    height: 50px;
+    color: black;
+    opacity: 40;
+    text-decoration: none;
+
+}
+
+.infoUser{
+
+    padding-top: 120px;
+    position: absolute;
+}
+
+
+
+#infoUsuario
+{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
+.tablaListaU{
+    width: 100%;
+    text-align: left;
+    background: white;
+    border-collapse: collapse;
+
+}
+
+.tablaListaU th,td{
+    padding: 30px;
+}
+
+.tablaListaU thead{
+    border-bottom: solid 12px;
+    border-bottom-color:  #8c8c8c;
+    color: white;
+    background-color:  #2c3e50;
+}
+
+.tablaListaU tr:hover td{
+    background-color: #8c8c8c;
+    color: white;
+}
+
+#botonFede {
+
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+#botonFede:hover {
+    background-color: #255625; 
+    border-bottom-color: #255625;
+    color: white;
+}
+
+.listaReservas {
+  display:inline;  display:inline;
+     padding-left:3px;
+     padding-right:3px;
+     
+}
+
+
+.navbar-inverse {
+    /* background-color:transparent !important;
+     border-color:transparent;
+     background-image:none;
+     box-shadow:none; */ 
+    background-color: #2c3e50;     
+}
+.canequita:hover
+{
+    background-color:darkgray;
+}
+.caret.caret-up {
+    border-top-width: 0;
+    border-bottom: 4px solid #000;
+}
+#busqueda{
+    background-color: whitesmoke;
+    color: grey;
+    border: grey;
+}
+
+#busqueda:hover
+{
+    background-color:grey;
+    color:whitesmoke;
+}
+
+.loginbutton
+{
+    background-color: #2c3e50; 
+    border-color: #2c3e50;
+}
+.actuabbuton{
+    background-color: #004D40; 
+    border-color: #004D40;
+}
+.actuabbuton:focus {     
+    background-color: #007a66; 
+    border-color: #007a66;
+}
+.actuabbuton:active{     
+ background-color: #007a66; 
+    border-color: #007a66; 
+}
+.actuabbuton:hover
+{
+     background-color: #007a66; 
+    border-color: #007a66;
+    
+}
+.loginbutton:hover
+{
+    background-color: #46586A;
+    border-color: #46586A;
+}
+
+#busqueda:focus {     
+    background-color:grey;
+    color:whitesmoke;  
+}
+#busqueda:target{     
+    background-color:grey;
+    color:whitesmoke;  
+}
+.Intro{
+    background-image:url(https://preview.ibb.co/bZVMK7/Libro.jpg);
+    height: 97.5vh;
+    background-size: cover;
+    text-align: center;
+    padding-top:25%;
+}
+
+.finalLibros{
+    background-image:url(http://www.readbreatherelax.com/wp-content/uploads/2013/07/book-the-end-hd-wallpaper.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    height: auto;
+    width: 100%;
+    text-align: center;
+    padding-top:10%; 
+    padding-bottom: 10%;
+    font-size: 6.2vw;
+    
+}
+
+
+.center-cropped {
+    width: 400px;
+    height: 300px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+body{
+    padding-top:20px;
+}
+h1{
+    font-size: 5em;
+    font-weight: 700;
+    color:white;
+    
+    text-shadow: 0px 4px 3px rgba(0,0,0,0.4) ,
+        0px 8px 13px rgba(0,0,0,0.1),
+        0px 18px 23px rgba(0,0,0,0.1)
+}
+hr {
+    
+    width: 400px;
+}
+
+.limitar {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: 'Roboto', sans-serif;
+    
+    
+    padding: 1px 1px 1px 1px;
+    border-radius: 10px;
+    height: 49px;
+    width: 100%;
+    margin: 5px 1% 5px 1%;
+    float: left;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    
+}
+
+
+.limitar:hover {
+    
+    white-space: normal; 
+    height:80px;
+    width: 190px;
+    overflow: visible;
+    overflow-wrap: break-word;
+    
+}
+
+.jumbotron h1
+{ text-align: center;
+  color:white;
+}
+
+body{
+    
+    font-family: 'Roboto', sans-serif;
+}
+#CursoDiv
+{
+    color:white; 
+    height: 250px;
+    background-size: cover;  
+     text-align: center;
+     background-position: center center;
+    background-image: url(https://images.unsplash.com/photo-1514820044349-39f34ceb5f8b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5ad63b9224ab39a7ae2d0ffbc43e1a7b&auto=format&fit=crop&w=1050&q=80)
+      
+}
+
+#CursoDiv2
+{
+    color:white;   
+    height: 250px;
+    background-size: cover;  
+     text-align: center;
+     background-position: center center;
+    background-image: url(https://images.pexels.com/photos/185762/pexels-photo-185762.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)
+      
+}
+
+.containerFede{
+        max-width: 450px;
+        height: auto;
+        margin: 5% auto;
+        padding-top: 20px;
+        border-radius: 24px 24px 24px 24px;
+        -moz-border-radius: 24px 24px 24px 24px;
+        -webkit-border-radius: 24px 24px 24px 24px;
+         border: 0px solid #000000;
+
+}
+
+.form_top{
+
+   width: 100%;
+   text-align: center;
+    color: scrollbar;   
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+.form_top h2{
+    font-weight: bold;
+    color: #9d9d9d;
+}
+
+.form_reg{
+    padding: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+         
+}
+.btn_form{
+    justify-content:space-around;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none; 
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    
+}
+.registroU{
+    padding: 6px;
+    margin: 20px;
+    border: none;
+    transition: all;
+    border-bottom: solid #9d9d9d 3px;
+
+}
+.registroU:focus{
+    border-bottom: solid #2c3e50 3px;
+}
+.tablaFede{
+    color: #9d9d9d;
+}
+.uliUpdate{
+      list-style-type: none;
+    margin: 5px;
+    padding: 5px;
+    overflow: hidden;
+}
+.life
+{
+     float: left;
+}
+
+#librosReserva{
+    display : flex;
+        border-radius: 24px 24px 24px 24px;
+        -moz-border-radius: 24px 24px 24px 24px;
+        -webkit-border-radius: 24px 24px 24px 24px;
+         border: 2px solid #2c3e50;  
+
+}
+
+#CursoDiv3{
+    color:white;   
+    height: 250px;
+    background-size: cover;  
+     text-align: center;
+     background-position: center center;
+    background-image: url(https://images.pexels.com/photos/590493/pexels-photo-590493.jpeg?cs=srgb&dl=blur-book-stack-books-590493.jpg&fm=jpg)
+      
+}
+
+#CursoDiv4{
+    color:white;   
+    height: 250px;
+    background-size: cover;
+    padding-bottom: 10px;
+     text-align: center;
+     background-position: center center;
+    background-image: url(https://images.pexels.com/photos/34075/pexels-photo.jpg?cs=srgb&dl=book-lake-learning-34075.jpg&fm=jpg)
+      
+}
+
+#CursoDiv5{
+    color:white;   
+    height: 250px;
+    background-size: cover;
+    padding-bottom: 10px;
+     text-align: center;
+     background-position: center center;
+    background-image: url(https://images.pexels.com/photos/264771/pexels-photo-264771.jpeg?cs=srgb&dl=birthday-bow-box-264771.jpg&fm=jpg)
+      
+}
+nav.acceder ul{
+    list-style: none;
+    position: relative;
+    float: left;
+    
+}
+
+
+nav.acceder #login-content{
+    position: absolute;
+    top:  26px;
+    z-index: 999;
+    padding:  15px;
+    width: 250px;
+       
+}
+
+.tablaListaUsers{
+   background-color: #2c3e50;  
+
+}
+.menuNavUsuario2{
+    position: fixed;
+    width:300px;
+    height: 100%;
+    background-color: yellow;
+}
+.menuUser2{
+    width:200px;
+    height: 50px;
+    border-bottom: 1px solid black ;
+    overflow: hidden;
+    color: black;
+
+
+}
+.menuUser2 a:hover {
+    background-color: black;
+    width:200px;
+    height: 50px;
+    color: yellow;
+    opacity: 40;
+    text-decoration: none;
+
+}
+
+.linkUser2{
+    position: absolute;
+    float: right;
+    color: black;
+    
+    font-size: 1.2em;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.navbar-inverse2 {
+    /* background-color:transparent !important;
+     border-color:transparent;
+     background-image:none;
+     box-shadow:none; */ 
+    background-color: yellow;     
+}
+
+.navBusqueda2{
+    color: black;
+   
+}
+
+.tablaFede2{
+    color: black;
+}
+
+.tablaListaUsers{
+   background:yellow;
+
+}
+.tablaListaU2 thead{
+    
+    border-bottom: solid 12px;
+    border-bottom-color:  black;
+    color: yellow;
+    background-color:  yellow;
+}
+
+
+.menuNavUsuario3{
+    position: fixed;
+    width:300px;
+    height: 100%;
+    background-color: #c0dfd9
+}
+.menuUser3{
+    width:200px;
+    height: 50px;
+    border-bottom: 1px solid #173e43 ;
+    overflow: hidden;
+    color: black;
+
+
+}
+.menuUser3 a:hover {
+    background-color: #7d4627;
+    width:200px;
+    height: 50px;
+    color: #c0dfd9;
+    opacity: 40;
+    text-decoration: none;
+
+}
+
+.linkUser3{
+    position: absolute;
+    float: right;
+    color: #7d4627;
+    font-size: 1.2em;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.navbar-inverse3 {
+    
+    background-color: #c0dfd9     
+}
+.navBusqueda3{
+    color: #7d4627;
+}
+
+.tablaListaU3 thead{
+    
+    border-bottom: solid 12px;
+    border-bottom-color:  #7d4627;
+    color: #c0dfd9 ;  
+    background-color:  #c0dfd9 ;  
+}
+
+.menuNavUsuario4{
+    position: fixed;
+    width:300px;
+    height: 100%;
+    background-color: #3b3a36
+}
+.menuUser4{
+    width:200px;
+    height: 50px;
+    border-bottom: 1px solid #edd9c0;
+    overflow: hidden;
+    color: #edd9c0
+
+
+}
+.menuUser4 a:hover {
+    background-color: #edd9c0;
+
+    width:200px;
+    height: 50px;
+    color:  #3b3a36;
+    opacity: 40;
+    text-decoration: none;
+
+}
+
+.linkUser4{
+    position: absolute;
+    float: right;
+    color: #edd9c0;
+    font-size: 1.2em;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.navbar-inverse4 {
+    
+    background-color: #3b3a36    
+}
+.navBusqueda4{
+    color: #edd9c0
+}
+
+.tablaListaU4 thead{
+    
+    border-bottom: solid 12px;
+    border-bottom-color:  #edd9c0;
+    color: #3b3a36 ;
+    background-color:  #3b3a36 ;
+}
+.menuNavUsuario5{
+    position: fixed;
+    width:300px;
+    height: 100%;
+    background-color: 00B967;
+}
+.menuUser5{
+    width:200px;
+    height: 50px;
+    border-bottom: 1px solid #3b3a36 ;  
+    overflow: hidden;
+    color: #e1e8f0;
+
+
+}
+.menuUser5 a:hover {
+    background-color: #edd9c0;
+
+    width:200px;
+    height: 50px;
+    color:  00B967;
+    opacity: 40;
+    text-decoration: none;
+
+}
+
+.linkUser5{
+    position: absolute;
+    float: right;
+    color: #edd9c0;
+    font-size: 1.2em;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.navbar-inverse5 {
+    
+    background-color: #3b3a36 ;  
+}
+.navBusqueda5{
+    color:#edd9c0;
+} 
+.tablaListaU5 thead{
+    
+    border-bottom: solid 12px;
+    border-bottom-color:  #4CAF50;
+    color: #3b3a36 ;
+    background-color:  #3b3a36 ;
+}
+.navbar-inverse {
+    /* background-color:transparent !important;
+     border-color:transparent;
+     background-image:none;
+     box-shadow:none; */ 
+    background-color: #2c3e50;     
+}
+.caret.caret-up {
+    border-top-width: 0;
+    border-bottom: 4px solid #000;
+}
+#busqueda{
+    background-color: whitesmoke;
+    color: grey;
+    border: grey;
+}
 #facturaContainer
 {
     

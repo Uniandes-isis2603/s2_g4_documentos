@@ -38,6 +38,20 @@
      app.run( function ($rootScope) 
      {$rootScope.carrito=[];
         
+        
+               $rootScope.home=0;
+            $rootScope.estiloBarraMenu="menuNavUsuario";
+            $rootScope.estiloLiMenu="menuUser";
+            $rootScope.estiloLinkMenu="linkUser";
+            $rootScope.estiloBarrita="navbar-inverse";
+            $rootScope.estiloItemsBarrita="navBusqueda";
+            $rootScope.estiloTablaLista="tablaFede";
+            $rootScope.estiloTablaHead="tablaListaU";
+
+
+
+
+            $rootScope.documentosReservas=[];
         });
 
 
