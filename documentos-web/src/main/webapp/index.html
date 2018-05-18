@@ -146,16 +146,16 @@
  
       
                        </ul>
-                           <div class="col-md-2">
+                           <div class="col-md-3">
                     <ul ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right">
                         <li><a ui-sref="login"><span class="fa fa-sign-in-alt"></span>  Iniciar Sesión</a></li>
                     </ul>
                     <ul ng-if="isAuthenticated()" class="nav navbar-nav pull-right">
+                        <li style="color: #00cc66; padding-top: 8%; font-style: ">Hola, {{currentUser}} </li>
+                        <li><h1></h1></li>
+                        <li><a style="color: #ff3333" ui-sref="logout">Salir sesión</a></li>
                         
-                        <li><a ui-sref="logout">Salir de la sesión</a></li>
-                        <li style="color:white">Hola, {{currentUser}} </li>
                     </ul>
-                    
                 </div>
                        </div>
                            
