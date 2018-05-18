@@ -168,7 +168,6 @@ public class UsuarioResource {
         UsuarioEntity entity = logic.getUsuario(id);
         UsuarioEntity entity2 =usuario.toEntity();
         entity2.setComentarios(entity.getComentarios());
-        entity2.setCompras(entity.getCompras());
         entity2.setDeseados(entity.getDeseados());
         entity2.setReservas(entity.getReservas());
         entity2.setPaypal(entity.getPayPal());
