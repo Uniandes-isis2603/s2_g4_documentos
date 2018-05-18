@@ -33,6 +33,19 @@
                         controller: 'loginCtrl'
                     }
                 }
+            }).state('logout',{
+                url:'/logout',
+                data: {
+                    requireLogin: false,
+                    roles: []
+                }
+                ,
+                views: {
+                    'mainView':{
+                        templateUrl: basePath + 'logout.html',
+                        controller: 'logoutCtrl'
+                    }
+                }
             });
     }]);
 })(window.angular);
