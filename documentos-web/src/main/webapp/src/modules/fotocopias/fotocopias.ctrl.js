@@ -51,7 +51,32 @@
                 });
             };
             
+                        $scope.actualizar=function(){
+                $state.reload();
+            };
+            $scope.filtroTodo= function(calificacion,precio,profesor) {
+            var salida = [];
+            var pre = (precio != undefined)? parseInt(precio):10000000;
+            var cali = (calificacion != undefined)? parseInt(calificacion):"Todos";
+            var top = cali + 1;      
+           
+               
+            angular.forEach($scope.fotocopiasRecords, function(documentos) {
+
+                if (((documentos.calificacionPromedio >= parseInt(calificacion) && documentos.calificacionPromedio < top) || (calificacion === "Todos")) && 
+                        documentos.precio<pre) {
+
+                    salida.push($scope.fotocopiasRecords);
+   
+                }
+                });
+
+
+              
+            $scope.fotocopiasRecords= salida;
             
+            
+            }; 
         }
     ]);
 }

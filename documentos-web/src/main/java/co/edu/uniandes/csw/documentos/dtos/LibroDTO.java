@@ -133,13 +133,7 @@ public class LibroDTO extends DocumentoDTO {
         this.fechaPublicacion = fechaPublicacion;
     }
 
-    public String getPdf() {
-        return pdf;
-    }
-
-    public void setPdf(String pdf) {
-        this.pdf = pdf;
-    }
+    
     
     
 }

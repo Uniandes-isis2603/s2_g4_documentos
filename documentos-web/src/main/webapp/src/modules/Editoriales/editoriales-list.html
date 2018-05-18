@@ -5,7 +5,7 @@
     
         <div style="margin-top:50px; " ng-app="editorialesModule">
             
-            <ul ng-repeat="editorial in editoriales" class="list-group">
+            <ul ng-repeat="editorial in editoriales | filter: buscarPorTipo track by $index " class="list-group">
       
                 <li class="list-group-item" style="margin-top:0; margin-bottom: 0; ">         
                         <a><i ng-click="delete(editorial.id)" style="color:lightgray" class=" canequita fas fa-trash pull-right"></i></a>

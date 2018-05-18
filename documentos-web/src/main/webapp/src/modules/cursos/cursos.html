@@ -69,5 +69,79 @@
             </div>
         </div>
     </div>
-    
+    <div class="col-sm-3 thumbnail pull-right" style="margin-top:50px; width:400 ;margin-right:50px;height:520 ">
+        <div class="container ">
+            <div class="col-md-5">
+                <div class="form-area">  
+                    <form role="form">
+
+                        <h3>Filtros</h3>
+                        <br>
+                        <h4 style="margin-left:12px; ">Nombre</h4>
+                                                   
+                        <div class="form-group col-sm-9">
+                            <input type="text" class="form-control"  placeholder="Nombre" ng-model="buscarPorTipo">
+                        </div> 
+                        <div class="form-group col-sm-9">
+                           
+                            <button ng-click="buscarPorNombre(buscarPorTipo)" type="button" class="btn btn-primary">Buscar</button>
+                        <br>
+                        </div> 
+
+                        
+                        <div class="form-group col-sm-9">
+                            <h4 style="margin-left:12px; ">Calificación</h4>
+                            <form>
+                            <input type="radio" name="Calificacion" ng-model="buscarPorCalificacion" value="-1"> Sin Calificacion 
+                            <input type="radio" name="Calificacion" ng-model="buscarPorCalificacion" value="1"> 1
+                            <input type="radio" name="Calificacion" ng-model="buscarPorCalificacion" value="2" > 2
+                            <input type="radio" name="Calificacion" ng-model="buscarPorCalificacion" value="3" > 3
+                            <input type="radio" name="Calificacion" ng-model="buscarPorCalificacion" value="4" > 4
+                            <input type="radio" name="Calificacion" ng-model="buscarPorCalificacion" value="5"> 5
+                            <input type="radio" checked="checked" name="Calificacion" ng-model="buscarPorCalificacion" value="Todos" > Todos
+                            
+                        </div>
+                        <br>
+                        <br>
+                        
+                        <div class="form-group col-sm-9">
+                            <label for="sel1">
+                                <h4 style="margin-left:12px; ">Precio</h4>
+                            </label>
+                            <select class="form-control" id="sel1" ng-model="buscarPorPrecio">
+                                <option value="5000"> >5000</option>
+                                <option value="10000"> >10000</option>
+                                <option value="15000"> >15000</option>
+                                <option value="20000"> >20000</option>
+                                <option value="25000"> >25000</option>
+                                <option value="30000"> >30000</option>
+                                <option value="35000"> >35000</option>
+                                <option value="40000"> >40000</option>
+                                <option value="45000"> >45000</option>
+                                <option value="50000"> >50000</option>
+                                <option value="1000000"> Todos</option>
+                                
+                            </select>
+
+                        </div> 
+                                                
+                        <div class="form-group col-sm-9">
+                            <h4 style="margin-left:12px; ">Profesor</h4>
+                            <input type="text" class="form-control"  placeholder="Profesor" ng-model="buscarPorProfesor">
+                        </div>   
+                        </div>
+                        <div class="form-group col-sm-9">
+                           
+                            <button ng-click="filtroTodo(buscarPorCalificacion,buscarPorPrecio,buscarPorProfesor)" type="button" class="btn btn-primary">Buscar</button>
+                            <button ng-click="actualizar()" type="button" class="btn btn-primary">Actualizar</button>
+                        </div> 
+                        
+                    </form>
+                    <br>
+                        
+                        
+                 
+                </div>
+            </div>
+        </div>
     </div>
