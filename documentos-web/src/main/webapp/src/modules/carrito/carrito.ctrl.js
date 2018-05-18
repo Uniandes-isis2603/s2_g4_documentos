@@ -1,3 +1,4 @@
+
 (function (ng) {
 
     var mod = ng.module("carritoModule");
@@ -85,6 +86,7 @@
                    
             
         }]);
+
 
 
 })(window.angular);

@@ -2,29 +2,28 @@
     <div class="listaUsers" style="background-color: #080808">
 
         <div class="otherListaUsers" style="background-color: #FCFCFC" >
-            <nav ng-class="personalizado" class="menuNavUsuario">
+            <nav ng-class="estiloBarraMenu" >
                 <ul class="menuUlUsuario" > 
 
-                    <li class="menuUser"> 
-                        <a class ="linkUser" ui-sref="usuarioDetail({usuarioId: currentUsuario.id})" >Perfil</a></li>
+                    <li ng-class="estiloLiMenu"> 
+                        <a ng-class="estiloLinkMenu" ui-sref="usuarioDetail({usuarioId: currentUsuario.id})" >Perfil</a></li>
 
-                    <li class="menuUser"> 
-                        <a class ="linkUser" ui-sref="reservasList({usuarioId: currentUsuario.id})" >Reservas</a></li>
+                    <li ng-class="estiloLiMenu"> 
+                        <a ng-class="estiloLinkMenu" ui-sref="reservasList({usuarioId: currentUsuario.id})" >Reservas</a></li>
 
-                    <li class="menuUser"> 
-                        <a class ="linkUser" ui-sref="deseadosList({usuarioId: currentUsuario.id})">lista de deseos</a></li>
+                    <li ng-class="estiloLiMenu"> 
+                        <a ng-class="estiloLinkMenu" ui-sref="deseadosList({usuarioId: currentUsuario.id})">lista de deseos</a></li>
 
-                    <li class="menuUser">
-                        <a class ="linkUser" ui-sref="comprasList">Compras</a></li>
+                    <li ng-class="estiloLiMenu">
+                        <a ng-class="estiloLinkMenu" ui-sref="facturasList">Facturas</a></li>
 
-                    <li class="menuUser">
-                        <a class ="linkUser" ui-sref="tarjetadecreditoList">Tarjetas de credito</a></li>
-                     <li class="menuUser">                       
-                        <a class ="linkUser" ui-sref="paypalList">Paypal</a></li>
-                    <li class="menuUser">
-                        <a class ="linkUser">Otros</a></li>
-                    <li class="menuUser">                       
-                        <a class ="linkUser" ui-sref="facturasList">Facturas</a></li>
+                    <li ng-class="estiloLiMenu">
+                        <a ng-class="estiloLinkMenu" ui-sref="tarjetadecreditoList">Tarjetas de credito</a></li>
+                     <li ng-class="estiloLiMenu">
+                         
+                        <a ng-class="estiloLinkMenu" ui-sref="paypalList">Paypal</a></li>
+
+                   
                 </ul>
 
             </nav>
