@@ -2,7 +2,6 @@ package co.edu.uniandes.csw.documentos.test.logic;
 
 import co.edu.uniandes.csw.documentos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.documentos.entities.ComentarioEntity;
-import co.edu.uniandes.csw.documentos.entities.CompraEntity;
 import co.edu.uniandes.csw.documentos.entities.PayPalEntity;
 import co.edu.uniandes.csw.documentos.entities.ReservaEntity;
 import co.edu.uniandes.csw.documentos.entities.TarjetaDeCreditoEntity;
@@ -54,7 +53,6 @@ public class UsuarioLogicTest {
 
     private List<ComentarioEntity> comentarioData = new ArrayList<ComentarioEntity>();
 
-    private List<CompraEntity> compraData = new ArrayList<CompraEntity>();
     private List<PayPalEntity> payPalData = new ArrayList<PayPalEntity>();
     private List<TarjetaDeCreditoEntity> tarjetaData = new ArrayList<TarjetaDeCreditoEntity>();
 
@@ -68,7 +66,6 @@ public class UsuarioLogicTest {
                 .addPackage(PayPalEntity.class.getPackage())
                 .addPackage(TarjetaDeCreditoEntity.class.getPackage())
                 .addPackage(ComentarioEntity.class.getPackage())
-                .addPackage(CompraEntity.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -106,7 +103,6 @@ public class UsuarioLogicTest {
         em.createQuery("delete from PayPalEntity").executeUpdate();
         em.createQuery("delete from TarjetaDeCreditoEntity").executeUpdate();
         em.createQuery("delete from ComentarioEntity").executeUpdate();
-        em.createQuery("delete from CompraEntity").executeUpdate();
 
     }
 
@@ -123,11 +119,6 @@ public class UsuarioLogicTest {
             reservaData.add(reserva);
         }
 
-        for (int i = 0; i < 3; i++) {
-            CompraEntity entity = factory.manufacturePojo(CompraEntity.class);
-            em.persist(entity);
-            compraData.add(entity);
-        }
 
         for (int i = 0; i < 3; i++) {
             ComentarioEntity entity = factory.manufacturePojo(ComentarioEntity.class);
@@ -162,7 +153,6 @@ public class UsuarioLogicTest {
             entity.setNombre("el papa");
             entity.setComentarios(comentarioData);
             entity.setReservas(reservaData);
-            entity.setCompras(compraData);
             entity.setPaypal(payPalData);
             em.persist(entity);
             data.add(entity);
