@@ -25,7 +25,7 @@
                         
                     <tbody>
                         <tr ng-repeat="documento in carro track by $index">
-                            <td><i class="fas fa-times"></i>
+                             <td><a><i class="fas fa-times" ng-click="borrar(documento)" style=" color:lightgray;"></i></a>
                             <td class="col-md-9"><em>{{documento.nombre}}</em></td>
                             <td class="col-md-1" style="text-align: center">1</td>
                             <td class="col-md-1 text-center">${{documento.precio|currency:"":0}}</td>
