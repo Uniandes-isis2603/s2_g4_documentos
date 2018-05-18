@@ -3,11 +3,15 @@
     mod.constant("areaContext","api/areas");
     mod.controller('areasCtrl', ['$scope','$http', 'areaContext', '$state', '$rootScope', 
         function($scope,$http,areaContext,$state) {
-            
+
+            if($scope.areas === undefined){
+
                 $http.get("http://localhost:8080/documentos-web/api/areas").then(function (response) 
-            {
-                $scope.areas = response.data;
-            });
+                {
+                    $scope.areas = response.data;
+                });
+            }
+
             
             $scope.get = function(){
                 $http.get("http://localhost:8080/documentos-web/api/areas").then(function (response) 
@@ -94,40 +98,45 @@
            
                
             };
-            $scope.actualizar=function(){
-                $state.reload();
-            };
-            $scope.filtroTodo= function(tipo,calificacion,precio,profesor) {
-                    
+
+            $scope.buscarPorNombre=function(tipo){
             var path = "http://localhost:8080/documentos-web/api/areas";
             
             if (tipo != undefined   ){ path += "/" + tipo };
-            console.log(path);
+          
+
             $http.get(path).then(function (response) 
             {
                 $scope.areas = response.data;
                 
-            });  
-            
-            if(calificacion !== "Todos"){
-                 var salida = [];
-             angular.forEach($scope.areas, function(areas) {
-                angular.forEach(areas.documentos, function(documentos) {
-                    var top = parseInt(calificacion) + 1;
 
-                if (documentos.calificacionPromedio >= parseInt(calificacion) && documentos.calificacionPromedio < top && 
-                        documentos.precio<parseInt(precio)) {
-                    
-                        salida.push(areas);
-                    
+            });                  
+            }
+            $scope.actualizar=function(){
+                $state.reload();
+            };
+            $scope.filtroTodo= function(calificacion,precio,profesor) {
+            var salida = [];
+            var pre = (precio != undefined)? parseInt(precio):10000000;
+            var cali = (calificacion != undefined)? parseInt(calificacion):"Todos";
+            var top = cali + 1;      
+           
+               
+            angular.forEach($scope.areas, function(areas) {
+            angular.forEach(areas.documentos, function(documentos) {
+
+                if (((documentos.calificacionPromedio >= parseInt(calificacion) && documentos.calificacionPromedio < top) || (calificacion === "Todos")) && 
+                        documentos.precio<pre) {
+
+                    salida.push(areas);
+
                 }
                 });
 
             });
               
             $scope.areas= salida;
-              
-            }
+
             
             
             };            

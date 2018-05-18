@@ -23,7 +23,6 @@ delete from AreaDeConocimientoEntity;
 delete from ImagenEntity;
 delete from AutorEntity;
 delete from EditorialEntity;
-delete from CompraEntity;
 delete from PayPalEntity;
 delete from TarjetaDeCreditoEntity;
 delete from ReservaEntity;
@@ -185,8 +184,6 @@ insert into ComentarioEntity(id,comentario,fecha) values (11000,'es malo','2015-
 
 --Nicolas
 insert into CursoEntity(id,codigo,departamento,nombre) values (3000,'Ma205','Matematicas','Matematica basica');
-
-INSERT INTO COMPRAENTITY (id,COSTO, FECHA, TIPODECOMPRA, METODODEPAGOPAYPAL_ID, METODODEPAGOTDC_ID) VALUES (10000,300, '2018-02-22 20:38:54.973', 'efectivo', NULL, 7500);
 
 
 --------------------------------------------------------------------------

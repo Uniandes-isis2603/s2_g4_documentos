@@ -25,7 +25,7 @@
                         
                     <tbody>
                         <tr ng-repeat="documento in carro track by $index">
-                            <td><i class="fas fa-times"></i>
+                             <td><a><i class="fas fa-times" ng-click="borrar(documento)" style=" color:lightgray;"></i></a>
                             <td class="col-md-9"><em>{{documento.nombre}}</em></td>
                             <td class="col-md-1" style="text-align: center">1</td>
                             <td class="col-md-1 text-center">${{documento.precio|currency:"":0}}</td>
@@ -42,12 +42,33 @@
                             
                     </tbody>
                 </table>
-                <button type="button" class="btn loginbutton btn-lg btn-block" style="color:white">
+             
+        <button type="button" class="btn loginbutton btn-lg btn-block" style="color:white" ng-click="crearFactura(carro)">
                     Checkout   <span class="glyphicon glyphicon-chevron-right"></span>
                 </button>
+                    <br>
+        <div >
+            <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">\
+                <input name="merchantId"    type="hidden"  value="508029"   >\
+                <input name="accountId"     type="hidden"  value="512321" >\
+                <input name="description"   type="hidden"  value="Test PAYU"  >\
+                <input name="referenceCode" type="hidden"  value="PAGO001" >
+                <input name="amount"        type="hidden"  value="15000"   >
+                <input name="tax"           type="hidden"  value="0"  >
+                <input name="taxReturnBase" type="hidden"  value="0" >
+                <input name="currency"      type="hidden"  value="COP" >
+                <input name="signature"     type="hidden"  value="73e02ffe4a4e70b1ce6197b3838e77ee"  >
+                <input name="test"          type="hidden"  value="1" >
+                <input name="buyerEmail"    type="hidden"  value="gregorioospina@hotmail.com" >
+                <input name="responseUrl"    type="hidden"  value="http://localhost:8080/documentos-web/#!/respuestaCompra" >
+                <input name="confirmationUrl"    type="hidden"  value="http://localhost:8080/documentos-web/#!/confirmacionCompra" >
+                <input name="Submit" type="submit"  value="PayU" class="btn loginbutton btn-lg btn-block" style = "background-color:  #009966; color: white">
+            </form>
+            
+        </div>
             </div>
         </div>
-        <div class=" col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3" ng-if="carrito.length===0">
+        <div class=" col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3" ng-if="carrito.length===0 && transaccion">
             
             <div class="alert alert-warning alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

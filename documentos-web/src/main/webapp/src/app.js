@@ -18,10 +18,11 @@
        'paypalModule',
        'tarjetadecreditoModule',
        'comprasModule',
-       'inicioModule', 
+        
        'carritoModule',
         'facturasModule',
-        'loginModule'
+        'loginModule',
+        'inicioModule'
         
 
 
@@ -39,6 +40,7 @@
      app.run(['$rootScope', '$transitions', function ($rootScope, $transitions) 
      {      $rootScope.carrito=[];
         
+
         $transitions.onSuccess({to: '*'}, function (trans) {
 
                 var $state = trans.router.stateService;

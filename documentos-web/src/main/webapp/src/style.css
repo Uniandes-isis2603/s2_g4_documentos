@@ -376,3 +376,245 @@ body{
       
 }
 
+#CursoDiv3
+{
+    color:white;   
+    height: 250px;
+    background-size: cover;  
+     text-align: center;
+     background-position: center center;
+    background-image: url(https://images.pexels.com/photos/958164/pexels-photo-958164.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+      
+}
+ 
+ 
+#CursoDiv4
+{
+    color:white;   
+    height: 250px;
+    background-size: cover;  
+     text-align: center;
+     background-position: center center;
+    background-image: url(https://images.unsplash.com/photo-1519680980544-54b7cc4ec68a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=edd60eb86247a438c7e310d4994b6f47&auto=format&fit=crop&w=1350&q=80);
+ 
+      
+}
+ 
+#CursoDiv5
+{
+    color:white;   
+    height: 250px;
+    background-size: cover;  
+     text-align: center;
+     background-position: center center;
+ 
+    background-image: url(https://images.pexels.com/photos/590493/pexels-photo-590493.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+      
+}
+#CursoDiv6
+{
+    color:white;   
+    height: 250px;
+    background-size: cover;  
+     text-align: center;
+     background-position: center center;
+    background-image: url(https://images.pexels.com/photos/977930/pexels-photo-977930.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+      
+}
+#CursoDiv7
+{
+    color:white;   
+    height: 250px;
+    background-size: cover;  
+     text-align: center;
+     background-position: center center;
+ 
+background-image: url(https://images.pexels.com/photos/633804/pexels-photo-633804.jpeg?auto=compress&cs=tinysrgb&h=650&w=940);
+}
+ 
+.btn-outline {
+    background-color: transparent;
+    color: #007a66;
+    transition: all .2s;
+    border: 1px solid #007a66; 
+}
+ 
+.btn-primary.btn-outline {
+    color: #007a66;
+}
+ 
+.btn-success.btn-outline {
+    color: #5cb85c;
+}
+ 
+.btn-info.btn-outline {
+    color: #5bc0de;
+}
+ 
+.btn-warning.btn-outline {
+    color: #f0ad4e;
+}
+ 
+.btn-danger.btn-outline {
+    color: #d9534f;
+}
+ 
+.btn-primary.btn-outline:hover,
+.btn-success.btn-outline:hover,
+.btn-info.btn-outline:hover,
+.btn-warning.btn-outline:hover,
+.btn-danger.btn-outline:hover {
+    color: whitesmoke;
+    background-color:#007a66;
+}
+ 
+.containerFoto{
+    position: relative;
+    width: 50%;
+}
+ 
+.imageLibro {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+ 
+.middleLibro {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+ 
+.containerFoto:hover .imageLibro {
+  opacity: 0.3;
+}
+ 
+.containerFoto:hover .middleLibro {
+  opacity: 1;
+}
+ 
+.hoverDeLibroIcono{
+    
+    color:darkgray;
+    
+}
+ 
+.hoverDeLibroIcono:hover{
+    
+    border: none;
+    color: gray
+}
+ 
+ 
+div.b {
+    white-space: nowrap; 
+    width: 200px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    font-size:18px;
+    font-weight:100;
+ 
+}
+
+.containerFede{
+        max-width: 450px;
+        height: auto;
+        margin: 5% auto;
+        padding-top: 20px;
+        border-radius: 24px 24px 24px 24px;
+        -moz-border-radius: 24px 24px 24px 24px;
+        -webkit-border-radius: 24px 24px 24px 24px;
+         border: 0px solid #000000;
+}
+.form_top{
+   width: 100%;
+   text-align: center;
+    color: scrollbar;   
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+.form_top h2{
+    font-weight: bold;
+    color: #9d9d9d;
+}
+.form_reg{
+    padding: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+         
+}
+.btn_form{
+    justify-content:space-around;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none; 
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    
+}
+.registroU{
+    padding: 6px;
+    margin: 20px;
+    border: none;
+    transition: all;
+    border-bottom: solid #9d9d9d 3px;
+}
+.registroU:focus{
+    border-bottom: solid #2c3e50 3px;
+}
+.tablaFede{
+    color: #9d9d9d;
+}
+.uliUpdate{
+      list-style-type: none;
+    margin: 5px;
+    padding: 5px;
+    overflow: hidden;
+}
+.life
+{
+     float: left;
+}
+#librosReserva{
+    display : flex;
+        border-radius: 24px 24px 24px 24px;
+        -moz-border-radius: 24px 24px 24px 24px;
+        -webkit-border-radius: 24px 24px 24px 24px;
+         border: 2px solid #2c3e50;  
+}
+
+nav.acceder ul{
+    list-style: none;
+    position: relative;
+    float: left;
+    
+}
+nav.acceder #login-content{
+    position: absolute;
+    top:  26px;
+    z-index: 999;
+    padding:  15px;
+    width: 250px;
+       
+}
+.Projo{
+    position: fixed;
+    width:300px;
+    height: 100%;
+    background-color: #00b3ee;
+}

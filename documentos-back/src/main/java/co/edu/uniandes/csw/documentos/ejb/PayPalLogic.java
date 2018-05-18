@@ -138,12 +138,8 @@ public class PayPalLogic {
          persistence.delete(Id);
         }
         else{
-        LOGGER.log(Level.INFO, "La cuenta con el correo {0} no existe", busqueda.getCorreoElectronico());
         throw new BusinessLogicException("La cuenta a borrar no existe.");
     }
     }
-    
-    
-    
-    
+ 
 }
