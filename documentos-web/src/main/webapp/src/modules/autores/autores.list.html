@@ -8,9 +8,9 @@
             <ul ng-repeat="autor in autores" class="list-group">
       
                 <li class="list-group-item" style="margin-top:0; margin-bottom: 0; ">         
-                        <a><i ng-click="delete(curso.id)" style="color:lightgray" class=" canequita fas fa-trash pull-right"></i></a>
+                        <a><i ng-click="delete(autor.id)" style="color:lightgray" class=" canequita fas fa-trash pull-right"></i></a>
                                 
-                        <a ui-sref="autoresDetail({autorId: autor.id})"  style="color:#2c3e50">{{autor.nombre}}<span class="badge" style="margin-left: 1%;"> {{autor.documentos.length}}</span></a>
+                        <a ui-sref="autoresDetail({autorId: autor.id})"  style="color:#2c3e50">{{autor.nombre}}<span class="badge" style="margin-left: 1%;background-color:lightgray;"> {{autor.documentos.length}}</span></a>
                                     
                 </li>
                                 
